@@ -43,9 +43,9 @@ rules:
     - convention: hyphenatedlowercase
   indentation:
     - 1
-    - size: 2
+    - size: 4
   leading-zero:
-    - 1
+    - 0
     - include: false
   mixin-name-format:
     - 1
@@ -160,21 +160,21 @@ rules:
     - 1
     - style: single
   shorthand-values:
-    - 1
+    - 0
     - allowed-shorthands:
         - 1
         - 2
         - 3
-  single-line-per-selector: 1
+  single-line-per-selector: 0
   space-after-colon:
-    - 1
+    - 0
     - include: true
   space-before-brace:
-    - 1
+    - 0
     - include: true
   trailing-semicolon: 1
   variable-name-format:
-    - 1
+    - 0
     - allow-leading-underscore: false
       convention: hyphenatedlowercase
-  zero-unit: 1
+  zero-unit: 0

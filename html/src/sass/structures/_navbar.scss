@@ -227,53 +227,53 @@
             }
         }
         @keyframes row1 {
-          0% {
-            width: 0;
-            opacity: 0;
-          }
-          60% {
-            width: 320px;
-          }
-          80% {
-            width: 295px;
-          }
-          100% {
-            width: 300px;
-          }
+            0% {
+                width: 0;
+                opacity: 0;
+            }
+            60% {
+                width: 320px;
+            }
+            80% {
+                width: 295px;
+            }
+            100% {
+                width: 300px;
+            }
         }
         @keyframes row2 {
-          0% {
-            width: 0;
-            opacity: 0;
-          }
-          60% {
-            width: 300px;
-            opacity: 1;
+            0% {
+                width: 0;
+                opacity: 0;
+            }
+            60% {
+                width: 300px;
+                opacity: 1;
 
-          }
-          80% {
-            width: 275px;
-          }
-          100% {
-            width: 280px;
-          }
+            }
+            80% {
+                width: 275px;
+            }
+            100% {
+                width: 280px;
+            }
         }
         @keyframes row3 {
-          0% {
-            width: 0;
-            opacity: 0;
-          }
-          60% {
-            width: 280px;
-            opacity: 1;
+            0% {
+                width: 0;
+                opacity: 0;
+            }
+            60% {
+                width: 280px;
+                opacity: 1;
 
-          }
-          80% {
-            width: 255px;
-          }
-          100% {
-            width: 260px;
-          }
+            }
+            80% {
+                width: 255px;
+            }
+            100% {
+                width: 260px;
+            }
         }
     }
 
@@ -453,8 +453,8 @@ body.portfolio, body.portfolio-detail, body.collaborators {
                             color: #2e71f2 !important;
                         }/*
                         &.portfolio-link{
-                            border-bottom:3px solid #2e71f2;
-                        }*/
+                        border-bottom:3px solid #2e71f2;
+                    }*/
                     }
                 }
             }
