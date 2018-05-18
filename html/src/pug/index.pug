@@ -1,0 +1,22 @@
+extends layout
+
+block body
+    body.index
+        
+block content
+    .jumbotron.main-slider
+        .container-fluid
+            .row
+                .col-sm-12
+                    h1.title.animated.pulse No Mas Bullying
+                    a.btn.btn--m-t(href="#contacto", role="button") CONTACT US!
+                    
+    .section-row
+        .container
+            .row
+                h1.title
+                    | Articulos
+                h5.subtitle Notas de la institución
+
+                
+    include partials/contact.pug

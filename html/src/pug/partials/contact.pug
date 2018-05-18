@@ -1,0 +1,23 @@
+.section-row.section-row--contact#contacto
+    .container
+        .row
+            .col-sm-7.col-md-6.vertical-align
+                h1.title
+                    | Contact us
+                h5.subtitle
+                    | Tell us what you are looking for, we are happy to guide you!
+                    
+            .col-sm-5
+                form#contact-form
+                    .form-group.form-group-lg
+                        input.form-control(type="text", placeholder="Full Name", name="full_name")
+                    .form-group.form-group-lg
+                        input.form-control(type="email", placeholder="E-mail", name="email")
+                    .form-group.form-group-lg
+                        textarea.form-control(placeholder="Tell us about your project or idea", rows="9", name="message")
+                    button.btn.btn--center.btn--m-t.btn--small
+                        i.fa.fa-refresh.fa-spin.fa-fw.hide
+                        | SEND
+                    #form-response.form-response
+                        p.
+                            We're glad to hear from you, we'll contact you pretty soon.
