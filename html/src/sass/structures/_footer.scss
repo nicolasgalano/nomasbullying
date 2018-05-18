@@ -64,4 +64,17 @@ footer {
             }
         }
     }
+
+
+    .navbar-default {
+        .navbar-nav {
+            @media (min-width: $screen-sm-min) {
+                position: absolute;
+                right: 50%;
+                margin: 0 -156px;
+                padding-top:5px;
+            }
+        }
+    }
+
 }

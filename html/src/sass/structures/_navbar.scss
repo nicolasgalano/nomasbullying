@@ -280,8 +280,7 @@
     .navbar-nav {
         @media (min-width: $screen-sm-min) {
             position: absolute;
-            right: 50%;
-            margin: 0 -156px;
+            right: 20px;
             padding-top:5px;
         }
         li {
@@ -364,25 +363,27 @@ body.index{
 }
 
 //Portfolio
-body.collaborators {
+body.contacto {
+    padding-top:100px;
     .navbar-nav {
-        li a.collaborators-link{
+        li a.contacto-link{
             border-bottom:3px solid #2e71f2;
         }
     }
 }
 
 //Portfolio
-body.portfolio, body.portfolio-detail {
+body.informacion{
+    padding-top:100px;
     .navbar-nav {
-        li a.portfolio-link{
+        li a.informacion-link{
             border-bottom:3px solid #2e71f2;
         }
     }
 }
 
 //Portfolio
-body.portfolio, body.portfolio-detail, body.collaborators {
+body.informacion, body.contacto{
     .navbar-brand{
         background-image:url(../images/header-navbar-logo-black.png);
     }
