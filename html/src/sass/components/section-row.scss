@@ -2,6 +2,7 @@
     padding-top: 60px;
     padding-bottom: 60px;
     overflow: hidden;
+    background-color:#eaeaea; 
 
     @media (min-width: $screen-sm-min) {
         padding-top: 80px;
@@ -13,16 +14,16 @@
     }
 
     .title {
-        font-size: $section-row-title-font-sm-size;
+        font-size: 36px;
         font-weight: 700;
+        font-family: $roboto;
         text-align: center;
         margin-top: 0;
         margin-bottom: 18px;
-        letter-spacing: -2px;
         color: $c-section-row-title;
 
         @media (min-width: $screen-sm-min) {
-            font-size: $section-row-title-font-lg-size;
+            font-size: 36px;
         }
     }
 
@@ -44,7 +45,7 @@
 
     .vertical-align {
         @media (min-width: $screen-sm-min) {
-            padding-top: 100px;
+            padding-top: 80px;
         }
     }
 
@@ -109,6 +110,15 @@
             @media (min-width: $screen-sm-min) and (max-width: $screen-md-max) {
                 width: 100%;
             }
+        }
+    }
+
+    &.section-row.section-row--informacion{
+        #login-form{
+            width:95%;
+            max-width:300px;
+            margin:0 auto;
+            .btn{display:block;}
         }
     }
 

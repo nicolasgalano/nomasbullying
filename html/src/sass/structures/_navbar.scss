@@ -6,13 +6,13 @@
 // *************************************
 
 .navbar {
-    padding-top: 10px;
-    padding-bottom: 15px;
-    box-shadow: 0 4px 27px rgba(0,0,0,0.06);
+    padding-top: 12px;
+    padding-bottom: 12px;
+    box-shadow: 0px 0px 22px rgba(0, 0, 0, 0.1);
     border: 0 none;
     @include transition(all .5s);
     .navbar-brand {
-        width: 59px;
+        width: 62px;
         @include transition(all .5s);
     }
     &.navbar-bg {
@@ -56,8 +56,8 @@
         }
     }
     @media (min-width: $screen-sm-min) {
-        padding-top: 20px;
-        padding-bottom: 20px;
+        padding-top: 12px;
+        padding-bottom: 12px;
     }
     .container {
         @media (min-width: $screen-sm-min) and (max-width: $screen-md-max) {
@@ -78,9 +78,9 @@
     display:block;
     background: url(../images/header-navbar-logo@2x.png) center center no-repeat;
     background-size: cover;
-    width: 59px;
-    height: 59px;
-    margin-top: 4px;
+    width: 62px;
+    height: 77px;
+    margin-top: 0px;
     @media (min-width: $screen-sm-min) {
         margin-top: 0px;
     }
@@ -279,18 +279,18 @@
 
     .navbar-nav {
         @media (min-width: $screen-sm-min) {
-            position: absolute;
-            right: 20px;
-            padding-top:5px;
+            float:right;
+            padding-top:12px;
         }
         li {
             a {
                 color: $c-text-main;
-                font-size: 11px;
-                font-weight: bold;
-                letter-spacing: $b-letter-spacing-m;
+                font-size: 18px;
+                font-weight: 400;
+                font-family:$open-sans;
+                text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.1);
                 padding: 16px 0 10px;
-                margin:0 21px;
+                margin:0 13px;
                 text-align: left;
                 &:hover {
                     color: $green-light !important;
@@ -306,6 +306,14 @@
                         background-color: rgba(45, 136, 242, .9);
                         color: $c-navbar-link-hover-mobile;
                     }
+                }
+                &.login-link{
+                    background: #47b830;
+                    padding: 8px 30px;
+                    border-radius: 10px;
+                    color: white !important;
+                    margin-top: 7px;
+                    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
                 }
             }
 
@@ -362,7 +370,7 @@ body.index{
     }
 }
 
-//Portfolio
+//Contacto
 body.contacto {
     padding-top:100px;
     .navbar-nav {
@@ -372,7 +380,17 @@ body.contacto {
     }
 }
 
-//Portfolio
+//Contacto
+body.login {
+    padding-top:100px;
+    .navbar-nav {
+        li a.login-link{
+            border-bottom:3px solid #2e71f2;
+        }
+    }
+}
+
+//Informacion
 body.informacion{
     padding-top:100px;
     .navbar-nav {
@@ -382,10 +400,19 @@ body.informacion{
     }
 }
 
+//Panel
+body.panel {
+    padding-top:100px;
+
+}
+
 //Portfolio
-body.informacion, body.contacto{
+body.informacion,
+body.contacto,
+body.panel,
+body.login{
     .navbar-brand{
-        background-image:url(../images/header-navbar-logo-black.png);
+        background-image:url(../images/instituto/logo.png);
     }
     .navbar-default#top-nav{
         background-color: #FFF;
@@ -414,7 +441,7 @@ body.informacion, body.contacto{
         .navbar-nav {
             li {
                 a {
-                    color: $gray;
+                    color: #304db8;
                     &:hover {
                         color: #2e71f2 !important;
                     }

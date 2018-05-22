@@ -11,12 +11,15 @@
 //   Typography
 // -------------------------------------
 
-@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,700|PT+Serif');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,700');
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700');
 $montserrat: 'Montserrat', sans-serif;
-$ptserif: 'PT Serif', sans-serif;
+$roboto: 'Roboto', sans-serif;
+$open-sans: 'Open Sans', sans-serif;
 
 $font-family-base: $montserrat;
-$font-family-second: $ptserif;
+$font-family-second: $roboto;
 $font-size-base: 14px;
 
 $link-hover-decoration: none;
