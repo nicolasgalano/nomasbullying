@@ -1,59 +1,25 @@
 .main-slider {
-    background-image: url('../images/slider/bkg1.jpg');
     background-repeat: no-repeat;
     background-position: 50%;
     background-size: cover;
-    height: auto;
-    min-height:60vh;
-    padding:140px 20px 0;
     text-align: center;
+    padding:0;
+    margin: 0;
 
-    @media (max-width: $screen-md-min) {
-        min-height:auto;
-        padding-bottom:50px;
-    }
-
-    .container {
-        position: relative;
-        top: 50%;
-        -webkit-transform: translateY(-50%);
-        transform: translateY(-50%);
-    }
-
-    .left-column{
-        padding:30px 0px 0 60px;
-        @media (max-width: $screen-md-min) {
-            padding:60px;
-            text-align: center;
-        }
-        @media (max-width: $screen-sm-min) {
-            padding:0px;
-        }
+    .opacity-white{
+        background-color: rgba(255,255,255,0.7);
+        height: auto;
+        min-height: 540px;
+        padding: 150px 20px 0;
     }
 
     .title {
-        color: $main-slider-font-color;
-        font-size: 65px;
+        font-family: $roboto;
+        font-size: 48px;
         font-weight: 700;
-        letter-spacing: -.6px;
         @media (max-width: $screen-lg-min) {
             font-size: 50px;
             letter-spacing: 0px;
-        }
-    }
-
-    .label {
-        font-size: $mains-slider-label-size;
-        color: $main-slider-font-color;
-        font-weight: 700;
-        letter-spacing: $b-letter-spacing-m;
-        padding-bottom:10px;
-    }
-
-    .btn--m-t {
-        margin-top: 60px;
-        @media (max-width: $screen-sm-min) {
-            margin-top:20px;
         }
     }
 

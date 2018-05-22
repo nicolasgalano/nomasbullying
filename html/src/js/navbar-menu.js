@@ -31,12 +31,14 @@
         else if($document.scrollTop() < 10) {
             $navBar.removeClass('navbar-bg');
         }
+        
     }, 250);
     window.addEventListener('scroll', changeNavbar);
     changeNavbar();
 
     $('#navbarMenu').on('show.bs.collapse', function (e) {
         e.preventDefault();
+        /*
         var $element = $(e.target);
         var $trigger = $('.navbar-toggle');
 
@@ -55,11 +57,12 @@
                 .addClass('collapse in');
             $el.off('webkitAnimationEnd mozAnimationEnd oAnimationEnd oanimationend animationend');
         });
+        */
     });
 
     $('#navbarMenu').on('hide.bs.collapse', function (e) {
         e.preventDefault();
-
+        /*
         var $element = $(e.target);
         var $trigger = $('.navbar-toggle');
 
@@ -80,5 +83,6 @@
 
             $el.off('webkitAnimationEnd mozAnimationEnd oAnimationEnd oanimationend animationend');
         });
+        */
     });
 })(jQuery);

@@ -4,14 +4,15 @@ block body
     body.index
         
 block content
-    .jumbotron.main-slider
-        .container-fluid
-            .row
-                .col-sm-12
-                    h1.title.animated.pulse No Mas Bullying
-                    a.btn.btn--m-t(href="#contacto", role="button") CONTACT US!
+    .jumbotron.main-slider(style="background-image: url('images/instituto/home-bg.jpg');")
+        .opacity-white
+            .container-fluid
+                .row
+                    .col-sm-12
+                        img(src="images/instituto/logo--big.png")
+                        h1.title.animated.pulse ¡Bienvenidos!
                     
-    .section-row.drop-shadow
+    .section-row.section-row--articulos.drop-shadow
         .container
             .row
                 h1.title
@@ -33,7 +34,7 @@ block content
                         p Esta es la descripcion de un taller dado por la institucion en pos de educar a los apdres y docentes y gente que necesite ayuda.
             
     
-    .section-row
+    .section-row.section-row--talleres
         .container
             .row
                 .col-xs-12
