@@ -1,7 +1,11 @@
 .form-group,
 .form-group-lg {
+    margin-bottom: 20px;
     .form-control {
         font-size: 14px;
+        border-radius: 10px;
+        background-color: #FFF;
+        box-shadow: 0 1px 3px 0px rgba(0, 0, 0, 0.2)
     }
 
     &.has-error {
@@ -11,9 +15,6 @@
 
         .form-control {
             border: 0 none;
-            -webkit-box-shadow: none;
-            -moz-box-shadow: none;
-            box-shadow: none;
         }
     }
 }

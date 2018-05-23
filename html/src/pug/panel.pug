@@ -2,15 +2,69 @@ extends layout
 
 block body
     body.panel
+    include popups/situacion-crear
 
+block header
+    include partials/header-logueado
+    
 block content
     
-    .section-row.section-row--informacion
+    .section-row.section-row--panel
         .container
             .row
                 .col-sm-12
                     h1.title
-                        | Panel
+                        | Mi Panel
                         
                 .col-sm-12
+                    
+                    .basic-box
+                        
+                        .box-top
+                            h4 
+                                | Mis situaciones
+                            .btn.add-more.agregar-situacion
+                                i.glyphicon.glyphicon-plus
+                                | Agregar situaciones
+                        
+                        table
+                            tr
+                                th Nombre
+                                th Descripción
+                                th Gravedad
+                                th Estado
+                                th(style="width:300px;") Acciones
+                            
+                            tr
+                                td Me pegaron
+                                td Fui agredido en el patio de la escuela a las 12am cuando...
+                                td Alto
+                                td Leido
+                                td
+                                    .btn.ver-ficha Ver ficha
+                                    .btn Responder mensaje
+                            tr
+                                td Me pegaron
+                                td Fui agredido en el patio de la escuela a las 12am cuando...
+                                td Alto
+                                td Leido
+                                td
+                                    .btn.ver-ficha Ver ficha
+                                    .btn Leer mensajes
+                            tr
+                                td Me pegaron
+                                td Fui agredido en el patio de la escuela a las 12am cuando...
+                                td Alto
+                                td Leido
+                                td
+                                    .btn.ver-ficha Ver ficha
+                                    .btn Leer mensajes
+                            tr
+                                td Me pegaron
+                                td Fui agredido en el patio de la escuela a las 12am cuando...
+                                td Alto
+                                td Leido
+                                td
+                                    .btn.ver-ficha Ver ficha
+                                    .btn Leer mensajes
                     

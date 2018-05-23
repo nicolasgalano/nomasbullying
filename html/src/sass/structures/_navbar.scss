@@ -16,6 +16,9 @@
         margin-left: 0 !important;
         @include transition(all .5s);
     }
+    &.navbar-fixed-top{
+        z-index:99;
+    }
     &.navbar-bg {
 
     }
@@ -136,6 +139,10 @@
                     color: white !important;
                     margin-top: 7px;
                     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
+                    &:hover{
+                        color: white !important;
+                        text-decoration: underline;
+                    }
                 }
             }
 
@@ -255,4 +262,9 @@ body.login{
         }
     }
 
+}
+
+
+body .navbar-default#top-nav .navbar-nav li a.login-link:hover{
+    color:white !important;
 }

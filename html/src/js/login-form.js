@@ -38,8 +38,11 @@
             submitLoader.removeClass('hide');
             var params = $(form).serializeArray();
 
-            window.location.href = "panel.html";
-
+            if(params[0].value == 'instituto'){
+                window.location.href = "panel-instituto.html";
+            }else{
+                window.location.href = "panel.html";
+            }
             /*
             $.ajax({
                 method: 'POST',
@@ -69,4 +72,24 @@
             this.defaultShowErrors(); // keep error messages next to each input element
         }
     });
+
+
+
+    //POPUPS
+    $('.agregar-situacion').click(function(){
+        $('.full-opacity').show();
+        $('.popup-agregar-situacion').show();
+    });
+    $('.popup-agregar-situacion .popup-close').click(function(){
+        $('.full-opacity').hide();
+        $('.popup-agregar-situacion').hide();
+    });
+
+    $('.full-opacity').click(function(){
+        $('.full-opacity').hide();
+        $('.popup-agregar-situacion').hide();
+    });
+
+
+
 })();

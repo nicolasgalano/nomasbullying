@@ -2,7 +2,10 @@ extends layout
 
 block body
     body.index
-        
+    
+block header
+    include partials/header-home
+            
 block content
     .jumbotron.main-slider(style="background-image: url('images/instituto/home-bg.jpg');")
         .opacity-white
@@ -12,68 +15,74 @@ block content
                         img(src="images/instituto/logo--big.png")
                         h1.title.animated.pulse ¡Bienvenidos!
                     
-    .section-row.section-row--articulos.drop-shadow
+    .section-row.section-row--home.section-row--articulos.drop-shadow
         .container-fluid
             .row
                 .col-xs-12
                     h1.title
                         | Articulos
                     
-                    .row.lista-articulo
+                    .row.lista-post
                         
-                        .col-xs-4.item-articulo
+                        .col-md-4.item-post
                             a.content(href="#")
-                                .opacity
-                                    .btn Leer nota
-                                img(src="images/instituto/post-1.png")
+                                .img(style="background-image:url('images/instituto/post-1.png');")
+                                    .opacity
+                                        .btn Leer nota
+                                    img(src="images/instituto/post-1.png")
                                 h3 Como tratar a tus compañeros
                                 p Esta es la descripcion de un taller dado por la institucion en pos de educar a los apdres y docentes y gente que necesite ayuda.
-                        .col-xs-4.item-articulo
+                        .col-md-4.item-post
                             a.content(href="#")
-                                .opacity
-                                    .btn Leer nota
-                                img(src="images/instituto/post-1.png")
+                                .img(style="background-image:url('images/instituto/post-1.png');")
+                                    .opacity
+                                        .btn Leer nota
+                                    img(src="images/instituto/post-1.png")
                                 h3 ¿Que siente el otro?
                                 p Esta es la descripcion de un taller dado por la institucion en pos de educar a los apdres y docentes y gente que necesite ayuda.
-                        .col-xs-4.item-articulo
+                        .col-md-4.item-post
                             a.content(href="#")
-                                .opacity
-                                    .btn Leer nota
-                                img(src="images/instituto/post-1.png")
+                                .img(style="background-image:url('images/instituto/post-1.png');")
+                                    .opacity
+                                        .btn Leer nota
+                                    img(src="images/instituto/post-1.png")
                                 h3 Perdonar no es olvidar
                                 p Esta es la descripcion de un taller dado por la institucion en pos de educar a los apdres y docentes y gente que necesite ayuda.
                     
                     a.btn.ver-mas(href="#") VER MÁS ARTÍCULOS
     
     
-    .section-row.section-row--talleres
+    .section-row.section-row--home.section-row--talleres
         .container-fluid
             .row
                 .col-xs-12
                     h1.title
                         | Talleres
                     
-                    .row.lista-taller
+                    .row.lista-post
                         
-                        .col-xs-4.item-taller
+                        .col-md-4.item-post
                             a.content(href="#")
-                                .opacity
-                                    .btn Leer nota
-                                img(src="images/instituto/post-1.png")
+                                .img(style="background-image:url('images/instituto/post-1.png');")
+                                    .opacity
+                                        .btn Leer más
+                                    img(src="images/instituto/post-1.png")
                                 h3 Taller pedagogico
                                 p Esta es la descripcion de un taller dado por la institucion en pos de educar a los apdres y docentes y gente que necesite ayuda.
-                        .col-xs-4.item-taller
+                        .col-md-4.item-post
                             a.content(href="#")
-                                .opacity
-                                    .btn Leer nota
-                                img(src="images/instituto/post-1.png")
+                                .img(style="background-image:url('images/instituto/post-1.png');")
+                                    .opacity
+                                        .btn Leer más
+                                    img(src="images/instituto/post-1.png")
                                 h3 Taller pedagogico
                                 p Esta es la descripcion de un taller dado por la institucion en pos de educar a los apdres y docentes y gente que necesite ayuda.
-                        .col-xs-4.item-taller
+                        .col-md-4.item-post
                             a.content(href="#")
-                                .opacity
-                                    .btn Leer nota
-                                img(src="images/instituto/post-1.png")
+                                .img(style="background-image:url('images/instituto/post-1.png');")
+                                    .opacity
+                                        .btn Leer más
+                                    img(src="images/instituto/post-1.png")
                                 h3 Taller pedagogico
                                 p Esta es la descripcion de un taller dado por la institucion en pos de educar a los apdres y docentes y gente que necesite ayuda.
                                 
