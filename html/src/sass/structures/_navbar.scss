@@ -127,7 +127,7 @@
                     color:#304db8;
                 }
                 &.active {
-                    border-bottom:3px solid #2e71f2;
+                    //border-bottom:3px solid #2e71f2;
                 }
                 &.login-link{
                     background: #47b830;
@@ -203,31 +203,6 @@ body.index{
                     }
                 }
             }
-        }
-    }
-}
-
-//Contacto
-body.contacto {
-    .navbar-nav {
-        li a.contacto-link{
-            border-bottom:3px solid #2e71f2;
-        }
-    }
-}
-//Contacto
-body.login {
-    .navbar-nav {
-        li a.login-link{
-            border-bottom:3px solid #2e71f2;
-        }
-    }
-}
-//Informacion
-body.informacion{
-    .navbar-nav {
-        li a.informacion-link{
-            border-bottom:3px solid #2e71f2;
         }
     }
 }

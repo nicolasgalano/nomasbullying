@@ -8,15 +8,17 @@ footer {
         padding-bottom: 0;
         margin-bottom: 0;
         box-shadow: none !important;
+
+        .navbar-brand {
+            height:70px !important;
+        }
+
     }
 
     .navbar-default .social{
         padding-top:25px;
     }
 
-    .navbar-brand {
-
-    }
     @media (max-width: $screen-xs-max) {
         .container {
             padding: 0;
