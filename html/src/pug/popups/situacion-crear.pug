@@ -6,3 +6,25 @@
     .popup-top
         h5 Agregar situación
         
+    .popup-content
+        form
+            .form-group.form-group-lg
+                input.form-control(type="text", placeholder="Título resumido de la situación", name="full_name")
+            .form-group.form-group-lg.fix-height
+                input.form-control.small(type="text", placeholder="Agresor/es", name="email")
+                input.form-control.small.margin-left(type="text", placeholder="Victima/s", name="email")
+            .form-group.form-group-lg
+                select.form-control(name="email", placeholder="Gravedad")
+                    option(disabled="disabled", selected="selected", name="topic") &nbsp;Nivel de gravedad
+                    option(value="Collaborators") &nbsp;Alto
+                    option(value="Sales") &nbsp;Medio
+                    option(value="Partners") &nbsp;Bajo
+            .form-group.form-group-lg
+                textarea.form-control(placeholder="Descripción detallada del hecho/situación", rows="9", name="message")
+            button.btn.btn--center.btn--m-t
+                i.fa.fa-refresh.fa-spin.fa-fw.hide
+                | Guardar/Crear
+            #form-response.form-response
+                p We're glad to hear from you, we'll contact you pretty soon.
+
+        

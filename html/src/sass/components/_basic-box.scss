@@ -1,11 +1,14 @@
 .basic-box{
     padding-top:30px;
     padding-bottom:20px;
+    
     .box-top{
-        height:42px;
+        height:44px;
         h4{
             float:left;
-            font-size: 22px;
+            font-size: 24px;
+            font-family:$roboto;
+            margin-top:4px;
         }
 
         .btn.add-more{

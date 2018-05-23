@@ -61,10 +61,62 @@
 }
 
 .section-row.section-row--informacion{
+    .title{
+        margin-bottom:40px;
+    }
+    .information-box{
+
+        background:#FFF;
+        border-radius:10px;
+        padding:20px 20px;
+        margin-bottom:30px;
+        box-shadow: 0 1px 3px 0px rgba(0, 0, 0, 0.2);
+
+        h4{
+            font-size:18px;
+            font-family: $roboto;
+            margin:0 0 10px;
+        }
+
+        ul{
+            margin:0;
+            padding:0;
+
+            li{
+                list-style:none;
+                font-family:$arial;
+                font-size:14px;
+
+                &:nth-child(even){
+                    background:#F9F9F9;
+                }
+                &:nth-child(odd){
+                    background:#d6eeff;
+                }
+
+                div{
+                    display:inline-block;
+                    padding:5px 10px;
+                    &.large{
+                        width:60%
+                    }
+                    &.small{
+                        width:38%;
+                    }
+                }
+            }
+        }
+
+    }
 
 }
 
 .section-row.section-row--login{
+
+    padding-top:120px;
+
+    min-height:78vh;
+
     #login-form{
         width:95%;
         max-width:300px;
@@ -185,8 +237,56 @@
     z-index:8;
 }
 
-.section-row.section-row--panel{
+.section-row.section-row--panel-institucion{
 
-    
+    background: #eaeaea;
+    padding:0;
+
+    .title{
+        font-size:25px;
+        padding:30px 15px 15px;
+        margin:0;
+    }
+
+    .content-box{
+        background:#FFF;
+        padding:10px 30px 40px;
+        border-left:2px solid #999;
+        height:80vh;
+        overflow:auto;
+    }
+
+    .col-sm-3{
+        padding-right:0;
+        position: relative;
+        z-index: 10;
+    }
+
+    ul.side-menu{
+        margin:0 0 30px;
+        padding:0;
+        width:100%;
+        position:relative;
+        right:-2px;
+        border-bottom:2px solid #999;
+        li{
+            list-style:none;
+            width:100%;
+            a{
+                display:block;
+                padding:10px 20px;
+                background:#F9F9F9;
+                border:2px solid #999;
+                border-bottom:0;
+                font-size: 18px;
+                &.active{
+                    background:#FFF;
+                    color:#444;
+                    border-right:2px solid #FFF;
+                }
+            }
+        }
+    }
+
 
 }

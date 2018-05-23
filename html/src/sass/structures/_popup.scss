@@ -1,12 +1,11 @@
 .popup{
     display:none;
     z-index:101;
-    position:absolute;
-    top:100px;
+    position:fixed;
+    top:90px;
     left:50%;
     margin-left:-400px;
     background:#FFF;
-    height:400px;
     width:100%;
     max-width:800px;
     -webkit-box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.2);
@@ -22,13 +21,17 @@
         cursor: pointer;
     }
     .popup-top{
-        background:#9dcded;
+        background:#b7cde3;
         border-radius: 10px;
         h5{
             margin:0;
             padding:16px 20px;
             font-size: 22px;
         }
+    }
+
+    .popup-content{
+        padding:20px;
     }
 
 

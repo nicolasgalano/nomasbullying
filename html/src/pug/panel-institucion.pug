@@ -1,69 +1,139 @@
 extends layout
 
 block body
-    body.panel
+    body.panel.panel-institucion
 
 block header
     include partials/header-logueado
     
 block content
     
-    .section-row.section-row--panel
-        .container
-            .row
-                .col-sm-12
-                    h1.title
-                        | Mi Panel
-                        
-                .col-sm-12
+    .section-row.section-row--panel-institucion
+        .container-fluid
                     
+            .row
+                
+                .col-sm-3
+                    .rock
+                        h1.title
+                            | Panel institución
+                            
+                        ul.side-menu
+                            li
+                                a.active(href="#") Usuarios
+                            li
+                                a(href="#") Notificaciones
+                            li
+                                a(href="#") Situaciones
+                            li
+                                a(href="#") Contenido general
+                            li
+                                a(href="#") Alertas
+                            li
+                                a(href="#") Soporte técnico
+                
+                .col-sm-9.content-box
+            
                     .basic-box
                         
                         .box-top
                             h4 
-                                | Mis situaciones
+                                | Lista de usuarios
                             .btn.add-more.agregar-situacion
                                 i.glyphicon.glyphicon-plus
-                                | Agregar situaciones
+                                | Agregar usuario
                         
                         table
                             tr
                                 th Nombre
-                                th Descripción
-                                th Gravedad
-                                th Estado
-                                th(style="width:300px;") Acciones
+                                th Documento
+                                th Grado
+                                th Edad
+                                th Genero
+                                th(style="width:200px;") Acciones
                             
                             tr
-                                td Me pegaron
-                                td Fui agredido en el patio de la escuela a las 12am cuando...
-                                td Alto
-                                td Leido
+                                td Nicolas Galano
+                                td 34180977
+                                td 4to B
+                                td 10
+                                td M
                                 td
-                                    .btn.ver-ficha Ver ficha
-                                    .btn Responder mensaje
+                                    .btn.btn-blue Editar
+                                    .btn.btn-red Eliminar
                             tr
-                                td Me pegaron
-                                td Fui agredido en el patio de la escuela a las 12am cuando...
-                                td Alto
-                                td Leido
+                                td Nicolas Galano
+                                td 34180977
+                                td 4to B
+                                td 10
+                                td M
                                 td
-                                    .btn.ver-ficha Ver ficha
-                                    .btn Leer mensajes
+                                    .btn.btn-blue Editar
+                                    .btn.btn-red Eliminar
                             tr
-                                td Me pegaron
-                                td Fui agredido en el patio de la escuela a las 12am cuando...
-                                td Alto
-                                td Leido
+                                td Nicolas Galano
+                                td 34180977
+                                td 4to B
+                                td 10
+                                td M
                                 td
-                                    .btn.ver-ficha Ver ficha
-                                    .btn Leer mensajes
+                                    .btn.btn-blue Editar
+                                    .btn.btn-red Eliminar
                             tr
-                                td Me pegaron
-                                td Fui agredido en el patio de la escuela a las 12am cuando...
-                                td Alto
-                                td Leido
+                                td Nicolas Galano
+                                td 34180977
+                                td 4to B
+                                td 10
+                                td M
                                 td
-                                    .btn.ver-ficha Ver ficha
-                                    .btn Leer mensajes
-                    
+                                    .btn.btn-blue Editar
+                                    .btn.btn-red Eliminar
+                            tr
+                                td Nicolas Galano
+                                td 34180977
+                                td 4to B
+                                td 10
+                                td M
+                                td
+                                    .btn.btn-blue Editar
+                                    .btn.btn-red Eliminar
+                            tr
+                                td Nicolas Galano
+                                td 34180977
+                                td 4to B
+                                td 10
+                                td M
+                                td
+                                    .btn.btn-blue Editar
+                                    .btn.btn-red Eliminar
+                            tr
+                                td Nicolas Galano
+                                td 34180977
+                                td 4to B
+                                td 10
+                                td M
+                                td
+                                    .btn.btn-blue Editar
+                                    .btn.btn-red Eliminar
+                            tr
+                                td Nicolas Galano
+                                td 34180977
+                                td 4to B
+                                td 10
+                                td M
+                                td
+                                    .btn.btn-blue Editar
+                                    .btn.btn-red Eliminar
+                            tr
+                                td Nicolas Galano
+                                td 34180977
+                                td 4to B
+                                td 10
+                                td M
+                                td
+                                    .btn.btn-blue Editar
+                                    .btn.btn-red Eliminar
+                            
+                            
+block footer
+    include partials/footer-logueado

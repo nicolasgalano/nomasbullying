@@ -21,6 +21,14 @@
     cursor: pointer;
     @include transition(all .3s ease);
 
+    &.btn-red{
+        background-color: #b83030 !important;
+    }
+
+    &.btn-blue{
+        background-color: #306db8 !important;
+    }
+
     &:hover {
         text-decoration: none;
         -webkit-transform: translateY(-5%);

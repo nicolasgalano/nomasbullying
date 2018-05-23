@@ -38,8 +38,8 @@
             submitLoader.removeClass('hide');
             var params = $(form).serializeArray();
 
-            if(params[0].value == 'instituto'){
-                window.location.href = "panel-instituto.html";
+            if(params[0].value == '1234'){
+                window.location.href = "panel-institucion.html";
             }else{
                 window.location.href = "panel.html";
             }

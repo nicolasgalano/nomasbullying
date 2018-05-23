@@ -1,6 +1,9 @@
 .form-group,
 .form-group-lg {
     margin-bottom: 20px;
+    &.fix-height{
+        height:45px;
+    }
     .form-control {
         font-size: 14px;
         border-radius: 10px;
@@ -25,13 +28,21 @@
     -moz-box-shadow: none;
     box-shadow: none;
 
+    &.small{
+        width:48%;
+        float:left;
+        margin-right:2%;
+        &.margin-left{
+            margin-right:0;
+            margin-left:2%;
+        }
+    }
+
     &.error {
         background-color: $state-danger-bg;
     }
 
     &:focus {
-        -webkit-box-shadow: none;
-        box-shadow: none;
     }
 }
 
