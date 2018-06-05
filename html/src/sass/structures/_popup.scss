@@ -13,20 +13,25 @@
     border-radius: 10px;
 
     .popup-close{
-        color:#333;
+        color:#FFF;
         font-size:30px;
         position:absolute;
-        top:10px;
-        right:10px;
+        top: 9px;
+        right: 12px;
         cursor: pointer;
+        text-shadow: 0 2px 0 rgba(0,0,0,0.3);
     }
     .popup-top{
-        background:#b7cde3;
-        border-radius: 10px;
+        background:#5990c7;
+        border-radius: 9px;
+        border-bottom-left-radius:0;
+        border-bottom-right-radius:0;
         h5{
             margin:0;
-            padding:16px 20px;
-            font-size: 22px;
+            padding:15px 20px 14px;
+            font-size: 20px;
+            color:#FFF;
+            text-shadow: 0 1px 0 rgba(0,0,0,0.3);
         }
     }
 
@@ -47,4 +52,76 @@
     width:100%;
     height: 100%;
     z-index:100;
+}
+
+//VER FICHA
+.popup-ver-situacion{
+
+    .situacion-item{
+        padding:0 0 20px;
+    }
+    span{
+        display:block;
+        font-weight:600;
+        padding:0 0 5px;
+    }
+    b{
+        display:block;
+        font-weight:500;
+        font-family:$arial;
+        font-size:16px;
+        i{
+            display:inline-block;
+            width:auto;
+            height:25px;
+            color:#FFF;
+            text-align: center;
+            line-height:25px;
+            border-radius: 3px;
+            font-style: initial;
+            background:#359aad;
+            font-size: 13px;
+            font-weight: normal;
+            padding:0 12px;
+            margin:0 10px 0 0;
+        }
+    }
+    .titulo{
+
+    }
+    .descripcion{
+
+    }
+    .gravedad{
+
+        b{
+            width:120px;
+            height:28px;
+            color:#FFF;
+            text-align: center;
+            line-height:28px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        &.alto{
+            b{
+                background:red;
+            }
+        }
+        &.medio{
+            b{
+                background:yellow;
+            }
+        }
+        &.bajo{
+            b{
+                background:green;
+            }
+        }
+
+    }
+    .status{
+
+    }
+
 }

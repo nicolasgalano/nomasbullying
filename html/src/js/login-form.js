@@ -85,9 +85,18 @@
         $('.popup-agregar-situacion').hide();
     });
 
+    $('.ver-ficha').click(function(){
+        $('.full-opacity').show();
+        $('.popup-ver-situacion').show();
+    });
+    $('.popup-ver-situacion .popup-close').click(function(){
+        $('.full-opacity').hide();
+        $('.popup-ver-situacion').hide();
+    });
+
     $('.full-opacity').click(function(){
         $('.full-opacity').hide();
-        $('.popup-agregar-situacion').hide();
+        $('.popup').hide();
     });
 
 
