@@ -2,7 +2,7 @@
     padding-top: 60px;
     padding-bottom: 60px;
     overflow: hidden;
-    background-color:#eaeaea;
+    background-color:#EEEEEE;
 
     .container {
         padding:0;
@@ -11,7 +11,7 @@
     .title {
         font-size: 36px;
         font-weight: 700;
-        font-family: $roboto;
+        //font-family: $roboto;
         text-align: center;
         margin-top: 0;
         margin-bottom: 18px;
@@ -51,7 +51,7 @@
 }
 
 .section-row--contact {
-    background-color: #f2f2f2;
+    background-color: #EEEEEE;
     padding:70px 20px 100px;
     .container {
         @media (min-width: $screen-sm-min) and (max-width: $screen-md-max) {
@@ -67,31 +67,34 @@
     .information-box{
 
         background:#FFF;
-        border-radius:10px;
+        border-radius: 6px;
         padding:20px 20px;
         margin-bottom:30px;
         box-shadow: 0 1px 3px 0px rgba(0, 0, 0, 0.2);
 
         h4{
             font-size:18px;
-            font-family: $roboto;
+            //font-family: $roboto;
             margin:0 0 10px;
         }
 
         ul{
             margin:0;
             padding:0;
+            border:1px solid #CCC;
+            border-bottom:none;
 
             li{
                 list-style:none;
                 font-family:$arial;
                 font-size:14px;
+                border-bottom:1px solid #CCC;
 
                 &:nth-child(even){
-                    background:#F9F9F9;
+                    background:#FFF;
                 }
                 &:nth-child(odd){
-                    background:#d6eeff;
+                    background:#FFF;
                 }
 
                 div{
@@ -147,7 +150,7 @@
         line-height:22px;
         background: #47b830;
         padding: 9px 25px;
-        border-radius: 10px;
+        border-radius: 6px;
         color: white !important;
         font-weight:300;
         -webkit-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
@@ -179,7 +182,7 @@
             width: 100%;
             height:100%;
             background-color: rgba(255,255,255,0.6);
-            border-radius: 10px;
+            border-radius: 6px;
             text-align: center;
             .btn{
                 display:inline-block;
@@ -190,7 +193,7 @@
                 line-height:20px;
                 background: #304db8;
                 padding: 8px 10px;
-                border-radius: 10px;
+                border-radius: 6px;
                 color: white !important;
                 font-weight:300;
                 -webkit-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
@@ -206,7 +209,7 @@
                 }
             }
             .img{
-                border-radius: 10px;
+                border-radius: 6px;
                 background-position: center center;
                 background-size: cover;
                 position: relative;
@@ -239,7 +242,7 @@
 
 .section-row.section-row--panel-institucion{
 
-    background: #eaeaea;
+    background: #EEEEEE;
     padding:0;
 
     .title{
@@ -250,10 +253,10 @@
 
     .content-box{
         background:#FFF;
-        padding:10px 30px 40px;
-        border-left:2px solid #999;
+        padding:10px 35px 40px;
         height:80vh;
         overflow:auto;
+        box-shadow: 1px 0px 8px rgba(0, 0, 0, 0.1);
     }
 
     .col-sm-3{
@@ -263,26 +266,26 @@
     }
 
     ul.side-menu{
-        margin:0 0 30px;
+        margin:10px 0 30px;
         padding:0;
         width:100%;
-        position:relative;
-        right:-2px;
-        border-bottom:2px solid #999;
         li{
             list-style:none;
             width:100%;
             a{
                 display:block;
                 padding:10px 20px;
-                background:#F9F9F9;
-                border:2px solid #999;
-                border-bottom:0;
+                margin-bottom:20px;
+                background:#78909a;
                 font-size: 18px;
+                line-height: 30px;
+                color:#FFF;
+                &:hover{
+                    background:#8aa1ab;
+                }
                 &.active{
                     background:#FFF;
                     color:#444;
-                    border-right:2px solid #FFF;
                 }
             }
         }

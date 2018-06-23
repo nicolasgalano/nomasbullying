@@ -6,6 +6,7 @@ block body
     .full-opacity
     include popups/situacion-crear
     include popups/situacion-ver
+    include popups/situacion-comentarios
 
 block header
     include partials/header-logueado
@@ -26,7 +27,7 @@ block content
                         .box-top
                             h4 
                                 | Mis situaciones
-                            .btn.add-more.agregar-situacion
+                            .btn.add-more.agregar-situacion.open-popup-button(aria-popup=".popup-agregar-situacion")
                                 i.glyphicon.glyphicon-plus
                                 | Agregar situaciones
                         
@@ -36,7 +37,7 @@ block content
                                 th Descripción
                                 th Gravedad
                                 th Estado
-                                th(style="width:300px;") Acciones
+                                th(style="width:220px;") Acciones
                             
                             tr
                                 td Me pegaron
@@ -44,8 +45,8 @@ block content
                                 td Alto
                                 td Leido
                                 td
-                                    .btn.ver-ficha Ver ficha
-                                    .btn.btn-blue Responder mensaje
+                                    .btn.ver-ficha.open-popup-button(aria-popup=".popup-ver-situacion") Ver ficha
+                                    .btn.btn-blue.open-popup-button(aria-popup=".popup-comentarios") Mensajes
                             tr
                                 td Me pegaron
                                 td Fui agredido en el patio de la escuela a las 12am cuando...
@@ -53,7 +54,7 @@ block content
                                 td Leido
                                 td
                                     .btn.ver-ficha Ver ficha
-                                    .btn.btn-blue Leer mensajes
+                                    .btn.btn-blue.open-popup-button(aria-popup=".popup-comentarios") Mensajes
                             tr
                                 td Me pegaron
                                 td Fui agredido en el patio de la escuela a las 12am cuando...
@@ -61,7 +62,7 @@ block content
                                 td Leido
                                 td
                                     .btn.ver-ficha Ver ficha
-                                    .btn.btn-blue Leer mensajes
+                                    .btn.btn-blue.open-popup-button(aria-popup=".popup-comentarios") Mensajes
                             tr
                                 td Me pegaron
                                 td Fui agredido en el patio de la escuela a las 12am cuando...
@@ -69,7 +70,7 @@ block content
                                 td Leido
                                 td
                                     .btn.ver-ficha Ver ficha
-                                    .btn.btn-blue Leer mensajes
+                                    .btn.btn-blue.open-popup-button(aria-popup=".popup-comentarios") Mensajes
                             tr
                                 td Me pegaron
                                 td Fui agredido en el patio de la escuela a las 12am cuando...
@@ -77,7 +78,7 @@ block content
                                 td Leido
                                 td
                                     .btn.ver-ficha Ver ficha
-                                    .btn.btn-blue Responder mensaje
+                                    .btn.btn-blue.open-popup-button(aria-popup=".popup-comentarios") Mensajes
                             tr
                                 td Me pegaron
                                 td Fui agredido en el patio de la escuela a las 12am cuando...
@@ -85,7 +86,7 @@ block content
                                 td Leido
                                 td
                                     .btn.ver-ficha Ver ficha
-                                    .btn.btn-blue Leer mensajes
+                                    .btn.btn-blue.open-popup-button(aria-popup=".popup-comentarios") Mensajes
                             tr
                                 td Me pegaron
                                 td Fui agredido en el patio de la escuela a las 12am cuando...
@@ -93,7 +94,7 @@ block content
                                 td Leido
                                 td
                                     .btn.ver-ficha Ver ficha
-                                    .btn.btn-blue Leer mensajes
+                                    .btn.btn-blue.open-popup-button(aria-popup=".popup-comentarios") Mensajes
                             tr
                                 td Me pegaron
                                 td Fui agredido en el patio de la escuela a las 12am cuando...
@@ -101,7 +102,7 @@ block content
                                 td Leido
                                 td
                                     .btn.ver-ficha Ver ficha
-                                    .btn.btn-blue Leer mensajes
+                                    .btn.btn-blue.open-popup-button(aria-popup=".popup-comentarios") Mensajes
 
                             
 block footer

@@ -2,6 +2,11 @@ extends layout
 
 block body
     body.panel.panel-institucion
+        
+    .full-opacity
+    include popups/usuarios-borrar
+    include popups/usuarios-agregar
+    include popups/usuarios-editar
 
 block header
     include partials/header-logueado
@@ -16,7 +21,7 @@ block content
                 .col-sm-3
                     .rock
                         h1.title
-                            | Panel institución
+                            | Panel Institucional
                             
                         ul.side-menu
                             li
@@ -34,105 +39,7 @@ block content
                 
                 .col-sm-9.content-box
             
-                    .basic-box
-                        
-                        .box-top
-                            h4 
-                                | Lista de usuarios
-                            .btn.add-more.agregar-situacion
-                                i.glyphicon.glyphicon-plus
-                                | Agregar usuario
-                        
-                        table
-                            tr
-                                th Nombre
-                                th Documento
-                                th Grado
-                                th Edad
-                                th Genero
-                                th(style="width:200px;") Acciones
-                            
-                            tr
-                                td Nicolas Galano
-                                td 34180977
-                                td 4to B
-                                td 10
-                                td M
-                                td
-                                    .btn.btn-blue Editar
-                                    .btn.btn-red Eliminar
-                            tr
-                                td Nicolas Galano
-                                td 34180977
-                                td 4to B
-                                td 10
-                                td M
-                                td
-                                    .btn.btn-blue Editar
-                                    .btn.btn-red Eliminar
-                            tr
-                                td Nicolas Galano
-                                td 34180977
-                                td 4to B
-                                td 10
-                                td M
-                                td
-                                    .btn.btn-blue Editar
-                                    .btn.btn-red Eliminar
-                            tr
-                                td Nicolas Galano
-                                td 34180977
-                                td 4to B
-                                td 10
-                                td M
-                                td
-                                    .btn.btn-blue Editar
-                                    .btn.btn-red Eliminar
-                            tr
-                                td Nicolas Galano
-                                td 34180977
-                                td 4to B
-                                td 10
-                                td M
-                                td
-                                    .btn.btn-blue Editar
-                                    .btn.btn-red Eliminar
-                            tr
-                                td Nicolas Galano
-                                td 34180977
-                                td 4to B
-                                td 10
-                                td M
-                                td
-                                    .btn.btn-blue Editar
-                                    .btn.btn-red Eliminar
-                            tr
-                                td Nicolas Galano
-                                td 34180977
-                                td 4to B
-                                td 10
-                                td M
-                                td
-                                    .btn.btn-blue Editar
-                                    .btn.btn-red Eliminar
-                            tr
-                                td Nicolas Galano
-                                td 34180977
-                                td 4to B
-                                td 10
-                                td M
-                                td
-                                    .btn.btn-blue Editar
-                                    .btn.btn-red Eliminar
-                            tr
-                                td Nicolas Galano
-                                td 34180977
-                                td 4to B
-                                td 10
-                                td M
-                                td
-                                    .btn.btn-blue Editar
-                                    .btn.btn-red Eliminar
+                    include partials/panel-usuarios
                             
                             
 block footer
