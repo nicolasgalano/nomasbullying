@@ -15,42 +15,68 @@ if(isset($_SESSION['_error'])) {
     $error = null;
 }
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Login</title>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="estilos/estilo.css" />
-</head>
-<body>
-<header>
-    <div id="head">
-        <img src="imagenes/titulo.png" alt="Encabezado de GG" width="1024" height="150"/>
-    </div>
-</header>
-<main>
-<h1>Iniciar Sesión</h1>
-<p>*Aclaracion para el TP: Las contraseñas son idénticas al usuario. Ejemplo: usuario 'juan' contraseña 'juan'</p>
-<?php
-if($error): ?>
-<div class="error"><?= $error;?></div>
-<?php
-endif; ?>
 
-<form action="acciones/do-login.php" method="post">
-    <div class="form-group">
-        <label for="usuario">Usuario: </label>
-        <input type="text" id="usuario" name="usuario" value="<?php
-        if($input) {
-            echo $input['usuario'];
-        } ?>">
+<!-- LOGIN -->
+
+<?php
+require 'partials/head.php';
+?>
+<body class="login">
+<?php
+require 'partials/header.php';
+?>
+
+<div class="section-row section-row--login">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1 class="title">Login</h1>
+            </div>
+            <div class="col-sm-12">
+
+                <form action="acciones/do-login.php" method="post">
+
+                    <div class="form-group form-group-lg">
+                        <input class="form-control" type="text" placeholder="DNI" id="usuario" name="usuario" value="<?php
+                        if($input) {
+                            echo $input['usuario'];
+                        } ?>">
+                    </div>
+
+                    <div class="form-group form-group-lg">
+                        <input class="form-control" type="password" id="password" placeholder="Contraseña" name="password">
+                    </div>
+
+                    <button class="btn btn--center btn--m-t"><i class="fa fa-refresh fa-spin fa-fw hide"></i>Ingresar</button>
+
+                    <?php if($error): ?>
+                        <div class="form-response" id="form-response" style="display:block;">
+                            <p><?= $error;?></p>
+                        </div>
+                    <?php endif; ?>
+
+                </form>
+
+                <!-- JS LOGIN
+                <form id="login-form">
+                    <div class="form-group form-group-lg">
+                        <input class="form-control" type="text" placeholder="DNI" name="dni">
+                    </div>
+                    <div class="form-group form-group-lg">
+                        <input class="form-control" type="password" placeholder="Contraseña" name="password">
+                    </div>
+                    <button class="btn btn--center btn--m-t"><i class="fa fa-refresh fa-spin fa-fw hide"></i>Ingresar</button>
+                    <div class="form-response" id="form-response">
+                        <p>We're glad to hear from you, we'll contact you pretty soon.</p>
+                    </div>
+                </form>
+                -->
+            </div>
+        </div>
     </div>
-    <div class="form-group">
-        <label for="password">Password: </label>
-        <input type="password" id="password" name="password">
-    </div>
-    <button>Ingresar</button>
-</form>
-</main>
-</body>
-</html>
+</div>
+
+
+<?php
+require 'partials/footer.php';
+?>
