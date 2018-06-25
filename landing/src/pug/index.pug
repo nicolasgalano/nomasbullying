@@ -1,0 +1,69 @@
+extends layout
+
+block body
+    body.index
+            
+block content
+    
+    .section-row.section-head
+        .container
+            .row
+                .col-xs-12
+                    .center 
+                        img(src="images/logo-header.png")
+                    h2.title No Más Bullying
+                    h3.subtitle La plataforma de control anti-bullying
+                    
+                    .social
+                        a(target="_blank", href="https://www.facebook.com/No-M%C3%A1s-Bullying-173551566654506")
+                            i.fa.fa-facebook
+                        a(target="_blank", href="https://twitter.com/NoMas_Bullying_")
+                            i.fa.fa-twitter
+    
+    .section-row.section-top
+        .container
+            .row    
+                .col-xs-12
+                    h4 ¡Nuestra plataforma esta en desarrollo, pero queremos compartirla con vos!
+                    p El bullying, en todas las escuelas y para sus alumnos, es un problema del dia a dia, las actitudes de diferenciación y discriminación generan un impacto negativo en los alumnos é influye en su estado anímico y emocional, generando depresión, impidiendo que este se enfoque en sus estudios y pudiendo llegar a problemas mayores.
+                    p Nuestra herramienta ayuda a preveer situciones extremas y a mantener la paz entre los alumnos de una institución, nos enfocamos en lograr esto por medio de una plataforma que ayuda a denunciar casos de bullying, anonimamente para entre los estudiantes y/o los profesores, pero bajo la supervición de la institución, para que ustedes puedan accionar y aplicar medidas de prevención.
+                    
+    .section-row.section-row--contact#contacto
+        .container
+            .row
+                .col-sm-7.col-md-6.vertical-align
+                    h1.title
+                        | ¿INTERESADOS?
+                    h5.subtitle
+                        | Si esta interesado puede acceder a nuestro <a href="#">DEMO ONLINE</a>, <br>o para mas información puede contactarse con nosotros usando el formulario de la derecha.
+                        
+                .col-sm-5
+                    form#contact-form
+                        .form-group.form-group-lg
+                            input.form-control(type="text", placeholder="Nombre completo", name="full_name")
+                        .form-group.form-group-lg
+                            input.form-control(type="email", placeholder="E-mail", name="email")
+                        .form-group.form-group-lg
+                            textarea.form-control(placeholder="¿Por que te pones en contacto?", rows="9", name="message")
+                        button.btn.btn--center.btn--m-t.btn--small
+                            i.fa.fa-refresh.fa-spin.fa-fw.hide
+                            | Enviar
+                        #form-response.form-response
+                            p.
+                                Gracias por contactarse con nosotros, en breve nos pondremos en contacto.          
+    
+    .section-row.section-lista.hidden
+        .container-fluid
+            .row
+                .col-xs-4
+                    h5.title
+                        | Llamanos
+                    p
+                        
+                .col-xs-4
+                    h5.title
+                        | Te informaremos
+                        
+                .col-xs-4
+                    h5.title
+                        | Te ayudamos

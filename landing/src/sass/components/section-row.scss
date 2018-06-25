@@ -1,0 +1,114 @@
+.section-row {
+    padding-top: 60px;
+    padding-bottom: 60px;
+    overflow: hidden;
+    background-color:#EEEEEE;
+
+    .container {
+        padding:0;
+    }
+
+    .title {
+        font-size: 36px;
+        font-weight: 700;
+        //font-family: $roboto;
+        text-align: center;
+        margin-top: 0;
+        margin-bottom: 18px;
+        color: $c-section-row-title;
+
+        @media (min-width: $screen-sm-min) {
+            font-size: 36px;
+        }
+    }
+
+    .subtitle {
+        font-size: $section-row-subtitle-font-sm-size;
+        color: $c-section-row-subtitle;
+        font-family: $font-family-second;
+        padding-left: $grid-gutter-width/2;
+        padding-right: $grid-gutter-width/2;
+
+        text-align: center;
+
+        @media (min-width: $screen-sm-min) {
+            width: auto;
+            margin: 0 auto;
+            font-size: $section-row-subtitle-font-lg-size;
+        }
+    }
+
+    .vertical-align {
+        @media (min-width: $screen-sm-min) {
+            padding-top: 80px;
+        }
+    }
+
+    &.drop-shadow{
+        box-shadow: 0 6px 10px rgba(0,0,0,0.1);
+    }
+
+}
+
+.section-row--contact {
+    background-color: #EEEEEE;
+    padding:70px 20px 70px;
+    .container {
+        @media (min-width: $screen-sm-min) and (max-width: $screen-md-max) {
+            width: 100%;
+        }
+    }
+}
+
+.section-row.section-head{
+    background:#455a62;
+    padding-bottom:100px;
+    padding-top:100px;
+    box-shadow: 0 10px 10px rgba(0,0,0,0.9);
+    .title{
+        margin-bottom:30px;
+        color:#FFF;
+    }
+    .subtitle{
+        margin-bottom:0px;
+        color:#FFF;
+    }
+    .center{
+        text-align: center;
+    }
+    img{
+        margin-bottom:20px;
+    }
+    .social{
+        text-align: center;
+        padding:60px 0 0;
+        a{
+            display: inline-block;
+            border: 2px solid #FFF;
+            border-radius: 60px;
+            height:60px;
+            width:60px;
+            font-size: 30px;
+            line-height: 57px;
+            color:#FFF;
+            margin:0 5px;
+        }
+    }
+}
+
+.section-row.section-top{
+    background:#FFF;
+    box-shadow: 0 10px 10px rgba(0,0,0,0.9);
+    h4{
+        text-align: center;
+        font-size:22px;
+        margin-bottom: 30px;
+        padding:0 50px 0px;
+    }
+    p{
+        font-size:16px;
+        font-family: $arial;
+        padding:0 50px 10px;
+    }
+
+}

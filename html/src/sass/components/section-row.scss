@@ -45,7 +45,7 @@
     }
 
     &.drop-shadow{
-        box-shadow: 0 6px 10px rgba(0,0,0,0.1);
+        box-shadow: 0 3px 6px rgba(0,0,0,0.1);
     }
 
 }
@@ -135,9 +135,9 @@
 
 .section-row--home{
 
-    padding-top: 64px;
-    padding-bottom: 50px;
-    background:#eaeaea;
+    padding-top: 85px;
+    padding-bottom: 80px;
+    background:#FEFEFE;
     position:relative;
     z-index:9;
     text-align: center;
@@ -148,7 +148,6 @@
         width:auto;
         font-size:20px;
         line-height:22px;
-        background: #47b830;
         padding: 9px 25px;
         border-radius: 6px;
         color: white !important;
@@ -163,15 +162,15 @@
         max-width:1000px;
     }
     .title{
-        color:#222222;
+        color:#333333;
         font-size: 30px;
-        font-weight: 500;
+        font-weight: bold;
         font-family: $roboto;
         text-align: left;
         margin-bottom: 28px;
     }
     .lista-post{
-        padding-bottom:30px;
+        padding-bottom:40px;
     }
     .item-post{
         text-align: left;
@@ -181,7 +180,7 @@
             position: absolute;
             width: 100%;
             height:100%;
-            background-color: rgba(255,255,255,0.6);
+            background-color: rgba(0,0,0,0.5);
             border-radius: 6px;
             text-align: center;
             .btn{
@@ -280,6 +279,7 @@
                 font-size: 18px;
                 line-height: 30px;
                 color:#FFF;
+                box-shadow: -1px 1px 3px rgba(0,0,0,0.1);
                 &:hover{
                     background:#8aa1ab;
                 }

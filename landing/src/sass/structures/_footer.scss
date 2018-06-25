@@ -1,0 +1,46 @@
+footer {
+    background-color: #5d686d;
+    padding: 0;
+    height: 70px;
+
+    .navbar {
+        padding-top: 0;
+        padding-bottom: 0;
+        margin-bottom: 0;
+        box-shadow: none !important;
+    }
+
+    .navbar-default .social{
+        padding-top:25px;
+    }
+
+    .container p{
+        float:left;
+        color:#FFF;
+        padding-top:27px;
+        a{
+            color:#FFF;
+            padding:0 0 0 50px;
+            &:hover{
+                text-decoration: underline;
+            }
+        }
+    }
+    .navbar-right{
+
+    }
+
+    @media (max-width: $screen-xs-max) {
+        .container {
+            padding: 0;
+        }
+        .navbar-default {
+            .social {
+                display: block;
+                width: 121px;
+                margin: 0px auto 0;
+            }
+        }
+    }
+
+}

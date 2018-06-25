@@ -1,0 +1,80 @@
+.form-group,
+.form-group-lg {
+    margin-bottom: 20px;
+    &.fix-height{
+        height:45px;
+    }
+    .form-control {
+        font-size: 14px;
+        border-radius: 6px;
+        background-color: #FFF;
+        box-shadow: 0 1px 3px 0px rgba(0, 0, 0, 0.2)
+    }
+
+    &.has-error {
+        .control-label {
+            display: block;
+        }
+
+        .form-control {
+            border: 0 none;
+        }
+    }
+}
+
+.form-control {
+    border: 0 none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+
+    &.small{
+        width:48%;
+        float:left;
+        margin-right:2%;
+        &.margin-left{
+            margin-right:0;
+            margin-left:2%;
+        }
+    }
+
+    &.error {
+        background-color: $state-danger-bg;
+    }
+
+    &:focus {
+    }
+}
+
+.control-label {
+    display: none;
+    padding: 3px 0 0 5px;
+    text-align: center;
+
+    @media (min-width: $screen-sm-min) {
+        text-align: left;
+    }
+}
+
+form {
+    padding-top: 22px;
+
+    @media (min-width: $screen-sm-min) {
+        padding-top: 0;
+    }
+}
+.form-response {
+    display: none;
+    padding: 10px 0;
+    border-radius: 40px;
+
+    p {
+        color: $c-text-main;
+        text-align: center;
+        margin: 0;
+    }
+
+    &.success {
+        background-color: $c-btn-bg;
+    }
+}

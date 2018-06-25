@@ -133,7 +133,7 @@
                     //border-bottom:3px solid #2e71f2;
                 }
                 &.login-link{
-                    background: #30b873;
+                    background: #47b830;
                     padding: 8px 30px;
                     border-radius: 6px;
                     color: white !important;
@@ -192,35 +192,9 @@
 }
 
 //CUSTOMS
+
 //Home
 body.index{
-    .navbar{
-        box-shadow: none;
-        &.navbar-fixed-top{
-            background-color: rgba(255,255,255,0.8);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-    }
-    .navbar-default#top-nav{
-        .navbar-nav {
-            li {
-                a {
-                    color: #333;
-                    &:hover {
-                        color: #2e71f2 !important;
-                    }
-                }
-            }
-        }
-    }
-}
-
-//Pages
-body.informacion,
-body.contacto,
-body.panel,
-body.login{
-    padding-top:74px;
     .navbar-brand{
         background-image:url(../images/instituto/logo.png);
     }
