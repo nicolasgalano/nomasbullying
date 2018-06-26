@@ -286,3 +286,14 @@ INSERT INTO `DW4_NO_MAS_BULLYING`.`implicados` (`idSituacion`, `idUsuario`, `rol
 INSERT INTO `DW4_NO_MAS_BULLYING`.`implicados` (`idSituacion`, `idUsuario`, `rol`) VALUES (1, 7, 2);
 
 COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `DW4_NO_MAS_BULLYING`.`comentarios`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `DW4_NO_MAS_BULLYING`;
+INSERT INTO `DW4_NO_MAS_BULLYING`.`comentarios` (`creador`, `contenido`, `fecha`, `idSituacion`) VALUES (1, 0x436F6D656E746172696F2031, NOW(), 1);
+INSERT INTO `DW4_NO_MAS_BULLYING`.`comentarios` (`creador`, `contenido`, `fecha`, `idSituacion`) VALUES (2, 0x436F6D656E746172696F2032, NOW(), 2);
+INSERT INTO `DW4_NO_MAS_BULLYING`.`comentarios` (`creador`, `contenido`, `fecha`, `idSituacion`) VALUES (1, 0x436F6D656E746172696F2033, NOW(), 1);
+
+COMMIT;
