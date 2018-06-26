@@ -80,9 +80,9 @@ require 'partials/header.php';
                         <tr>
                             <td><?= $usuario->getNombre();?> <?= $usuario->getApellido();?></td>
                             <td><?= $usuario->getIdentificacion();?></td>
-                            <td>XX</td>
-                            <td>XX</td>
-                            <td>XX</td>
+                            <td><?= $usuario->getGrado();?></td>
+                            <td><?= $usuario->getEdad();?></td>
+                            <td><?= $usuario->getGenero();?></td>
                             <td>
                                 <div class="btn btn-blue open-popup-button" aria-popup=".popup-editar-usuarios">Editar</div>
                                 <div class="btn btn-red open-popup-button" aria-popup=".popup-borrar-usuario" aria-id="<?= $usuario->getId();?>">Eliminar</div>
