@@ -31,7 +31,7 @@ require_once 'autoload.php';
                 <input class="form-control small margin-left" type="text" placeholder="Edad" name="edad">
             </div>
             <div class="form-group form-group-lg fix-height">
-                <select class="form-control small" name="genero" placeholder="Género">
+                <select class="form-control small" name="sexo" placeholder="Género">
                     <option disabled="disabled" selected="selected" name="topic">&nbsp;Género</option>
                     <option value="1">&nbsp;Masculino</option>
                     <option value="2">&nbsp;Femenina</option>
