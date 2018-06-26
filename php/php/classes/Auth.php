@@ -15,9 +15,9 @@ class Auth {
      * @param string $password
      * @return bool
      */
-    public static function login($identificacion, $password)
+    public static function login($usuario, $password)
     {
-        $usuario = Usuario::buscarPorUsuario($identificacion);
+        $usuario = Usuario::buscarPorUsuario($usuario);
 
         if($usuario) {
             if(password_verify($password, $usuario->getPassword())) {
