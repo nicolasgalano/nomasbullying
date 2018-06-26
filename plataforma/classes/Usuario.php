@@ -88,7 +88,6 @@ class Usuario {
 
         if(!$exito) {
             return 'Error al insertar los datos.';
-            //throw new Exception('Error al insertar los datos.');
         }else{
             return true;
         }
@@ -119,16 +118,18 @@ class Usuario {
             'tipo' => $data['tipo'],
             'pass' => $data['password'],
             'mail' => $data['mail'],
-            'iden' => $data['identificion'],
+            'iden' => $data['identificacion'],
             'nac' => $data['idnacionalidad'],
-            'id' => $data['ID'],
+            'id' => $data['id'],
             'edad' => $data['edad'],
             'gra' => $data['grado'],
             'sex' => $data['sexo'],
         ]);
 
         if(!$exito) {
-            throw new Exception('Error al editar los datos.');
+            return 'Error al editar los datos.';
+        }else{
+            return true;
         }
     }
 
