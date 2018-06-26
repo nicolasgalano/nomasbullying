@@ -7,7 +7,14 @@ if(!Auth::userLogged()) {
 
 }else{
 
-    echo json_encode(true);
+    try {
+
+        $result = Usuario::buscarPorUsuario(1);
+        echo json_encode($result);
+
+    } catch(Exception $e) {
+        echo "Hubo un error en la edición del usuario. Por favor intentalo de nuevo.";
+    }
 
 }
 ?>

@@ -20,6 +20,20 @@ class Usuario {
     private $grado;
     private $sexo;
 
+    public static function buscarPorUsuarioId($data)
+    {
+        $query = "SELECT * FROM usuarios
+                  WHERE ID = :id";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute([
+            'id' => $data
+        ]);
+        $datosUsu = $stmt->fetch();
+        $usu = new Usuario();
+        $usu->cargarDatos($datosUsu);
+        return $usu;
+    }
+
     public static function buscarPorUsuario($usuario)
     {
         $query = "SELECT * FROM usuarios
