@@ -17,13 +17,13 @@ class Usuario {
     private $identificacion;
     private $nacionalidad;
 
-    public static function buscarPorUsuario($identificion)
+    public static function buscarPorUsuario($usuario)
     {
         $query = "SELECT * FROM usuarios
                   WHERE identificacion = ?
                   LIMIT 1";
         $stmt = DBConnection::getStatement($query);
-        $stmt->execute([$identificion]);
+        $stmt->execute([$usuario]);
         if($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $user = new Usuario;
             $user->cargarDatos($fila);
@@ -41,12 +41,12 @@ class Usuario {
         $this->setPassword($fila['password']);
         $this->setMail($fila['mail']);
         $this->setIdentificacion($fila['identificacion']);
-        $this->setNacionalidad($fila['nacionalidad']);
+        $this->setNacionalidad($fila['idnacionalidad']);
     }
 
     public static function crear($data)
     {
-        $query = "INSERT INTO usuarios (nombre, apellido, tipo, password, mail, identificacion, nacionalidad)
+        $query = "INSERT INTO usuarios (nombre, apellido, tipo, password, mail, identificacion, idnacionalidad)
                   VALUES (:nom, :ape, :tipo, :pass, :mail, :iden, :nac)";
 
         $stmt = DBConnection::getStatement($query);
@@ -58,7 +58,7 @@ class Usuario {
             'pass' => $data['password'],
             'mail' => $data['mail'],
             'iden' => $data['identificion'],
-            'nac' => $data['nacionalidad'],
+            'nac' => $data['idnacionalidad'],
         ]);
 
         if(!$exito) {
@@ -77,7 +77,7 @@ class Usuario {
 	              pass = :pass,
 	              mail = :mail,
 	              identificacion = :iden,
-	              nacionalidad = :nac
+	              idnacionalidad = :nac
                   WHERE ID = :id LIMIT 1";
 
         $stmt = DBConnection::getStatement($query);
@@ -89,7 +89,7 @@ class Usuario {
             'pass' => $data['password'],
             'mail' => $data['mail'],
             'iden' => $data['identificion'],
-            'nac' => $data['nacionalidad'],
+            'nac' => $data['idnacionalidad'],
             'id' => $data['ID'],
         ]);
 
