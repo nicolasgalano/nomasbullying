@@ -7,6 +7,7 @@
  */
 
 class Comentario {
+
     private $id;
     private $creador;
     private $contenido;

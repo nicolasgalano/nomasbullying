@@ -4,9 +4,11 @@ class Situacion {
 
     private $id;
     private $denunciante;
+    private $titulo;
     private $descripcion;
     private $fecha;
     private $nivel;
+    private $estatus;
 
     public static function traerTodosId($denunciante)
     {
@@ -45,20 +47,23 @@ class Situacion {
     {
         $this->setId($fila['ID']);
         $this->setDenunciante($fila['denunciante']);
+        $this->setTitulo($fila['titulo']);
         $this->setDescripcion($fila['descripcion']);
         $this->setFecha($fila['fecha_creacion']);
         $this->setNivel($fila['nivel_situacion']);
+        $this->setEstatus($fila['estatus']);
     }
 
     public static function crear($data)
     {
-        $query = "INSERT INTO situaciones (denunciante, descripcion, fecha_creacion, nivel_situacion)
-                  VALUES (:den, :des, NOW(), :nivel)";
+        $query = "INSERT INTO situaciones (denunciante, titulo, descripcion, fecha_creacion, nivel_situacion, estatus)
+                  VALUES (:den, :tit, :des, NOW(), :nivel, 'No Leído')";
 
         $stmt = DBConnection::getStatement($query);
 
         $exito = $stmt->execute([
             'den' => $data['denunciante'],
+            'tit' => $data['titulo'],
             'des' => $data['descripcion'],
             'nivel' => $data['nivel_situacion'],
         ]);
@@ -145,6 +150,38 @@ class Situacion {
     public function setNivel($nivel)
     {
         $this->nivel = $nivel;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEstatus()
+    {
+        return $this->estatus;
+    }
+
+    /**
+     * @param mixed $estatus
+     */
+    public function setEstatus($estatus)
+    {
+        $this->estatus = $estatus;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTitulo()
+    {
+        return $this->titulo;
+    }
+
+    /**
+     * @param mixed $titulo
+     */
+    public function setTitulo($titulo)
+    {
+        $this->titulo = $titulo;
     }
 
 
