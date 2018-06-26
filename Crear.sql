@@ -44,6 +44,9 @@ CREATE TABLE IF NOT EXISTS `DW4_NO_MAS_BULLYING`.`usuarios` (
   `mail` VARCHAR(100) NOT NULL,
   `identificacion` INT NOT NULL,
   `idnacionalidad` INT UNSIGNED NOT NULL,
+  `edad` INT UNSIGNED NOT NULL, 
+  `grado` VARCHAR(50) NOT NULL,
+  `sexo` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE INDEX `idusuarios_UNIQUE` (`ID` ASC),
   INDEX `fk_usuarios_nacionalidad1_idx` (`idnacionalidad` ASC),
@@ -240,13 +243,13 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `DW4_NO_MAS_BULLYING`;
-INSERT INTO `DW4_NO_MAS_BULLYING`.`usuarios` (`nombre`, `apellido`, `tipo`, `password`, `mail`, `identificacion`, `idnacionalidad`) VALUES ('Nicolas', 'Galano', 1, '$2y$10$kocuCHiCuwwNHltS8cK0n.8grNO/pcuuAQv/huBijaLHrmf825nPm', 'nicolas.galano@gmail.com', 34000001, 1);
-INSERT INTO `DW4_NO_MAS_BULLYING`.`usuarios` (`nombre`, `apellido`, `tipo`, `password`, `mail`, `identificacion`, `idnacionalidad`) VALUES ('Dani', 'Alvez', 2, '$2y$10$kocuCHiCuwwNHltS8cK0n.8grNO/pcuuAQv/huBijaLHrmf825nPm', 'pedagogia@institucion.com', 34000002, 2);
-INSERT INTO `DW4_NO_MAS_BULLYING`.`usuarios` (`nombre`, `apellido`, `tipo`, `password`, `mail`, `identificacion`, `idnacionalidad`) VALUES ('Carolina', 'Herrera', 3, '$2y$10$kocuCHiCuwwNHltS8cK0n.8grNO/pcuuAQv/huBijaLHrmf825nPm', 'docente1@institucion.com', 34000003, 1);
-INSERT INTO `DW4_NO_MAS_BULLYING`.`usuarios` (`nombre`, `apellido`, `tipo`, `password`, `mail`, `identificacion`, `idnacionalidad`) VALUES ('Elias', 'Fernandez', 4, '$2y$10$kocuCHiCuwwNHltS8cK0n.8grNO/pcuuAQv/huBijaLHrmf825nPm', 'padre1@institucion.com', 34000004, 1);
-INSERT INTO `DW4_NO_MAS_BULLYING`.`usuarios` (`nombre`, `apellido`, `tipo`, `password`, `mail`, `identificacion`, `idnacionalidad`) VALUES ('Marcelo', 'Gallardo', 5, '$2y$10$kocuCHiCuwwNHltS8cK0n.8grNO/pcuuAQv/huBijaLHrmf825nPm', 'marcelo.gallardo@institucion.com', 34000005, 1);
-INSERT INTO `DW4_NO_MAS_BULLYING`.`usuarios` (`nombre`, `apellido`, `tipo`, `password`, `mail`, `identificacion`, `idnacionalidad`) VALUES ('Javier', 'Maidana', 5, '$2y$10$kocuCHiCuwwNHltS8cK0n.8grNO/pcuuAQv/huBijaLHrmf825nPm', 'javier.mai@instituto.com', 34000006, 3);
-INSERT INTO `DW4_NO_MAS_BULLYING`.`usuarios` (`nombre`, `apellido`, `tipo`, `password`, `mail`, `identificacion`, `idnacionalidad`) VALUES ('Tito', 'Fuentes', 5, '$2y$10$kocuCHiCuwwNHltS8cK0n.8grNO/pcuuAQv/huBijaLHrmf825nPm', 'tito@instituto.com', 34000007, 1);
+INSERT INTO `DW4_NO_MAS_BULLYING`.`usuarios` (`nombre`, `apellido`, `tipo`, `password`, `mail`, `identificacion`, `idnacionalidad`, `edad`, `grado`, `sexo`) VALUES ('Nicolas', 'Galano', 1, '$2y$10$kocuCHiCuwwNHltS8cK0n.8grNO/pcuuAQv/huBijaLHrmf825nPm', 'nicolas.galano@gmail.com', 34000001, 1, 30, 'No estudiante', 'Masculino');
+INSERT INTO `DW4_NO_MAS_BULLYING`.`usuarios` (`nombre`, `apellido`, `tipo`, `password`, `mail`, `identificacion`, `idnacionalidad`, `edad`, `grado`, `sexo`) VALUES ('Daniel', 'Alvez', 2, '$2y$10$kocuCHiCuwwNHltS8cK0n.8grNO/pcuuAQv/huBijaLHrmf825nPm', 'pedagogia@institucion.com', 34000002, 2, 7, 'Segundo', 'Masculino');
+INSERT INTO `DW4_NO_MAS_BULLYING`.`usuarios` (`nombre`, `apellido`, `tipo`, `password`, `mail`, `identificacion`, `idnacionalidad`, `edad`, `grado`, `sexo`) VALUES ('Carolina', 'Herrera', 3, '$2y$10$kocuCHiCuwwNHltS8cK0n.8grNO/pcuuAQv/huBijaLHrmf825nPm', 'docente1@institucion.com', 34000003, 1, 8, 'Tercero', 'Femenino');
+INSERT INTO `DW4_NO_MAS_BULLYING`.`usuarios` (`nombre`, `apellido`, `tipo`, `password`, `mail`, `identificacion`, `idnacionalidad`, `edad`, `grado`, `sexo`) VALUES ('Elias', 'Fernandez', 4, '$2y$10$kocuCHiCuwwNHltS8cK0n.8grNO/pcuuAQv/huBijaLHrmf825nPm', 'padre1@institucion.com', 34000004, 1, 7, 'Segundo', 'Masculino');
+INSERT INTO `DW4_NO_MAS_BULLYING`.`usuarios` (`nombre`, `apellido`, `tipo`, `password`, `mail`, `identificacion`, `idnacionalidad`, `edad`, `grado`, `sexo`) VALUES ('Marcelo', 'Gallardo', 5, '$2y$10$kocuCHiCuwwNHltS8cK0n.8grNO/pcuuAQv/huBijaLHrmf825nPm', 'marcelo.gallardo@institucion.com', 34000005, 1, 9, 'Cuarto', 'Masculino');
+INSERT INTO `DW4_NO_MAS_BULLYING`.`usuarios` (`nombre`, `apellido`, `tipo`, `password`, `mail`, `identificacion`, `idnacionalidad`, `edad`, `grado`, `sexo`) VALUES ('Javier', 'Maidana', 5, '$2y$10$kocuCHiCuwwNHltS8cK0n.8grNO/pcuuAQv/huBijaLHrmf825nPm', 'javier.mai@instituto.com', 34000006, 3, 9, 'Cuarto', 'Masculino');
+INSERT INTO `DW4_NO_MAS_BULLYING`.`usuarios` (`nombre`, `apellido`, `tipo`, `password`, `mail`, `identificacion`, `idnacionalidad`, `edad`, `grado`, `sexo`) VALUES ('Tito', 'Fuentes', 5, '$2y$10$kocuCHiCuwwNHltS8cK0n.8grNO/pcuuAQv/huBijaLHrmf825nPm', 'tito@instituto.com', 34000007, 1, 8, 'Tercero', 'Masculino');
 
 COMMIT;
 

@@ -16,6 +16,9 @@ class Usuario {
     private $mail;
     private $identificacion;
     private $nacionalidad;
+    private $edad;
+    private $grado;
+    private $sexo;
 
     public static function buscarPorUsuario($usuario)
     {
@@ -42,6 +45,9 @@ class Usuario {
         $this->setMail($fila['mail']);
         $this->setIdentificacion($fila['identificacion']);
         $this->setNacionalidad($fila['idnacionalidad']);
+        $this->setEdad($fila['edad']);
+        $this->setGrado($fila['grado']);
+        $this->setSexo($fila['sexo']);
     }
 
     public static function traerTodos()
@@ -62,8 +68,8 @@ class Usuario {
 
     public static function crear($data)
     {
-        $query = "INSERT INTO usuarios (nombre, apellido, tipo, password, mail, identificacion, idnacionalidad)
-                  VALUES (:nom, :ape, :tipo, :pass, :mail, :iden, :nac)";
+        $query = "INSERT INTO usuarios (nombre, apellido, tipo, password, mail, identificacion, idnacionalidad, edad, grado, sexo)
+                  VALUES (:nom, :ape, :tipo, :pass, :mail, :iden, :nac, :edad, :gra, :sex)";
 
         $stmt = DBConnection::getStatement($query);
 
@@ -75,6 +81,9 @@ class Usuario {
             'mail' => $data['mail'],
             'iden' => $data['identificion'],
             'nac' => $data['idnacionalidad'],
+            'edad' => $data['edad'],
+            'gra' => $data['grado'],
+            'sex' => $data['sexo'],
         ]);
 
         if(!$exito) {
@@ -93,7 +102,10 @@ class Usuario {
 	              pass = :pass,
 	              mail = :mail,
 	              identificacion = :iden,
-	              idnacionalidad = :nac
+	              idnacionalidad = :nac,
+	              edad = :edad,
+	              grado = :gra,
+	              sexo = :sex
                   WHERE ID = :id LIMIT 1";
 
         $stmt = DBConnection::getStatement($query);
@@ -107,6 +119,9 @@ class Usuario {
             'iden' => $data['identificion'],
             'nac' => $data['idnacionalidad'],
             'id' => $data['ID'],
+            'edad' => $data['edad'],
+            'gra' => $data['grado'],
+            'sex' => $data['sexo'],
         ]);
 
         if(!$exito) {
@@ -254,6 +269,54 @@ class Usuario {
     public function setPassword($password)
     {
         $this->password = $password;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEdad()
+    {
+        return $this->edad;
+    }
+
+    /**
+     * @param mixed $edad
+     */
+    public function setEdad($edad)
+    {
+        $this->edad = $edad;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGrado()
+    {
+        return $this->grado;
+    }
+
+    /**
+     * @param mixed $grado
+     */
+    public function setGrado($grado)
+    {
+        $this->grado = $grado;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSexo()
+    {
+        return $this->sexo;
+    }
+
+    /**
+     * @param mixed $sexo
+     */
+    public function setSexo($sexo)
+    {
+        $this->sexo = $sexo;
     }
 
 } 
