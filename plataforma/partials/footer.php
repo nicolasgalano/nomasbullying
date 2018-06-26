@@ -1,3 +1,6 @@
+<?php
+require_once 'autoload.php';
+?>
 <!-- FOOTER -->
 <footer>
     <div class="navbar navbar-default">
@@ -6,10 +9,12 @@
                 <li><a class="home-link" href="index.php">Home</a></li>
                 <li><a class="informacion-link" href="informacion.php">Información</a></li>
                 <li><a class="contacto-link" href="contacto.php">Contacto</a></li>
-                <!-- NOT LOGGED -->
-                <li><a class="login-link" href="login.php">Login</a></li>
-                <!-- LOGGED -->
-                <li><a class="panel-link" href="panel.php">Panel</a></li>
+                <?php if(!Auth::userLogged()) { ?>
+                    <li><a class="login-link" href="login.php">Login</a></li>
+                <?php } else { ?>
+                    <li><a class="panel-link" href="panel.php">Panel</a></li>
+                    <li><a class="cerrarsesion-link" href="acciones/logout.php">Cerrar sesión</a></li>
+                <?php } ?>
             </ul>
             <ul class="navbar-right social clearfix">
                 <li><a target="_blank" href="https://www.facebook.com/No-M%C3%A1s-Bullying-173551566654506"><i class="fa fa-facebook"></i></a></li>

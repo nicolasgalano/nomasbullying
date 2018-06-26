@@ -1,55 +1,144 @@
 <?php
 require_once 'autoload.php';
 
-if(!Auth::userLogged()) {
-    header('Location: login.php');
-    exit;
-}
-$comentarios = Comentario::traerTodos();
+$_SESSION['page'] = 'home';
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Trabajo practico 1</title>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="estilos/estilo.css" />
-</head>
-<body>
-    <header>
-    <div id="head">
-    <img src="imagenes/titulo.png" alt="Encabezado de GG" width="1024" height="150"/>
+
+<!-- HOME PAGE -->
+
+<?php
+require 'partials/head.php';
+?>
+<body class="index">
+<?php
+$page = 'home';
+require 'partials/header.php';
+?>
+
+<div class="jumbotron main-slider" style="background-image: url('images/instituto/home-bg.jpg');">
+    <div class="opacity-white">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12"><img src="images/instituto/logo--big.png">
+                    <h1 class="title animated pulse">Plataforma Anti-bullying</h1>
+                </div>
+            </div>
+        </div>
     </div>
-    </header>
-    <main>
-        <h1>ABM de la tabla COMENTARIOS</h1>
-        <p>Bienvenido <?= Auth::getUser()->getUsuario();?> (<a href="acciones/logout.php">Cerrar Sesión</a>)</p>
-    <a href="alta-comentario.php">Nuevo Comentario</a>
+</div>
 
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>Título</th>
-            <th>Comentario</th>
-            <th>Titulo del Juego</th>
-            <th>ID Usuario</th>
-            <th>ID Categoría</th>
-            <th>Acciones</th>
-        </tr>
+<div class="section-row section-row--home section-row--articulos drop-shadow">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12">
 
-        <?php
-        foreach($comentarios as $comment): ?>
-            <tr>
-                <td><?= $comment->getId();?></td>
-                <td><?= $comment->getTitulo();?></td>
-                <td><?= $comment->getComentario();?></td>
-                <td><?= $comment->getTituloJuego();?></td>
-                <td><?= $comment->getFkusuarios();?></td>
-                <td><?= $comment->getFkcategorias();?></td>
-                <td><a href='acciones/baja-comentario.php?id=<?= $comment->getId();?>'>Borrar  </a><a href='edit-comentario.php?id=<?= $comment->getId();?>'> Editar</a></td>
-            </tr>
-        <?php
-        endforeach; ?>
-    </table>
-   </main>
-</body>
-</html>
+                <h1 class="title">Articulos sobre bullying</h1>
+
+                <div class="row lista-post">
+
+                    <div class="col-md-4 item-post">
+                        <a class="content" href="#">
+                            <div class="img" style="background-image:url('images/instituto/post-1.png');">
+                                <div class="opacity">
+                                    <div class="btn">Leer nota</div>
+                                </div>
+                                <img src="images/instituto/post-1.png">
+                            </div>
+                            <h3>Como tratar a tus compañeros</h3>
+                            <p>Esta es la descripcion de un taller dado por la institucion en pos de educar a los apdres y docentes y gente que necesite ayuda.</p>
+                        </a>
+                    </div>
+
+                    <div class="col-md-4 item-post">
+                        <a class="content" href="#">
+                            <div class="img" style="background-image:url('images/instituto/post-1.png');">
+                                <div class="opacity">
+                                    <div class="btn">Leer nota</div>
+                                </div>
+                                <img src="images/instituto/post-1.png">
+                            </div>
+                            <h3>Como tratar a tus compañeros</h3>
+                            <p>Esta es la descripcion de un taller dado por la institucion en pos de educar a los apdres y docentes y gente que necesite ayuda.</p>
+                        </a>
+                    </div>
+
+                    <div class="col-md-4 item-post">
+                        <a class="content" href="#">
+                            <div class="img" style="background-image:url('images/instituto/post-1.png');">
+                                <div class="opacity">
+                                    <div class="btn">Leer nota</div>
+                                </div>
+                                <img src="images/instituto/post-1.png">
+                            </div>
+                            <h3>Como tratar a tus compañeros</h3>
+                            <p>Esta es la descripcion de un taller dado por la institucion en pos de educar a los apdres y docentes y gente que necesite ayuda.</p>
+                        </a>
+                    </div>
+
+                </div>
+
+                <a class="btn ver-mas" href="#">Ver más articulos</a>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="section-row section-row--home section-row--talleres">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12">
+
+                <h1 class="title">Talleres de la institución</h1>
+
+                <div class="row lista-post">
+
+                    <div class="col-md-4 item-post">
+                        <a class="content" href="#">
+                            <div class="img" style="background-image:url('images/instituto/post-1.png');">
+                                <div class="opacity">
+                                    <div class="btn">Leer más</div>
+                                </div><img src="images/instituto/post-1.png">
+                            </div>
+                            <h3>Taller pedagogico</h3>
+                            <p>Esta es la descripcion de un taller dado por la institucion en pos de educar a los apdres y docentes y gente que necesite ayuda.</p>
+                        </a>
+                    </div>
+
+                    <div class="col-md-4 item-post">
+                        <a class="content" href="#">
+                            <div class="img" style="background-image:url('images/instituto/post-1.png');">
+                                <div class="opacity">
+                                    <div class="btn">Leer más</div>
+                                </div><img src="images/instituto/post-1.png">
+                            </div>
+                            <h3>Taller pedagogico</h3>
+                            <p>Esta es la descripcion de un taller dado por la institucion en pos de educar a los apdres y docentes y gente que necesite ayuda.</p>
+                        </a>
+                    </div>
+
+                    <div class="col-md-4 item-post">
+                        <a class="content" href="#">
+                            <div class="img" style="background-image:url('images/instituto/post-1.png');">
+                                <div class="opacity">
+                                    <div class="btn">Leer más</div>
+                                </div><img src="images/instituto/post-1.png">
+                            </div>
+                            <h3>Taller pedagogico</h3>
+                            <p>Esta es la descripcion de un taller dado por la institucion en pos de educar a los apdres y docentes y gente que necesite ayuda.</p>
+                        </a>
+                    </div>
+
+                </div>
+
+                <a class="btn ver-mas" href="#">Ver más articulos</a>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php
+require 'partials/footer.php';
+?>

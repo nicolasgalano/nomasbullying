@@ -1,3 +1,9 @@
+<?php
+require_once 'autoload.php';
+
+$_SESSION['page'] = 'informacion';
+?>
+
 <!-- INFORMACION -->
 
 <?php

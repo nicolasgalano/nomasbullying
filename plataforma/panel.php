@@ -1,3 +1,14 @@
+<?php
+require_once 'autoload.php';
+
+$_SESSION['page'] = 'panel';
+
+if(!Auth::userLogged()) {
+    header('Location: login.php');
+    exit;
+}
+?>
+
 <!-- CONTACTO -->
 
 <?php
@@ -101,7 +112,7 @@ require 'partials/head.php';
 
 
 <?php
-require 'partials/header.php';
+include 'partials/header.php';
 ?>
 
 

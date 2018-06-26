@@ -9433,12 +9433,13 @@ form {
 .form-response {
   display: none;
   padding: 10px 0;
-  border-radius: 40px; }
+  border-radius: 40px;
+  margin: 20px 0; }
   .form-response p {
     color: #FFF;
     text-align: center;
     margin: 0; }
   .form-response.success {
-    background-color: #3ecf8e; }
+    background-color: #cf3e58; }
 
 /*# sourceMappingURL=app.css.map */

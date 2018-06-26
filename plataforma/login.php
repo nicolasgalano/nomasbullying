@@ -1,6 +1,8 @@
 <?php
 require_once 'autoload.php';
 
+$_SESSION['page'] = 'login';
+
 if(isset($_SESSION['_input'])) {
     $input = $_SESSION['_input'];
     unset($_SESSION['_input']);
@@ -48,11 +50,9 @@ require 'partials/header.php';
 
                     <button class="btn btn--center btn--m-t"><i class="fa fa-refresh fa-spin fa-fw hide"></i>Ingresar</button>
 
-                    <?php if($error): ?>
-                        <div class="form-response" id="form-response" style="display:block;">
-                            <p><?= $error;?></p>
-                        </div>
-                    <?php endif; ?>
+                    <div class="form-response" id="form-response" style="display:block;">
+                        <p></p>
+                    </div>
 
                 </form>
 

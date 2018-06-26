@@ -1,7 +1,7 @@
 /*!
  * classie - class helper functions
  * from bonzo https://github.com/ded/bonzo
- * 
+ *
  * classie.has( elem, 'my-class' ) -> true/false
  * classie.add( elem, 'my-new-class' )
  * classie.remove( elem, 'my-unwanted-class' )
@@ -158,13 +158,13 @@ if ( typeof define === 'function' && define.amd ) {
     form.validate({
         onfocusout: false,
         rules: {
-            dni: {
-                required: true
-            },
+            usuario: 'required',
             password: 'required'
         },
         messages: {
-            dni: 'Falta completar el campo de DNI',
+            usuario: {
+                required: 'Falta completar el campo de DNI'
+            },
             password: {
                 required: 'Falta completar la contraseña'
             }
@@ -185,31 +185,29 @@ if ( typeof define === 'function' && define.amd ) {
             element.after(error);
         }
         , submitHandler: function (form) {
+
             submitLoader.removeClass('hide');
             var params = $(form).serializeArray();
 
-            if(params[0].value == '1234'){
-                window.location.href = "panel-institucion.html";
-            }else{
-                window.location.href = "panel.html";
-            }
-            /*
             $.ajax({
                 method: 'POST',
-                url: 'php/contact.php',
+                url: 'acciones/do-login.php',
                 data: params,
                 success: function(data) {
-                    // console.log(data);
-                    if(data) {
-                        submitLoader.parent().hide();
+                    if(data == 'true') {
+                        window.location.href = "panel.php";
+                        //submitLoader.parent().hide();
+                    }else{
+                        response.find('p').text(data);
                         response.addClass('success').fadeIn();
+                        submitLoader.addClass('hide');
                     }
                 },
                 complete: function() {
-                    submitLoader.addClass('hide');
+                    //submitLoader.addClass('hide');
                 }
             });
-            */
+
         }
         , showErrors: function (errorMap, errorList) {
 
@@ -259,7 +257,7 @@ if ( typeof define === 'function' && define.amd ) {
         else if($document.scrollTop() < 10) {
             $navBar.removeClass('navbar-bg');
         }
-        
+
     }, 250);
     window.addEventListener('scroll', changeNavbar);
     changeNavbar();
@@ -343,7 +341,7 @@ if ( typeof define === 'function' && define.amd ) {
  *
  * Licensed under the MIT license.
  * http://www.opensource.org/licenses/mit-license.php
- * 
+ *
  * Copyright 2013, Codrops
  * http://www.codrops.com
  */
@@ -355,11 +353,11 @@ if ( typeof define === 'function' && define.amd ) {
 
 	window.requestAnimFrame = function(){
 		return (
-			window.requestAnimationFrame       || 
-			window.webkitRequestAnimationFrame || 
-			window.mozRequestAnimationFrame    || 
-			window.oRequestAnimationFrame      || 
-			window.msRequestAnimationFrame     || 
+			window.requestAnimationFrame       ||
+			window.webkitRequestAnimationFrame ||
+			window.mozRequestAnimationFrame    ||
+			window.oRequestAnimationFrame      ||
+			window.msRequestAnimationFrame     ||
 			function(/* function */ callback){
 				window.setTimeout(callback, 1000 / 60);
 			}
@@ -368,11 +366,11 @@ if ( typeof define === 'function' && define.amd ) {
 
 	window.cancelAnimFrame = function(){
 		return (
-			window.cancelAnimationFrame       || 
-			window.webkitCancelAnimationFrame || 
-			window.mozCancelAnimationFrame    || 
-			window.oCancelAnimationFrame      || 
-			window.msCancelAnimationFrame     || 
+			window.cancelAnimationFrame       ||
+			window.webkitCancelAnimationFrame ||
+			window.mozCancelAnimationFrame    ||
+			window.oCancelAnimationFrame      ||
+			window.msCancelAnimationFrame     ||
 			function(id){
 				window.clearTimeout(id);
 			}
@@ -396,7 +394,7 @@ if ( typeof define === 'function' && define.amd ) {
 			self.path[i] = path;
 			var l = self.path[i].getTotalLength();
 			self.length[i] = l;
-			self.path[i].style.strokeDasharray = l + ' ' + l; 
+			self.path[i].style.strokeDasharray = l + ' ' + l;
 			self.path[i].style.strokeDashoffset = l;
 		} );
 	};
@@ -431,17 +429,17 @@ if ( typeof define === 'function' && define.amd ) {
 	function getViewportH() {
 		var client = docElem['clientHeight'],
 			inner = window['innerHeight'];
-		 
+
 		if( client < inner )
 			return inner;
 		else
 			return client;
 	}
- 
+
 	function scrollY() {
 		return window.pageYOffset || docElem.scrollTop;
 	}
- 
+
 	// http://stackoverflow.com/a/5598797/989439
 	function getOffset( el ) {
 		var offsetTop = 0, offsetLeft = 0;
@@ -453,13 +451,13 @@ if ( typeof define === 'function' && define.amd ) {
 				offsetLeft += el.offsetLeft;
 			}
 		} while( el = el.offsetParent )
- 
+
 		return {
 			top : offsetTop,
 			left : offsetLeft
 		};
 	}
- 
+
 	function inViewport( el, h ) {
 		var elH = el.offsetHeight,
 			scrolled = scrollY(),
@@ -470,10 +468,10 @@ if ( typeof define === 'function' && define.amd ) {
 			// if 1, the element is considered in the viewport only when it's fully inside
 			// value in percentage (1 >= h >= 0)
 			h = h || 0;
- 
+
 		return (elTop + elH * h) <= viewed && (elBottom) >= scrolled;
 	}
-	
+
 	function init() {
 		var svgs = Array.prototype.slice.call( document.querySelectorAll( '#main svg' ) ),
 			svgArr = new Array(),
@@ -490,7 +488,7 @@ if ( typeof define === 'function' && define.amd ) {
 						svg.render();
 					}
 				};
-			}( el ), 250 ); 
+			}( el ), 250 );
 		} );
 
 		var scrollHandler = function() {

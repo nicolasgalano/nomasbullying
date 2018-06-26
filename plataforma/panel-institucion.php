@@ -1,3 +1,14 @@
+<?php
+require_once 'autoload.php';
+
+$_SESSION['page'] = 'panel-institucion';
+
+if(!Auth::userLogged()) {
+    header('Location: login.php');
+    exit;
+}
+?>
+
 <!-- PANEL INSTITUCION -->
 
 <?php
