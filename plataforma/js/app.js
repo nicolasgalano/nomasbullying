@@ -85,6 +85,12 @@ if ( typeof define === 'function' && define.amd ) {
     $('.open-popup-button').click(function(){
         $('.full-opacity').show();
         $($(this).attr('aria-popup')).show();
+
+        //IF BORRAR USUARIO
+        if($(this).attr('aria-popup') == '.popup-borrar-usuario'){
+            $('#borrar-usuario').attr('aria-id-usuario',$(this).attr('aria-id'));//SET ID
+        }
+
     });
     $('.full-opacity').click(function(){
         $('.full-opacity').hide();
@@ -294,27 +300,19 @@ if ( typeof define === 'function' && define.amd ) {
     formAU.validate({
         onfocusout: false,
         rules: {
-            full_name: 'required',
-            dni: 'required',
-            grado: 'required',
-            edad: 'required',
-            genero: 'required'
+            nombre: 'required',
+            apellido: 'required',
+            identificacion: 'required'
         },
         messages: {
-            full_name: {
-                required: 'Falta completar el título'
+            nombre: {
+                required: 'Falta completar el nombre'
             },
-            dni: {
+            apellido: {
+                required: 'Falta completar el apellido'
+            },
+            identificacion: {
                 required: 'Falta completar el DNI'
-            },
-            grado: {
-                required: 'Falta completar el grado'
-            },
-            edad: {
-                required: 'Falta completar la edad'
-            },
-            genero: {
-                required: 'Falta completar la genero'
             }
         }
         , highlight: function(element, errorClass, validClass) {
@@ -334,10 +332,9 @@ if ( typeof define === 'function' && define.amd ) {
         , submitHandler: function (form) {
             submitLoaderAU.removeClass('hide');
             var params = $(form).serializeArray();
-            console.log(params);
             $.ajax({
                 method: 'POST',
-                url: 'acciones/agregar-situacion.php',
+                url: 'acciones/agregar-usuario.php',
                 data: params,
                 success: function(data) {
                     if(data == 'true') {
@@ -433,10 +430,10 @@ if ( typeof define === 'function' && define.amd ) {
     //BORRAR USUARIO
     var btnBorrarUsuario = $('#borrar-usuario');
     var btnLoader = btnBorrarUsuario.find('i');
-    var idUsuario = btnBorrarUsuario.attr('aria-id-usuario');
     var responseBU = btnBorrarUsuario.parent().find('.form-response');
     btnBorrarUsuario.click(function(e){
         e.preventDefault();
+        var idUsuario = [{"name":"id","value":parseInt($(this).attr('aria-id-usuario'))}];
         btnLoader.removeClass('hide');
         $.ajax({
             method: 'POST',
@@ -445,7 +442,6 @@ if ( typeof define === 'function' && define.amd ) {
             success: function(data) {
                 if(data == 'true') {
                     window.location.href = "panel-institucion.php?tab=usuarios";
-                    //submitLoaderLogin.parent().hide();
                 }else{
                     responseBU.find('p').text(data);
                     responseBU.addClass('success').fadeIn();

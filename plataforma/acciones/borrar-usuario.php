@@ -7,7 +7,12 @@ if(!Auth::userLogged()) {
 
 }else{
 
-    echo json_encode(true);
+    try {
+        Usuario::eliminar($_POST);
+        echo json_encode(true);
+    } catch(Exception $e) {
+        echo "Hubo un error en la creación del alumno. Por favor intentalo de nuevo.";
+    }
 
 }
 ?>

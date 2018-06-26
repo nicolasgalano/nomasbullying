@@ -79,7 +79,7 @@ class Usuario {
             'tipo' => $data['tipo'],
             'pass' => $data['password'],
             'mail' => $data['mail'],
-            'iden' => $data['identificion'],
+            'iden' => $data['identificacion'],
             'nac' => $data['idnacionalidad'],
             'edad' => $data['edad'],
             'gra' => $data['grado'],
@@ -87,7 +87,10 @@ class Usuario {
         ]);
 
         if(!$exito) {
-            throw new Exception('Error al insertar los datos.');
+            return 'Error al insertar los datos.';
+            //throw new Exception('Error al insertar los datos.');
+        }else{
+            return true;
         }
     }
 
@@ -132,12 +135,14 @@ class Usuario {
     public static function eliminar($data)
     {
         $query = "DELETE FROM usuarios
-                  WHERE ID = ?
+                  WHERE ID = :id
                   LIMIT 1";
 
         $stmt = DBConnection::getStatement($query);
 
-        $exito = $stmt->execute([$data]);
+        $exito = $stmt->execute([
+            'id' => $data['id']
+        ]);
 
         if(!$exito) {
             throw new Exception('Error al eliminar los datos.');
@@ -319,4 +324,4 @@ class Usuario {
         $this->sexo = $sexo;
     }
 
-} 
+}

@@ -1,19 +1,21 @@
 <?php
 require_once 'autoload.php';
 
+if(!Auth::userLogged()) {
+    header('Location: login.php');
+    exit;
+}
+
 $_SESSION['page'] = 'panel-institucion';
 
-//ISSET
 if(isset($_GET['tab'])) {
     $openTab = $_GET['tab'];
 }else{
     $openTab = 'usuarios';
 }
 
-if(!Auth::userLogged()) {
-    header('Location: login.php');
-    exit;
-}
+$usuarios = Usuario::traerTodos();
+
 ?>
 
 <!-- PANEL INSTITUCION -->
@@ -56,7 +58,7 @@ require 'partials/header.php';
                 </div>
             </div>
 
-            <?php if($openTab == 'usuarios'){ ?>
+            <?php if($openTab == 'usuarios'){?>
             <!-- USUARIOS -->
             <div class="col-sm-9 content-box" id="tab-usuarios">
                 <div class="basic-box usuarios">
@@ -73,105 +75,21 @@ require 'partials/header.php';
                             <th>Genero</th>
                             <th style="width:200px;">Acciones</th>
                         </tr>
+
+                        <?php foreach($usuarios as $usuario): ?>
                         <tr>
-                            <td>Nicolas Galano</td>
-                            <td>34180977</td>
-                            <td>4to B</td>
-                            <td>10</td>
-                            <td>M</td>
+                            <td><?= $usuario->getNombre();?> <?= $usuario->getApellido();?></td>
+                            <td><?= $usuario->getIdentificacion();?></td>
+                            <td><?= $usuario->getGrado();?></td>
+                            <td><?= $usuario->getEdad();?></td>
+                            <td><?= $usuario->getSexo();?></td>
                             <td>
                                 <div class="btn btn-blue open-popup-button" aria-popup=".popup-editar-usuarios">Editar</div>
-                                <div class="btn btn-red open-popup-button" aria-popup=".popup-borrar-usuario">Eliminar</div>
+                                <div class="btn btn-red open-popup-button" aria-popup=".popup-borrar-usuario" aria-id="<?= $usuario->getId();?>">Eliminar</div>
                             </td>
                         </tr>
-                        <tr>
-                            <td>Nicolas Galano</td>
-                            <td>34180977</td>
-                            <td>4to B</td>
-                            <td>10</td>
-                            <td>M</td>
-                            <td>
-                                <div class="btn btn-blue">Editar</div>
-                                <div class="btn btn-red">Eliminar</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Nicolas Galano</td>
-                            <td>34180977</td>
-                            <td>4to B</td>
-                            <td>10</td>
-                            <td>M</td>
-                            <td>
-                                <div class="btn btn-blue">Editar</div>
-                                <div class="btn btn-red">Eliminar</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Nicolas Galano</td>
-                            <td>34180977</td>
-                            <td>4to B</td>
-                            <td>10</td>
-                            <td>M</td>
-                            <td>
-                                <div class="btn btn-blue">Editar</div>
-                                <div class="btn btn-red">Eliminar</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Nicolas Galano</td>
-                            <td>34180977</td>
-                            <td>4to B</td>
-                            <td>10</td>
-                            <td>M</td>
-                            <td>
-                                <div class="btn btn-blue">Editar</div>
-                                <div class="btn btn-red">Eliminar</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Nicolas Galano</td>
-                            <td>34180977</td>
-                            <td>4to B</td>
-                            <td>10</td>
-                            <td>M</td>
-                            <td>
-                                <div class="btn btn-blue">Editar</div>
-                                <div class="btn btn-red">Eliminar</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Nicolas Galano</td>
-                            <td>34180977</td>
-                            <td>4to B</td>
-                            <td>10</td>
-                            <td>M</td>
-                            <td>
-                                <div class="btn btn-blue">Editar</div>
-                                <div class="btn btn-red">Eliminar</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Nicolas Galano</td>
-                            <td>34180977</td>
-                            <td>4to B</td>
-                            <td>10</td>
-                            <td>M</td>
-                            <td>
-                                <div class="btn btn-blue">Editar</div>
-                                <div class="btn btn-red">Eliminar</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Nicolas Galano</td>
-                            <td>34180977</td>
-                            <td>4to B</td>
-                            <td>10</td>
-                            <td>M</td>
-                            <td>
-                                <div class="btn btn-blue">Editar</div>
-                                <div class="btn btn-red">Eliminar</div>
-                            </td>
-                        </tr>
+                        <?php endforeach; ?>
+
                     </table>
                 </div>
             </div>
