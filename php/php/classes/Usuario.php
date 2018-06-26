@@ -44,6 +44,22 @@ class Usuario {
         $this->setNacionalidad($fila['idnacionalidad']);
     }
 
+    public static function traerTodos()
+    {
+        $query = "SELECT * FROM usuarios";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute();
+        $salida = [];
+
+        while($datosUsu = $stmt->fetch()) {
+            $usu = new Usuario();
+            $usu->cargarDatos($datosUsu);
+            $salida[] = $usu;
+        }
+
+        return $salida;
+    }
+
     public static function crear($data)
     {
         $query = "INSERT INTO usuarios (nombre, apellido, tipo, password, mail, identificacion, idnacionalidad)
