@@ -7,7 +7,7 @@ require_once 'autoload.php';
         <h5>Agregar alumno</h5>
     </div>
     <div class="popup-content">
-        <form>
+        <form id="agregar-usuario-form">
             <div class="form-group form-group-lg">
                 <input class="form-control" type="text" placeholder="Nombre completo del alumno" name="full_name">
             </div>

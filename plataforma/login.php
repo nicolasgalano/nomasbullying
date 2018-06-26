@@ -35,7 +35,7 @@ require 'partials/header.php';
 
                 <h1 class="title">Login</h1>
 
-                <form action="acciones/do-login.php" method="post" id="login-form">
+                <form id="login-form">
 
                     <div class="form-group form-group-lg">
                         <input class="form-control" type="text" placeholder="DNI" id="usuario" name="usuario" value="<?php
@@ -55,7 +55,7 @@ require 'partials/header.php';
                     </div>
 
                 </form>
-                
+
             </div>
         </div>
     </div>

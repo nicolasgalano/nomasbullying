@@ -4,8 +4,10 @@ $id = $_GET['id'];
 $comentario = Comentario::traerUno($id);
 $categorias = Categoria::traerTodos();
 ?>
+
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Editar Comentario</title>
     <meta charset="UTF-8">
@@ -17,10 +19,11 @@ $categorias = Categoria::traerTodos();
         <img src="imagenes/titulo.png" alt="Encabezado de GG" width="1024" height="150"/>
     </div>
 </header>
+
 <main>
 <h1>Editar Comentario</h1>
 
-<form action="acciones/editar.php" method="post">
+<form action="acciones/editar-comentario.php" method="post">
     <div>
         <label for="titulo">Título: </label>
         <input id="titulo" type="text" name="titulo" value="<?= $comentario->getTitulo();?>">

@@ -205,8 +205,8 @@ if ( typeof define === 'function' && define.amd ) {
 
     //AGREGAR SITUACIÓN
     var formAS = $('#agregar-situacion-form');
-    var submitLoaderAS = formLogin.find('button i');
-    var responseAS = formLogin.find('#form-response');
+    var submitLoaderAS = formAS.find('button i');
+    var responseAS = formAS.find('#form-response');
     formAS.on('submit', (e) => e.preventDefault());
     formAS.validate({
         onfocusout: false,
@@ -269,9 +269,83 @@ if ( typeof define === 'function' && define.amd ) {
         }
     });
 
+    //AGREGAR USUARIO
+    var formAU = $('#agregar-usuario-form');
+    var submitLoaderAU = formAU.find('button i');
+    var responseAU = formAU.find('#form-response');
+    formAU.on('submit', (e) => e.preventDefault());
+    formAU.validate({
+        onfocusout: false,
+        rules: {
+            full_name: 'required',
+            dni: 'required',
+            grado: 'required',
+            edad: 'required',
+            genero: 'required'
+        },
+        messages: {
+            full_name: {
+                required: 'Falta completar el título'
+            },
+            dni: {
+                required: 'Falta completar el DNI'
+            },
+            grado: {
+                required: 'Falta completar el grado'
+            },
+            edad: {
+                required: 'Falta completar la edad'
+            },
+            genero: {
+                required: 'Falta completar la genero'
+            }
+        }
+        , highlight: function(element, errorClass, validClass) {
+            let el = $(element);
+            el.addClass('error');
+            el.parent().addClass('has-error');
+        }
+        , unhighlight: function(element, errorClass, validClass) {
+            let el = $(element);
+            el.removeClass('error');
+            el.parent().removeClass('has-error');
+        }
+        , errorPlacement: function(error, element) {
+            error.addClass('control-label animated fadeIn');
+            element.after(error);
+        }
+        , submitHandler: function (form) {
+            submitLoaderAU.removeClass('hide');
+            var params = $(form).serializeArray();
+            console.log(params);
+            $.ajax({
+                method: 'POST',
+                url: 'acciones/agregar-situacion.php',
+                data: params,
+                success: function(data) {
+                    if(data == 'true') {
+                        window.location.href = "panel-institucion.php?tab=usuarios";
+                        //submitLoaderAU.parent().hide();
+                    }else{
+                        responseAU.find('p').text(data);
+                        responseAU.addClass('success').fadeIn();
+                        submitLoaderAU.addClass('hide');
+                    }
+                },
+                complete: function() {
+                    //submitLoaderAU.addClass('hide');
+                }
+            });
+        }
+        , showErrors: function (errorMap, errorList) {
+            if (typeof errorList[0] != "undefined") {}
+            this.defaultShowErrors(); // keep error messages next to each input element
+        }
+    });
+
 })();
 
-//////////////////////////////////////////////////////////
+//////////////////////////// END FORMS ////////////////////////////////
 
 (function($) {
 

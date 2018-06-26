@@ -18,7 +18,7 @@ $categorias = Categoria::traerTodos();
 <main>
 <h1>Nuevo Comentario</h1>
 
-<form action="acciones/guardar.php" method="post">
+<form action="acciones/agregar-comentario.php" method="post">
     <div>
         <label for="titulo">Título: </label>
         <input id="titulo" type="text" name="titulo">
