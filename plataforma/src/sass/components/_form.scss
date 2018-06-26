@@ -68,7 +68,11 @@ form {
     padding: 10px 0;
     border-radius: 40px;
     margin: 20px 0;
-    
+
+    &.green{
+        background-color: #30b873 !important;
+    }
+
     p {
         color: $c-text-main;
         text-align: center;

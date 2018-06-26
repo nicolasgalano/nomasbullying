@@ -79,6 +79,23 @@ if ( typeof define === 'function' && define.amd ) {
 
 })( window );
 
+//////////////   POPUPS    ///////////////
+(function(){
+
+    $('.open-popup-button').click(function(){
+        $('.full-opacity').show();
+        $($(this).attr('aria-popup')).show();
+    });
+    $('.full-opacity').click(function(){
+        $('.full-opacity').hide();
+        $('.popup').hide();
+    });
+    $('.popup-close').click(function(){
+        $('.full-opacity').hide();
+        $(this).parent().hide();
+    });
+
+})();
 
 //////////////   FORMS    ///////////////
 (function(){
@@ -86,7 +103,7 @@ if ( typeof define === 'function' && define.amd ) {
     //CONTACTO
     var form = $('#contact-form');
     var submitLoader = form.find('button i');
-    var response = form.find('#form-response');
+    var response = form.find('.form-response');
     form.on('submit', (e) => e.preventDefault());
     form.validate({
         onfocusout: false,
@@ -98,11 +115,11 @@ if ( typeof define === 'function' && define.amd ) {
             message: 'required'
         },
         messages: {
-            full_name: 'Tell us your name.',
+            full_name: 'Dinos tu nombre.',
             email: {
-                required: 'Tell us your email.'
+                required: '¿Cual es tu e-mail?'
             },
-            message: 'Tell us about your project.'
+            message: 'Contanos el porque de tu contacto.'
         }
         , highlight: function(element, errorClass, validClass) {
             let el = $(element);
@@ -123,7 +140,7 @@ if ( typeof define === 'function' && define.amd ) {
             var params = $(form).serializeArray();
             $.ajax({
                 method: 'POST',
-                url: 'php/contact.php',
+                url: 'acciones/contacto.php',
                 data: params,
                 success: function(data) {
                     if(data) {
@@ -145,7 +162,7 @@ if ( typeof define === 'function' && define.amd ) {
     //LOGIN
     var formLogin = $('#login-form');
     var submitLoaderLogin = formLogin.find('button i');
-    var responseLogin = formLogin.find('#form-response');
+    var responseLogin = formLogin.find('.form-response');
     formLogin.on('submit', (e) => e.preventDefault());
     formLogin.validate({
         onfocusout: false,
@@ -206,7 +223,7 @@ if ( typeof define === 'function' && define.amd ) {
     //AGREGAR SITUACIÓN
     var formAS = $('#agregar-situacion-form');
     var submitLoaderAS = formAS.find('button i');
-    var responseAS = formAS.find('#form-response');
+    var responseAS = formAS.find('.form-response');
     formAS.on('submit', (e) => e.preventDefault());
     formAS.validate({
         onfocusout: false,
@@ -272,7 +289,7 @@ if ( typeof define === 'function' && define.amd ) {
     //AGREGAR USUARIO
     var formAU = $('#agregar-usuario-form');
     var submitLoaderAU = formAU.find('button i');
-    var responseAU = formAU.find('#form-response');
+    var responseAU = formAU.find('.form-response');
     formAU.on('submit', (e) => e.preventDefault());
     formAU.validate({
         onfocusout: false,
@@ -325,7 +342,6 @@ if ( typeof define === 'function' && define.amd ) {
                 success: function(data) {
                     if(data == 'true') {
                         window.location.href = "panel-institucion.php?tab=usuarios";
-                        //submitLoaderAU.parent().hide();
                     }else{
                         responseAU.find('p').text(data);
                         responseAU.addClass('success').fadeIn();
@@ -333,7 +349,6 @@ if ( typeof define === 'function' && define.amd ) {
                     }
                 },
                 complete: function() {
-                    //submitLoaderAU.addClass('hide');
                 }
             });
         }
@@ -341,6 +356,106 @@ if ( typeof define === 'function' && define.amd ) {
             if (typeof errorList[0] != "undefined") {}
             this.defaultShowErrors(); // keep error messages next to each input element
         }
+    });
+
+    //EDITAR USUARIO
+    var formEU = $('#editar-usuario-form');
+    var submitLoaderEU = formEU.find('button i');
+    var responseEU = formEU.find('.form-response');
+    formEU.on('submit', (e) => e.preventDefault());
+    formEU.validate({
+        onfocusout: false,
+        rules: {
+            full_name: 'required',
+            dni: 'required',
+            grado: 'required',
+            edad: 'required',
+            genero: 'required'
+        },
+        messages: {
+            full_name: {
+                required: 'Falta completar el título'
+            },
+            dni: {
+                required: 'Falta completar el DNI'
+            },
+            grado: {
+                required: 'Falta completar el grado'
+            },
+            edad: {
+                required: 'Falta completar la edad'
+            },
+            genero: {
+                required: 'Falta completar la genero'
+            }
+        }
+        , highlight: function(element, errorClass, validClass) {
+            let el = $(element);
+            el.addClass('error');
+            el.parent().addClass('has-error');
+        }
+        , unhighlight: function(element, errorClass, validClass) {
+            let el = $(element);
+            el.removeClass('error');
+            el.parent().removeClass('has-error');
+        }
+        , errorPlacement: function(error, element) {
+            error.addClass('control-label animated fadeIn');
+            element.after(error);
+        }
+        , submitHandler: function (form) {
+            submitLoaderEU.removeClass('hide');
+            var params = $(form).serializeArray();
+            console.log(params);
+            $.ajax({
+                method: 'POST',
+                url: 'acciones/editar-usuario.php',
+                data: params,
+                success: function(data) {
+                    if(data == 'true') {
+                        window.location.href = "panel-institucion.php?tab=usuarios";
+                    }else{
+                        responseEU.find('p').text(data);
+                        responseEU.addClass('success').fadeIn();
+                        submitLoaderEU.addClass('hide');
+                    }
+                },
+                complete: function() {
+                }
+            });
+        }
+        , showErrors: function (errorMap, errorList) {
+            if (typeof errorList[0] != "undefined") {}
+            this.defaultShowErrors(); // keep error messages next to each input element
+        }
+    });
+
+    //BORRAR USUARIO
+    var btnBorrarUsuario = $('#borrar-usuario');
+    var btnLoader = btnBorrarUsuario.find('i');
+    var idUsuario = btnBorrarUsuario.attr('aria-id-usuario');
+    var responseBU = btnBorrarUsuario.parent().find('.form-response');
+    btnBorrarUsuario.click(function(e){
+        e.preventDefault();
+        btnLoader.removeClass('hide');
+        $.ajax({
+            method: 'POST',
+            url: 'acciones/borrar-usuario.php',
+            data: idUsuario,
+            success: function(data) {
+                if(data == 'true') {
+                    window.location.href = "panel-institucion.php?tab=usuarios";
+                    //submitLoaderLogin.parent().hide();
+                }else{
+                    responseBU.find('p').text(data);
+                    responseBU.addClass('success').fadeIn();
+                    btnLoader.addClass('hide');
+                }
+            },
+            complete: function() {
+                btnLoader.addClass('hide');
+            }
+        });
     });
 
 })();
@@ -383,74 +498,14 @@ if ( typeof define === 'function' && define.amd ) {
 
     $('#navbarMenu').on('show.bs.collapse', function (e) {
         e.preventDefault();
-        /*
-        var $element = $(e.target);
-        var $trigger = $('.navbar-toggle');
 
-        $trigger
-            .removeClass('collapsed')
-            .attr('aria-expanded', true);
-        $element
-            .removeClass('collapse')
-            .addClass('sliding')
-            .attr('aria-expanded', true);
-
-        $el = $element.find('.navbar-nav li:last');
-        $el.one('webkitAnimationEnd mozAnimationEnd oAnimationEnd oanimationend animationend', function(){
-            $element
-                .removeClass('sliding')
-                .addClass('collapse in');
-            $el.off('webkitAnimationEnd mozAnimationEnd oAnimationEnd oanimationend animationend');
-        });
-        */
     });
 
     $('#navbarMenu').on('hide.bs.collapse', function (e) {
         e.preventDefault();
-        /*
-        var $element = $(e.target);
-        var $trigger = $('.navbar-toggle');
 
-        $trigger
-            .addClass('collapsed')
-            .attr('aria-expanded', false);
-
-        $element
-            .removeClass('collapse in')
-            .addClass('sliding-out')
-            .attr('aria-expanded', false);
-
-        $el = $element.find('.navbar-nav li:first');
-        $el.one('webkitAnimationEnd mozAnimationEnd oAnimationEnd oanimationend animationend', function(){
-            $element
-                .removeClass('sliding-out')
-                .addClass('collapse');
-
-            $el.off('webkitAnimationEnd mozAnimationEnd oAnimationEnd oanimationend animationend');
-        });
-        */
     });
 })(jQuery);
-
-(function(){
-
-    //POPUPS
-
-    $('.open-popup-button').click(function(){
-        $('.full-opacity').show();
-        $($(this).attr('aria-popup')).show();
-    });
-    $('.full-opacity').click(function(){
-        $('.full-opacity').hide();
-        $('.popup').hide();
-    });
-    $('.popup-close').click(function(){
-        $('.full-opacity').hide();
-        $(this).parent().hide();
-    });
-
-
-})();
 
 /**
  * svganimations.js v1.0.0
@@ -642,4 +697,3 @@ if ( typeof define === 'function' && define.amd ) {
 	init();
 
 })(jQuery);
-//# sourceMappingURL=app-00e26493c3.js.map

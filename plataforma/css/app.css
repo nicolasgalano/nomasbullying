@@ -9435,6 +9435,8 @@ form {
   padding: 10px 0;
   border-radius: 40px;
   margin: 20px 0; }
+  .form-response.green {
+    background-color: #30b873 !important; }
   .form-response p {
     color: #FFF;
     text-align: center;

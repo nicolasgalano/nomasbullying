@@ -28,7 +28,7 @@ require_once 'autoload.php';
             </div>
             <button class="btn btn--center btn--m-t"><i class="fa fa-refresh fa-spin fa-fw hide"></i>Guardar/Crear</button>
 
-            <div class="form-response" id="form-response">
+            <div class="form-response">
                 <p></p>
             </div>
 
