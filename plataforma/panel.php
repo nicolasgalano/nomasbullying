@@ -18,97 +18,10 @@ require 'partials/head.php';
 
 <!-- POPUPS -->
 <div class="full-opacity"></div>
-<div class="popup popup-agregar-situacion">
-  <div class="popup-close"><i class="glyphicon glyphicon-remove"></i></div>
-  <div class="popup-top green">
-    <h5>Agregar situación</h5>
-  </div>
-  <div class="popup-content">
-    <form>
-      <div class="form-group form-group-lg">
-        <input class="form-control" type="text" placeholder="Título resumido de la situación" name="full_name">
-      </div>
-      <div class="form-group form-group-lg fix-height">
-        <input class="form-control small" type="text" placeholder="Agresor/es" name="email">
-        <input class="form-control small margin-left" type="text" placeholder="Victima/s" name="email">
-      </div>
-      <div class="form-group form-group-lg">
-        <select class="form-control" name="email" placeholder="Gravedad">
-          <option disabled="disabled" selected="selected" name="topic">&nbsp;Nivel de gravedad</option>
-          <option value="Collaborators">&nbsp;Alto</option>
-          <option value="Sales">&nbsp;Medio</option>
-          <option value="Partners">&nbsp;Bajo</option>
-        </select>
-      </div>
-      <div class="form-group form-group-lg">
-        <textarea class="form-control" placeholder="Descripción detallada del hecho/situación" rows="9" name="message"></textarea>
-      </div>
-      <button class="btn btn--center btn--m-t"><i class="fa fa-refresh fa-spin fa-fw hide"></i>Guardar/Crear</button>
-    </form>
-  </div>
-</div>
-<div class="popup popup-ver-situacion">
-  <div class="popup-close"><i class="glyphicon glyphicon-remove"></i></div>
-  <div class="popup-top green">
-    <h5>Ver Situación</h5>
-  </div>
-  <div class="popup-content">
-    <div class="situacion-item titulo"><span>Titulo:</span><b>"Me pegaron"</b></div>
-    <div class="situacion-item descripcion"><span>Descripción:</span><b>Fui agredido en el patio de la escuela a las 12am cuando unos chicos se rieron de mis zapatillas y me empujaron, me lastime el codo y me tuve que ir de la escuela.</b></div>
-    <div class="situacion-item involucrados"><span>Agresor/es:</span><b> <i>Matias Gomez</i><i>Pablo Emilio Gaviria.</i></b></div>
-    <div class="situacion-item involucrados"><span>Victima/s:</span><b> <i>Nicolino Roche</i></b></div>
-    <div class="situacion-item gravedad alto"><span>Nivel de gravedad de la situación:</span><b>Alto</b></div>
-    <div class="situacion-item status"><span>Status:</span><b>Leido</b></div>
-  </div>
-</div>
-<div class="popup popup-comentarios">
-  <div class="popup-close"><i class="glyphicon glyphicon-remove"></i></div>
-  <div class="popup-top blue">
-    <h5>Comentarios</h5>
-  </div>
-  <div class="popup-content">
-    <div class="comentarios">
-      <ul>
-        <li class="clearfix">
-          <p>Que onda amigo todo mal esto, los rompo todo.</p><span>10/10/2018 14:54hs</span>
-        </li>
-        <li class="clearfix mio">
-          <p>Que onda amigo todo mal esto, los rompo todo.</p><span>10/10/2018 14:54hs</span>
-        </li>
-        <li class="clearfix">
-          <p>Que onda amigo todo mal esto, los rompo todo.</p><span>10/10/2018 14:54hs</span>
-        </li>
-        <li class="clearfix mio">
-          <p>Que onda amigo todo mal esto, los rompo todo.</p><span>10/10/2018 14:54hs</span>
-        </li>
-        <li class="clearfix">
-          <p>Que onda amigo todo mal esto, los rompo todo.</p><span>10/10/2018 14:54hs</span>
-        </li>
-        <li class="clearfix mio">
-          <p>Que onda amigo todo mal esto, los rompo todo.</p><span>10/10/2018 14:54hs</span>
-        </li>
-        <li class="clearfix">
-          <p>Que onda amigo todo mal esto, los rompo todo.</p><span>10/10/2018 14:54hs</span>
-        </li>
-        <li class="clearfix mio">
-          <p>Que onda amigo todo mal esto, los rompo todo.</p><span>10/10/2018 14:54hs</span>
-        </li>
-        <li class="clearfix">
-          <p>Que onda amigo todo mal esto, los rompo todo.</p><span>10/10/2018 14:54hs</span>
-        </li>
-        <li class="clearfix">
-          <p>Que onda amigo todo mal esto, los rompo todo.</p><span>10/10/2018 14:54hs</span>
-        </li>
-      </ul>
-    </div>
-    <form>
-      <div class="form-group form-group-lg">
-        <textarea class="form-control" placeholder="Cometario" rows="9" name="message"></textarea>
-      </div>
-      <button class="btn btn--center btn--m-t"><i class="fa fa-refresh fa-spin fa-fw hide"></i>Enviar</button>
-    </form>
-  </div>
-</div>
+<?php
+include 'partials/popups/agregar-situacion.php';
+include 'partials/popups/comentarios.php';
+?>
 
 
 <?php

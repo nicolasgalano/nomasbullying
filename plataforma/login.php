@@ -55,21 +55,7 @@ require 'partials/header.php';
                     </div>
 
                 </form>
-
-                <!-- JS LOGIN
-                <form id="login-form">
-                    <div class="form-group form-group-lg">
-                        <input class="form-control" type="text" placeholder="DNI" name="dni">
-                    </div>
-                    <div class="form-group form-group-lg">
-                        <input class="form-control" type="password" placeholder="Contraseña" name="password">
-                    </div>
-                    <button class="btn btn--center btn--m-t"><i class="fa fa-refresh fa-spin fa-fw hide"></i>Ingresar</button>
-                    <div class="form-response" id="form-response">
-                        <p>We're glad to hear from you, we'll contact you pretty soon.</p>
-                    </div>
-                </form>
-                -->
+                
             </div>
         </div>
     </div>

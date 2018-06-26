@@ -79,13 +79,15 @@ if ( typeof define === 'function' && define.amd ) {
 
 })( window );
 
+
+//////////////   FORMS    ///////////////
 (function(){
+
+    //CONTACTO
     var form = $('#contact-form');
     var submitLoader = form.find('button i');
     var response = form.find('#form-response');
-
     form.on('submit', (e) => e.preventDefault());
-
     form.validate({
         onfocusout: false,
         rules: {
@@ -113,7 +115,6 @@ if ( typeof define === 'function' && define.amd ) {
             el.parent().removeClass('has-error');
         }
         , errorPlacement: function(error, element) {
-            // console.log(error);
             error.addClass('control-label animated fadeIn');
             element.after(error);
         }
@@ -125,7 +126,6 @@ if ( typeof define === 'function' && define.amd ) {
                 url: 'php/contact.php',
                 data: params,
                 success: function(data) {
-                    // console.log(data);
                     if(data) {
                         submitLoader.parent().hide();
                         response.addClass('success').fadeIn();
@@ -137,25 +137,17 @@ if ( typeof define === 'function' && define.amd ) {
             });
         }
         , showErrors: function (errorMap, errorList) {
-
-            if (typeof errorList[0] != "undefined") {
-                var position = $(errorList[0].element).offset().top;
-                $('html, body').animate({
-                    scrollTop: position-80
-                }, 300);
-            }
+            if (typeof errorList[0] != "undefined") {}
             this.defaultShowErrors(); // keep error messages next to each input element
         }
     });
-})();
-(function(){
-    var form = $('#login-form');
-    var submitLoader = form.find('button i');
-    var response = form.find('#form-response');
 
-    form.on('submit', (e) => e.preventDefault());
-
-    form.validate({
+    //LOGIN
+    var formLogin = $('#login-form');
+    var submitLoaderLogin = formLogin.find('button i');
+    var responseLogin = formLogin.find('#form-response');
+    formLogin.on('submit', (e) => e.preventDefault());
+    formLogin.validate({
         onfocusout: false,
         rules: {
             usuario: 'required',
@@ -180,15 +172,12 @@ if ( typeof define === 'function' && define.amd ) {
             el.parent().removeClass('has-error');
         }
         , errorPlacement: function(error, element) {
-            // console.log(error);
             error.addClass('control-label animated fadeIn');
             element.after(error);
         }
         , submitHandler: function (form) {
-
-            submitLoader.removeClass('hide');
+            submitLoaderLogin.removeClass('hide');
             var params = $(form).serializeArray();
-
             $.ajax({
                 method: 'POST',
                 url: 'acciones/do-login.php',
@@ -196,37 +185,93 @@ if ( typeof define === 'function' && define.amd ) {
                 success: function(data) {
                     if(data == 'true') {
                         window.location.href = "panel.php";
-                        //submitLoader.parent().hide();
+                        //submitLoaderLogin.parent().hide();
                     }else{
-                        response.find('p').text(data);
-                        response.addClass('success').fadeIn();
-                        submitLoader.addClass('hide');
+                        responseLogin.find('p').text(data);
+                        responseLogin.addClass('success').fadeIn();
+                        submitLoaderLogin.addClass('hide');
                     }
                 },
                 complete: function() {
-                    //submitLoader.addClass('hide');
+                    //submitLoaderLogin.addClass('hide');
                 }
             });
-
         }
         , showErrors: function (errorMap, errorList) {
-
-            if (typeof errorList[0] != "undefined") {
-                var position = $(errorList[0].element).offset().top;
-                $('html, body').animate({
-                    scrollTop: position-80
-                }, 300);
-            }
+            if (typeof errorList[0] != "undefined") {}
             this.defaultShowErrors(); // keep error messages next to each input element
         }
     });
 
+    //AGREGAR SITUACIÓN
+    var formAS = $('#agregar-situacion-form');
+    var submitLoaderAS = formLogin.find('button i');
+    var responseAS = formLogin.find('#form-response');
+    formAS.on('submit', (e) => e.preventDefault());
+    formAS.validate({
+        onfocusout: false,
+        rules: {
+            titulo: 'required',
+            gravedad: 'required',
+            descripcion: 'required'
+        },
+        messages: {
+            titulo: {
+                required: 'Falta completar el título'
+            },
+            gravedad: {
+                required: 'Falta completar la gravedad'
+            },
+            descripcion: {
+                required: 'Falta completar la descripción'
+            }
+        }
+        , highlight: function(element, errorClass, validClass) {
+            let el = $(element);
+            el.addClass('error');
+            el.parent().addClass('has-error');
+        }
+        , unhighlight: function(element, errorClass, validClass) {
+            let el = $(element);
+            el.removeClass('error');
+            el.parent().removeClass('has-error');
+        }
+        , errorPlacement: function(error, element) {
+            error.addClass('control-label animated fadeIn');
+            element.after(error);
+        }
+        , submitHandler: function (form) {
+            submitLoaderAS.removeClass('hide');
+            var params = $(form).serializeArray();
+            console.log(params);
+            $.ajax({
+                method: 'POST',
+                url: 'acciones/agregar-situacion.php',
+                data: params,
+                success: function(data) {
+                    if(data == 'true') {
+                        window.location.href = "panel.php";
+                        //submitLoaderAS.parent().hide();
+                    }else{
+                        responseAS.find('p').text(data);
+                        responseAS.addClass('success').fadeIn();
+                        submitLoaderAS.addClass('hide');
+                    }
+                },
+                complete: function() {
+                    //submitLoaderAS.addClass('hide');
+                }
+            });
+        }
+        , showErrors: function (errorMap, errorList) {
+            if (typeof errorList[0] != "undefined") {}
+            this.defaultShowErrors(); // keep error messages next to each input element
+        }
+    });
 
 })();
 
-/**
- * Created by Juan on 6/7/2017.
- */
+//////////////////////////////////////////////////////////
 
 (function($) {
 
