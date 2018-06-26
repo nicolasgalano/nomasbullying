@@ -12,7 +12,7 @@ require_once 'autoload.php';
                 <?php if(!Auth::userLogged()) { ?>
                     <li><a class="login-link" href="login.php">Login</a></li>
                 <?php } else { ?>
-                    <li><a class="panel-link" href="panel.php">Panel</a></li>
+                    <li><a class="panel-link" href="panel.php">Panel</a></li><!-- panel-institucion.php si Institucion-->
                     <li><a class="cerrarsesion-link" href="acciones/logout.php">Cerrar sesión</a></li>
                 <?php } ?>
             </ul>

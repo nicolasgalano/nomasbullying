@@ -10,7 +10,13 @@ require_once 'autoload.php';
         <form>
             <div class="form-group form-group-lg">
                 <p>¿Esta seguro de querer borrar a este alumno del sistema?</p>
-            </div><a class="btn btn--center btn--m-t"><i class="fa fa-refresh fa-spin fa-fw hide"></i>Si</a>
+            </div>
+            <a class="btn btn--center btn--m-t" id="borrar-usuario" aria-id-usuario="1"><i class="fa fa-refresh fa-spin fa-fw hide"></i>Si</a>
+
+            <div class="form-response">
+                <p></p>
+            </div>
+
         </form>
     </div>
 </div>

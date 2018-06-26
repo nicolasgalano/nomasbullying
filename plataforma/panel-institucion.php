@@ -31,6 +31,7 @@ include 'partials/popups/editar-usuario.php';
 include 'partials/popups/borrar-usuario.php';
 include 'partials/popups/agregar-situacion.php';
 include 'partials/popups/ver-situacion.php';
+include 'partials/popups/comentarios.php';
 ?>
 
 <?php
