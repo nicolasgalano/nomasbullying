@@ -8,11 +8,16 @@ require_once 'autoload.php';
     </div>
     <div class="popup-content">
         <form id="agregar-usuario-form">
-            <div class="form-group form-group-lg">
-                <input class="form-control" type="text" placeholder="Nombre completo del alumno" name="full_name">
+            <input type="hidden" name="password" value="1234">
+            <input type="hidden" name="idnacionalidad" value="1">
+            <input type="hidden" name="mail" value="nada">
+            <input type="hidden" name="tipo" value="5">
+            <div class="form-group form-group-lg fix-height">
+                <input class="form-control small" type="text" placeholder="Nombre" name="nombre">
+                <input class="form-control small" type="text" placeholder="Apellido" name="apellido">
             </div>
             <div class="form-group form-group-lg">
-                <input class="form-control" type="text" placeholder="DNI" name="dni">
+                <input class="form-control" type="text" placeholder="DNI" name="identificacion">
             </div>
             <div class="form-group form-group-lg fix-height">
                 <select class="form-control small" name="grado" placeholder="Grado">
