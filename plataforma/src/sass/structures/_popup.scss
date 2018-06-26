@@ -1,0 +1,198 @@
+.popup{
+    display:none;
+    z-index:101;
+    position:fixed;
+    top:90px;
+    left:50%;
+    margin-left:-400px;
+    background:#FFF;
+    width:100%;
+    max-width:800px;
+    -webkit-box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+
+    .popup-close{
+        color:#FFF;
+        font-size:30px;
+        position:absolute;
+        top: 9px;
+        right: 12px;
+        cursor: pointer;
+        text-shadow: 0 2px 0 rgba(0,0,0,0.3);
+    }
+    .popup-top{
+        background:#c4c4c4;
+        border-radius: 6px;
+        border-bottom-left-radius:0;
+        border-bottom-right-radius:0;
+        h5{
+            margin:0;
+            padding:15px 20px 14px;
+            font-size: 20px;
+            color:#FFF;
+            text-shadow: 0 1px 0 rgba(0,0,0,0.3);
+        }
+        &.red{
+            background-color: #b85630;
+        }
+        &.blue{
+            background-color: #3098bf;
+        }
+        &.green{
+            background-color: #30b873;
+        }
+    }
+
+    .popup-content{
+        padding:20px;
+    }
+
+
+}
+
+.full-opacity{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    background:#000;
+    opacity:0.4;
+    width:100%;
+    height: 100%;
+    z-index:100;
+}
+
+//VER FICHA
+.popup-ver-situacion{
+
+    .situacion-item{
+        padding:0 0 20px;
+    }
+    span{
+        display:block;
+        font-weight:600;
+        padding:0 0 5px;
+    }
+    b{
+        display:block;
+        font-weight:500;
+        font-family:$arial;
+        font-size:16px;
+        i{
+            display:inline-block;
+            width:auto;
+            height:25px;
+            color:#FFF;
+            text-align: center;
+            line-height:25px;
+            border-radius: 3px;
+            font-style: initial;
+            background:#359aad;
+            font-size: 13px;
+            font-weight: normal;
+            padding:0 12px;
+            margin:0 10px 0 0;
+        }
+    }
+    .titulo{
+
+    }
+    .descripcion{
+
+    }
+    .gravedad{
+
+        b{
+            width:120px;
+            height:28px;
+            color:#FFF;
+            text-align: center;
+            line-height:28px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        &.alto{
+            b{
+                background:red;
+            }
+        }
+        &.medio{
+            b{
+                background:yellow;
+            }
+        }
+        &.bajo{
+            b{
+                background:green;
+            }
+        }
+
+    }
+    .status{
+
+    }
+
+}
+
+//POPUP COMENTARIOS
+.popup-comentarios{
+
+    .comentarios{
+        margin:0px 0 20px;
+        padding:10px 0;
+        width:calc(100%);
+        height:200px;
+        overflow:scroll;
+        background:#EFEFEF;
+        border-radius: 6px;
+        -webkit-box-shadow: 0 1px 3px 0px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 1px 3px 0px rgba(0, 0, 0, 0.2);
+
+        ul{
+            padding:0;
+            margin:0;
+            li{
+                padding:0px;
+                margin:0px;
+                list-style: none;
+                p{
+                    padding:10px;
+                    margin:0px 10px 0;
+                    max-width:70%;
+                    background:#FEFEFE;
+                    border-radius: 5px;
+                    float:left;
+                    -webkit-box-shadow: 0 1px 2px 0px rgba(0, 0, 0, 0.2);
+                    box-shadow: 0 1px 2px 0px rgba(0, 0, 0, 0.2);
+                }
+                span{
+                    display:block;
+                    font-size:11px;
+                    float:left;
+                    width:100%;
+                    margin-bottom:10px;
+                    padding:4px 14px 0;
+                    font-family: $arial;
+                }
+                &.mio{
+                    p{
+                        background:#d9ee99;
+                        float:right;
+                        text-align:right;
+                    }
+                    span{
+                        float:right;
+                        text-align:right;
+                    }
+                }
+            }
+        }
+
+    }
+
+    .form-group-lg textarea.form-control{
+        height:80px;
+    }
+
+}

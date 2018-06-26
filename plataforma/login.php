@@ -30,11 +30,10 @@ require 'partials/header.php';
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                <h1 class="title">Login</h1>
-            </div>
-            <div class="col-sm-12">
 
-                <form action="acciones/do-login.php" method="post">
+                <h1 class="title">Login</h1>
+
+                <form action="acciones/do-login.php" method="post" id="login-form">
 
                     <div class="form-group form-group-lg">
                         <input class="form-control" type="text" placeholder="DNI" id="usuario" name="usuario" value="<?php
