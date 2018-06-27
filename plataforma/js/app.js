@@ -87,11 +87,84 @@ if ( typeof define === 'function' && define.amd ) {
         var popupClass = $(this).attr('aria-popup');
         $(popupClass).show();
 
+        //IF VER SITUACION
+        if(popupClass == '.popup-ver-situacion'){
+            var situacionID = $(this).attr('aria-id');
+            var $popupVerSituacion = $('.popup-ver-situacion');
+            $.ajax({
+                method: 'GET',
+                url: 'acciones/get-situacion.php?idsituacion='+situacionID,
+                data: '',
+                success: function(data) {
+                    data = JSON.parse(' '+data+' ');
+                    console.log(data[0]);
+                    if(data) {
+                        $popupVerSituacion.find('.titulo b').html(data[0].titulo);
+                        $popupVerSituacion.find('.descripcion b').html(data[0].descripcion);
+                        $popupVerSituacion.find('.gravedad b').html(data[0].nivel_situacion);
+                        $popupVerSituacion.find('.gravedad').removeClass('alto medio bajo');
+                        $popupVerSituacion.find('.gravedad').addClass(data[0].nivel_situacion);
+                    }
+                },
+                complete: function() {}
+            });
+            //TRAER IMPLICADOS
+            $.ajax({
+                method: 'GET',
+                url: 'acciones/get-implicado.php?idsituacion='+situacionID+'&rol='+'victima',
+                data: '',
+                success: function(data) {
+                    data = JSON.parse(' '+data+' ');
+                    console.log(data);
+                    if(data) {
+                        $.ajax({
+                            method: 'GET',
+                            url: 'acciones/get-usuario.php?idusuario='+data['idUsuario'],
+                            data: '',
+                            success: function(data) {
+                                data = JSON.parse(' '+data+' ');
+                                console.log(data);
+                                if(data) {
+                                    $popupVerSituacion.find('.victima b i').html(''+data.nombre+' '+data.apellido+'');
+                                }
+                            },
+                            complete: function() {}
+                        });
+                    }
+                },
+                complete: function() {}
+            });
+            $.ajax({
+                method: 'GET',
+                url: 'acciones/get-implicado.php?idsituacion='+situacionID+'&rol='+'victimario',
+                data: '',
+                success: function(data) {
+                    data = JSON.parse(' '+data+' ');
+                    console.log(data);
+                    if(data) {
+                        $.ajax({
+                            method: 'GET',
+                            url: 'acciones/get-usuario.php?idusuario='+data['idUsuario'],
+                            data: '',
+                            success: function(data) {
+                                data = JSON.parse(' '+data+' ');
+                                console.log(data);
+                                if(data) {
+                                    $popupVerSituacion.find('.agresor b i').html(''+data.nombre+' '+data.apellido+'');
+                                }
+                            },
+                            complete: function() {}
+                        });
+                    }
+                },
+                complete: function() {}
+            });
+        }
         //IF BORRAR USUARIO
         if(popupClass == '.popup-borrar-usuario'){
             $('#borrar-usuario').attr('aria-id-usuario',$(this).attr('aria-id'));//SET ID
         }
-
+        //EDITAR USUARIO
         if(popupClass == '.popup-editar-usuarios'){
             var usuarioID = $(this).attr('aria-id');
             var $formEditarUsuario = $('#editar-usuario-form');
@@ -302,18 +375,16 @@ if ( typeof define === 'function' && define.amd ) {
                 url: 'acciones/agregar-situacion.php',
                 data: params,
                 success: function(data) {
+                    console.log(data);
                     if(data == 'true') {
                         window.location.href = "panel-institucion.php?tab=situaciones";
-                        //submitLoaderAS.parent().hide();
                     }else{
                         responseAS.find('p').text(data);
                         responseAS.addClass('success').fadeIn();
                         submitLoaderAS.addClass('hide');
                     }
                 },
-                complete: function() {
-                    //submitLoaderAS.addClass('hide');
-                }
+                complete: function() {}
             });
         }
         , showErrors: function (errorMap, errorList) {

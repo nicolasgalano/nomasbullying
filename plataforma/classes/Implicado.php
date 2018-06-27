@@ -14,21 +14,22 @@ class Implicado {
     private $rol;
 
 
-    public static function traerTodosId($situacion)
+    public static function traerTodosId($situacion, $tipo)
     {
         $query = "SELECT * FROM implicados
-                  WHERE idSituacion = ?";
+                  WHERE idSituacion = :id AND rol = :rol";
         $stmt = DBConnection::getStatement($query);
-        $stmt->execute([$situacion]);
+        $stmt->execute([
+            'id' => $situacion,
+            'rol' => $tipo
+        ]);
+        $datosImp = $stmt->fetch();
+        /*
         $salida = [];
-
         while($datosImp = $stmt->fetch()) {
-            $imp = new Implicado();
-            $imp->cargarDatos($datosImp);
-            $salida[] = $imp;
-        }
-
-        return $salida;
+            $salida[] = $datosImp;
+        }*/
+        return $datosImp;
     }
 
     protected function cargarDatos($fila)
@@ -39,7 +40,7 @@ class Implicado {
         $this->setRol($fila['rol']);
     }
 
-    public static function crear($data)
+    public static function crear($idSituacion, $idUsuario, $rol)
     {
         $query = "INSERT INTO implicados (idSituacion, idUsuario, rol)
                   VALUES (:sit, :usu, :rol)";
@@ -47,13 +48,15 @@ class Implicado {
         $stmt = DBConnection::getStatement($query);
 
         $exito = $stmt->execute([
-            'sit' => $data['idSituacion'],
-            'usu' => $data['idUsuario'],
-            'rol' => $data['rol'],
+            'sit' => $idSituacion,
+            'usu' => $idUsuario,
+            'rol' => $rol
         ]);
 
         if(!$exito) {
-            throw new Exception('Error al insertar los datos.');
+            return 'Error al insertar los datos.';
+        }else{
+            return true;
         }
     }
 
@@ -123,4 +126,4 @@ class Implicado {
 
 
 
-} 
+}

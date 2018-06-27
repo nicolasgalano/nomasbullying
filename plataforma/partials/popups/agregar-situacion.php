@@ -11,7 +11,7 @@ $usuarios = Usuario::traerTodos();
     </div>
     <div class="popup-content">
         <form id="agregar-situacion-form">
-            <input type="hidden" name="denunciante" value="5"> <!-- ID USUARIO DENUNCIANTE HARDCODED -->
+            <input type="hidden" name="denunciante" value="<?= $_SESSION['user']->getID() ?>"> <!-- ID USUARIO DENUNCIANTE HARDCODED -->
             <div class="form-group form-group-lg">
                 <input class="form-control" type="text" placeholder="Título resumido de la situación" name="titulo">
             </div>
@@ -38,9 +38,9 @@ $usuarios = Usuario::traerTodos();
             <div class="form-group form-group-lg">
                 <select class="form-control" name="nivel_situacion" placeholder="Gravedad">
                     <option disabled="disabled" selected="selected">&nbsp;Nivel de gravedad</option>
-                    <option value="Collaborators">&nbsp;Alto</option>
-                    <option value="Sales">&nbsp;Medio</option>
-                    <option value="Partners">&nbsp;Bajo</option>
+                    <option value="alto">&nbsp;Alto</option>
+                    <option value="medio">&nbsp;Medio</option>
+                    <option value="bajo">&nbsp;Bajo</option>
                 </select>
             </div>
             <div class="form-group form-group-lg">

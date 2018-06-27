@@ -11,6 +11,10 @@ if(!Auth::userLogged()) {
         header('Location: panel-institucion.php');
     }
 }
+
+//GET CLASES
+$situaciones = Situacion::traerTodosId($_SESSION['user']->getID());
+
 ?>
 
 <!-- CONTACTO -->
@@ -24,6 +28,8 @@ require 'partials/head.php';
 <div class="full-opacity"></div>
 <?php
 include 'partials/popups/agregar-situacion.php';
+include 'partials/popups/comentarios.php';
+include 'partials/popups/ver-situacion.php';
 include 'partials/popups/comentarios.php';
 ?>
 
@@ -45,92 +51,26 @@ include 'partials/header.php';
                     </div>
                     <table>
                         <tr>
-                            <th>Nombre</th>
+                            <th>Título</th>
                             <th>Descripción</th>
                             <th>Gravedad</th>
-                            <th>Estado</th>
+                            <!-- <th>Estado</th> -->
                             <th style="width:220px;">Acciones</th>
                         </tr>
+
+                        <?php foreach($situaciones as $situacion): ?>
                         <tr>
-                            <td>Me pegaron</td>
-                            <td>Fui agredido en el patio de la escuela a las 12am cuando...</td>
-                            <td>Alto</td>
-                            <td>Leido</td>
+                            <td><?= $situacion->getTitulo();?></td>
+                            <td><?= $situacion->getDescripcion();?></td>
+                            <td><?= $situacion->getNivel();?></td>
+                            <!-- <td><?= $situacion->getEstatus();?></td> -->
                             <td>
-                                <div class="btn ver-ficha open-popup-button" aria-popup=".popup-ver-situacion">Ver ficha</div>
-                                <div class="btn btn-blue open-popup-button" aria-popup=".popup-comentarios">Mensajes</div>
+                                <div class="btn ver-ficha open-popup-button" aria-popup=".popup-ver-situacion" aria-id="<?= $situacion->getId();?>">Ver ficha</div>
+                                <div class="btn btn-blue open-popup-button" aria-popup=".popup-comentarios" aria-id="<?= $situacion->getId();?>">Mensajes</div>
                             </td>
                         </tr>
-                        <tr>
-                            <td>Me pegaron</td>
-                            <td>Fui agredido en el patio de la escuela a las 12am cuando...</td>
-                            <td>Alto</td>
-                            <td>Leido</td>
-                            <td>
-                                <div class="btn ver-ficha">Ver ficha</div>
-                                <div class="btn btn-blue open-popup-button" aria-popup=".popup-comentarios">Mensajes</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Me pegaron</td>
-                            <td>Fui agredido en el patio de la escuela a las 12am cuando...</td>
-                            <td>Alto</td>
-                            <td>Leido</td>
-                            <td>
-                                <div class="btn ver-ficha">Ver ficha</div>
-                                <div class="btn btn-blue open-popup-button" aria-popup=".popup-comentarios">Mensajes</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Me pegaron</td>
-                            <td>Fui agredido en el patio de la escuela a las 12am cuando...</td>
-                            <td>Alto</td>
-                            <td>Leido</td>
-                            <td>
-                                <div class="btn ver-ficha">Ver ficha</div>
-                                <div class="btn btn-blue open-popup-button" aria-popup=".popup-comentarios">Mensajes</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Me pegaron</td>
-                            <td>Fui agredido en el patio de la escuela a las 12am cuando...</td>
-                            <td>Alto</td>
-                            <td>Leido</td>
-                            <td>
-                                <div class="btn ver-ficha">Ver ficha</div>
-                                <div class="btn btn-blue open-popup-button" aria-popup=".popup-comentarios">Mensajes</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Me pegaron</td>
-                            <td>Fui agredido en el patio de la escuela a las 12am cuando...</td>
-                            <td>Alto</td>
-                            <td>Leido</td>
-                            <td>
-                                <div class="btn ver-ficha">Ver ficha</div>
-                                <div class="btn btn-blue open-popup-button" aria-popup=".popup-comentarios">Mensajes</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Me pegaron</td>
-                            <td>Fui agredido en el patio de la escuela a las 12am cuando...</td>
-                            <td>Alto</td>
-                            <td>Leido</td>
-                            <td>
-                                <div class="btn ver-ficha">Ver ficha</div>
-                                <div class="btn btn-blue open-popup-button" aria-popup=".popup-comentarios">Mensajes</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Me pegaron</td>
-                            <td>Fui agredido en el patio de la escuela a las 12am cuando...</td>
-                            <td>Alto</td>
-                            <td>Leido</td>
-                            <td>
-                                <div class="btn ver-ficha">Ver ficha</div>
-                                <div class="btn btn-blue open-popup-button" aria-popup=".popup-comentarios">Mensajes</div>
-                            </td>
-                        </tr>
+                        <?php endforeach; ?>
+
                     </table>
                 </div>
             </div>

@@ -142,7 +142,7 @@ require 'partials/header.php';
                             <th>Título</th>
                             <th>Descripción</th>
                             <th>Gravedad</th>
-                            <th>Estado</th>
+                            <!-- <th>Estado</th> -->
                             <th style="width:220px;">Acciones</th>
                         </tr>
 
@@ -151,7 +151,7 @@ require 'partials/header.php';
                             <td><?= $situacion->getTitulo();?></td>
                             <td><?= $situacion->getDescripcion();?></td>
                             <td><?= $situacion->getNivel();?></td>
-                            <td><?= $situacion->getEstatus();?></td>
+                            <!-- <td><?= $situacion->getEstatus();?></td> -->
                             <td>
                                 <div class="btn ver-ficha open-popup-button" aria-popup=".popup-ver-situacion" aria-id="<?= $situacion->getId();?>">Ver ficha</div>
                                 <div class="btn btn-blue open-popup-button" aria-popup=".popup-comentarios" aria-id="<?= $situacion->getId();?>">Mensajes</div>

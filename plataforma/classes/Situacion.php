@@ -10,6 +10,16 @@ class Situacion {
     private $nivel;
     private $estatus;
 
+    public static function getIdByLastEntry()
+    {
+        $query = "SELECT id FROM situaciones ORDER BY ID DESC LIMIT 1";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute();
+
+        $datosSit = $stmt->fetch();
+        return $datosSit['id'];
+    }
+
     public static function traerTodosId($denunciante)
     {
         $query = "SELECT * FROM situaciones
@@ -22,6 +32,21 @@ class Situacion {
             $sit = new Situacion();
             $sit->cargarDatos($datosSit);
             $salida[] = $sit;
+        }
+
+        return $salida;
+    }
+
+    public static function getByID($idSituacion)
+    {
+        $query = "SELECT * FROM situaciones
+                  WHERE id = ?";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute([$idSituacion]);
+        $salida = [];
+
+        while($datosSit = $stmt->fetch()) {
+            $salida[] = $datosSit;
         }
 
         return $salida;
@@ -71,7 +96,9 @@ class Situacion {
         if(!$exito) {
             return 'Error al insertar los datos.';
         }else{
-            return true;
+            //TENGO QUE DEVOLVER EL ID DE SITUACION
+            $idSituacion = Situacion::getIdByLastEntry();
+            return $idSituacion;
         }
     }
     /**
