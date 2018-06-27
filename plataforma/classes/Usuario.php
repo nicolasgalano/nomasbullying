@@ -138,8 +138,11 @@ class Usuario {
 
         $stmt = DBConnection::getStatement($query);
 
-        $hashSecure = password_hash($data['user-password'], PASSWORD_DEFAULT);
-        //$hashMd5 = md5($data['user-password']);
+        if($data['password-new'] != ''){
+            $hashSecure = password_hash($data['password-new'], PASSWORD_DEFAULT);
+        }else{
+            $hashSecure = $data['password-old'];
+        }
 
         $exito = $stmt->execute([
             'nom' => $data['nombre'],

@@ -7,9 +7,9 @@ require_once 'autoload.php';
         <h5>Editar alumno</h5>
     </div>
     <div class="popup-content">
-        <form id="editar-usuario-form">
+        <form id="editar-usuario-form" autocomplete="off">
             <input type="hidden" name="id" value="">
-            <input type="hidden" name="user-password" value="">
+            <input type="hidden" name="password-old" value="">
             <input type="hidden" name="idnacionalidad" value="">
             <input type="hidden" name="mail" value="">
             <input type="hidden" name="tipo" value="">
@@ -22,22 +22,17 @@ require_once 'autoload.php';
             </div>
             <div class="form-group form-group-lg fix-height">
                 <select class="form-control small" name="grado" placeholder="Grado">
-                    <option disabled="disabled" selected="selected" name="topic">&nbsp;Grado</option>
-                    <option value="Primero">&nbsp;1ro</option>
-                    <option value="Segundo">&nbsp;2do</option>
-                    <option value="Tercero">&nbsp;3ro</option>
-                    <option value="Cuarto">&nbsp;4to</option>
-                    <option value="Quinto">&nbsp;5to</option>
+                    <option disabled="disabled" name="topic">&nbsp;Grado</option>
+                    <option value="Primero" selected="selected" id="grado-dummie">&nbsp;1ro</option>
                 </select>
-                <input class="form-control small margin-left" type="text" placeholder="Edad" name="edad">
+                <input class="form-control small margin-left" type="text" placeholder="Edad" name="edad" value="" autocomplete="off">
             </div>
             <div class="form-group form-group-lg fix-height">
                 <select class="form-control small" name="sexo" placeholder="Género">
-                    <option disabled="disabled" selected="selected" name="topic">&nbsp;Género</option>
-                    <option value="Masculino">&nbsp;Masculino</option>
-                    <option value="Femenino">&nbsp;Femenino</option>
+                    <option disabled="disabled" name="topic">&nbsp;Género</option>
+                    <option value="Masculino" selected="selected" id="sexo-dummie">&nbsp;Masculino</option>
                 </select>
-                <input class="form-control small margin-left" type="password" placeholder="Nueva contraseña" name="user-password" value="">
+                <input class="form-control small margin-left" type="password" placeholder="Nueva contraseña" name="password-new" value="" autocomplete="off">
             </div>
             <button class="btn btn--center btn--m-t" id="editar-usuario" aria-id-usuario="2"><i class="fa fa-refresh fa-spin fa-fw hide"></i>Guardar/Editar</button>
             <div class="form-response">

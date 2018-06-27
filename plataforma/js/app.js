@@ -230,7 +230,6 @@ if ( typeof define === 'function' && define.amd ) {
                 url: 'acciones/get-usuario.php?idusuario='+usuarioID,
                 data: '',
                 success: function(data) {
-                    console.log(data);
                     data = JSON.parse(' '+data+' ');
                     console.log(data);
                     if(data) {
@@ -241,10 +240,12 @@ if ( typeof define === 'function' && define.amd ) {
                         $formEditarUsuario.find('input[name="mail"]').attr('value',data.mail);
                         $formEditarUsuario.find('input[name="tipo"]').attr('value',data.tipo);
                         $formEditarUsuario.find('input[name="identificacion"]').attr('value',data.identificacion);
-                        //$('#editar-usuario-form').find('input[name="grado"]').attr('value',data.);
+                        $formEditarUsuario.find('#grado-dummie').text(' '+data.grado);
+                        $formEditarUsuario.find('select[name="grado"] option').attr('value',data.grado);
+                        $formEditarUsuario.find('#sexo-dummie').text(' '+data.sexo);
+                        $formEditarUsuario.find('select[name="sexo"] option').attr('value',data.sexo);
                         $formEditarUsuario.find('input[name="edad"]').attr('value',data.edad);
-                        //$('#editar-usuario-form').find('input[name="sexo"]').attr('value',data.sexo);
-                        $formEditarUsuario.find('input[name="user-password"]').attr('value',data.password);
+                        $formEditarUsuario.find('input[name="password-old"]').attr('value',data.password);
                     }
                 },
                 complete: function() {}
