@@ -82,6 +82,33 @@ if ( typeof define === 'function' && define.amd ) {
 //////////////   POPUPS    ///////////////
 (function(){
 
+    function updateComentarios(usuarioID,situacionID){
+
+        var $popupComentario = $('.popup-comentarios');
+
+        $.ajax({
+            method: 'GET',
+            url: 'acciones/get-comentarios.php?idsituacion='+situacionID,
+            data: '',
+            success: function(data) {
+                data = JSON.parse(' '+data+' ');
+                console.log(data);
+                if(data) {
+                    var formatted = '';
+                    //FORMATEAR COMENTARIOS
+                    data.forEach(function(item,index){
+                        console.log(item);
+                        formatted += '<li class="clearfix '+(item.creador==usuarioID?'mio':'')+'">';
+                        formatted += '<p>'+item.contenido+'</p><span>'+item.fecha+'</span>';
+                        formatted += '</li>';
+                    });
+                    $popupComentario.find('.comentarios ul').html(formatted);
+                }
+            },
+            complete: function() {}
+        });
+    }
+
     $('.open-popup-button').click(function(){
         $('.full-opacity').show();
         var popupClass = $(this).attr('aria-popup');
@@ -90,30 +117,31 @@ if ( typeof define === 'function' && define.amd ) {
 
         //MENSAJES
         if(popupClass == '.popup-comentarios'){
+
             var situacionID = $(this).attr('aria-id');
             var usuarioID = $(this).attr('aria-id-usuario');
-            var $popupComentario = $('.popup-comentarios');
-            $.ajax({
-                method: 'GET',
-                url: 'acciones/get-comentarios.php?idsituacion='+situacionID,
-                data: '',
-                success: function(data) {
-                    data = JSON.parse(' '+data+' ');
-                    console.log(data);
-                    if(data) {
-                        var formatted = '';
-                        //FORMATEAR COMENTARIOS
-                        data.forEach(function(item,index){
-                            console.log(item);
-                            formatted += '<li class="clearfix '+(item.creador==usuarioID?'mio':'')+'">';
-                            formatted += '<p>'+item.contenido+'</p><span>'+item.fecha+'</span>';
-                            formatted += '</li>';
-                        });
-                        $popupComentario.find('.comentarios ul').html(formatted);
-                    }
-                },
-                complete: function() {}
+
+            updateComentarios(usuarioID,situacionID);
+
+            //AGREGAR COMENTARIO
+            $formAgregarComentario = $('#form-agregar-comentario');
+            $btnEnviarComentario = $('#enviar-comentario');
+            $formAgregarComentario.on('submit', (e) => e.preventDefault());
+            $btnEnviarComentario.click(function(){
+
+                $.ajax({
+                    method: 'GET',
+                    url: 'acciones/agregar-comentario.php?creador='+usuarioID+'&contenido='+$('#mensaje-comentario').val()+'&id-situacion='+situacionID,
+                    success: function(data) {
+                        if(data) {
+                            $('#mensaje-comentario').val('');
+                            updateComentarios(usuarioID,situacionID);
+                        }
+                    },
+                    complete: function() {}
+                });
             });
+
         }
 
         //IF VER SITUACION
