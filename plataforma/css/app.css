@@ -8847,7 +8847,7 @@ footer {
   @media (min-width: 768px) {
     footer .navbar-default .navbar-nav {
       position: absolute;
-      right: 48%;
+      right: 42%;
       margin: 0 -156px;
       padding-top: 9px; }
       footer .navbar-default .navbar-nav li a {

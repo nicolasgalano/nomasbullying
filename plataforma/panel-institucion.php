@@ -107,22 +107,8 @@ require 'partials/header.php';
             <div class="col-sm-9 content-box" id="tab-notificaciones">
                 <div class="basic-box notificaciones">
                     <div class="box-top">
-                        <h4>Lista de usuarios</h4>
-                        <div class="btn add-more agregar-usuario open-popup-button" aria-popup=".popup-agregar-usuarios"><i class="glyphicon glyphicon-plus"></i>Agregar usuario</div>
+                        <h4>Notificaciones</h4>
                     </div>
-                    <table>
-                        <tr>
-                            <th>Nombre</th>
-                            <th style="width:200px;">Acciones</th>
-                        </tr>
-                        <tr>
-                            <td>Nicolas Galano</td>
-                            <td>
-                                <div class="btn btn-blue open-popup-button" aria-popup=".popup-editar-usuarios">Editar</div>
-                                <div class="btn btn-red open-popup-button" aria-popup=".popup-borrar-usuario">Eliminar</div>
-                            </td>
-                        </tr>
-                    </table>
                 </div>
             </div>
             <!-- END of NOTIFICACIONES -->

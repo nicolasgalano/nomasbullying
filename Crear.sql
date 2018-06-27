@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `DW4_NO_MAS_BULLYING`.`usuarios` (
   `mail` VARCHAR(100) NOT NULL,
   `identificacion` INT NOT NULL,
   `idnacionalidad` INT UNSIGNED NOT NULL,
-  `edad` INT UNSIGNED NOT NULL, 
+  `edad` INT UNSIGNED NOT NULL,
   `grado` VARCHAR(50) NOT NULL,
   `sexo` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`ID`),
@@ -272,8 +272,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `DW4_NO_MAS_BULLYING`;
-INSERT INTO `DW4_NO_MAS_BULLYING`.`situaciones` (`denunciante`, `titulo`, `descripcion`, `fecha_creacion`, `nivel_situacion`, `estatus`) VALUES (4, 'Me pegaron', 'Fui agredido en el patio de la escuela a las 12pm cuando unos chicos se rieron de mis zapatillas y me empujaron, me lastime el codo y me tuve que ir de la escuela ', '2018-06-26 09:38:00', 'Alta', 'Leído');
-INSERT INTO `DW4_NO_MAS_BULLYING`.`situaciones` (`denunciante`, `titulo`, `descripcion`, `fecha_creacion`, `nivel_situacion`, `estatus`) VALUES (2, 'Me insultaron', 'Ayer en clase me insultaron en clase y el profesor no hizo nada', NOW(), 'Media', 'No Leído');
+INSERT INTO `DW4_NO_MAS_BULLYING`.`situaciones` (`denunciante`, `titulo`, `descripcion`, `fecha_creacion`, `nivel_situacion`, `estatus`) VALUES (4, 'Me pegaron', 'Fui agredido en el patio de la escuela a las 12pm cuando unos chicos se rieron de mis zapatillas y me empujaron, me lastime el codo y me tuve que ir de la escuela ', '2018-06-26 09:38:00', 'alto', 'Leído');
+INSERT INTO `DW4_NO_MAS_BULLYING`.`situaciones` (`denunciante`, `titulo`, `descripcion`, `fecha_creacion`, `nivel_situacion`, `estatus`) VALUES (2, 'Me insultaron', 'Ayer en clase me insultaron en clase y el profesor no hizo nada', NOW(), 'medio', 'No Leído');
 
 COMMIT;
 
@@ -283,12 +283,10 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `DW4_NO_MAS_BULLYING`;
-INSERT INTO `DW4_NO_MAS_BULLYING`.`implicados` (`idSituacion`, `idUsuario`, `rol`) VALUES (1, 3, 'victimario');
 INSERT INTO `DW4_NO_MAS_BULLYING`.`implicados` (`idSituacion`, `idUsuario`, `rol`) VALUES (1, 2, 'victimario');
 INSERT INTO `DW4_NO_MAS_BULLYING`.`implicados` (`idSituacion`, `idUsuario`, `rol`) VALUES (1, 4, 'victima');
 INSERT INTO `DW4_NO_MAS_BULLYING`.`implicados` (`idSituacion`, `idUsuario`, `rol`) VALUES (2, 2, 'victima');
 INSERT INTO `DW4_NO_MAS_BULLYING`.`implicados` (`idSituacion`, `idUsuario`, `rol`) VALUES (2, 5, 'victimario');
-INSERT INTO `DW4_NO_MAS_BULLYING`.`implicados` (`idSituacion`, `idUsuario`, `rol`) VALUES (2, 6, 'victimario');
 
 COMMIT;
 

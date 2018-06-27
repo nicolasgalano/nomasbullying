@@ -7,8 +7,9 @@ require_once 'autoload.php';
         <div class="container"><a class="navbar-brand" href="#" style="background-image: url(images/logo-footer.png);"></a>
             <ul class="nav navbar-nav">
                 <li><a class="home-link" href="index.php">Home</a></li>
-                <li><a class="informacion-link" href="informacion.php">Información</a></li>
                 <li><a class="contacto-link" href="contacto.php">Contacto</a></li>
+                <li><a class="link" href="terminos-y-condiciones.php">Términos y Condiciones</a></li>
+                <li><a class="link" href="politicas-de-privacidad.php">Políticas de Privacidad</a></li>
                 <?php if(!Auth::userLogged()) { ?>
                     <li><a class="login-link" href="login.php">Login</a></li>
                 <?php } else { ?>
