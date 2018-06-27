@@ -87,6 +87,35 @@ if ( typeof define === 'function' && define.amd ) {
         var popupClass = $(this).attr('aria-popup');
         $(popupClass).show();
 
+
+        //MENSAJES
+        if(popupClass == '.popup-comentarios'){
+            var situacionID = $(this).attr('aria-id');
+            var usuarioID = $(this).attr('aria-id-usuario');
+            var $popupComentario = $('.popup-comentarios');
+            $.ajax({
+                method: 'GET',
+                url: 'acciones/get-comentarios.php?idsituacion='+situacionID,
+                data: '',
+                success: function(data) {
+                    data = JSON.parse(' '+data+' ');
+                    console.log(data);
+                    if(data) {
+                        var formatted = '';
+                        //FORMATEAR COMENTARIOS
+                        data.forEach(function(item,index){
+                            console.log(item);
+                            formatted += '<li class="clearfix '+(item.creador==usuarioID?'mio':'')+'">';
+                            formatted += '<p>'+item.contenido+'</p><span>'+item.fecha+'</span>';
+                            formatted += '</li>';
+                        });
+                        $popupComentario.find('.comentarios ul').html(formatted);
+                    }
+                },
+                complete: function() {}
+            });
+        }
+
         //IF VER SITUACION
         if(popupClass == '.popup-ver-situacion'){
             var situacionID = $(this).attr('aria-id');

@@ -45,7 +45,7 @@ require_once 'autoload.php';
             <div class="form-group form-group-lg">
                 <textarea class="form-control" placeholder="Cometario" rows="9" name="message"></textarea>
             </div>
-            <button class="btn btn--center btn--m-t"><i class="fa fa-refresh fa-spin fa-fw hide"></i>Enviar</button>
+            <button class="btn btn--center btn--m-t" id=""><i class="fa fa-refresh fa-spin fa-fw hide"></i>Enviar</button>
         </form>
     </div>
 </div>

@@ -28,7 +28,6 @@ require 'partials/head.php';
 <div class="full-opacity"></div>
 <?php
 include 'partials/popups/agregar-situacion.php';
-include 'partials/popups/comentarios.php';
 include 'partials/popups/ver-situacion.php';
 include 'partials/popups/comentarios.php';
 ?>
@@ -66,7 +65,7 @@ include 'partials/header.php';
                             <!-- <td><?= $situacion->getEstatus();?></td> -->
                             <td>
                                 <div class="btn ver-ficha open-popup-button" aria-popup=".popup-ver-situacion" aria-id="<?= $situacion->getId();?>">Ver ficha</div>
-                                <div class="btn btn-blue open-popup-button" aria-popup=".popup-comentarios" aria-id="<?= $situacion->getId();?>">Mensajes</div>
+                                <div class="btn btn-blue open-popup-button" aria-popup=".popup-comentarios" aria-id="<?= $situacion->getId();?>" aria-id-usuario="<?= $_SESSION['user']->getID() ?>">Mensajes</div>
                             </td>
                         </tr>
                         <?php endforeach; ?>

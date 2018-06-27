@@ -1,11 +1,18 @@
 <?php
-require_once '../autoload.php';
+require '../autoload.php';
 
-// Validación de datos...
+if(!Auth::userLogged()) {
 
-try {
-    Comentario::crear($_POST);
-    header('Location: ../index.php');
-} catch(Exception $e) {
-    echo "Hubo un error en la creación del comentario. Por favor intentalo de nuevo";
+    echo 'No estas logueado, por favor vuelva a hacer el login para poder hacer esta acción';
+
+}else{
+
+    try {
+        $result = Comentario::crearS($_GET['creador'],$_GET['contenido'],$_GET['id-situacion']);
+        echo json_encode($result);
+    } catch(Exception $e) {
+        echo "Hubo un error en la creación del alumno. Por favor intentalo de nuevo.";
+    }
+
 }
+?>

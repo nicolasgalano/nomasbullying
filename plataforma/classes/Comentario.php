@@ -25,9 +25,7 @@ class Comentario {
         $salida = [];
 
         while($datosCom = $stmt->fetch()) {
-            $com = new Comentario();
-            $com->cargarDatos($datosCom);
-            $salida[] = $com;
+            $salida[] = $datosCom;
         }
 
         return $salida;
@@ -59,7 +57,7 @@ class Comentario {
         $this->setIdpublicacion($fila['idPublicacion']);
     }
 
-    public static function crearS($data)
+    public static function crearS($creador,$contenido,$idSituacion)
     {
         $query = "INSERT INTO comentarios (creador, contenido, fecha, idSituacion)
                   VALUES (:cre, :con, NOW(), :sit)";
@@ -67,13 +65,15 @@ class Comentario {
         $stmt = DBConnection::getStatement($query);
 
         $exito = $stmt->execute([
-            'cre' => $data['creador'],
-            'con' => $data['contenido'],
-            'sit' => $data['idSituacion'],
+            'cre' => $creador,
+            'con' => $contenido,
+            'sit' => $idSituacion
         ]);
 
         if(!$exito) {
-            throw new Exception('Error al insertar los datos.');
+            return 'Error al insertar los datos.';
+        }else{
+            return true;
         }
     }
 
@@ -191,4 +191,4 @@ class Comentario {
     }
 
 
-} 
+}

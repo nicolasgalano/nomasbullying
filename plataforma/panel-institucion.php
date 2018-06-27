@@ -154,7 +154,7 @@ require 'partials/header.php';
                             <!-- <td><?= $situacion->getEstatus();?></td> -->
                             <td>
                                 <div class="btn ver-ficha open-popup-button" aria-popup=".popup-ver-situacion" aria-id="<?= $situacion->getId();?>">Ver ficha</div>
-                                <div class="btn btn-blue open-popup-button" aria-popup=".popup-comentarios" aria-id="<?= $situacion->getId();?>">Mensajes</div>
+                                <div class="btn btn-blue open-popup-button" aria-popup=".popup-comentarios" aria-id="<?= $situacion->getId();?>" aria-id-usuario="<?= $_SESSION['user']->getID() ?>">Mensajes</div>
                             </td>
                         </tr>
                         <?php endforeach; ?>
