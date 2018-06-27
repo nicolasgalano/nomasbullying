@@ -297,8 +297,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `DW4_NO_MAS_BULLYING`;
-INSERT INTO `DW4_NO_MAS_BULLYING`.`comentarios` (`creador`, `contenido`, `fecha`, `idSituacion`) VALUES (1, 'Gracias por contactarte, perdon por no haber podido ayudarte en el momento, como esta tu codo?', NOW(), 1);
-INSERT INTO `DW4_NO_MAS_BULLYING`.`comentarios` (`creador`, `contenido`, `fecha`, `idSituacion`) VALUES (4, 'Estoy mejor, pero esos chicos van a seguir molestandome', NOW(), 1);
-INSERT INTO `DW4_NO_MAS_BULLYING`.`comentarios` (`creador`, `contenido`, `fecha`, `idSituacion`) VALUES (1, 'Vamos a tomar medidas al respecto, por favor no dudes en contactarnos si esto ocurre nuevamente', NOW(), 1);
+INSERT INTO `DW4_NO_MAS_BULLYING`.`comentarios` (`creador`, `contenido`, `fecha`, `idSituacion`) VALUES (1, 'Gracias por contactarte, perdon por no haber podido ayudarte en el momento, como esta tu codo?',  '2018-06-26 11:38:00', 1);
+INSERT INTO `DW4_NO_MAS_BULLYING`.`comentarios` (`creador`, `contenido`, `fecha`, `idSituacion`) VALUES (4, 'Estoy mejor, pero esos chicos van a seguir molestandome', '2018-06-26 11:40:00', 1);
+INSERT INTO `DW4_NO_MAS_BULLYING`.`comentarios` (`creador`, `contenido`, `fecha`, `idSituacion`) VALUES (1, 'Vamos a tomar medidas al respecto, por favor no dudes en contactarnos si esto ocurre nuevamente', '2018-06-26 11:52:00', 1);
 
 COMMIT;

@@ -7,6 +7,7 @@
  */
 
 class Comentario {
+
     private $id;
     private $creador;
     private $contenido;
@@ -14,12 +15,13 @@ class Comentario {
     private $idsituacion;
     private $idpublicacion;
 
-    public static function traerTodosId($creador)
+    public static function traerTodosId($situacion)
     {
         $query = "SELECT * FROM comentarios
-                  WHERE creador = ?";
-        $stmt = DBConnection::getStatement($query);
-        $stmt->execute([$creador]);
+                  WHERE idSituacion = ?
+                  ORDER BY fecha ASC";
+        $stmt = DBConnection::getStatement($query);  //id de situacion y ordenarlo fecha
+        $stmt->execute([$situacion]);
         $salida = [];
 
         while($datosCom = $stmt->fetch()) {

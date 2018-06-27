@@ -35,6 +35,23 @@ class Usuario {
         return null;
     }
 
+    public static function buscarPorUsuarioId($id)
+    {
+        $query = "SELECT * FROM usuarios
+                  WHERE ID = ?";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute([$id]);
+        $salida = [];
+
+        while($datosUsu = $stmt->fetch()) {
+            $usu = new Usuario();
+            $usu->cargarDatos($datosUsu);
+            $salida[] = $usu;
+        }
+
+        return $salida;
+    }
+
     protected function cargarDatos($fila)
     {
         $this->setId($fila['ID']);
