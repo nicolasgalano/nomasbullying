@@ -13,8 +13,10 @@ require_once 'autoload.php';
             <input type="hidden" name="mail" value="no-mail">
             <input type="hidden" name="tipo" value="5">
             <div class="form-group form-group-lg fix-height">
-                <input class="form-control small" type="text" placeholder="Nombre" name="nombre">
-                <input class="form-control small" type="text" placeholder="Apellido" name="apellido">
+                <input class="form-control" type="text" placeholder="Nombre" name="nombre">
+            </div>
+            <div class="form-group form-group-lg fix-height">
+                <input class="form-control" type="text" placeholder="Apellido" name="apellido">
             </div>
             <div class="form-group form-group-lg">
                 <input class="form-control" type="text" placeholder="DNI" name="identificacion">

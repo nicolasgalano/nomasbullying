@@ -83,6 +83,8 @@ require 'partials/header.php';
                         </tr>
 
                         <?php foreach($usuarios as $usuario): ?>
+                        <?php if( $usuario->getId() != 1 ){ ?>
+
                         <tr>
                             <td><?= $usuario->getNombre();?> <?= $usuario->getApellido();?></td>
                             <td><?= $usuario->getIdentificacion();?></td>
@@ -94,7 +96,8 @@ require 'partials/header.php';
                                 <div class="btn btn-red open-popup-button" aria-popup=".popup-borrar-usuario" aria-id="<?= $usuario->getId();?>">Eliminar</div>
                             </td>
                         </tr>
-                        <?php endforeach; ?>
+
+                        <?php } endforeach; ?>
 
                     </table>
                 </div>
