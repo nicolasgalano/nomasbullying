@@ -1,5 +1,8 @@
 <?php
 require_once 'autoload.php';
+
+$usuarios = Usuario::traerTodos();
+
 ?>
 <div class="popup popup-agregar-situacion">
     <div class="popup-close"><i class="glyphicon glyphicon-remove"></i></div>
@@ -8,16 +11,32 @@ require_once 'autoload.php';
     </div>
     <div class="popup-content">
         <form id="agregar-situacion-form">
-            <!-- ID USUARIO DENUNCIANTE -->
+            <input type="hidden" name="denunciante" value="5"> <!-- ID USUARIO DENUNCIANTE HARDCODED -->
             <div class="form-group form-group-lg">
                 <input class="form-control" type="text" placeholder="Título resumido de la situación" name="titulo">
             </div>
             <div class="form-group form-group-lg fix-height">
-                <input class="form-control small" type="text" placeholder="Agresor/es" name="agresor">
-                <input class="form-control small margin-left" type="text" placeholder="Victima/s" name="victima">
+                <select class="form-control small" name="agresor" placeholder="Agresor">
+                    <option disabled="disabled" selected="selected" name="topic">&nbsp;Agresor</option>
+                    <?php
+                        foreach($usuarios as $usuario):
+                        if($usuario->getId() != 1){
+                    ?>
+                        <option value="<?= $usuario->getId();?>">&nbsp;<?= $usuario->getNombre();?> <?= $usuario->getApellido();?></option>
+                    <?php } endforeach; ?>
+                </select>
+                <select class="form-control small margin-left" name="victima" placeholder="Victima">
+                    <option disabled="disabled" selected="selected" name="topic">&nbsp;Victima</option>
+                    <?php
+                        foreach($usuarios as $usuario):
+                        if($usuario->getId() != 1){
+                    ?>
+                        <option value="<?= $usuario->getId();?>">&nbsp;<?= $usuario->getNombre();?> <?= $usuario->getApellido();?></option>
+                    <?php } endforeach; ?>
+                </select>
             </div>
             <div class="form-group form-group-lg">
-                <select class="form-control" name="gravedad" placeholder="Gravedad">
+                <select class="form-control" name="nivel_situacion" placeholder="Gravedad">
                     <option disabled="disabled" selected="selected">&nbsp;Nivel de gravedad</option>
                     <option value="Collaborators">&nbsp;Alto</option>
                     <option value="Sales">&nbsp;Medio</option>

@@ -7,7 +7,13 @@ if(!Auth::userLogged()) {
 
 }else{
 
-    echo json_encode(true);
+    try {
+        $result = Situacion::crear($_POST);
+        //Implicados
+        echo json_encode($result);
+    } catch(Exception $e) {
+        echo "Hubo un error en la creación del alumno. Por favor intentalo de nuevo.";
+    }
 
 }
 ?>

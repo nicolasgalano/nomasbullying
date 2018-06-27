@@ -78,6 +78,18 @@ class Usuario {
         return $salida;
     }
 
+    public static function getAll()
+    {
+        $query = "SELECT id, nombre, apellido FROM usuarios";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute();
+        $salida = [];
+        while($datosUsu = $stmt->fetch()) {
+            $salida[] = $datosUsu;
+        }
+        return $salida;
+    }
+
     public static function crear($data)
     {
         $query = "INSERT INTO usuarios (nombre, apellido, tipo, password, mail, identificacion, idnacionalidad, edad, grado, sexo)
@@ -85,11 +97,13 @@ class Usuario {
 
         $stmt = DBConnection::getStatement($query);
 
+        $hashSecure = password_hash($data['password'], PASSWORD_DEFAULT);
+
         $exito = $stmt->execute([
             'nom' => $data['nombre'],
             'ape' => $data['apellido'],
             'tipo' => $data['tipo'],
-            'pass' => $data['password'],
+            'pass' => $hashSecure,
             'mail' => $data['mail'],
             'iden' => $data['identificacion'],
             'nac' => $data['idnacionalidad'],
@@ -113,7 +127,7 @@ class Usuario {
                   nombre = :nom,
 	              apellido = :ape,
 	              tipo = :tipo,
-	              pass = :pass,
+	              password = :pass,
 	              mail = :mail,
 	              identificacion = :iden,
 	              idnacionalidad = :nac,
@@ -124,11 +138,14 @@ class Usuario {
 
         $stmt = DBConnection::getStatement($query);
 
+        $hashSecure = password_hash($data['user-password'], PASSWORD_DEFAULT);
+        //$hashMd5 = md5($data['user-password']);
+
         $exito = $stmt->execute([
             'nom' => $data['nombre'],
             'ape' => $data['apellido'],
             'tipo' => $data['tipo'],
-            'pass' => $data['password'],
+            'pass' => $hashSecure,
             'mail' => $data['mail'],
             'iden' => $data['identificacion'],
             'nac' => $data['idnacionalidad'],

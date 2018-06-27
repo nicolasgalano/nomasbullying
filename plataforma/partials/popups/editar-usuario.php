@@ -9,13 +9,13 @@ require_once 'autoload.php';
     <div class="popup-content">
         <form id="editar-usuario-form">
             <input type="hidden" name="id" value="">
-            <input type="hidden" name="password" value="1234" value="">
+            <input type="hidden" name="user-password" value="">
             <input type="hidden" name="idnacionalidad" value="">
             <input type="hidden" name="mail" value="">
             <input type="hidden" name="tipo" value="">
             <div class="form-group form-group-lg fix-height">
                 <input class="form-control small" type="text" placeholder="Nombre" name="nombre" value="">
-                <input class="form-control small" type="text" placeholder="Apellido" name="apellido" value="">
+                <input class="form-control small margin-left" type="text" placeholder="Apellido" name="apellido" value="">
             </div>
             <div class="form-group form-group-lg">
                 <input class="form-control" type="text" placeholder="DNI" name="identificacion">
@@ -37,6 +37,7 @@ require_once 'autoload.php';
                     <option value="Masculino">&nbsp;Masculino</option>
                     <option value="Femenino">&nbsp;Femenino</option>
                 </select>
+                <input class="form-control small margin-left" type="password" placeholder="Nueva contraseña" name="user-password" value="">
             </div>
             <button class="btn btn--center btn--m-t" id="editar-usuario" aria-id-usuario="2"><i class="fa fa-refresh fa-spin fa-fw hide"></i>Guardar/Editar</button>
             <div class="form-response">

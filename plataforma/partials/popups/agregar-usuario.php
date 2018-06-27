@@ -10,7 +10,7 @@ require_once 'autoload.php';
         <form id="agregar-usuario-form">
             <input type="hidden" name="password" value="1234">
             <input type="hidden" name="idnacionalidad" value="1">
-            <input type="hidden" name="mail" value="nada">
+            <input type="hidden" name="mail" value="no-mail">
             <input type="hidden" name="tipo" value="5">
             <div class="form-group form-group-lg fix-height">
                 <input class="form-control small" type="text" placeholder="Nombre" name="nombre">

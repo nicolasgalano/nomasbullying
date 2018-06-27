@@ -69,7 +69,9 @@ class Situacion {
         ]);
 
         if(!$exito) {
-            throw new Exception('Error al insertar los datos.');
+            return 'Error al insertar los datos.';
+        }else{
+            return true;
         }
     }
     /**
@@ -185,4 +187,4 @@ class Situacion {
     }
 
 
-} 
+}

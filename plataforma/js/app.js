@@ -94,6 +94,7 @@ if ( typeof define === 'function' && define.amd ) {
 
         if(popupClass == '.popup-editar-usuarios'){
             var usuarioID = $(this).attr('aria-id');
+            var $formEditarUsuario = $('#editar-usuario-form');
             $.ajax({
                 method: 'GET',
                 url: 'acciones/get-usuario.php?idusuario='+usuarioID,
@@ -103,24 +104,20 @@ if ( typeof define === 'function' && define.amd ) {
                     data = JSON.parse(' '+data+' ');
                     console.log(data);
                     if(data) {
-                        $('#editar-usuario-form').find('input[name="id"]').attr('value',data.ID);
-                        $('#editar-usuario-form').find("input[name='nombre']").attr('value',data.nombre);
-                        $('#editar-usuario-form').find('input[name="apellido"]').attr('value',data.apellido);
-                        $('#editar-usuario-form').find('input[name="idnacionalidad"]').attr('value',data.idnacionalidad);
-                        $('#editar-usuario-form').find('input[name="mail"]').attr('value',data.mail);
-                        $('#editar-usuario-form').find('input[name="tipo"]').attr('value',data.tipo);
-                        $('#editar-usuario-form').find('input[name="identificacion"]').attr('value',data.identificacion);
+                        $formEditarUsuario.find('input[name="id"]').attr('value',data.ID);
+                        $formEditarUsuario.find("input[name='nombre']").attr('value',data.nombre);
+                        $formEditarUsuario.find('input[name="apellido"]').attr('value',data.apellido);
+                        $formEditarUsuario.find('input[name="idnacionalidad"]').attr('value',data.idnacionalidad);
+                        $formEditarUsuario.find('input[name="mail"]').attr('value',data.mail);
+                        $formEditarUsuario.find('input[name="tipo"]').attr('value',data.tipo);
+                        $formEditarUsuario.find('input[name="identificacion"]').attr('value',data.identificacion);
                         //$('#editar-usuario-form').find('input[name="grado"]').attr('value',data.);
-                        $('#editar-usuario-form').find('input[name="edad"]').attr('value',data.edad);
+                        $formEditarUsuario.find('input[name="edad"]').attr('value',data.edad);
                         //$('#editar-usuario-form').find('input[name="sexo"]').attr('value',data.sexo);
-                        $('#editar-usuario-form').find('input[name="password"]').attr('value',data.password);
-                        /////
-                        //$('#editar-usuario-form').find('#editar-usuario').attr('aria-id-usuario',usuarioID);//SET ID
+                        $formEditarUsuario.find('input[name="user-password"]').attr('value',data.password);
                     }
                 },
-                complete: function() {
-
-                }
+                complete: function() {}
             });
         }
 
@@ -306,7 +303,7 @@ if ( typeof define === 'function' && define.amd ) {
                 data: params,
                 success: function(data) {
                     if(data == 'true') {
-                        window.location.href = "panel.php";
+                        window.location.href = "panel-institucion.php?tab=situaciones";
                         //submitLoaderAS.parent().hide();
                     }else{
                         responseAS.find('p').text(data);
