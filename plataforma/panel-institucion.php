@@ -84,7 +84,7 @@ require 'partials/header.php';
                             <td><?= $usuario->getEdad();?></td>
                             <td><?= $usuario->getSexo();?></td>
                             <td>
-                                <div class="btn btn-blue open-popup-button" aria-popup=".popup-editar-usuarios">Editar</div>
+                                <div class="btn btn-blue open-popup-button" aria-popup=".popup-editar-usuarios" aria-id="<?= $usuario->getId();?>">Editar</div>
                                 <div class="btn btn-red open-popup-button" aria-popup=".popup-borrar-usuario" aria-id="<?= $usuario->getId();?>">Eliminar</div>
                             </td>
                         </tr>

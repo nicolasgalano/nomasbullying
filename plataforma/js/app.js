@@ -84,11 +84,44 @@ if ( typeof define === 'function' && define.amd ) {
 
     $('.open-popup-button').click(function(){
         $('.full-opacity').show();
-        $($(this).attr('aria-popup')).show();
+        var popupClass = $(this).attr('aria-popup');
+        $(popupClass).show();
 
         //IF BORRAR USUARIO
-        if($(this).attr('aria-popup') == '.popup-borrar-usuario'){
+        if(popupClass == '.popup-borrar-usuario'){
             $('#borrar-usuario').attr('aria-id-usuario',$(this).attr('aria-id'));//SET ID
+        }
+
+        if(popupClass == '.popup-editar-usuarios'){
+            var usuarioID = $(this).attr('aria-id');
+            $.ajax({
+                method: 'GET',
+                url: 'acciones/get-usuario.php?idusuario='+usuarioID,
+                data: '',
+                success: function(data) {
+                    console.log(data);
+                    data = JSON.parse(' '+data+' ');
+                    console.log(data);
+                    if(data) {
+                        $('#editar-usuario-form').find('input[name="id"]').attr('value',data.ID);
+                        $('#editar-usuario-form').find("input[name='nombre']").attr('value',data.nombre);
+                        $('#editar-usuario-form').find('input[name="apellido"]').attr('value',data.apellido);
+                        $('#editar-usuario-form').find('input[name="idnacionalidad"]').attr('value',data.idnacionalidad);
+                        $('#editar-usuario-form').find('input[name="mail"]').attr('value',data.mail);
+                        $('#editar-usuario-form').find('input[name="tipo"]').attr('value',data.tipo);
+                        $('#editar-usuario-form').find('input[name="identificacion"]').attr('value',data.identificacion);
+                        //$('#editar-usuario-form').find('input[name="grado"]').attr('value',data.);
+                        $('#editar-usuario-form').find('input[name="edad"]').attr('value',data.edad);
+                        //$('#editar-usuario-form').find('input[name="sexo"]').attr('value',data.sexo);
+                        $('#editar-usuario-form').find('input[name="password"]').attr('value',data.password);
+                        /////
+                        //$('#editar-usuario-form').find('#editar-usuario').attr('aria-id-usuario',usuarioID);//SET ID
+                    }
+                },
+                complete: function() {
+
+                }
+            });
         }
 
     });
@@ -358,32 +391,25 @@ if ( typeof define === 'function' && define.amd ) {
     //EDITAR USUARIO
     var formEU = $('#editar-usuario-form');
     var submitLoaderEU = formEU.find('button i');
+    //var usuarioID = submitLoaderEU.parent().attr('aria-id-usuario');
     var responseEU = formEU.find('.form-response');
     formEU.on('submit', (e) => e.preventDefault());
     formEU.validate({
         onfocusout: false,
         rules: {
-            full_name: 'required',
-            dni: 'required',
-            grado: 'required',
-            edad: 'required',
-            genero: 'required'
+            nombre: 'required',
+            apellido: 'required',
+            identificacion: 'required'
         },
         messages: {
-            full_name: {
-                required: 'Falta completar el título'
+            nombre: {
+                required: 'Falta completar el nombre'
             },
-            dni: {
+            apellido: {
+                required: 'Falta completar el apellido'
+            },
+            identificacion: {
                 required: 'Falta completar el DNI'
-            },
-            grado: {
-                required: 'Falta completar el grado'
-            },
-            edad: {
-                required: 'Falta completar la edad'
-            },
-            genero: {
-                required: 'Falta completar la genero'
             }
         }
         , highlight: function(element, errorClass, validClass) {

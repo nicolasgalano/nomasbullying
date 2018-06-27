@@ -8,6 +8,7 @@ require_once 'autoload.php';
     </div>
     <div class="popup-content">
         <form id="agregar-situacion-form">
+            <!-- ID USUARIO DENUNCIANTE -->
             <div class="form-group form-group-lg">
                 <input class="form-control" type="text" placeholder="Título resumido de la situación" name="titulo">
             </div>

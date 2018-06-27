@@ -29,9 +29,7 @@ class Usuario {
             'id' => $data
         ]);
         $datosUsu = $stmt->fetch();
-        $usu = new Usuario();
-        $usu->cargarDatos($datosUsu);
-        return $usu;
+        return $datosUsu;
     }
 
     public static function buscarPorUsuario($usuario)
@@ -137,7 +135,7 @@ class Usuario {
             'id' => $data['id'],
             'edad' => $data['edad'],
             'gra' => $data['grado'],
-            'sex' => $data['sexo'],
+            'sex' => $data['sexo']
         ]);
 
         if(!$exito) {

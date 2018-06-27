@@ -8,10 +8,12 @@ if(!Auth::userLogged()) {
 }else{
 
     try {
-        $result = Usuario::editar($_POST);
+
+        $result = Usuario::buscarPorUsuarioId($_GET['idusuario']);
         echo json_encode($result);
+
     } catch(Exception $e) {
-        echo "Hubo un error en la creación del alumno. Por favor intentalo de nuevo.";
+        echo "Hubo un error en la edición del usuario. Por favor intentalo de nuevo.";
     }
 
 }
