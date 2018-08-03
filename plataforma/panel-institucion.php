@@ -10,6 +10,8 @@ if(!Auth::userLogged()) {
     }
 }
 
+// OBTENER DATOS DE ULTIMA FECHA AL ENTRAR AL PANEL A LA SECCION DE SITUACIONES
+
 $_SESSION['page'] = 'panel-institucion';
 
 if(isset($_GET['tab'])) {
@@ -18,10 +20,13 @@ if(isset($_GET['tab'])) {
     $openTab = 'usuarios';
 }
 
+// ORDER
+$situacionOrder = "ORDER BY id DESC";
+
 //GET CLASES
 $usuarios = Usuario::traerTodos();
-$situaciones = Situacion::traerTodos();
-
+$situaciones = Situacion::traerTodos( $situacionOrder );
+$situacionesNotReadCount = Situacion::getCountNotRead();
 ?>
 
 <!-- PANEL INSTITUCION -->
@@ -56,7 +61,7 @@ require 'partials/header.php';
                     <ul class="side-menu">
                         <li><a <?=($openTab=='usuarios')?'class="active"':'';?> href="panel-institucion.php?tab=usuarios">Usuarios</a></li>
                         <li><a <?=($openTab=='notificaciones')?'class="active"':'';?> href="panel-institucion.php?tab=notificaciones">Notificaciones</a></li>
-                        <li><a <?=($openTab=='situaciones')?'class="active"':'';?> href="panel-institucion.php?tab=situaciones">Situaciones</a></li>
+                        <li><a <?=($openTab=='situaciones')?'class="active"':'';?> href="panel-institucion.php?tab=situaciones">Situaciones (<?= count($situacionesNotReadCount) ?>)</a></li>
                         <li><a <?=($openTab=='contenido')?'class="active"':'';?> href="panel-institucion.php?tab=contenido">Contenido general</a></li>
                         <li><a <?=($openTab=='alertas')?'class="active"':'';?> href="panel-institucion.php?tab=alertas">Alertas</a></li>
                         <li><a <?=($openTab=='soporte')?'class="active"':'';?> href="panel-institucion.php?tab=soporte">Soporte técnico</a></li>
@@ -128,21 +133,26 @@ require 'partials/header.php';
                     <table>
 
                         <tr>
+                            <th>Creador del reporte</th>
                             <th>Título</th>
-                            <th>Descripción</th>
+                            <!--<th>Descripción</th>-->
                             <th>Gravedad</th>
-                            <!-- <th>Estado</th> -->
+                            <th>Estado</th>
                             <th style="width:220px;">Acciones</th>
                         </tr>
 
                         <?php foreach($situaciones as $situacion): ?>
+                        <?php
+                            $denunciante = Usuario::buscarPorUsuarioId( (int)str_replace(' ', '', $situacion->getDenunciante()) );
+                        ?>
                         <tr>
+                            <td><?= $denunciante['nombre'];?> <?= $denunciante['apellido'];?></td>
                             <td><?= $situacion->getTitulo();?></td>
-                            <td><?= $situacion->getDescripcion();?></td>
-                            <td><?= $situacion->getNivel();?></td>
-                            <!-- <td><?= $situacion->getEstatus();?></td> -->
+                            <!--<td><?= $situacion->getDescripcion();?></td>-->
+                            <td class="gravedad <?= $situacion->getNivel();?>"><b><?= $situacion->getNivel();?></b></td>
+                            <td><?= ($situacion->getEstatus()==0)?'No leído':'Leído';?></td>
                             <td>
-                                <div class="btn ver-ficha open-popup-button" aria-popup=".popup-ver-situacion" aria-id="<?= $situacion->getId();?>">Ver ficha</div>
+                                <div class="btn ver-ficha open-popup-button" aria-popup=".popup-ver-situacion" aria-id-usuario="<?= $situacion->getDenunciante();?>" aria-id="<?= $situacion->getId();?>">Ver ficha</div>
                                 <div class="btn btn-blue open-popup-button" aria-popup=".popup-comentarios" aria-id="<?= $situacion->getId();?>" aria-id-usuario="<?= $_SESSION['user']->getID() ?>">Mensajes</div>
                             </td>
                         </tr>

@@ -20,10 +20,27 @@ class Situacion {
         return $datosSit['id'];
     }
 
+    public static function getCountNotRead()
+    {
+        $query = "SELECT * FROM situaciones
+                  WHERE estatus = 0 ORDER BY id DESC";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute();
+        $salida = [];
+
+        while($datosSit = $stmt->fetch()) {
+            $sit = new Situacion();
+            $sit->cargarDatos($datosSit);
+            $salida[] = $sit;
+        }
+
+        return $salida;
+    }
+
     public static function traerTodosId($denunciante)
     {
         $query = "SELECT * FROM situaciones
-                  WHERE denunciante = ?";
+                  WHERE denunciante = ? ORDER BY id DESC";
         $stmt = DBConnection::getStatement($query);
         $stmt->execute([$denunciante]);
         $salida = [];
@@ -52,9 +69,9 @@ class Situacion {
         return $salida;
     }
 
-    public static function traerTodos()
+    public static function traerTodos($orderBy)
     {
-        $query = "SELECT * FROM situaciones";
+        $query = "SELECT * FROM situaciones ORDER BY id DESC";//+$orderBy;
         $stmt = DBConnection::getStatement($query);
         $stmt->execute();
         $salida = [];
@@ -101,6 +118,27 @@ class Situacion {
             return $idSituacion;
         }
     }
+
+    public static function editarEstatus($data)
+    {
+        $query = "UPDATE
+	              situaciones
+                  SET
+                  estatus = 1
+                  WHERE ID = ".$data." LIMIT 1";
+
+        $stmt = DBConnection::getStatement($query);
+
+        $exito = $stmt->execute();
+
+        if(!$exito) {
+            return 'Error al editar los datos.';
+        }else{
+            return true;
+        }
+    }
+
+
     /**
      * @return mixed
      */

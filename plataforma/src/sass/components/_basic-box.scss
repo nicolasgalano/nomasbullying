@@ -54,4 +54,35 @@
         }
     }
 
+    .gravedad{
+
+        b{
+            display: inline-block;
+            width:80px;
+            height:28px;
+            color:#FFF;
+            text-align: center;
+            line-height:28px;
+            border-radius: 3px;
+            font-weight: bold;
+            text-shadow:0 1px 1px rgba(0,0,0,0.3);
+        }
+        &.alto{
+            b{
+                background:#ca5353;
+            }
+        }
+        &.medio{
+            b{
+                background:#cec34a;
+            }
+        }
+        &.bajo{
+            b{
+                background:#92c153;
+            }
+        }
+
+    }
+
 }

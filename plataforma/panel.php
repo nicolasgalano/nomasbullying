@@ -12,8 +12,14 @@ if(!Auth::userLogged()) {
     }
 }
 
-//GET CLASES
-$situaciones = Situacion::traerTodosId($_SESSION['user']->getID());
+// ORDER
+$situacionOrder = "ORDER BY id DESC";
+//if( $_GET['order']=='ASC' || $_GET['order']=='DESC' ){
+//    $situacionOrder = $_GET['order'];
+//}
+
+// GET CLASES
+$situaciones = Situacion::traerTodosId($_SESSION['user']->getID(), $situacionOrder);
 
 ?>
 
@@ -50,6 +56,7 @@ include 'partials/header.php';
                     </div>
                     <table>
                         <tr>
+                            <th>Creador del reporte</th>
                             <th>Título</th>
                             <th>Descripción</th>
                             <th>Gravedad</th>
@@ -58,7 +65,11 @@ include 'partials/header.php';
                         </tr>
 
                         <?php foreach($situaciones as $situacion): ?>
+                        <?php
+                            $denunciante = Usuario::buscarPorUsuarioId( (int)str_replace(' ', '', $situacion->getDenunciante()) );
+                        ?>
                         <tr>
+                            <td><?= $denunciante['nombre'];?> <?= $denunciante['apellido'];?></td>
                             <td><?= $situacion->getTitulo();?></td>
                             <td><?= $situacion->getDescripcion();?></td>
                             <td><?= $situacion->getNivel();?></td>

@@ -19,7 +19,7 @@ require 'partials/header.php';
         <div class="row">
             <div class="col-sm-7 col-md-6 vertical-align">
                 <h1 class="title">Contactese con el equipo de No Mas Bullying</h1>
-                <h5 class="subtitle">Tenemos un equipo de profecionales enfocados en mejorar nuestra herramienta y ayudar a quienes necesiten contención.</h5>
+                <h5 class="subtitle">Tenemos un equipo de profesionales enfocados en mejorar nuestra herramienta y ayudar a quienes necesiten contención.</h5>
             </div>
             <div class="col-sm-5">
                 <form id="contact-form">

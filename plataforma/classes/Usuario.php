@@ -64,7 +64,7 @@ class Usuario {
 
     public static function traerTodos()
     {
-        $query = "SELECT * FROM usuarios";
+        $query = "SELECT * FROM usuarios ORDER BY id DESC";
         $stmt = DBConnection::getStatement($query);
         $stmt->execute();
         $salida = [];

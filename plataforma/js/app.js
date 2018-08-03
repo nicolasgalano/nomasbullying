@@ -147,7 +147,18 @@ if ( typeof define === 'function' && define.amd ) {
         //IF VER SITUACION
         if(popupClass == '.popup-ver-situacion'){
             var situacionID = $(this).attr('aria-id');
+            var usuarioID = $(this).attr('aria-id-usuario');
             var $popupVerSituacion = $('.popup-ver-situacion');
+
+            $.ajax({
+                method: 'GET',
+                url: 'acciones/set-estatus.php?idsituacion='+situacionID,
+                data: '',
+                success: function(data) {
+                },
+                complete: function() {}
+            });
+
             $.ajax({
                 method: 'GET',
                 url: 'acciones/get-situacion.php?idsituacion='+situacionID,
@@ -165,7 +176,24 @@ if ( typeof define === 'function' && define.amd ) {
                 },
                 complete: function() {}
             });
+
+            //CREADOR
+            $.ajax({
+                method: 'GET',
+                url: 'acciones/get-usuario.php?idusuario='+usuarioID,
+                data: '',
+                success: function(data) {
+                    data = JSON.parse(' '+data+' ');
+                    console.log(data);
+                    if(data) {
+                        $popupVerSituacion.find('.creador b').html(''+data.nombre+' '+data.apellido+'');
+                    }
+                },
+                complete: function() {}
+            });
+
             //TRAER IMPLICADOS
+            //VICTIMA
             $.ajax({
                 method: 'GET',
                 url: 'acciones/get-implicado.php?idsituacion='+situacionID+'&rol='+'victima',
@@ -182,7 +210,7 @@ if ( typeof define === 'function' && define.amd ) {
                                 data = JSON.parse(' '+data+' ');
                                 console.log(data);
                                 if(data) {
-                                    $popupVerSituacion.find('.victima b i').html(''+data.nombre+' '+data.apellido+'');
+                                    $popupVerSituacion.find('.victima b i').html(''+data.nombre+' '+data.apellido+' ['+data.grado+']');
                                 }
                             },
                             complete: function() {}
@@ -191,6 +219,7 @@ if ( typeof define === 'function' && define.amd ) {
                 },
                 complete: function() {}
             });
+            //VICTIMARIO
             $.ajax({
                 method: 'GET',
                 url: 'acciones/get-implicado.php?idsituacion='+situacionID+'&rol='+'victimario',
@@ -207,7 +236,7 @@ if ( typeof define === 'function' && define.amd ) {
                                 data = JSON.parse(' '+data+' ');
                                 console.log(data);
                                 if(data) {
-                                    $popupVerSituacion.find('.agresor b i').html(''+data.nombre+' '+data.apellido+'');
+                                    $popupVerSituacion.find('.agresor b i').html(''+data.nombre+' '+data.apellido+' ['+data.grado+']');
                                 }
                             },
                             complete: function() {}
@@ -216,11 +245,14 @@ if ( typeof define === 'function' && define.amd ) {
                 },
                 complete: function() {}
             });
+
         }
+
         //IF BORRAR USUARIO
         if(popupClass == '.popup-borrar-usuario'){
             $('#borrar-usuario').attr('aria-id-usuario',$(this).attr('aria-id'));//SET ID
         }
+
         //EDITAR USUARIO
         if(popupClass == '.popup-editar-usuarios'){
             var usuarioID = $(this).attr('aria-id');
@@ -256,8 +288,14 @@ if ( typeof define === 'function' && define.amd ) {
     $('.full-opacity').click(function(){
         $('.full-opacity').hide();
         $('.popup').hide();
+        if($(this).parent().hasClass('popup-ver-situacion')){
+            location.reload();
+        }
     });
     $('.popup-close').click(function(){
+        if($(this).parent().hasClass('popup-ver-situacion')){
+            location.reload();
+        }
         $('.full-opacity').hide();
         $(this).parent().hide();
     });

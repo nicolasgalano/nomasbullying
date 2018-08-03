@@ -8900,6 +8900,35 @@ footer {
       background-color: #30b873; }
   .popup .popup-content {
     padding: 20px; }
+    .popup .popup-content table {
+      width: 100%;
+      border: 1px solid #CCC;
+      -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+              box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1); }
+      .popup .popup-content table tr:nth-child(even) {
+        background: #FFFFFF; }
+      .popup .popup-content table tr:nth-child(odd) {
+        background: #FFFFFF; }
+      .popup .popup-content table td, .popup .popup-content table th {
+        border-bottom: 1px solid #CCC;
+        padding: 5px 15px;
+        font-size: 13px; }
+      .popup .popup-content table td.tt {
+        background: #f6f5f5;
+        width: 160px;
+        color: #aaaaaa;
+        font-weight: 400;
+        text-align: left;
+        font-family: Arial, sans-serif;
+        padding: 9px 15px 8px;
+        font-size: 14px;
+        text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.5); }
+      .popup .popup-content table td {
+        font-family: Arial, sans-serif; }
+      .popup .popup-content table .btn {
+        padding: 4px 12px;
+        font-size: 14px;
+        cursor: pointer; }
 
 .full-opacity {
   display: none;
@@ -8924,7 +8953,7 @@ footer {
   display: block;
   font-weight: 500;
   font-family: Arial, sans-serif;
-  font-size: 16px; }
+  font-size: 15px; }
   .popup-ver-situacion b i {
     display: inline-block;
     width: auto;
@@ -8947,16 +8976,17 @@ footer {
   text-align: center;
   line-height: 28px;
   border-radius: 3px;
-  font-weight: bold; }
+  font-weight: bold;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3); }
 
 .popup-ver-situacion .gravedad.alto b {
-  background: red; }
+  background: #ca5353; }
 
 .popup-ver-situacion .gravedad.medio b {
-  background: yellow; }
+  background: #cec34a; }
 
 .popup-ver-situacion .gravedad.bajo b {
-  background: green; }
+  background: #92c153; }
 
 .popup-comentarios .comentarios {
   margin: 0px 0 20px;
@@ -9094,6 +9124,22 @@ path.stroke-thin {
       padding: 4px 12px;
       font-size: 14px;
       cursor: pointer; }
+  .basic-box .gravedad b {
+    display: inline-block;
+    width: 80px;
+    height: 28px;
+    color: #FFF;
+    text-align: center;
+    line-height: 28px;
+    border-radius: 3px;
+    font-weight: bold;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3); }
+  .basic-box .gravedad.alto b {
+    background: #ca5353; }
+  .basic-box .gravedad.medio b {
+    background: #cec34a; }
+  .basic-box .gravedad.bajo b {
+    background: #92c153; }
 
 .main-slider {
   background-repeat: no-repeat;

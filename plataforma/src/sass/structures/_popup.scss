@@ -46,8 +46,45 @@
 
     .popup-content{
         padding:20px;
-    }
 
+        table{
+            width:100%;
+            border: 1px solid #CCC;
+            box-shadow:0 1px 1px rgba(0,0,0,0.1);
+            tr{
+                &:nth-child(even){
+                    background:#FFFFFF;
+                }
+                &:nth-child(odd){
+                    background:#FFFFFF;
+                }
+            }
+            td,th{
+                border-bottom:1px solid #CCC;
+                padding:5px 15px;
+                font-size: 13px;
+            }
+            td.tt{
+                background:#f6f5f5;
+                width:160px;
+                color:#aaaaaa;
+                font-weight: 400;
+                text-align:left;
+                font-family:$arial;
+                padding:9px 15px 8px;
+                font-size: 14px;
+                text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.5);
+            }
+            td{
+                font-family:$arial;
+            }
+            .btn{
+                padding:4px 12px;
+                font-size:14px;
+                cursor: pointer;
+            }
+        }
+    }
 
 }
 
@@ -78,7 +115,7 @@
         display:block;
         font-weight:500;
         font-family:$arial;
-        font-size:16px;
+        font-size:15px;
         i{
             display:inline-block;
             width:auto;
@@ -111,20 +148,21 @@
             line-height:28px;
             border-radius: 3px;
             font-weight: bold;
+            text-shadow:0 1px 1px rgba(0,0,0,0.3);
         }
         &.alto{
             b{
-                background:red;
+                background:#ca5353;
             }
         }
         &.medio{
             b{
-                background:yellow;
+                background:#cec34a;
             }
         }
         &.bajo{
             b{
-                background:green;
+                background:#92c153;
             }
         }
 
