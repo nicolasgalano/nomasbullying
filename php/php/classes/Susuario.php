@@ -2,29 +2,23 @@
 /**
  * Created by PhpStorm.
  * User: jpfra
- * Date: 25/6/2018
- * Time: 5:48 PM
+ * Date: 4/8/2018
+ * Time: 8:05 PM
  */
 
-class Usuario {
-
+class Susuario {
     private $id;
     private $nombre;
     private $apellido;
-    private $tipo;
     private $password;
     private $mail;
     private $identificacion;
-    private $nacionalidad;
-    private $edad;
-    private $grado;
-    private $sexo;
 
     public static function buscarPorUsuarioId($data)
     {
         $query = "SELECT * FROM usuarios
-                  WHERE ID = :id";
-        $stmt = DBConnection::getStatement($query);
+                  WHERE id = :id";
+        $stmt = DBConnectionSA::getStatement($query);
         $stmt->execute([
             'id' => $data
         ]);
@@ -37,55 +31,35 @@ class Usuario {
         $query = "SELECT * FROM usuarios
                   WHERE identificacion = ?
                   LIMIT 1";
-        $stmt = DBConnection::getStatement($query);
+        $stmt = DBConnectionSA::getStatement($query);
         $stmt->execute([$usuario]);
         if($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $user = new Usuario;
+            $user = new Susuario;
             $user->cargarDatos($fila);
             return $user;
         }
         return null;
     }
 
-    public static function traerTodosTipo($usuario)
-    {
-        $query = "SELECT * FROM usuarios
-                  WHERE tipo = ?";
-        $stmt = DBConnection::getStatement($query);  
-        $stmt->execute([$usuario]);
-        $salida = [];
-
-        while($datosUsu = $stmt->fetch()) {
-            $salida[] = $datosUsu;
-        }
-
-        return $salida;
-    }
-
     protected function cargarDatos($fila)
     {
-        $this->setId($fila['ID']);
+        $this->setId($fila['id']);
         $this->setNombre($fila['nombre']);
         $this->setApellido($fila['apellido']);
-        $this->setTipo($fila['tipo']);
         $this->setPassword($fila['password']);
         $this->setMail($fila['mail']);
         $this->setIdentificacion($fila['identificacion']);
-        $this->setNacionalidad($fila['idnacionalidad']);
-        $this->setEdad($fila['edad']);
-        $this->setGrado($fila['grado']);
-        $this->setSexo($fila['sexo']);
     }
 
     public static function traerTodos()
     {
         $query = "SELECT * FROM usuarios ORDER BY id DESC";
-        $stmt = DBConnection::getStatement($query);
+        $stmt = DBConnectionSA::getStatement($query);
         $stmt->execute();
         $salida = [];
 
         while($datosUsu = $stmt->fetch()) {
-            $usu = new Usuario();
+            $usu = new Susuario();
             $usu->cargarDatos($datosUsu);
             $salida[] = $usu;
         }
@@ -93,12 +67,10 @@ class Usuario {
         return $salida;
     }
 
-
-
     public static function getAll()
     {
         $query = "SELECT id, nombre, apellido FROM usuarios";
-        $stmt = DBConnection::getStatement($query);
+        $stmt = DBConnectionSA::getStatement($query);
         $stmt->execute();
         $salida = [];
         while($datosUsu = $stmt->fetch()) {
@@ -109,24 +81,19 @@ class Usuario {
 
     public static function crear($data)
     {
-        $query = "INSERT INTO usuarios (nombre, apellido, tipo, password, mail, identificacion, idnacionalidad, edad, grado, sexo)
-                  VALUES (:nom, :ape, :tipo, :pass, :mail, :iden, :nac, :edad, :gra, :sex)";
+        $query = "INSERT INTO usuarios (nombre, apellido, password, mail, identificacion)
+                  VALUES (:nom, :ape, :pass, :mail, :iden)";
 
-        $stmt = DBConnection::getStatement($query);
+        $stmt = DBConnectionSA::getStatement($query);
 
         $hashSecure = password_hash($data['password'], PASSWORD_DEFAULT);
 
         $exito = $stmt->execute([
             'nom' => $data['nombre'],
             'ape' => $data['apellido'],
-            'tipo' => $data['tipo'],
             'pass' => $hashSecure,
             'mail' => $data['mail'],
             'iden' => $data['identificacion'],
-            'nac' => $data['idnacionalidad'],
-            'edad' => $data['edad'],
-            'gra' => $data['grado'],
-            'sex' => $data['sexo'],
         ]);
 
         if(!$exito) {
@@ -143,17 +110,12 @@ class Usuario {
                   SET
                   nombre = :nom,
 	              apellido = :ape,
-	              tipo = :tipo,
 	              password = :pass,
 	              mail = :mail,
-	              identificacion = :iden,
-	              idnacionalidad = :nac,
-	              edad = :edad,
-	              grado = :gra,
-	              sexo = :sex
-                  WHERE ID = :id LIMIT 1";
+	              identificacion = :iden
+                  WHERE id = :id LIMIT 1";
 
-        $stmt = DBConnection::getStatement($query);
+        $stmt = DBConnectionSA::getStatement($query);
 
         if($data['password-new'] != ''){
             $hashSecure = password_hash($data['password-new'], PASSWORD_DEFAULT);
@@ -164,15 +126,10 @@ class Usuario {
         $exito = $stmt->execute([
             'nom' => $data['nombre'],
             'ape' => $data['apellido'],
-            'tipo' => $data['tipo'],
             'pass' => $hashSecure,
             'mail' => $data['mail'],
             'iden' => $data['identificacion'],
-            'nac' => $data['idnacionalidad'],
             'id' => $data['id'],
-            'edad' => $data['edad'],
-            'gra' => $data['grado'],
-            'sex' => $data['sexo']
         ]);
 
         if(!$exito) {
@@ -185,10 +142,10 @@ class Usuario {
     public static function eliminar($data)
     {
         $query = "DELETE FROM usuarios
-                  WHERE ID = :id
+                  WHERE id = :id
                   LIMIT 1";
 
-        $stmt = DBConnection::getStatement($query);
+        $stmt = DBConnectionSA::getStatement($query);
 
         $exito = $stmt->execute([
             'id' => $data['id']
@@ -198,6 +155,7 @@ class Usuario {
             throw new Exception('Error al eliminar los datos.');
         }
     }
+
     /**
      * @return mixed
      */
@@ -233,22 +191,6 @@ class Usuario {
     /**
      * @return mixed
      */
-    public function getIdentificacion()
-    {
-        return $this->identificacion;
-    }
-
-    /**
-     * @param mixed $identificacion
-     */
-    public function setIdentificacion($identificacion)
-    {
-        $this->identificacion = $identificacion;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getMail()
     {
         return $this->mail;
@@ -265,17 +207,17 @@ class Usuario {
     /**
      * @return mixed
      */
-    public function getNacionalidad()
+    public function getIdentificacion()
     {
-        return $this->nacionalidad;
+        return $this->identificacion;
     }
 
     /**
-     * @param mixed $nacionalidad
+     * @param mixed $identificacion
      */
-    public function setNacionalidad($nacionalidad)
+    public function setIdentificacion($identificacion)
     {
-        $this->nacionalidad = $nacionalidad;
+        $this->identificacion = $identificacion;
     }
 
     /**
@@ -297,22 +239,6 @@ class Usuario {
     /**
      * @return mixed
      */
-    public function getTipo()
-    {
-        return $this->tipo;
-    }
-
-    /**
-     * @param mixed $tipo
-     */
-    public function setTipo($tipo)
-    {
-        $this->tipo = $tipo;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getPassword()
     {
         return $this->password;
@@ -324,54 +250,6 @@ class Usuario {
     public function setPassword($password)
     {
         $this->password = $password;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getEdad()
-    {
-        return $this->edad;
-    }
-
-    /**
-     * @param mixed $edad
-     */
-    public function setEdad($edad)
-    {
-        $this->edad = $edad;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getGrado()
-    {
-        return $this->grado;
-    }
-
-    /**
-     * @param mixed $grado
-     */
-    public function setGrado($grado)
-    {
-        $this->grado = $grado;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getSexo()
-    {
-        return $this->sexo;
-    }
-
-    /**
-     * @param mixed $sexo
-     */
-    public function setSexo($sexo)
-    {
-        $this->sexo = $sexo;
     }
 
 }

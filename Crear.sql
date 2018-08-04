@@ -7,9 +7,6 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
--- -----------------------------------------------------
--- Schema DW4_NO_MAS_BULLYING
--- -----------------------------------------------------
 
 -- -----------------------------------------------------
 -- Schema DW4_NO_MAS_BULLYING
@@ -162,6 +159,7 @@ CREATE TABLE IF NOT EXISTS `DW4_NO_MAS_BULLYING`.`notificaciones` (
   `fecha` DATETIME NOT NULL,
   `rol` INT NOT NULL,
   `implicado` INT UNSIGNED NOT NULL,
+   `leido` TINYINT(1) NOT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE INDEX `ID_UNIQUE` (`ID` ASC),
   INDEX `fk_notificaciones_usuarios1_idx` (`implicado` ASC),
@@ -225,6 +223,31 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+
+
+
+-- -----------------------------------------------------
+-- Table `DW4_NO_MAS_BULLYING`.`sit_has_padre`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `DW4_NO_MAS_BULLYING`.`sit_has_padre` (
+  `id` INT NOT NULL,
+  `usuarios_ID` INT UNSIGNED NOT NULL,
+  `notificaciones_ID` INT UNSIGNED NOT NULL,
+  PRIMARY KEY (`usuarios_ID`, `notificaciones_ID`, `id`),
+  INDEX `fk_usuarios_has_notificaciones_notificaciones1_idx` (`notificaciones_ID` ASC),
+  INDEX `fk_usuarios_has_notificaciones_usuarios1_idx` (`usuarios_ID` ASC),
+  CONSTRAINT `fk_usuarios_has_notificaciones_usuarios1`
+    FOREIGN KEY (`usuarios_ID`)
+    REFERENCES `DW4_NO_MAS_BULLYING`.`usuarios` (`ID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_usuarios_has_notificaciones_notificaciones1`
+    FOREIGN KEY (`notificaciones_ID`)
+    REFERENCES `DW4_NO_MAS_BULLYING`.`notificaciones` (`ID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Data for table `DW4_NO_MAS_BULLYING`.`nacionalidad`
