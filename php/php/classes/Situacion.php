@@ -10,10 +10,37 @@ class Situacion {
     private $nivel;
     private $estatus;
 
+    public static function getIdByLastEntry()
+    {
+        $query = "SELECT id FROM situaciones ORDER BY ID DESC LIMIT 1";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute();
+
+        $datosSit = $stmt->fetch();
+        return $datosSit['id'];
+    }
+
+    public static function getCountNotRead()
+    {
+        $query = "SELECT * FROM situaciones
+                  WHERE estatus = 0 ORDER BY id DESC";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute();
+        $salida = [];
+
+        while($datosSit = $stmt->fetch()) {
+            $sit = new Situacion();
+            $sit->cargarDatos($datosSit);
+            $salida[] = $sit;
+        }
+
+        return $salida;
+    }
+
     public static function traerTodosId($denunciante)
     {
         $query = "SELECT * FROM situaciones
-                  WHERE denunciante = ?";
+                  WHERE denunciante = ? ORDER BY id DESC";
         $stmt = DBConnection::getStatement($query);
         $stmt->execute([$denunciante]);
         $salida = [];
@@ -27,9 +54,24 @@ class Situacion {
         return $salida;
     }
 
-    public static function traerTodos()
+    public static function getByID($idSituacion)
     {
-        $query = "SELECT * FROM situaciones";
+        $query = "SELECT * FROM situaciones
+                  WHERE id = ?";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute([$idSituacion]);
+        $salida = [];
+
+        while($datosSit = $stmt->fetch()) {
+            $salida[] = $datosSit;
+        }
+
+        return $salida;
+    }
+
+    public static function traerTodos($orderBy)
+    {
+        $query = "SELECT * FROM situaciones ORDER BY id DESC";//+$orderBy;
         $stmt = DBConnection::getStatement($query);
         $stmt->execute();
         $salida = [];
@@ -69,9 +111,34 @@ class Situacion {
         ]);
 
         if(!$exito) {
-            throw new Exception('Error al insertar los datos.');
+            return 'Error al insertar los datos.';
+        }else{
+            //TENGO QUE DEVOLVER EL ID DE SITUACION
+            $idSituacion = Situacion::getIdByLastEntry();
+            return $idSituacion;
         }
     }
+
+    public static function editarEstatus($data)
+    {
+        $query = "UPDATE
+	              situaciones
+                  SET
+                  estatus = 1
+                  WHERE ID = ".$data." LIMIT 1";
+
+        $stmt = DBConnection::getStatement($query);
+
+        $exito = $stmt->execute();
+
+        if(!$exito) {
+            return 'Error al editar los datos.';
+        }else{
+            return true;
+        }
+    }
+
+
     /**
      * @return mixed
      */
@@ -185,4 +252,4 @@ class Situacion {
     }
 
 
-} 
+}

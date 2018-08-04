@@ -20,6 +20,18 @@ class Usuario {
     private $grado;
     private $sexo;
 
+    public static function buscarPorUsuarioId($data)
+    {
+        $query = "SELECT * FROM usuarios
+                  WHERE ID = :id";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute([
+            'id' => $data
+        ]);
+        $datosUsu = $stmt->fetch();
+        return $datosUsu;
+    }
+
     public static function buscarPorUsuario($usuario)
     {
         $query = "SELECT * FROM usuarios
@@ -33,23 +45,6 @@ class Usuario {
             return $user;
         }
         return null;
-    }
-
-    public static function buscarPorUsuarioId($id)
-    {
-        $query = "SELECT * FROM usuarios
-                  WHERE ID = ?";
-        $stmt = DBConnection::getStatement($query);
-        $stmt->execute([$id]);
-        $salida = [];
-
-        while($datosUsu = $stmt->fetch()) {
-            $usu = new Usuario();
-            $usu->cargarDatos($datosUsu);
-            $salida[] = $usu;
-        }
-
-        return $salida;
     }
 
     protected function cargarDatos($fila)
@@ -69,7 +64,7 @@ class Usuario {
 
     public static function traerTodos()
     {
-        $query = "SELECT * FROM usuarios";
+        $query = "SELECT * FROM usuarios ORDER BY id DESC";
         $stmt = DBConnection::getStatement($query);
         $stmt->execute();
         $salida = [];
@@ -83,6 +78,18 @@ class Usuario {
         return $salida;
     }
 
+    public static function getAll()
+    {
+        $query = "SELECT id, nombre, apellido FROM usuarios";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute();
+        $salida = [];
+        while($datosUsu = $stmt->fetch()) {
+            $salida[] = $datosUsu;
+        }
+        return $salida;
+    }
+
     public static function crear($data)
     {
         $query = "INSERT INTO usuarios (nombre, apellido, tipo, password, mail, identificacion, idnacionalidad, edad, grado, sexo)
@@ -90,13 +97,15 @@ class Usuario {
 
         $stmt = DBConnection::getStatement($query);
 
+        $hashSecure = password_hash($data['password'], PASSWORD_DEFAULT);
+
         $exito = $stmt->execute([
             'nom' => $data['nombre'],
             'ape' => $data['apellido'],
             'tipo' => $data['tipo'],
-            'pass' => $data['password'],
+            'pass' => $hashSecure,
             'mail' => $data['mail'],
-            'iden' => $data['identificion'],
+            'iden' => $data['identificacion'],
             'nac' => $data['idnacionalidad'],
             'edad' => $data['edad'],
             'gra' => $data['grado'],
@@ -104,7 +113,9 @@ class Usuario {
         ]);
 
         if(!$exito) {
-            throw new Exception('Error al insertar los datos.');
+            return 'Error al insertar los datos.';
+        }else{
+            return true;
         }
     }
 
@@ -116,7 +127,7 @@ class Usuario {
                   nombre = :nom,
 	              apellido = :ape,
 	              tipo = :tipo,
-	              pass = :pass,
+	              password = :pass,
 	              mail = :mail,
 	              identificacion = :iden,
 	              idnacionalidad = :nac,
@@ -127,34 +138,44 @@ class Usuario {
 
         $stmt = DBConnection::getStatement($query);
 
+        if($data['password-new'] != ''){
+            $hashSecure = password_hash($data['password-new'], PASSWORD_DEFAULT);
+        }else{
+            $hashSecure = $data['password-old'];
+        }
+
         $exito = $stmt->execute([
             'nom' => $data['nombre'],
             'ape' => $data['apellido'],
             'tipo' => $data['tipo'],
-            'pass' => $data['password'],
+            'pass' => $hashSecure,
             'mail' => $data['mail'],
-            'iden' => $data['identificion'],
+            'iden' => $data['identificacion'],
             'nac' => $data['idnacionalidad'],
-            'id' => $data['ID'],
+            'id' => $data['id'],
             'edad' => $data['edad'],
             'gra' => $data['grado'],
-            'sex' => $data['sexo'],
+            'sex' => $data['sexo']
         ]);
 
         if(!$exito) {
-            throw new Exception('Error al editar los datos.');
+            return 'Error al editar los datos.';
+        }else{
+            return true;
         }
     }
 
     public static function eliminar($data)
     {
         $query = "DELETE FROM usuarios
-                  WHERE ID = ?
+                  WHERE ID = :id
                   LIMIT 1";
 
         $stmt = DBConnection::getStatement($query);
 
-        $exito = $stmt->execute([$data]);
+        $exito = $stmt->execute([
+            'id' => $data['id']
+        ]);
 
         if(!$exito) {
             throw new Exception('Error al eliminar los datos.');
@@ -336,4 +357,4 @@ class Usuario {
         $this->sexo = $sexo;
     }
 
-} 
+}

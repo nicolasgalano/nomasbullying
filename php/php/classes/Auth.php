@@ -1,17 +1,16 @@
 <?php
+
 /**
- * Created by PhpStorm.
- * User: jpfra
- * Date: 25/6/2018
- * Time: 6:06 PM
+ * Class Auth
+ *
+ * Se encarga del manejo de la autenticación.
  */
-
-class Auth {
-
+class Auth
+{
     /**
      * Intenta autenticar un usuario.
      *
-     * @param string $identificacion
+     * @param string $usuario
      * @param string $password
      * @return bool
      */
@@ -66,4 +65,4 @@ class Auth {
     {
         return isset($_SESSION['user']) && !empty($_SESSION['user']);
     }
-} 
+}
