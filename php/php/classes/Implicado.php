@@ -12,6 +12,7 @@ class Implicado {
     private $idSituacion;
     private $idUsuario;
     private $rol;
+    private $cantidad;
 
 
     public static function traerTodosId($situacion, $tipo)
@@ -63,7 +64,7 @@ class Implicado {
     public static function AlertasImpVictima ($data)
     {
         $query = "SELECT count(id)as cantidad, rol, idUsuario FROM implicados
-                  WHERE rol = 'victima'
+                  WHERE rol = 1
                   GROUP BY idUsuario, rol having cantidad >= ?";
         $stmt = DBConnection::getStatement($query);
         $stmt->execute([$data]);
@@ -79,7 +80,7 @@ class Implicado {
     public static function AlertasImpVictimario ($data)
     {
         $query = "SELECT count(id)as cantidad, rol, idUsuario FROM implicados
-                  WHERE rol = 'victimario'
+                  WHERE rol = 2
                   GROUP BY idUsuario, rol having cantidad >= ?";
         $stmt = DBConnection::getStatement($query);
         $stmt->execute([$data]);
@@ -91,6 +92,24 @@ class Implicado {
 
         return $salida;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getCantidad()
+    {
+        return $this->cantidad;
+    }
+
+    /**
+     * @param mixed $cantidad
+     */
+    public function setCantidad($cantidad)
+    {
+        $this->cantidad = $cantidad;
+    }
+
+
     /**
      * @return mixed
      */
