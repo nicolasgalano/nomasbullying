@@ -51,7 +51,7 @@ class Usuario {
     {
         $query = "SELECT * FROM usuarios
                   WHERE tipo = ?";
-        $stmt = DBConnection::getStatement($query);  
+        $stmt = DBConnection::getStatement($query);
         $stmt->execute([$usuario]);
         $salida = [];
 
