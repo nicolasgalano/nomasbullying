@@ -1,6 +1,10 @@
 <?php
 require_once 'autoload.php';
 
+if(Auth::userLogged()) {
+    header('Location: panel-admin.php');
+}
+
 $_SESSION['page'] = 'login';
 
 if(isset($_SESSION['_input'])) {

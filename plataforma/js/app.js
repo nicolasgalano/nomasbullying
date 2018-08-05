@@ -617,6 +617,69 @@ if ( typeof define === 'function' && define.amd ) {
         }
     });
 
+
+    //EDITAR USUARIO
+    var formEA = $('#editar-alertas-form');
+    console.log(formEA);
+    var submitLoaderEA = formEA.find('button i');
+    var responseEA = formEA.find('.form-response');
+    formEA.on('submit', (e) => e.preventDefault());
+    formEA.validate({
+        onfocusout: false,
+        rules: {
+            n_victima: 'required',
+            n_agresor: 'required'
+        },
+        messages: {
+            n_victima: {
+                required: 'El campo no puede quedar vacio'
+            },
+            n_agresor: {
+                required: 'El campo no puede quedar vacio'
+            }
+        }
+        , highlight: function(element, errorClass, validClass) {
+            let el = $(element);
+            el.addClass('error');
+            el.parent().addClass('has-error');
+        }
+        , unhighlight: function(element, errorClass, validClass) {
+            let el = $(element);
+            el.removeClass('error');
+            el.parent().removeClass('has-error');
+        }
+        , errorPlacement: function(error, element) {
+            error.addClass('control-label animated fadeIn');
+            element.after(error);
+        }
+        , submitHandler: function (form) {
+            submitLoaderEU.removeClass('hide');
+            var params = $(form).serializeArray();
+            console.log(params);
+            $.ajax({
+                method: 'POST',
+                url: 'acciones/editar-alertas.php',
+                data: params,
+                success: function(data) {
+                    if(data == 'true') {
+                        window.location.href = "panel-institucion.php?tab=config_alertas";
+                    }else{
+                        responseEA.find('p').text(data);
+                        responseEA.addClass('success').fadeIn();
+                        submitLoaderEA.addClass('hide');
+                    }
+                },
+                complete: function() {
+                }
+            });
+        }
+        , showErrors: function (errorMap, errorList) {
+            if (typeof errorList[0] != "undefined") {}
+            this.defaultShowErrors(); // keep error messages next to each input element
+        }
+    });
+
+
     //BORRAR USUARIO
     var btnBorrarUsuario = $('#borrar-usuario');
     var btnLoader = btnBorrarUsuario.find('i');

@@ -10,7 +10,7 @@ if (isset($_SESSION['page'])) {
     <div class="container-fluid">
         <div class="navbar-header">
             <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-expanded="false"><span class="sr-only">Toggle navigation</span><span class="icon-bar top-bar"></span><span class="icon-bar middle-bar"></span><span class="icon-bar bottom-bar"></span></button>
-            <a class="navbar-brand" href="index.php" style="background-image: url(<?=($page=='login')?'images/logo-header.png':'images/instituto/logo.png';?>);"></a>
+            <a class="navbar-brand" href="#" style="background-image: url('images/logo-header.png');"></a>
         </div>
         <div class="collapse navbar-collapse" id="navbarMenu">
             <ul class="nav navbar-nav">
