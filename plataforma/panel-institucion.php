@@ -27,6 +27,7 @@ $situacionOrder = "ORDER BY id DESC";
 $usuarios = Usuario::traerTodos();
 $situaciones = Situacion::traerTodos( $situacionOrder );
 $situacionesNotReadCount = Situacion::getCountNotRead();
+$alertas = Alerta::traerTodos();
 ?>
 
 <!-- PANEL INSTITUCION -->
@@ -63,7 +64,7 @@ require 'partials/header.php';
                         <li><a <?=($openTab=='notificaciones')?'class="active"':'';?> href="panel-institucion.php?tab=notificaciones">Notificaciones</a></li>
                         <li><a <?=($openTab=='situaciones')?'class="active"':'';?> href="panel-institucion.php?tab=situaciones">Situaciones (<?= count($situacionesNotReadCount) ?>)</a></li>
                         <li><a <?=($openTab=='contenido')?'class="active"':'';?> href="panel-institucion.php?tab=contenido">Contenido general</a></li>
-                        <li><a <?=($openTab=='alertas')?'class="active"':'';?> href="panel-institucion.php?tab=alertas">Alertas</a></li>
+                        <li><a <?=($openTab=='config_alertas')?'class="active"':'';?> href="panel-institucion.php?tab=config_alertas">Config. de Alertas</a></li>
                         <li><a <?=($openTab=='soporte')?'class="active"':'';?> href="panel-institucion.php?tab=soporte">Soporte técnico</a></li>
                     </ul>
                 </div>
@@ -135,7 +136,6 @@ require 'partials/header.php';
                         <tr>
                             <th>Creador del reporte</th>
                             <th>Título</th>
-                            <!--<th>Descripción</th>-->
                             <th>Gravedad</th>
                             <th>Estado</th>
                             <th style="width:220px;">Acciones</th>
@@ -148,7 +148,6 @@ require 'partials/header.php';
                         <tr>
                             <td><?= $denunciante['nombre'];?> <?= $denunciante['apellido'];?></td>
                             <td><?= $situacion->getTitulo();?></td>
-                            <!--<td><?= $situacion->getDescripcion();?></td>-->
                             <td class="gravedad <?= $situacion->getNivel();?>"><b><?= $situacion->getNivel();?></b></td>
                             <td><?= ($situacion->getEstatus()==0)?'No leído':'Leído';?></td>
                             <td>
@@ -162,6 +161,49 @@ require 'partials/header.php';
                 </div>
             </div>
             <!-- END of SITUACIONES -->
+            <?php } ?>
+
+            <?php if($openTab == 'config_alertas'){ ?>
+            <!-- CONFIG ALERTAS -->
+            <div class="col-sm-9 content-box" id="tab-alertas">
+                <div class="basic-box alertas">
+                    <div class="box-top">
+                        <h4>Configuración de Alertas</h4>
+                    </div>
+
+                    <p>Aquí pueden elegir la cantidad maxima de tolerancia para que el sistema genere notificaciones en caso de recurrentes casos tanto de víctimas como de agresores.</p>
+
+                    <form id="editar-alertas-form" autocomplete="off">
+
+                        <table>
+
+                            <tr>
+                                <th>Nº max. de tolerancia en casos de victima de un usuario</th>
+                                <td><input class="form-control" type="text" placeholder="Nº" name="n_victima" value="<?= $alertas[0]->getCantidad() ?>"></td>
+                            </tr>
+                            <tr>
+                                <th>Nº max. de tolerancia en casos de agresion de un usuario</th>
+                                <td><input class="form-control" type="text" placeholder="Nº" name="n_agresor" value="<?= $alertas[1]->getCantidad() ?>"></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <button class="btn btn--center btn--m-t" id="editar-alertas"><i class="fa fa-refresh fa-spin fa-fw hide"></i>Guardar cambio</button>
+                                    <div class="form-response">
+                                        <p></p>
+                                    </div>
+                                </td>
+                            </tr>
+
+                        </table>
+
+                    </form>
+                    <br>
+                    <p><i>(Si un alumno genero más agresiones del numero elegido, o fue victima más veces que el numero elegido una notificacion será generada)</i></p>
+
+                </div>
+            </div>
+            <!-- END of CONFIG ALERTAS -->
             <?php } ?>
 
 

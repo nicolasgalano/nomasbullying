@@ -110,174 +110,37 @@ if ( typeof define === 'function' && define.amd ) {
     }
 
     $('.open-popup-button').click(function(){
+
+        console.log( $(this).attr('aria-popup') );
+
         $('.full-opacity').show();
         var popupClass = $(this).attr('aria-popup');
         $(popupClass).show();
 
 
-        //MENSAJES
-        if(popupClass == '.popup-comentarios'){
-
-            var situacionID = $(this).attr('aria-id');
-            var usuarioID = $(this).attr('aria-id-usuario');
-
-            updateComentarios(usuarioID,situacionID);
-
-            //AGREGAR COMENTARIO
-            $formAgregarComentario = $('#form-agregar-comentario');
-            $btnEnviarComentario = $('#enviar-comentario');
-            $formAgregarComentario.on('submit', (e) => e.preventDefault());
-            $btnEnviarComentario.click(function(){
-
-                $.ajax({
-                    method: 'GET',
-                    url: 'acciones/agregar-comentario.php?creador='+usuarioID+'&contenido='+$('#mensaje-comentario').val()+'&id-situacion='+situacionID,
-                    success: function(data) {
-                        if(data) {
-                            $('#mensaje-comentario').val('');
-                            updateComentarios(usuarioID,situacionID);
-                        }
-                    },
-                    complete: function() {}
-                });
-            });
-
-        }
-
-        //IF VER SITUACION
-        if(popupClass == '.popup-ver-situacion'){
-            var situacionID = $(this).attr('aria-id');
-            var usuarioID = $(this).attr('aria-id-usuario');
-            var $popupVerSituacion = $('.popup-ver-situacion');
-
-            $.ajax({
-                method: 'GET',
-                url: 'acciones/set-estatus.php?idsituacion='+situacionID,
-                data: '',
-                success: function(data) {
-                },
-                complete: function() {}
-            });
-
-            $.ajax({
-                method: 'GET',
-                url: 'acciones/get-situacion.php?idsituacion='+situacionID,
-                data: '',
-                success: function(data) {
-                    data = JSON.parse(' '+data+' ');
-                    console.log(data[0]);
-                    if(data) {
-                        $popupVerSituacion.find('.titulo b').html(data[0].titulo);
-                        $popupVerSituacion.find('.descripcion b').html(data[0].descripcion);
-                        $popupVerSituacion.find('.gravedad b').html(data[0].nivel_situacion);
-                        $popupVerSituacion.find('.gravedad').removeClass('alto medio bajo');
-                        $popupVerSituacion.find('.gravedad').addClass(data[0].nivel_situacion);
-                    }
-                },
-                complete: function() {}
-            });
-
-            //CREADOR
-            $.ajax({
-                method: 'GET',
-                url: 'acciones/get-usuario.php?idusuario='+usuarioID,
-                data: '',
-                success: function(data) {
-                    data = JSON.parse(' '+data+' ');
-                    console.log(data);
-                    if(data) {
-                        $popupVerSituacion.find('.creador b').html(''+data.nombre+' '+data.apellido+'');
-                    }
-                },
-                complete: function() {}
-            });
-
-            //TRAER IMPLICADOS
-            //VICTIMA
-            $.ajax({
-                method: 'GET',
-                url: 'acciones/get-implicado.php?idsituacion='+situacionID+'&rol='+'victima',
-                data: '',
-                success: function(data) {
-                    data = JSON.parse(' '+data+' ');
-                    console.log(data);
-                    if(data) {
-                        $.ajax({
-                            method: 'GET',
-                            url: 'acciones/get-usuario.php?idusuario='+data['idUsuario'],
-                            data: '',
-                            success: function(data) {
-                                data = JSON.parse(' '+data+' ');
-                                console.log(data);
-                                if(data) {
-                                    $popupVerSituacion.find('.victima b i').html(''+data.nombre+' '+data.apellido+' ['+data.grado+']');
-                                }
-                            },
-                            complete: function() {}
-                        });
-                    }
-                },
-                complete: function() {}
-            });
-            //VICTIMARIO
-            $.ajax({
-                method: 'GET',
-                url: 'acciones/get-implicado.php?idsituacion='+situacionID+'&rol='+'victimario',
-                data: '',
-                success: function(data) {
-                    data = JSON.parse(' '+data+' ');
-                    console.log(data);
-                    if(data) {
-                        $.ajax({
-                            method: 'GET',
-                            url: 'acciones/get-usuario.php?idusuario='+data['idUsuario'],
-                            data: '',
-                            success: function(data) {
-                                data = JSON.parse(' '+data+' ');
-                                console.log(data);
-                                if(data) {
-                                    $popupVerSituacion.find('.agresor b i').html(''+data.nombre+' '+data.apellido+' ['+data.grado+']');
-                                }
-                            },
-                            complete: function() {}
-                        });
-                    }
-                },
-                complete: function() {}
-            });
-
-        }
-
         //IF BORRAR USUARIO
-        if(popupClass == '.popup-borrar-usuario'){
-            $('#borrar-usuario').attr('aria-id-usuario',$(this).attr('aria-id'));//SET ID
+        if(popupClass == '.popup-borrar-instituto'){
+            $('#borrar-instituto').attr('aria-id-instituto',$(this).attr('aria-id'));//SET ID
         }
 
         //EDITAR USUARIO
-        if(popupClass == '.popup-editar-usuarios'){
-            var usuarioID = $(this).attr('aria-id');
-            var $formEditarUsuario = $('#editar-usuario-form');
+        if(popupClass == '.popup-editar-instituto'){
+            var institutoID = $(this).attr('aria-id');
+            var $formEditarInstituto = $('#editar-instituto-form');
             $.ajax({
                 method: 'GET',
-                url: 'acciones/get-usuario.php?idusuario='+usuarioID,
+                url: 'acciones/get-instituto.php?idinstituto='+institutoID,
                 data: '',
                 success: function(data) {
                     data = JSON.parse(' '+data+' ');
                     console.log(data);
                     if(data) {
-                        $formEditarUsuario.find('input[name="id"]').attr('value',data.ID);
-                        $formEditarUsuario.find("input[name='nombre']").attr('value',data.nombre);
-                        $formEditarUsuario.find('input[name="apellido"]').attr('value',data.apellido);
-                        $formEditarUsuario.find('input[name="idnacionalidad"]').attr('value',data.idnacionalidad);
-                        $formEditarUsuario.find('input[name="mail"]').attr('value',data.mail);
-                        $formEditarUsuario.find('input[name="tipo"]').attr('value',data.tipo);
-                        $formEditarUsuario.find('input[name="identificacion"]').attr('value',data.identificacion);
-                        $formEditarUsuario.find('#grado-dummie').text(' '+data.grado);
-                        $formEditarUsuario.find('select[name="grado"] option').attr('value',data.grado);
-                        $formEditarUsuario.find('#sexo-dummie').text(' '+data.sexo);
-                        $formEditarUsuario.find('select[name="sexo"] option').attr('value',data.sexo);
-                        $formEditarUsuario.find('input[name="edad"]').attr('value',data.edad);
-                        $formEditarUsuario.find('input[name="password-old"]').attr('value',data.password);
+                        $formEditarInstituto.find('input[name="id"]').attr('value',data.id);
+                        $formEditarInstituto.find("input[name='nombre']").attr('value',data.nombre);
+                        $formEditarInstituto.find('input[name="institucion"]').attr('value',data.institucion);
+                        $formEditarInstituto.find('input[name="sdominio"]').attr('value',data.sdominio);
+                        $formEditarInstituto.find('input[name="fecha_ins"]').attr('value',data.fecha_ins);
+                        $formEditarInstituto.find('select[name="estado"] option[value="'+data.estado+'"]').attr('selected', 'selected');
                     }
                 },
                 complete: function() {}
@@ -288,14 +151,8 @@ if ( typeof define === 'function' && define.amd ) {
     $('.full-opacity').click(function(){
         $('.full-opacity').hide();
         $('.popup').hide();
-        if($(this).parent().hasClass('popup-ver-situacion')){
-            location.reload();
-        }
     });
     $('.popup-close').click(function(){
-        if($(this).parent().hasClass('popup-ver-situacion')){
-            location.reload();
-        }
         $('.full-opacity').hide();
         $(this).parent().hide();
     });
@@ -406,7 +263,7 @@ if ( typeof define === 'function' && define.amd ) {
                 data: params,
                 success: function(data) {
                     if(data == 'true') {
-                        window.location.href = "panel.php";
+                        window.location.href = "panel-admin.php";
                         //submitLoaderLogin.parent().hide();
                     }else{
                         responseLogin.find('p').text(data);
@@ -425,27 +282,27 @@ if ( typeof define === 'function' && define.amd ) {
         }
     });
 
-    //AGREGAR SITUACIÓN
-    var formAS = $('#agregar-situacion-form');
+    //AGREGAR INSTITUTO
+    var formAS = $('#agregar-instituto-form');
     var submitLoaderAS = formAS.find('button i');
     var responseAS = formAS.find('.form-response');
     formAS.on('submit', (e) => e.preventDefault());
     formAS.validate({
         onfocusout: false,
         rules: {
-            titulo: 'required',
-            gravedad: 'required',
-            descripcion: 'required'
+            nombre: 'required',
+            instituto: 'required',
+            sdominio: 'required'
         },
         messages: {
-            titulo: {
-                required: 'Falta completar el título'
+            nombre: {
+                required: 'Falta completar el nombre'
             },
-            gravedad: {
-                required: 'Falta completar la gravedad'
+            instituto: {
+                required: 'Falta completar la nombre de instituto'
             },
-            descripcion: {
-                required: 'Falta completar la descripción'
+            sdominio: {
+                required: 'Falta completar el nombre de subdominio deseado'
             }
         }
         , highlight: function(element, errorClass, validClass) {
@@ -468,12 +325,12 @@ if ( typeof define === 'function' && define.amd ) {
             console.log(params);
             $.ajax({
                 method: 'POST',
-                url: 'acciones/agregar-situacion.php',
+                url: 'acciones/agregar-instituto.php',
                 data: params,
                 success: function(data) {
                     console.log(data);
                     if(data == 'true') {
-                        window.location.href = "panel-institucion.php?tab=situaciones";
+                        window.location.href = "panel-admin.php?tab=clientes";
                     }else{
                         responseAS.find('p').text(data);
                         responseAS.addClass('success').fadeIn();
@@ -489,71 +346,8 @@ if ( typeof define === 'function' && define.amd ) {
         }
     });
 
-    //AGREGAR USUARIO
-    var formAU = $('#agregar-usuario-form');
-    var submitLoaderAU = formAU.find('button i');
-    var responseAU = formAU.find('.form-response');
-    formAU.on('submit', (e) => e.preventDefault());
-    formAU.validate({
-        onfocusout: false,
-        rules: {
-            nombre: 'required',
-            apellido: 'required',
-            identificacion: 'required'
-        },
-        messages: {
-            nombre: {
-                required: 'Falta completar el nombre'
-            },
-            apellido: {
-                required: 'Falta completar el apellido'
-            },
-            identificacion: {
-                required: 'Falta completar el DNI'
-            }
-        }
-        , highlight: function(element, errorClass, validClass) {
-            let el = $(element);
-            el.addClass('error');
-            el.parent().addClass('has-error');
-        }
-        , unhighlight: function(element, errorClass, validClass) {
-            let el = $(element);
-            el.removeClass('error');
-            el.parent().removeClass('has-error');
-        }
-        , errorPlacement: function(error, element) {
-            error.addClass('control-label animated fadeIn');
-            element.after(error);
-        }
-        , submitHandler: function (form) {
-            submitLoaderAU.removeClass('hide');
-            var params = $(form).serializeArray();
-            $.ajax({
-                method: 'POST',
-                url: 'acciones/agregar-usuario.php',
-                data: params,
-                success: function(data) {
-                    if(data == 'true') {
-                        window.location.href = "panel-institucion.php?tab=usuarios";
-                    }else{
-                        responseAU.find('p').text(data);
-                        responseAU.addClass('success').fadeIn();
-                        submitLoaderAU.addClass('hide');
-                    }
-                },
-                complete: function() {
-                }
-            });
-        }
-        , showErrors: function (errorMap, errorList) {
-            if (typeof errorList[0] != "undefined") {}
-            this.defaultShowErrors(); // keep error messages next to each input element
-        }
-    });
-
-    //EDITAR USUARIO
-    var formEU = $('#editar-usuario-form');
+    //EDITAR INSTITUTO
+    var formEU = $('#editar-instituto-form');
     var submitLoaderEU = formEU.find('button i');
     //var usuarioID = submitLoaderEU.parent().attr('aria-id-usuario');
     var responseEU = formEU.find('.form-response');
@@ -562,18 +356,18 @@ if ( typeof define === 'function' && define.amd ) {
         onfocusout: false,
         rules: {
             nombre: 'required',
-            apellido: 'required',
-            identificacion: 'required'
+            instituto: 'required',
+            sdominio: 'required'
         },
         messages: {
             nombre: {
                 required: 'Falta completar el nombre'
             },
-            apellido: {
-                required: 'Falta completar el apellido'
+            instituto: {
+                required: 'Falta completar la nombre de instituto'
             },
-            identificacion: {
-                required: 'Falta completar el DNI'
+            sdominio: {
+                required: 'Falta completar el nombre de subdominio deseado'
             }
         }
         , highlight: function(element, errorClass, validClass) {
@@ -596,11 +390,11 @@ if ( typeof define === 'function' && define.amd ) {
             console.log(params);
             $.ajax({
                 method: 'POST',
-                url: 'acciones/editar-usuario.php',
+                url: 'acciones/editar-instituto.php',
                 data: params,
                 success: function(data) {
                     if(data == 'true') {
-                        window.location.href = "panel-institucion.php?tab=usuarios";
+                        window.location.href = "panel-admin.php?tab=clientes";
                     }else{
                         responseEU.find('p').text(data);
                         responseEU.addClass('success').fadeIn();
@@ -617,84 +411,21 @@ if ( typeof define === 'function' && define.amd ) {
         }
     });
 
-
-    //EDITAR USUARIO
-    var formEA = $('#editar-alertas-form');
-    console.log(formEA);
-    var submitLoaderEA = formEA.find('button i');
-    var responseEA = formEA.find('.form-response');
-    formEA.on('submit', (e) => e.preventDefault());
-    formEA.validate({
-        onfocusout: false,
-        rules: {
-            n_victima: 'required',
-            n_agresor: 'required'
-        },
-        messages: {
-            n_victima: {
-                required: 'El campo no puede quedar vacio'
-            },
-            n_agresor: {
-                required: 'El campo no puede quedar vacio'
-            }
-        }
-        , highlight: function(element, errorClass, validClass) {
-            let el = $(element);
-            el.addClass('error');
-            el.parent().addClass('has-error');
-        }
-        , unhighlight: function(element, errorClass, validClass) {
-            let el = $(element);
-            el.removeClass('error');
-            el.parent().removeClass('has-error');
-        }
-        , errorPlacement: function(error, element) {
-            error.addClass('control-label animated fadeIn');
-            element.after(error);
-        }
-        , submitHandler: function (form) {
-            submitLoaderEU.removeClass('hide');
-            var params = $(form).serializeArray();
-            console.log(params);
-            $.ajax({
-                method: 'POST',
-                url: 'acciones/editar-alertas.php',
-                data: params,
-                success: function(data) {
-                    if(data == 'true') {
-                        window.location.href = "panel-institucion.php?tab=config_alertas";
-                    }else{
-                        responseEA.find('p').text(data);
-                        responseEA.addClass('success').fadeIn();
-                        submitLoaderEA.addClass('hide');
-                    }
-                },
-                complete: function() {
-                }
-            });
-        }
-        , showErrors: function (errorMap, errorList) {
-            if (typeof errorList[0] != "undefined") {}
-            this.defaultShowErrors(); // keep error messages next to each input element
-        }
-    });
-
-
-    //BORRAR USUARIO
-    var btnBorrarUsuario = $('#borrar-usuario');
+    //BORRAR INSTITUTO
+    var btnBorrarUsuario = $('#borrar-instituto');
     var btnLoader = btnBorrarUsuario.find('i');
     var responseBU = btnBorrarUsuario.parent().find('.form-response');
     btnBorrarUsuario.click(function(e){
         e.preventDefault();
-        var idUsuario = [{"name":"id","value":parseInt($(this).attr('aria-id-usuario'))}];
+        var idInstituto = [{"name":"id","value":parseInt($(this).attr('aria-id-instituto'))}];
         btnLoader.removeClass('hide');
         $.ajax({
             method: 'POST',
-            url: 'acciones/borrar-usuario.php',
-            data: idUsuario,
+            url: 'acciones/borrar-instituto.php',
+            data: idInstituto,
             success: function(data) {
                 if(data == 'true') {
-                    window.location.href = "panel-institucion.php?tab=usuarios";
+                    window.location.href = "panel-admin.php?tab=clientes";
                 }else{
                     responseBU.find('p').text(data);
                     responseBU.addClass('success').fadeIn();

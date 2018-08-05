@@ -1,0 +1,40 @@
+// *************************************
+//
+//   Modular Sass
+//   -> Manifest
+//
+// *************************************
+//
+
+@import
+
+// -------------------------------------
+//   Foundation
+// -------------------------------------
+'foundation/config',
+'foundation/base',
+
+// -------------------------------------
+//   Vendor
+// -------------------------------------
+'vendor/bootstrap',
+'./node_modules/font-awesome/scss/font-awesome',
+'./node_modules/animate.css/animate.min',
+
+// -------------------------------------
+//   Structure
+// -------------------------------------
+'structures/navbar',
+'structures/footer',
+'structures/popup',
+
+// -------------------------------------
+//   Components
+// -------------------------------------
+'temp',
+'components/basic-box',
+'components/main-slider',
+'components/buttons',
+'components/section-row',
+'components/form'
+;
