@@ -284,6 +284,21 @@ if ( typeof define === 'function' && define.amd ) {
             });
         }
 
+        //AGREGAR NOTIFICACION
+        if(popupClass == '.popup-agregar-notificacion'){
+
+            var alumno = $(this).attr('aria-id-usuario');
+            var rol = $(this).attr('aria-rol');
+            var cantidad = $(this).attr('aria-cantidad');
+
+            var $formAgregarNotificacion = $('#agregar-notificacion-form');
+
+            $formAgregarNotificacion.find('input[name="alumno"]').attr('value',alumno);
+            $formAgregarNotificacion.find('input[name="rol"]').attr('value',rol);
+            $formAgregarNotificacion.find('input[name="cantidad"]').attr('value',cantidad);
+
+        }
+
     });
     $('.full-opacity').click(function(){
         $('.full-opacity').hide();
@@ -481,6 +496,53 @@ if ( typeof define === 'function' && define.amd ) {
                     }
                 },
                 complete: function() {}
+            });
+        }
+        , showErrors: function (errorMap, errorList) {
+            if (typeof errorList[0] != "undefined") {}
+            this.defaultShowErrors(); // keep error messages next to each input element
+        }
+    });
+
+    //AGREGAR NOTIFICACION
+    var formAN = $('#agregar-notificacion-form');
+    var submitLoaderAN = formAN.find('button i');
+    var responseAN = formAN.find('.form-response');
+    formAN.on('submit', (e) => e.preventDefault());
+    formAN.validate({
+        onfocusout: false
+        , highlight: function(element, errorClass, validClass) {
+            let el = $(element);
+            el.addClass('error');
+            el.parent().addClass('has-error');
+        }
+        , unhighlight: function(element, errorClass, validClass) {
+            let el = $(element);
+            el.removeClass('error');
+            el.parent().removeClass('has-error');
+        }
+        , errorPlacement: function(error, element) {
+            error.addClass('control-label animated fadeIn');
+            element.after(error);
+        }
+        , submitHandler: function (form) {
+            submitLoaderAN.removeClass('hide');
+            var params = $(form).serializeArray();
+            $.ajax({
+                method: 'POST',
+                url: 'acciones/agregar-notificacion.php',
+                data: params,
+                success: function(data) {
+                    if(data == 'true') {
+                        window.location.href = "panel-institucion.php?tab=notificaciones";
+                    }else{
+                        responseAN.find('p').text(data);
+                        responseAN.addClass('success').fadeIn();
+                        submitLoaderAN.addClass('hide');
+                    }
+                },
+                complete: function() {
+                }
             });
         }
         , showErrors: function (errorMap, errorList) {

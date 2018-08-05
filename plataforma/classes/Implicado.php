@@ -12,6 +12,7 @@ class Implicado {
     private $idSituacion;
     private $idUsuario;
     private $rol;
+    private $cantidad;
 
 
     public static function traerTodosId($situacion, $tipo)
@@ -34,9 +35,8 @@ class Implicado {
 
     protected function cargarDatos($fila)
     {
-        $this->setId($fila['ID']);
-        $this->setIdSituacion($fila['idSituacion']);
         $this->setIdUsuario($fila['idUsuario']);
+        $this->setCantidad($fila['cantidad']);
         $this->setRol($fila['rol']);
     }
 
@@ -60,6 +60,38 @@ class Implicado {
         }
     }
 
+    public static function AlertasImpVictima ($data)
+    {
+        $query = "SELECT count(id)as cantidad, rol, idUsuario FROM implicados
+                  WHERE rol = 'victima'
+                  GROUP BY idUsuario, rol having cantidad >= ?";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute([$data]);
+        $salida = [];
+
+        while($datosImp = $stmt->fetch()) {
+            $imp = new Implicado();
+            $imp->cargarDatos($datosImp);
+            $salida[] = $datosImp;
+        }
+        return $salida;
+    }
+
+    public static function AlertasImpVictimario ($data)
+    {
+        $query = "SELECT count(id)as cantidad, rol, idUsuario FROM implicados
+                  WHERE rol = 'victimario'
+                  GROUP BY idUsuario, rol having cantidad >= ?";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute([$data]);
+        $salida = [];
+
+        while($datosImp = $stmt->fetch()) {
+            $salida[] = $datosImp;
+        }
+
+        return $salida;
+    }
     /**
      * @return mixed
      */
@@ -122,6 +154,22 @@ class Implicado {
     public function setRol($rol)
     {
         $this->rol = $rol;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCantidad()
+    {
+        return $this->cantidad;
+    }
+
+    /**
+     * @param mixed $cantidad
+     */
+    public function setCantidad($cantidad)
+    {
+        $this->cantidad = $cantidad;
     }
 
 

@@ -28,6 +28,7 @@ $usuarios = Usuario::traerTodos();
 $situaciones = Situacion::traerTodos( $situacionOrder );
 $situacionesNotReadCount = Situacion::getCountNotRead();
 $alertas = Alerta::traerTodos();
+
 ?>
 
 <!-- PANEL INSTITUCION -->
@@ -41,6 +42,7 @@ require 'partials/head.php';
 <div class="full-opacity"></div>
 <?php
 include 'partials/popups/agregar-usuario.php';
+include 'partials/popups/agregar-notificacion.php';
 include 'partials/popups/editar-usuario.php';
 include 'partials/popups/borrar-usuario.php';
 include 'partials/popups/agregar-situacion.php';
@@ -64,11 +66,75 @@ require 'partials/header.php';
                         <li><a <?=($openTab=='notificaciones')?'class="active"':'';?> href="panel-institucion.php?tab=notificaciones">Notificaciones</a></li>
                         <li><a <?=($openTab=='situaciones')?'class="active"':'';?> href="panel-institucion.php?tab=situaciones">Situaciones (<?= count($situacionesNotReadCount) ?>)</a></li>
                         <li><a <?=($openTab=='contenido')?'class="active"':'';?> href="panel-institucion.php?tab=contenido">Contenido general</a></li>
+                        <li><a <?=($openTab=='alertas')?'class="active"':'';?> href="panel-institucion.php?tab=alertas">Alertas</a></li>
                         <li><a <?=($openTab=='config_alertas')?'class="active"':'';?> href="panel-institucion.php?tab=config_alertas">Config. de Alertas</a></li>
                         <li><a <?=($openTab=='soporte')?'class="active"':'';?> href="panel-institucion.php?tab=soporte">Soporte técnico</a></li>
                     </ul>
                 </div>
             </div>
+
+            <?php if($openTab == 'alertas'){?>
+            <?php
+                $victimas = Implicado::AlertasImpVictima($alertas[0]->getCantidad());
+                $agresores = Implicado::AlertasImpVictimario($alertas[1]->getCantidad());
+            ?>
+            <!-- ALERTAS -->
+            <div class="col-sm-9 content-box" id="tab-alertas">
+                <div class="basic-box alertas">
+                    <div class="box-top">
+                        <h4>Lista de agresores</h4>
+                    </div>
+                    <table>
+                        <tr>
+                            <th>Alumno</th>
+                            <th>Rol</th>
+                            <th>Cantidad</th>
+                            <th style="width:200px;">Acciones</th>
+                        </tr>
+                        <?php foreach($agresores as $agresor): ?>
+                        <?php
+                            $agresorU = Usuario::buscarPorUsuarioId( (int)str_replace(' ', '', $agresor['idUsuario']) );
+                        ?>
+                        <tr>
+                            <td><?= $agresorU['nombre'];?> <?= $agresorU['apellido'];?></td>
+                            <td><?= $agresor['rol'];?></td>
+                            <td><?= $agresor['cantidad'];?></td>
+                            <td>
+                                <div class="btn btn-blue open-popup-button" aria-popup=".popup-agregar-notificacion" aria-id-usuario="<?= $agresor['idUsuario'];?>" aria-rol="<?= $agresor['rol'];?>" aria-cantidad="<?= $agresor['cantidad'];?>">Crear Notificación</div>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </table>
+                </div>
+                <div class="basic-box alertas">
+                    <div class="box-top">
+                        <h4>Lista de victimas</h4>
+                    </div>
+                    <table>
+                        <tr>
+                            <th>Alumno</th>
+                            <th>Rol</th>
+                            <th>Cantidad</th>
+                            <th style="width:200px;">Acciones</th>
+                        </tr>
+                        <?php foreach($victimas as $victima): ?>
+                        <?php
+                            $victimaU = Usuario::buscarPorUsuarioId( (int)str_replace(' ', '', $victima['idUsuario']) );
+                        ?>
+                        <tr>
+                            <td><?= $victimaU['nombre'];?> <?= $victimaU['apellido'];?></td>
+                            <td><?= $victima['rol'];?></td>
+                            <td><?= $victima['cantidad'];?></td>
+                            <td>
+                                <div class="btn btn-blue open-popup-button" aria-popup=".popup-agregar-notificacion" aria-id-usuario="<?= $victima['idUsuario'];?>" aria-rol="<?= $victima['rol'];?>" aria-cantidad="<?= $victima['cantidad'];?>">Crear Notificación</div>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </table>
+                </div>
+            </div>
+            <!-- END of ALERTAS -->
+            <?php } ?>
 
             <?php if($openTab == 'usuarios'){?>
             <!-- USUARIOS -->

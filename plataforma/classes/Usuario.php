@@ -32,6 +32,25 @@ class Usuario {
         return $datosUsu;
     }
 
+    public static function buscarPorTipo($tipo)
+    {
+        $query = "SELECT * FROM usuarios
+                  WHERE tipo = ?";
+        $stmt = DBConnection::getStatement($query);
+        
+        $stmt->execute([$tipo]);
+        $salida = [];
+
+        while($datosSit = $stmt->fetch()) {
+            $sit = new Usuario();
+            $sit->cargarDatos($datosSit);
+            $salida[] = $sit;
+        }
+
+        return $salida;
+
+    }
+
     public static function buscarPorUsuario($usuario)
     {
         $query = "SELECT * FROM usuarios
