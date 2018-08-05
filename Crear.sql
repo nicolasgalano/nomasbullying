@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `DW4_NO_MAS_BULLYING`.`situaciones` (
   `descripcion` BLOB NOT NULL,
   `fecha_creacion` DATETIME NOT NULL,
   `nivel_situacion` VARCHAR(50) NOT NULL,
-  `estatus` VARCHAR(50) NOT NULL,
+  `estatus` TINYINT(1) NOT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE INDEX `idsituaciones_UNIQUE` (`ID` ASC),
   INDEX `fk_situaciones_usuarios1_idx` (`denunciante` ASC),
@@ -295,8 +295,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `DW4_NO_MAS_BULLYING`;
-INSERT INTO `DW4_NO_MAS_BULLYING`.`situaciones` (`denunciante`, `titulo`, `descripcion`, `fecha_creacion`, `nivel_situacion`, `estatus`) VALUES (4, 'Me pegaron', 'Fui agredido en el patio de la escuela a las 12pm cuando unos chicos se rieron de mis zapatillas y me empujaron, me lastime el codo y me tuve que ir de la escuela ', '2018-06-26 09:38:00', 'alto', 'Leído');
-INSERT INTO `DW4_NO_MAS_BULLYING`.`situaciones` (`denunciante`, `titulo`, `descripcion`, `fecha_creacion`, `nivel_situacion`, `estatus`) VALUES (2, 'Me insultaron', 'Ayer en clase me insultaron en clase y el profesor no hizo nada', NOW(), 'medio', 'No Leído');
+INSERT INTO `DW4_NO_MAS_BULLYING`.`situaciones` (`denunciante`, `titulo`, `descripcion`, `fecha_creacion`, `nivel_situacion`, `estatus`) VALUES (4, 'Me pegaron', 'Fui agredido en el patio de la escuela a las 12pm cuando unos chicos se rieron de mis zapatillas y me empujaron, me lastime el codo y me tuve que ir de la escuela ', '2018-06-26 09:38:00', 'alto', 0);
+INSERT INTO `DW4_NO_MAS_BULLYING`.`situaciones` (`denunciante`, `titulo`, `descripcion`, `fecha_creacion`, `nivel_situacion`, `estatus`) VALUES (2, 'Me insultaron', 'Ayer en clase me insultaron en clase y el profesor no hizo nada', NOW(), 'medio', 1);
 
 COMMIT;
 
