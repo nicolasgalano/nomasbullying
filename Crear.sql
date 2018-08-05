@@ -179,7 +179,7 @@ DROP TABLE IF EXISTS `DW4_NO_MAS_BULLYING`.`alerta_config` ;
 CREATE TABLE IF NOT EXISTS `DW4_NO_MAS_BULLYING`.`alerta_config` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `cantidad` DECIMAL(2) NULL,
-  `rol` INT NULL,
+  `rol` TINYINT(1) NOT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE INDEX `ID_UNIQUE` (`ID` ASC))
 ENGINE = InnoDB;
@@ -197,6 +197,7 @@ CREATE TABLE IF NOT EXISTS `DW4_NO_MAS_BULLYING`.`comentarios` (
   `fecha` DATETIME NOT NULL,
   `idSituacion` INT UNSIGNED NULL,
   `idPublicacion` INT UNSIGNED NULL,
+  `idNotificacion` INT UNSIGNED NULL,
   PRIMARY KEY (`ID`),
   UNIQUE INDEX `idcomentarios_UNIQUE` (`ID` ASC),
   INDEX `fk_comentarios_situaciones1_idx` (`idSituacion` ASC),
@@ -215,6 +216,11 @@ CREATE TABLE IF NOT EXISTS `DW4_NO_MAS_BULLYING`.`comentarios` (
   CONSTRAINT `fk_comentarios_publicaciones1`
     FOREIGN KEY (`idPublicacion`)
     REFERENCES `DW4_NO_MAS_BULLYING`.`publicaciones` (`ID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_comentarios_notificaciones1`
+    FOREIGN KEY (`idNotificacion`)
+    REFERENCES `DW4_NO_MAS_BULLYING`.`notificaciones` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -321,5 +327,15 @@ USE `DW4_NO_MAS_BULLYING`;
 INSERT INTO `DW4_NO_MAS_BULLYING`.`comentarios` (`creador`, `contenido`, `fecha`, `idSituacion`) VALUES (1, 'Gracias por contactarte, perdon por no haber podido ayudarte en el momento, como esta tu codo?',  '2018-06-26 11:38:00', 1);
 INSERT INTO `DW4_NO_MAS_BULLYING`.`comentarios` (`creador`, `contenido`, `fecha`, `idSituacion`) VALUES (4, 'Estoy mejor, pero esos chicos van a seguir molestandome', '2018-06-26 11:40:00', 1);
 INSERT INTO `DW4_NO_MAS_BULLYING`.`comentarios` (`creador`, `contenido`, `fecha`, `idSituacion`) VALUES (1, 'Vamos a tomar medidas al respecto, por favor no dudes en contactarnos si esto ocurre nuevamente', '2018-06-26 11:52:00', 1);
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `DW4_NO_MAS_BULLYING`.`alerta_config`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `DW4_NO_MAS_BULLYING`;
+INSERT INTO `DW4_NO_MAS_BULLYING`.`alerta_config` (`cantidad`, `rol`) VALUES (5, 1);
+INSERT INTO `DW4_NO_MAS_BULLYING`.`alerta_config` (`cantidad`, `rol`) VALUES (5, 0);
 
 COMMIT;
