@@ -47,11 +47,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Notificacion.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Notificacion.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/classes/Notificacion.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.71315193" vertical-offset="51" max-vertical-offset="3587">
-              <caret line="40" column="5" selection-start-line="40" selection-start-column="5" selection-end-line="40" selection-end-column="5" />
+            <state vertical-scroll-proportion="-11.038462" vertical-offset="53" max-vertical-offset="3587">
+              <caret line="20" column="48" selection-start-line="20" selection-start-column="48" selection-end-line="20" selection-end-column="48" />
               <folding>
                 <element signature="e#6#87#0#PHP" expanded="true" />
                 <marker date="1533502174379" expanded="true" signature="611:670" placeholder="SELECT * FRO..notificaciones..." />
@@ -66,10 +66,11 @@
       <file leaf-file-name="PadreNotificado.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/classes/PadreNotificado.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-21.576923" vertical-offset="0" max-vertical-offset="1513">
-              <caret line="38" column="5" selection-start-line="38" selection-start-column="5" selection-end-line="38" selection-end-column="5" />
+            <state vertical-scroll-proportion="-21.576923" vertical-offset="204" max-vertical-offset="1768">
+              <caret line="50" column="9" selection-start-line="50" selection-start-column="9" selection-end-line="50" selection-end-column="9" />
               <folding>
-                <marker date="1533503034197" expanded="true" signature="458:555" placeholder="INSERT INTO ..." />
+                <marker date="1533503341031" expanded="true" signature="458:555" placeholder="INSERT INTO ..." />
+                <marker date="1533503341031" expanded="true" signature="951:1018" placeholder="SELECT * FRO..sit_has_padre..." />
               </folding>
             </state>
           </provider>
@@ -123,17 +124,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Comentario.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Comentario.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/classes/Comentario.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.038462" vertical-offset="255" max-vertical-offset="3400">
-              <caret line="38" column="21" selection-start-line="38" selection-start-column="21" selection-end-line="38" selection-end-column="21" />
+            <state vertical-scroll-proportion="0.96145123" vertical-offset="2450" max-vertical-offset="5406">
+              <caret line="194" column="5" selection-start-line="194" selection-start-column="5" selection-end-line="194" selection-end-column="5" />
               <folding>
                 <element signature="e#6#88#0#PHP" expanded="true" />
-                <marker date="1533415493757" expanded="true" signature="324:426" placeholder="SELECT * FRO..comentarios..." />
-                <marker date="1533415493757" expanded="true" signature="764:789" placeholder="SELECT * FRO..comentarios..." />
-                <marker date="1533415493757" expanded="true" signature="1515:1630" placeholder="INSERT INTO ..." />
-                <marker date="1533415493757" expanded="true" signature="2027:2144" placeholder="INSERT INTO ..." />
+                <marker date="1533509114719" expanded="true" signature="374:476" placeholder="SELECT * FRO..comentarios..." />
+                <marker date="1533509114719" expanded="true" signature="814:839" placeholder="SELECT * FRO..comentarios..." />
+                <marker date="1533509114719" expanded="true" signature="1668:1783" placeholder="INSERT INTO ..." />
+                <marker date="1533509114719" expanded="true" signature="2180:2297" placeholder="INSERT INTO ..." />
+                <marker date="1533509114719" expanded="true" signature="2695:2814" placeholder="INSERT INTO ..." />
+                <marker date="1533509114719" expanded="true" signature="3219:3322" placeholder="SELECT * FRO..comentarios..." />
+                <marker date="1533509114719" expanded="true" signature="3784:3890" placeholder="SELECT * FRO..comentarios..." />
+                <marker date="1533509114719" expanded="true" signature="4355:4460" placeholder="SELECT * FRO..comentarios..." />
               </folding>
             </state>
           </provider>
@@ -152,7 +157,7 @@
       <file leaf-file-name="Situacion.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/classes/Situacion.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-24.115385" vertical-offset="1719" max-vertical-offset="4420">
+            <state vertical-scroll-proportion="-37.846153" vertical-offset="1362" max-vertical-offset="4420">
               <caret line="138" column="5" selection-start-line="138" selection-start-column="5" selection-end-line="138" selection-end-column="5" />
               <folding>
                 <marker date="1533502316006" expanded="true" signature="249:300" placeholder="SELECT id FR..situaciones..." />
@@ -170,14 +175,14 @@
       <file leaf-file-name="Implicado.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/classes/Implicado.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-33.923077" vertical-offset="614" max-vertical-offset="2822">
-              <caret line="88" column="34" selection-start-line="88" selection-start-column="34" selection-end-line="88" selection-end-column="34" />
+            <state vertical-scroll-proportion="-16.346153" vertical-offset="782" max-vertical-offset="3145">
+              <caret line="71" column="0" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
               <folding>
                 <element signature="e#6#88#0#PHP" expanded="true" />
-                <marker date="1533502796033" expanded="true" signature="279:360" placeholder="SELECT * FRO..implicados..." />
-                <marker date="1533502796033" expanded="true" signature="1022:1118" placeholder="INSERT INTO ..." />
-                <marker date="1533502796033" expanded="true" signature="1523:1685" placeholder="SELECT count..implicados..." />
-                <marker date="1533502796033" expanded="true" signature="1997:2162" placeholder="SELECT count..implicados..." />
+                <marker date="1533508346548" expanded="true" signature="302:383" placeholder="SELECT * FRO..implicados..." />
+                <marker date="1533508346548" expanded="true" signature="1045:1141" placeholder="INSERT INTO ..." />
+                <marker date="1533508346548" expanded="true" signature="1546:1700" placeholder="SELECT count..implicados..." />
+                <marker date="1533508346548" expanded="true" signature="2012:2166" placeholder="SELECT count..implicados..." />
               </folding>
             </state>
           </provider>
@@ -195,7 +200,6 @@
       <list>
         <option value="$PROJECT_DIR$/Autoload.php" />
         <option value="$PROJECT_DIR$/classes/Auth.php" />
-        <option value="$PROJECT_DIR$/classes/Comentario.php" />
         <option value="$PROJECT_DIR$/classes/DBConnectionSA.php" />
         <option value="$PROJECT_DIR$/classes/Institucion.php" />
         <option value="$PROJECT_DIR$/classes/Susuario.php" />
@@ -203,8 +207,9 @@
         <option value="$PROJECT_DIR$/classes/Alerta.php" />
         <option value="$PROJECT_DIR$/classes/Notificacion.php" />
         <option value="$PROJECT_DIR$/classes/Situacion.php" />
-        <option value="$PROJECT_DIR$/classes/Implicado.php" />
         <option value="$PROJECT_DIR$/classes/PadreNotificado.php" />
+        <option value="$PROJECT_DIR$/classes/Implicado.php" />
+        <option value="$PROJECT_DIR$/classes/Comentario.php" />
       </list>
     </option>
   </component>
@@ -366,7 +371,9 @@
     </option>
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
@@ -396,10 +403,14 @@
           <caret line="12" column="23" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
           <folding>
             <element signature="e#6#88#0#PHP" expanded="true" />
-            <marker date="1533415493757" expanded="true" signature="324:426" placeholder="SELECT * FRO..comentarios..." />
-            <marker date="1533415493757" expanded="true" signature="764:789" placeholder="SELECT * FRO..comentarios..." />
-            <marker date="1533415493757" expanded="true" signature="1515:1630" placeholder="INSERT INTO ..." />
-            <marker date="1533415493757" expanded="true" signature="2027:2144" placeholder="INSERT INTO ..." />
+            <marker date="1533509114719" expanded="true" signature="374:476" placeholder="SELECT * FRO..comentarios..." />
+            <marker date="1533509114719" expanded="true" signature="814:839" placeholder="SELECT * FRO..comentarios..." />
+            <marker date="1533509114719" expanded="true" signature="1668:1783" placeholder="INSERT INTO ..." />
+            <marker date="1533509114719" expanded="true" signature="2180:2297" placeholder="INSERT INTO ..." />
+            <marker date="1533509114719" expanded="true" signature="2695:2814" placeholder="INSERT INTO ..." />
+            <marker date="1533509114719" expanded="true" signature="3219:3322" placeholder="SELECT * FRO..comentarios..." />
+            <marker date="1533509114719" expanded="true" signature="3784:3890" placeholder="SELECT * FRO..comentarios..." />
+            <marker date="1533509114719" expanded="true" signature="4355:4460" placeholder="SELECT * FRO..comentarios..." />
           </folding>
         </state>
       </provider>
@@ -434,10 +445,10 @@
           <caret line="48" column="33" selection-start-line="48" selection-start-column="33" selection-end-line="48" selection-end-column="33" />
           <folding>
             <element signature="e#6#88#0#PHP" expanded="true" />
-            <marker date="1533502796033" expanded="true" signature="279:360" placeholder="SELECT * FRO..implicados..." />
-            <marker date="1533502796033" expanded="true" signature="1022:1118" placeholder="INSERT INTO ..." />
-            <marker date="1533502796033" expanded="true" signature="1523:1685" placeholder="SELECT count..implicados..." />
-            <marker date="1533502796033" expanded="true" signature="1997:2162" placeholder="SELECT count..implicados..." />
+            <marker date="1533508346548" expanded="true" signature="302:383" placeholder="SELECT * FRO..implicados..." />
+            <marker date="1533508346548" expanded="true" signature="1045:1141" placeholder="INSERT INTO ..." />
+            <marker date="1533508346548" expanded="true" signature="1546:1700" placeholder="SELECT count..implicados..." />
+            <marker date="1533508346548" expanded="true" signature="2012:2166" placeholder="SELECT count..implicados..." />
           </folding>
         </state>
       </provider>
@@ -484,10 +495,14 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#6#88#0#PHP" expanded="true" />
-            <marker date="1533415493757" expanded="true" signature="324:426" placeholder="SELECT * FRO..comentarios..." />
-            <marker date="1533415493757" expanded="true" signature="764:789" placeholder="SELECT * FRO..comentarios..." />
-            <marker date="1533415493757" expanded="true" signature="1515:1630" placeholder="INSERT INTO ..." />
-            <marker date="1533415493757" expanded="true" signature="2027:2144" placeholder="INSERT INTO ..." />
+            <marker date="1533509114719" expanded="true" signature="374:476" placeholder="SELECT * FRO..comentarios..." />
+            <marker date="1533509114719" expanded="true" signature="814:839" placeholder="SELECT * FRO..comentarios..." />
+            <marker date="1533509114719" expanded="true" signature="1668:1783" placeholder="INSERT INTO ..." />
+            <marker date="1533509114719" expanded="true" signature="2180:2297" placeholder="INSERT INTO ..." />
+            <marker date="1533509114719" expanded="true" signature="2695:2814" placeholder="INSERT INTO ..." />
+            <marker date="1533509114719" expanded="true" signature="3219:3322" placeholder="SELECT * FRO..comentarios..." />
+            <marker date="1533509114719" expanded="true" signature="3784:3890" placeholder="SELECT * FRO..comentarios..." />
+            <marker date="1533509114719" expanded="true" signature="4355:4460" placeholder="SELECT * FRO..comentarios..." />
           </folding>
         </state>
       </provider>
@@ -522,10 +537,10 @@
           <caret line="48" column="33" selection-start-line="48" selection-start-column="33" selection-end-line="48" selection-end-column="33" />
           <folding>
             <element signature="e#6#88#0#PHP" expanded="true" />
-            <marker date="1533502796033" expanded="true" signature="279:360" placeholder="SELECT * FRO..implicados..." />
-            <marker date="1533502796033" expanded="true" signature="1022:1118" placeholder="INSERT INTO ..." />
-            <marker date="1533502796033" expanded="true" signature="1523:1685" placeholder="SELECT count..implicados..." />
-            <marker date="1533502796033" expanded="true" signature="1997:2162" placeholder="SELECT count..implicados..." />
+            <marker date="1533508346548" expanded="true" signature="302:383" placeholder="SELECT * FRO..implicados..." />
+            <marker date="1533508346548" expanded="true" signature="1045:1141" placeholder="INSERT INTO ..." />
+            <marker date="1533508346548" expanded="true" signature="1546:1700" placeholder="SELECT count..implicados..." />
+            <marker date="1533508346548" expanded="true" signature="2012:2166" placeholder="SELECT count..implicados..." />
           </folding>
         </state>
       </provider>
@@ -667,17 +682,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/classes/Alerta.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.5384617" vertical-offset="153" max-vertical-offset="1853">
-          <caret line="24" column="51" selection-start-line="24" selection-start-column="51" selection-end-line="24" selection-end-column="51" />
-          <folding>
-            <marker date="1533475671807" expanded="true" signature="403:430" placeholder="SELECT * FRO..alerta_config..." />
-            <marker date="1533475671807" expanded="true" signature="790:949" placeholder="UPDATE alert..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/classes/Institucion.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.2692308" vertical-offset="1428" max-vertical-offset="3604">
@@ -692,16 +696,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/classes/Comentario.php">
+    <entry file="file://$PROJECT_DIR$/classes/PadreNotificado.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.038462" vertical-offset="255" max-vertical-offset="3400">
-          <caret line="38" column="21" selection-start-line="38" selection-start-column="21" selection-end-line="38" selection-end-column="21" />
+        <state vertical-scroll-proportion="-21.576923" vertical-offset="204" max-vertical-offset="1768">
+          <caret line="50" column="9" selection-start-line="50" selection-start-column="9" selection-end-line="50" selection-end-column="9" />
           <folding>
-            <element signature="e#6#88#0#PHP" expanded="true" />
-            <marker date="1533415493757" expanded="true" signature="324:426" placeholder="SELECT * FRO..comentarios..." />
-            <marker date="1533415493757" expanded="true" signature="764:789" placeholder="SELECT * FRO..comentarios..." />
-            <marker date="1533415493757" expanded="true" signature="1515:1630" placeholder="INSERT INTO ..." />
-            <marker date="1533415493757" expanded="true" signature="2027:2144" placeholder="INSERT INTO ..." />
+            <marker date="1533503341031" expanded="true" signature="458:555" placeholder="INSERT INTO ..." />
+            <marker date="1533503341031" expanded="true" signature="951:1018" placeholder="SELECT * FRO..sit_has_padre..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classes/Situacion.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-37.846153" vertical-offset="1362" max-vertical-offset="4420">
+          <caret line="138" column="5" selection-start-line="138" selection-start-column="5" selection-end-line="138" selection-end-column="5" />
+          <folding>
+            <marker date="1533502316006" expanded="true" signature="249:300" placeholder="SELECT id FR..situaciones..." />
+            <marker date="1533502316006" expanded="true" signature="526:604" placeholder="SELECT * FRO..situaciones..." />
+            <marker date="1533502316006" expanded="true" signature="980:1062" placeholder="SELECT * FRO..situaciones..." />
+            <marker date="1533502316006" expanded="true" signature="1447:1503" placeholder="SELECT * FRO..situaciones..." />
+            <marker date="1533502316006" expanded="true" signature="1814:1856" placeholder="SELECT * FRO..situaciones..." />
+            <marker date="1533502316006" expanded="true" signature="2615:2786" placeholder="INSERT INTO ..." />
+            <marker date="1533502316006" expanded="true" signature="3383:3515" placeholder="UPDATE situa..." />
           </folding>
         </state>
       </provider>
@@ -726,56 +743,59 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/classes/Situacion.php">
+    <entry file="file://$PROJECT_DIR$/classes/Alerta.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-24.115385" vertical-offset="1719" max-vertical-offset="4420">
-          <caret line="138" column="5" selection-start-line="138" selection-start-column="5" selection-end-line="138" selection-end-column="5" />
+        <state vertical-scroll-proportion="-6.5384617" vertical-offset="153" max-vertical-offset="1853">
+          <caret line="24" column="51" selection-start-line="24" selection-start-column="51" selection-end-line="24" selection-end-column="51" />
           <folding>
-            <marker date="1533502316006" expanded="true" signature="249:300" placeholder="SELECT id FR..situaciones..." />
-            <marker date="1533502316006" expanded="true" signature="526:604" placeholder="SELECT * FRO..situaciones..." />
-            <marker date="1533502316006" expanded="true" signature="980:1062" placeholder="SELECT * FRO..situaciones..." />
-            <marker date="1533502316006" expanded="true" signature="1447:1503" placeholder="SELECT * FRO..situaciones..." />
-            <marker date="1533502316006" expanded="true" signature="1814:1856" placeholder="SELECT * FRO..situaciones..." />
-            <marker date="1533502316006" expanded="true" signature="2615:2786" placeholder="INSERT INTO ..." />
-            <marker date="1533502316006" expanded="true" signature="3383:3515" placeholder="UPDATE situa..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/classes/Implicado.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-33.923077" vertical-offset="614" max-vertical-offset="2822">
-          <caret line="88" column="34" selection-start-line="88" selection-start-column="34" selection-end-line="88" selection-end-column="34" />
-          <folding>
-            <element signature="e#6#88#0#PHP" expanded="true" />
-            <marker date="1533502796033" expanded="true" signature="279:360" placeholder="SELECT * FRO..implicados..." />
-            <marker date="1533502796033" expanded="true" signature="1022:1118" placeholder="INSERT INTO ..." />
-            <marker date="1533502796033" expanded="true" signature="1523:1685" placeholder="SELECT count..implicados..." />
-            <marker date="1533502796033" expanded="true" signature="1997:2162" placeholder="SELECT count..implicados..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/classes/PadreNotificado.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-21.576923" vertical-offset="0" max-vertical-offset="1513">
-          <caret line="38" column="5" selection-start-line="38" selection-start-column="5" selection-end-line="38" selection-end-column="5" />
-          <folding>
-            <marker date="1533503034197" expanded="true" signature="458:555" placeholder="INSERT INTO ..." />
+            <marker date="1533475671807" expanded="true" signature="403:430" placeholder="SELECT * FRO..alerta_config..." />
+            <marker date="1533475671807" expanded="true" signature="790:949" placeholder="UPDATE alert..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/classes/Notificacion.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.71315193" vertical-offset="51" max-vertical-offset="3587">
-          <caret line="40" column="5" selection-start-line="40" selection-start-column="5" selection-end-line="40" selection-end-column="5" />
+        <state vertical-scroll-proportion="-11.038462" vertical-offset="53" max-vertical-offset="3587">
+          <caret line="20" column="48" selection-start-line="20" selection-start-column="48" selection-end-line="20" selection-end-column="48" />
           <folding>
             <element signature="e#6#87#0#PHP" expanded="true" />
             <marker date="1533502174379" expanded="true" signature="611:670" placeholder="SELECT * FRO..notificaciones..." />
             <marker date="1533502174379" expanded="true" signature="964:1086" placeholder="INSERT INTO ..." />
             <marker date="1533502174379" expanded="true" signature="1502:1696" placeholder="UPDATE notif..." />
             <marker date="1533502174379" expanded="true" signature="2145:2230" placeholder="DELETE FROM ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classes/Implicado.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-16.346153" vertical-offset="782" max-vertical-offset="3145">
+          <caret line="71" column="0" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
+          <folding>
+            <element signature="e#6#88#0#PHP" expanded="true" />
+            <marker date="1533508346548" expanded="true" signature="302:383" placeholder="SELECT * FRO..implicados..." />
+            <marker date="1533508346548" expanded="true" signature="1045:1141" placeholder="INSERT INTO ..." />
+            <marker date="1533508346548" expanded="true" signature="1546:1700" placeholder="SELECT count..implicados..." />
+            <marker date="1533508346548" expanded="true" signature="2012:2166" placeholder="SELECT count..implicados..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classes/Comentario.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.96145123" vertical-offset="2450" max-vertical-offset="5406">
+          <caret line="194" column="5" selection-start-line="194" selection-start-column="5" selection-end-line="194" selection-end-column="5" />
+          <folding>
+            <element signature="e#6#88#0#PHP" expanded="true" />
+            <marker date="1533509114719" expanded="true" signature="374:476" placeholder="SELECT * FRO..comentarios..." />
+            <marker date="1533509114719" expanded="true" signature="814:839" placeholder="SELECT * FRO..comentarios..." />
+            <marker date="1533509114719" expanded="true" signature="1668:1783" placeholder="INSERT INTO ..." />
+            <marker date="1533509114719" expanded="true" signature="2180:2297" placeholder="INSERT INTO ..." />
+            <marker date="1533509114719" expanded="true" signature="2695:2814" placeholder="INSERT INTO ..." />
+            <marker date="1533509114719" expanded="true" signature="3219:3322" placeholder="SELECT * FRO..comentarios..." />
+            <marker date="1533509114719" expanded="true" signature="3784:3890" placeholder="SELECT * FRO..comentarios..." />
+            <marker date="1533509114719" expanded="true" signature="4355:4460" placeholder="SELECT * FRO..comentarios..." />
           </folding>
         </state>
       </provider>

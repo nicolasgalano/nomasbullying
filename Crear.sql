@@ -88,7 +88,7 @@ CREATE TABLE IF NOT EXISTS `DW4_NO_MAS_BULLYING`.`implicados` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `idSituacion` INT UNSIGNED NOT NULL,
   `idUsuario` INT UNSIGNED NOT NULL,
-  `rol` VARCHAR(50) NOT NULL,
+  `rol` TINYINT(1) NOT NULL,
   PRIMARY KEY (`ID`, `idSituacion`, `idUsuario`),
   INDEX `fk_situaciones_has_usuarios_usuarios2_idx` (`idUsuario` ASC),
   INDEX `fk_situaciones_has_usuarios_situaciones1_idx` (`idSituacion` ASC),
@@ -198,6 +198,7 @@ CREATE TABLE IF NOT EXISTS `DW4_NO_MAS_BULLYING`.`comentarios` (
   `idSituacion` INT UNSIGNED NULL,
   `idPublicacion` INT UNSIGNED NULL,
   `idNotificacion` INT UNSIGNED NULL,
+   `estado` TINYINT(1) NOT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE INDEX `idcomentarios_UNIQUE` (`ID` ASC),
   INDEX `fk_comentarios_situaciones1_idx` (`idSituacion` ASC),
@@ -312,10 +313,10 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `DW4_NO_MAS_BULLYING`;
-INSERT INTO `DW4_NO_MAS_BULLYING`.`implicados` (`idSituacion`, `idUsuario`, `rol`) VALUES (1, 2, 'victimario');
-INSERT INTO `DW4_NO_MAS_BULLYING`.`implicados` (`idSituacion`, `idUsuario`, `rol`) VALUES (1, 4, 'victima');
-INSERT INTO `DW4_NO_MAS_BULLYING`.`implicados` (`idSituacion`, `idUsuario`, `rol`) VALUES (2, 2, 'victima');
-INSERT INTO `DW4_NO_MAS_BULLYING`.`implicados` (`idSituacion`, `idUsuario`, `rol`) VALUES (2, 5, 'victimario');
+INSERT INTO `DW4_NO_MAS_BULLYING`.`implicados` (`idSituacion`, `idUsuario`, `rol`) VALUES (1, 2, 1);
+INSERT INTO `DW4_NO_MAS_BULLYING`.`implicados` (`idSituacion`, `idUsuario`, `rol`) VALUES (1, 4, 2);
+INSERT INTO `DW4_NO_MAS_BULLYING`.`implicados` (`idSituacion`, `idUsuario`, `rol`) VALUES (2, 2, 1);
+INSERT INTO `DW4_NO_MAS_BULLYING`.`implicados` (`idSituacion`, `idUsuario`, `rol`) VALUES (2, 5, 2);
 
 COMMIT;
 
@@ -324,9 +325,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `DW4_NO_MAS_BULLYING`;
-INSERT INTO `DW4_NO_MAS_BULLYING`.`comentarios` (`creador`, `contenido`, `fecha`, `idSituacion`) VALUES (1, 'Gracias por contactarte, perdon por no haber podido ayudarte en el momento, como esta tu codo?',  '2018-06-26 11:38:00', 1);
-INSERT INTO `DW4_NO_MAS_BULLYING`.`comentarios` (`creador`, `contenido`, `fecha`, `idSituacion`) VALUES (4, 'Estoy mejor, pero esos chicos van a seguir molestandome', '2018-06-26 11:40:00', 1);
-INSERT INTO `DW4_NO_MAS_BULLYING`.`comentarios` (`creador`, `contenido`, `fecha`, `idSituacion`) VALUES (1, 'Vamos a tomar medidas al respecto, por favor no dudes en contactarnos si esto ocurre nuevamente', '2018-06-26 11:52:00', 1);
+INSERT INTO `DW4_NO_MAS_BULLYING`.`comentarios` (`creador`, `contenido`, `fecha`, `idSituacion`, `estado`) VALUES (1, 'Gracias por contactarte, perdon por no haber podido ayudarte en el momento, como esta tu codo?',  '2018-06-26 11:38:00', 1, 0);
+INSERT INTO `DW4_NO_MAS_BULLYING`.`comentarios` (`creador`, `contenido`, `fecha`, `idSituacion`, `estado`) VALUES (4, 'Estoy mejor, pero esos chicos van a seguir molestandome', '2018-06-26 11:40:00', 1, 0);
+INSERT INTO `DW4_NO_MAS_BULLYING`.`comentarios` (`creador`, `contenido`, `fecha`, `idSituacion`, `estado`) VALUES (1, 'Vamos a tomar medidas al respecto, por favor no dudes en contactarnos si esto ocurre nuevamente', '2018-06-26 11:52:00', 1, 0);
 
 COMMIT;
 
