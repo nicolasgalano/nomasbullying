@@ -20,6 +20,7 @@
     outline: none;
     cursor: pointer;
     @include transition(all .1s ease);
+    position: relative;
 
     &.btn-red{
         background-color: #b85630 !important;
@@ -51,5 +52,16 @@
     i {
         margin-right: 3px;
         font-size: $font-size-base;
+    }
+
+    span.nuevos{
+        display: block;
+        position: absolute;
+        top: -2px;
+        right: -2px;
+        width: 10px;
+        height: 10px;
+        background: red;
+        border-radius: 10px;
     }
 }

@@ -152,7 +152,7 @@ require 'partials/header.php';
                             <td><?= ($situacion->getEstatus()==0)?'No leído':'Leído';?></td>
                             <td>
                                 <div class="btn ver-ficha open-popup-button" aria-popup=".popup-ver-situacion" aria-id-usuario="<?= $situacion->getDenunciante();?>" aria-id="<?= $situacion->getId();?>">Ver ficha</div>
-                                <div class="btn btn-blue open-popup-button" aria-popup=".popup-comentarios" aria-id="<?= $situacion->getId();?>" aria-id-usuario="<?= $_SESSION['user']->getID() ?>">Mensajes</div>
+                                <div class="btn btn-blue open-popup-button" aria-popup=".popup-comentarios" aria-id="<?= $situacion->getId();?>" aria-id-usuario="<?= $_SESSION['user']->getID() ?>">Mensajes<span class="nuevos"></span></div>
                             </td>
                         </tr>
                         <?php endforeach; ?>

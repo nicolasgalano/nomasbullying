@@ -9187,7 +9187,8 @@ path.stroke-thin {
   cursor: pointer;
   -webkit-transition: all 0.1s ease;
   -o-transition: all 0.1s ease;
-  transition: all 0.1s ease; }
+  transition: all 0.1s ease;
+  position: relative; }
   .btn.btn-red {
     background-color: #b85630 !important; }
   .btn.btn-blue {
@@ -9209,6 +9210,15 @@ path.stroke-thin {
   .btn i {
     margin-right: 3px;
     font-size: 14px; }
+  .btn span.nuevos {
+    display: block;
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 10px;
+    height: 10px;
+    background: red;
+    border-radius: 10px; }
 
 .section-row {
   padding-top: 60px;
