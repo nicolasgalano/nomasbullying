@@ -1,0 +1,271 @@
+// *************************************
+//
+//   Navbar
+//   -> Bootstrap Navbar Overrides
+//
+// *************************************
+
+.navbar {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
+    border: 0 none;
+    @include transition(all .5s);
+    .navbar-brand {
+        width: 62px;
+        margin-left: 0 !important;
+        @include transition(all .5s);
+    }
+    &.navbar-fixed-top{
+        z-index:99;
+    }
+    &.navbar-bg {
+
+    }
+    @media (min-width: $screen-sm-min) {
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+}
+
+.navbar-brand {
+    padding: 0;
+    margin-left: 15px;
+    display:block;
+    background: url(../images/header-navbar-logo@2x.png) center center no-repeat;
+    background-size: contain;
+    width: 62px;
+    height: 50px;
+    margin-top: 0px;
+    @media (min-width: $screen-sm-min) {
+        margin-top: 0px;
+    }
+    @media (min-width: $grid-float-breakpoint) {
+        margin-left: 0;
+    }
+}
+
+.navbar-default {
+
+    .navbar-toggle {
+        @include transition(all .3s ease);
+        padding: 9px 7px 9px 13px;
+        //margin-top: 9.5px;
+        border: 2px solid $c-menu-options-bg;
+
+        .icon-bar {
+            background-color: $c-menu-icon-color;
+            width: 22px;
+            @include transition(all .2s);
+            &.top-bar {
+                @include rotate(45deg);
+                @include transform-origin(10% 10%);
+            }
+            &.middle-bar {
+                opacity: 0;
+            }
+            &.bottom-bar {
+                @include rotate(-45deg);
+                @include transform-origin(10% 90%);
+            }
+        }
+
+        &.collapsed {
+            background-color: transparent;
+            padding: 9px 10px;
+            .icon-bar {
+                background-color: $c-menu-options-bg;
+                &.top-bar {
+                    @include rotate(0);
+                }
+                &.middle-bar {
+                    opacity: 1;
+                }
+                &.bottom-bar {
+                    @include rotate(0);
+                }
+            }
+            &:focus {
+                background-color: transparent;
+            }
+            &:hover {
+                background-color: transparent;
+            }
+        }
+        &:focus {
+            background-color: transparent;
+        }
+        &:hover {
+            background-color: transparent;
+            .icon-bar {
+                background-color: $c-menu-icon-color;
+            }
+        }
+
+    }
+
+    .navbar-collapse {
+        border: 0 none;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+    }
+
+    .navbar-nav {
+        @media (min-width: $screen-sm-min) {
+            float:right;
+            padding-top:0px;
+        }
+        li {
+            a {
+                color: #304db8;
+                font-size: 18px;
+                font-weight: 400;
+                font-family:$open-sans;
+                text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.2);
+                padding: 16px 0 10px;
+                margin:0 13px;
+                text-align: left;
+                &:hover {
+                    color:#304db8;
+                }
+                &.active {
+                    //border-bottom:3px solid #2e71f2;
+                }
+                &.login-link{
+                    background: #30b873;
+                    padding: 8px 30px;
+                    border-radius: 6px;
+                    color: white !important;
+                    margin-top: 7px;
+                    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
+                    &:hover{
+                        color: white !important;
+                        text-decoration: underline;
+                    }
+                }
+            }
+
+            &.active a {
+                background-color: transparent;
+
+                &:hover {
+                    background-color: transparent;
+                }
+            }
+
+        }
+
+    }
+
+    .social {
+        display: none;
+        list-style: none;
+        padding: 21px 0 0;
+        margin-bottom: 0;
+        @media (min-width: $screen-sm-min) {
+            display: block;
+        }
+        li {
+            float: left;
+            margin-right: 32px;
+            &:last-child {
+                margin-right: 0;
+            }
+            a {
+                display: block;
+                height: 18px;
+                width: 18px;
+                text-align: center;
+                i {
+                    font-size: 19px;
+                    color: #FFF;
+                }
+                &:hover{
+                    i{
+                        color:#304db8;
+                    }
+                }
+            }
+        }
+    }
+}
+
+//CUSTOMS
+//Home
+body.index{
+    .navbar{
+        box-shadow: none;
+        &.navbar-fixed-top{
+            background-color: rgba(255,255,255,0.8);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+    }
+    .navbar-default#top-nav{
+        .navbar-nav {
+            li {
+                a {
+                    color: #333;
+                    &:hover {
+                        color: #2e71f2 !important;
+                    }
+                }
+            }
+        }
+    }
+}
+
+//Pages
+body.informacion,
+body.contacto,
+body.panel,
+body.login{
+    padding-top:74px;
+    .navbar-brand{
+        background-image:url(../images/instituto/logo.png);
+    }
+    .navbar-default#top-nav{
+        background-color: #455a62;
+
+        .navbar-toggle {
+            border: 2px solid $gray;
+            .icon-bar {
+                background-color: $gray;
+            }
+            &.collapsed .icon-bar {
+                background-color: $gray;
+            }
+            &:hover .icon-bar {
+                background-color: $gray;
+            }
+        }
+
+        .social li a{
+            i{
+                color:$gray;
+            }
+            &:hover i{
+                color: #2e71f2 !important;
+            }
+        }
+        .navbar-nav {
+            li {
+                a {
+                    color: #FFF;
+                    &:hover {
+                        color: #EEE !important;
+                    }
+                }
+            }
+        }
+        &.navbar-bg{
+
+        }
+    }
+
+}
+
+
+body .navbar-default#top-nav .navbar-nav li a.login-link:hover{
+    color:white !important;
+}

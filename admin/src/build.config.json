@@ -1,0 +1,21 @@
+{
+  "autoprefixer_options": ["last 5 versions"],
+  "sass_lint": {
+    "src": "sass/**/*.scss",
+    "options": {
+      "config_file": ".sass-lint.yml"
+    }
+  },
+  "app_files": {
+      "fonts": [
+        "fonts/**/*",
+        "node_modules/bootstrap-sass/assets/fonts/**/*",
+        "node_modules/font-awesome/fonts/*"
+      ],
+      "sass": ["sass/app.scss"]
+  },
+  "output_files": {
+    "css": "css"
+  }
+
+}
