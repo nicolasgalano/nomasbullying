@@ -60,6 +60,37 @@ class Implicado {
         }
     }
 
+    public static function AlertasImpVictima ($data)
+    {
+        $query = "SELECT count(id)as cantidad, rol, idUsuario FROM implicados
+                  WHERE rol = 'victima'
+                  GROUP BY idUsuario, rol having cantidad >= ?";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute([$data]);
+        $salida = [];
+
+        while($datosImp = $stmt->fetch()) {
+            $salida[] = $datosImp;
+        }
+
+        return $salida;
+    }
+
+    public static function AlertasImpVictimario ($data)
+    {
+        $query = "SELECT count(id)as cantidad, rol, idUsuario FROM implicados
+                  WHERE rol = 'victimario'
+                  GROUP BY idUsuario, rol having cantidad >= ?";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute([$data]);
+        $salida = [];
+
+        while($datosImp = $stmt->fetch()) {
+            $salida[] = $datosImp;
+        }
+
+        return $salida;
+    }
     /**
      * @return mixed
      */
