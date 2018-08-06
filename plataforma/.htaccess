@@ -2,8 +2,16 @@
 # BEGIN HTACCESS
 
 <IfModule mod_rewrite.c>
-RewriteEngine On
+# Activar RewriteEngine
+RewriteEngine on
+
 ErrorDocument 404 /Server/nomasbullying/plataforma/404.php
+
+RewriteBase /Server/nomasbullying/plataforma/
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteCond %{SCRIPT_FILENAME} !-f
+ 
+RewriteRule ^([0-9]+)\-([a-zA-Z0-9-]*)$ ficha-articulos.php?id=$1
 </IfModule>
 
 # END HTACCESS

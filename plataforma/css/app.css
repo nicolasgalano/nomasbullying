@@ -8723,17 +8723,17 @@ tbody.collapse.in {
       .navbar-default .social li a:hover i {
         color: #304db8; }
 
-body.index .navbar {
+body.index .navbar, body.ficha .navbar, body.lista .navbar {
   -webkit-box-shadow: none;
           box-shadow: none; }
-  body.index .navbar.navbar-fixed-top {
+  body.index .navbar.navbar-fixed-top, body.ficha .navbar.navbar-fixed-top, body.lista .navbar.navbar-fixed-top {
     background-color: rgba(255, 255, 255, 0.8);
     -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); }
 
-body.index .navbar-default#top-nav .navbar-nav li a {
+body.index .navbar-default#top-nav .navbar-nav li a, body.ficha .navbar-default#top-nav .navbar-nav li a, body.lista .navbar-default#top-nav .navbar-nav li a {
   color: #333; }
-  body.index .navbar-default#top-nav .navbar-nav li a:hover {
+  body.index .navbar-default#top-nav .navbar-nav li a:hover, body.ficha .navbar-default#top-nav .navbar-nav li a:hover, body.lista .navbar-default#top-nav .navbar-nav li a:hover {
     color: #2e71f2 !important; }
 
 body.informacion,
@@ -9177,6 +9177,10 @@ path.stroke-thin {
         font-size: 50px;
         letter-spacing: 0px; } }
 
+body.ficha .main-slider .opacity-white, body.lista .main-slider .opacity-white {
+  min-height: auto;
+  padding: 140px 20px 60px; }
+
 .btn {
   display: inline-block;
   font-family: "Open Sans", sans-serif;
@@ -9448,6 +9452,30 @@ path.stroke-thin {
         .section-row.section-row--panel-institucion ul.side-menu li a.active {
           background: #FFF;
           color: #444; }
+
+.section-row--ficha {
+  padding-top: 70px;
+  padding-bottom: 70px;
+  background: #FEFEFE;
+  position: relative;
+  z-index: 9;
+  text-align: center; }
+  .section-row--ficha .container-fluid {
+    width: 90%;
+    max-width: 1000px; }
+  .section-row--ficha p {
+    font-size: 16px;
+    line-height: 20px;
+    font-family: Arial, sans-serif;
+    font-weight: 400;
+    margin: 0 10px 0; }
+
+.section-row--contact-ficha {
+  background-color: #EEE;
+  padding: 50px 20px 70px; }
+  @media (min-width: 768px) and (max-width: 1199px) {
+    .section-row--contact-ficha .container {
+      width: 100%; } }
 
 .form-group,
 .form-group-lg {

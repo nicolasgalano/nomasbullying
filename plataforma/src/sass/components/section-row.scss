@@ -291,5 +291,36 @@
         }
     }
 
+}
 
+.section-row--ficha{
+    padding-top: 70px;
+    padding-bottom: 70px;
+    background:#FEFEFE;
+    position:relative;
+    z-index:9;
+    text-align: center;
+
+    .container-fluid{
+        width:90%;
+        max-width:1000px;
+    }
+
+    p{
+        font-size:16px;
+        line-height: 20px;
+        font-family: $arial;
+        font-weight: 400;
+        margin:0 10px 0;
+    }
+}
+
+.section-row--contact-ficha {
+    background-color: #EEE;
+    padding:50px 20px 70px;
+    .container {
+        @media (min-width: $screen-sm-min) and (max-width: $screen-md-max) {
+            width: 100%;
+        }
+    }
 }

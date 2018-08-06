@@ -11,7 +11,6 @@ require 'partials/head.php';
 ?>
 <body class="index">
 <?php
-$page = 'home';
 require 'partials/header.php';
 ?>
 
@@ -37,7 +36,7 @@ require 'partials/header.php';
                 <div class="row lista-post">
 
                     <div class="col-md-4 item-post">
-                        <a class="content" href="#">
+                        <a class="content" href="ficha-articulos.php">
                             <div class="img" style="background-image:url('images/instituto/post-1.png');">
                                 <div class="opacity">
                                     <div class="btn">Leer nota</div>
@@ -77,7 +76,7 @@ require 'partials/header.php';
 
                 </div>
 
-                <a class="btn ver-mas" href="#">Ver más articulos</a>
+                <a class="btn ver-mas" href="lista-articulos.php">Ver más articulos</a>
 
             </div>
         </div>
