@@ -196,7 +196,7 @@ if ( typeof define === 'function' && define.amd ) {
             //VICTIMA
             $.ajax({
                 method: 'GET',
-                url: 'acciones/get-implicado.php?idsituacion='+situacionID+'&rol='+'victima',
+                url: 'acciones/get-implicado.php?idsituacion='+situacionID+'&rol='+'1',
                 data: '',
                 success: function(data) {
                     data = JSON.parse(' '+data+' ');
@@ -222,7 +222,7 @@ if ( typeof define === 'function' && define.amd ) {
             //VICTIMARIO
             $.ajax({
                 method: 'GET',
-                url: 'acciones/get-implicado.php?idsituacion='+situacionID+'&rol='+'victimario',
+                url: 'acciones/get-implicado.php?idsituacion='+situacionID+'&rol='+'2',
                 data: '',
                 success: function(data) {
                     data = JSON.parse(' '+data+' ');
@@ -251,6 +251,11 @@ if ( typeof define === 'function' && define.amd ) {
         //IF BORRAR USUARIO
         if(popupClass == '.popup-borrar-usuario'){
             $('#borrar-usuario').attr('aria-id-usuario',$(this).attr('aria-id'));//SET ID
+        }
+
+        //IF BORRAR NOTIFICACION
+        if(popupClass == '.popup-borrar-notificacion'){
+            $('#borrar-notificacion').attr('aria-id-notificacion',$(this).attr('aria-id-notificacion'));//SET ID
         }
 
         //EDITAR USUARIO
@@ -528,6 +533,7 @@ if ( typeof define === 'function' && define.amd ) {
         , submitHandler: function (form) {
             submitLoaderAN.removeClass('hide');
             var params = $(form).serializeArray();
+
             $.ajax({
                 method: 'POST',
                 url: 'acciones/agregar-notificacion.php',
@@ -544,6 +550,7 @@ if ( typeof define === 'function' && define.amd ) {
                 complete: function() {
                 }
             });
+
         }
         , showErrors: function (errorMap, errorList) {
             if (typeof errorList[0] != "undefined") {}
@@ -765,6 +772,33 @@ if ( typeof define === 'function' && define.amd ) {
             },
             complete: function() {
                 btnLoader.addClass('hide');
+            }
+        });
+    });
+
+    //BORRAR NOTIFICACION
+    var btnBorrarNot = $('#borrar-notificacion');
+    var btnLoaderBN = btnBorrarNot.find('i');
+    var responseBN = btnBorrarNot.parent().find('.form-response');
+    btnBorrarNot.click(function(e){
+        e.preventDefault();
+        var idNotificacion = [{"name":"id","value":parseInt($(this).attr('aria-id-notificacion'))}];
+        btnLoaderBN.removeClass('hide');
+        $.ajax({
+            method: 'POST',
+            url: 'acciones/borrar-notificacion.php',
+            data: idNotificacion,
+            success: function(data) {
+                if(data == 'true') {
+                    window.location.href = "panel-institucion.php?tab=notificaciones";
+                }else{
+                    responseBN.find('p').text(data);
+                    responseBN.addClass('success').fadeIn();
+                    btnLoaderBN.addClass('hide');
+                }
+            },
+            complete: function() {
+                btnLoaderBN.addClass('hide');
             }
         });
     });

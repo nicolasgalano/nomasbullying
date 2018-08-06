@@ -37,6 +37,21 @@ class PadreNotificado {
             return true;
         }
     }
+
+    public static function traerTodosId($id)
+    {
+        $query = "SELECT * FROM sit_has_padre
+                  WHERE usuarios_ID = ?";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute([$id]);
+        $salida = [];
+
+        while($datosPnot = $stmt->fetch()) {
+            $salida[] = $datosPnot;
+        }
+
+        return $salida;
+    }
     /**
      * @return mixed
      */

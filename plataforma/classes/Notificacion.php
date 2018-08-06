@@ -14,6 +14,7 @@ class Notificacion {
     private $rol;
     private $implicado;
     private $leido;
+    private $padre;
 
     protected function cargarDatos($fila)
     {
@@ -23,6 +24,23 @@ class Notificacion {
         $this->setRol($fila['rol']);
         $this->setImplicado($fila['implicado']);
         $this->setLeido($fila['leido']);
+        $this->setPadre($fila['padre']);
+    }
+
+    public static function traerTodos()
+    {
+        $query = "SELECT * FROM notificaciones ORDER BY id DESC";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute();
+        $salida = [];
+
+        while($datosSit = $stmt->fetch()) {
+            $sit = new Notificacion();
+            $sit->cargarDatos($datosSit);
+            $salida[] = $sit;
+        }
+
+        return $salida;
     }
 
     public static function traerTodosId($id)
@@ -42,15 +60,15 @@ class Notificacion {
 
     public static function crear($data)
     {
-        $query = "INSERT INTO notificaciones (contenido, fecha, rol, implicado, leido)
-                  VALUES (:con, NOW(), :rol, :imp, 0)";
+        $query = "INSERT INTO notificaciones (rol, implicado, leido, padre)
+                  VALUES (:rol, :imp, 0, :pad)";
 
         $stmt = DBConnection::getStatement($query);
 
         $exito = $stmt->execute([
-            'con' => $data['contenido'],
             'rol' => $data['rol'],
-            'imp' => $data['implicado'],
+            'imp' => $data['alumno'],
+            'pad' => $data['padre'],
         ]);
 
         if(!$exito) {
@@ -95,11 +113,13 @@ class Notificacion {
         $stmt = DBConnection::getStatement($query);
 
         $exito = $stmt->execute([
-            'id' => $data['ID']
+            'id' => $data['id']
         ]);
 
         if(!$exito) {
-            throw new Exception('Error al eliminar los datos.');
+            return 'Error al eliminar los datos.';
+        }else{
+            return true;
         }
     }
 
@@ -201,6 +221,22 @@ class Notificacion {
         $this->rol = $rol;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getPadre()
+    {
+        return $this->padre;
+    }
+
+    /**
+     * @param mixed $padre
+     */
+    public function setPadre($padre)
+    {
+        $this->padre = $padre;
+    }
 
 
-} 
+
+}

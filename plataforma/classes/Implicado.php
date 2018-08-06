@@ -63,7 +63,7 @@ class Implicado {
     public static function AlertasImpVictima ($data)
     {
         $query = "SELECT count(id)as cantidad, rol, idUsuario FROM implicados
-                  WHERE rol = 'victima'
+                  WHERE rol = 1
                   GROUP BY idUsuario, rol having cantidad >= ?";
         $stmt = DBConnection::getStatement($query);
         $stmt->execute([$data]);
@@ -80,13 +80,15 @@ class Implicado {
     public static function AlertasImpVictimario ($data)
     {
         $query = "SELECT count(id)as cantidad, rol, idUsuario FROM implicados
-                  WHERE rol = 'victimario'
+                  WHERE rol = 2
                   GROUP BY idUsuario, rol having cantidad >= ?";
         $stmt = DBConnection::getStatement($query);
         $stmt->execute([$data]);
         $salida = [];
 
         while($datosImp = $stmt->fetch()) {
+            $imp = new Implicado();
+            $imp->cargarDatos($datosImp);
             $salida[] = $datosImp;
         }
 

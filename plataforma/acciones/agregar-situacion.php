@@ -11,8 +11,8 @@ if(!Auth::userLogged()) {
         $idSituacion = Situacion::crear($_POST);
 
         //Implicados BUG SEGURADO
-        Implicado::crear($idSituacion,$_POST['victima'],'victima');
-        $result = Implicado::crear($idSituacion,$_POST['agresor'],'victimario');
+        Implicado::crear($idSituacion,$_POST['victima'],1);
+        $result = Implicado::crear($idSituacion,$_POST['agresor'],2);
 
         echo json_encode($result);
 

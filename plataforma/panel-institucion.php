@@ -45,6 +45,7 @@ include 'partials/popups/agregar-usuario.php';
 include 'partials/popups/agregar-notificacion.php';
 include 'partials/popups/editar-usuario.php';
 include 'partials/popups/borrar-usuario.php';
+include 'partials/popups/borrar-notificacion.php';
 include 'partials/popups/agregar-situacion.php';
 include 'partials/popups/ver-situacion.php';
 include 'partials/popups/comentarios.php';
@@ -68,7 +69,6 @@ require 'partials/header.php';
                         <li><a <?=($openTab=='contenido')?'class="active"':'';?> href="panel-institucion.php?tab=contenido">Contenido general</a></li>
                         <li><a <?=($openTab=='alertas')?'class="active"':'';?> href="panel-institucion.php?tab=alertas">Alertas</a></li>
                         <li><a <?=($openTab=='config_alertas')?'class="active"':'';?> href="panel-institucion.php?tab=config_alertas">Config. de Alertas</a></li>
-                        <li><a <?=($openTab=='soporte')?'class="active"':'';?> href="panel-institucion.php?tab=soporte">Soporte técnico</a></li>
                     </ul>
                 </div>
             </div>
@@ -82,7 +82,7 @@ require 'partials/header.php';
             <div class="col-sm-9 content-box" id="tab-alertas">
                 <div class="basic-box alertas">
                     <div class="box-top">
-                        <h4>Lista de agresores</h4>
+                        <h4>Alertas de Agresores</h4>
                     </div>
                     <table>
                         <tr>
@@ -108,7 +108,7 @@ require 'partials/header.php';
                 </div>
                 <div class="basic-box alertas">
                     <div class="box-top">
-                        <h4>Lista de victimas</h4>
+                        <h4>Alertas de Victimas</h4>
                     </div>
                     <table>
                         <tr>
@@ -178,12 +178,44 @@ require 'partials/header.php';
             <?php } ?>
 
             <?php if($openTab == 'notificaciones'){ ?>
+            <?php
+                $notificaciones = Notificacion::traerTodos();
+            ?>
             <!-- NOTIFICACIONES -->
             <div class="col-sm-9 content-box" id="tab-notificaciones">
                 <div class="basic-box notificaciones">
                     <div class="box-top">
                         <h4>Notificaciones</h4>
                     </div>
+
+                    <table>
+                        <tr>
+                            <th>Implicado</th>
+                            <th>Rol</th>
+                            <th>Padre</th>
+                            <th>Leido por el padre</th>
+                            <th style="width:100px;">Acciones</th>
+                        </tr>
+
+                        <?php foreach($notificaciones as $notificacion): ?>
+                        <?php
+                            $implicadoU = Usuario::buscarPorUsuarioId( (int)str_replace(' ', '', $notificacion->getImplicado()) );
+                            $padreU = Usuario::buscarPorUsuarioId( (int)str_replace(' ', '', $notificacion->getPadre()) );
+                        ?>
+                        <tr>
+                            <td><?= $implicadoU['nombre'];?> <?= $implicadoU['apellido'];?></td>
+                            <td><?= $notificacion->getRol();?></td>
+                            <td><?= $padreU['nombre'];?> <?= $padreU['apellido'];?></td>
+                            <td><?= ($notificacion->getLeido()==0)?'No leído':'Leído';?></td>
+                            <td>
+                                <div class="btn btn-red open-popup-button" aria-popup=".popup-borrar-notificacion" aria-id-notificacion="<?= $notificacion->getId();?>">Eliminar</div>
+                            </td>
+                        </tr>
+
+                        <?php endforeach; ?>
+
+                    </table>
+
                 </div>
             </div>
             <!-- END of NOTIFICACIONES -->
