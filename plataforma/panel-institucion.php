@@ -28,7 +28,6 @@ $usuarios = Usuario::traerTodos();
 $situaciones = Situacion::traerTodos( $situacionOrder );
 $situacionesNotReadCount = Situacion::getCountNotRead();
 $alertas = Alerta::traerTodos();
-
 ?>
 
 <!-- PANEL INSTITUCION -->
@@ -49,6 +48,7 @@ include 'partials/popups/borrar-notificacion.php';
 include 'partials/popups/agregar-situacion.php';
 include 'partials/popups/ver-situacion.php';
 include 'partials/popups/comentarios.php';
+include 'partials/popups/comentarios-notificacion.php';
 ?>
 
 <?php
@@ -194,13 +194,14 @@ require 'partials/header.php';
                             <th>Rol</th>
                             <th>Padre</th>
                             <th>Leido por el padre</th>
-                            <th style="width:100px;">Acciones</th>
+                            <th style="width:200px;">Acciones</th>
                         </tr>
 
                         <?php foreach($notificaciones as $notificacion): ?>
                         <?php
                             $implicadoU = Usuario::buscarPorUsuarioId( (int)str_replace(' ', '', $notificacion->getImplicado()) );
                             $padreU = Usuario::buscarPorUsuarioId( (int)str_replace(' ', '', $notificacion->getPadre()) );
+                            $comentariosNuevoNot = Comentario::noLeidosNot( $notificacion->getId(), $_SESSION['user']->getID() );
                         ?>
                         <tr>
                             <td><?= $implicadoU['nombre'];?> <?= $implicadoU['apellido'];?></td>
@@ -209,6 +210,7 @@ require 'partials/header.php';
                             <td><?= ($notificacion->getLeido()==0)?'No leído':'Leído';?></td>
                             <td>
                                 <div class="btn btn-red open-popup-button" aria-popup=".popup-borrar-notificacion" aria-id-notificacion="<?= $notificacion->getId();?>">Eliminar</div>
+                                <div class="btn btn-blue open-popup-button" aria-popup=".popup-comentarios-notificacion" aria-id="<?= $notificacion->getId();?>" aria-id-usuario="<?= $_SESSION['user']->getID() ?>">Mensajes<?php if(count($comentariosNuevoNot) > 0){ ?><span class="nuevos"></span><?php } ?></div>
                             </td>
                         </tr>
 
@@ -242,6 +244,7 @@ require 'partials/header.php';
                         <?php foreach($situaciones as $situacion): ?>
                         <?php
                             $denunciante = Usuario::buscarPorUsuarioId( (int)str_replace(' ', '', $situacion->getDenunciante()) );
+                            $comentariosNuevoSit = Comentario::noLeidosSit( $situacion->getId(), $_SESSION['user']->getID() );
                         ?>
                         <tr>
                             <td><?= $denunciante['nombre'];?> <?= $denunciante['apellido'];?></td>
@@ -249,8 +252,8 @@ require 'partials/header.php';
                             <td class="gravedad <?= $situacion->getNivel();?>"><b><?= $situacion->getNivel();?></b></td>
                             <td><?= ($situacion->getEstatus()==0)?'No leído':'Leído';?></td>
                             <td>
-                                <div class="btn ver-ficha open-popup-button" aria-popup=".popup-ver-situacion" aria-id-usuario="<?= $situacion->getDenunciante();?>" aria-id="<?= $situacion->getId();?>">Ver ficha</div>
-                                <div class="btn btn-blue open-popup-button" aria-popup=".popup-comentarios" aria-id="<?= $situacion->getId();?>" aria-id-usuario="<?= $_SESSION['user']->getID() ?>">Mensajes<span class="nuevos"></span></div>
+                                <div class="btn ver-ficha open-popup-button" aria-popup=".popup-ver-situacion" aria-id-usuario-activo="<?= $_SESSION['user']->getID() ?>" aria-id-usuario="<?= $situacion->getDenunciante();?>" aria-id="<?= $situacion->getId();?>">Ver ficha</div>
+                                <div class="btn btn-blue open-popup-button" aria-popup=".popup-comentarios" aria-id="<?= $situacion->getId();?>" aria-id-usuario="<?= $_SESSION['user']->getID() ?>">Mensajes<?php if(count($comentariosNuevoSit) > 0){ ?><span class="nuevos"></span><?php } ?></div>
                             </td>
                         </tr>
                         <?php endforeach; ?>

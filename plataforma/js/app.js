@@ -82,22 +82,30 @@ if ( typeof define === 'function' && define.amd ) {
 //////////////   POPUPS    ///////////////
 (function(){
 
-    function updateComentarios(usuarioID,situacionID){
+    function updateComentarios(usuarioID,typeID, popupName, typeOfComment){
 
-        var $popupComentario = $('.popup-comentarios');
+        var llamada = '';
+
+        if(typeOfComment == 1){
+            llamada = 'acciones/get-comentarios.php?idsituacion='+typeID;
+        }
+
+        if(typeOfComment == 2){
+            llamada = 'acciones/get-comentarios-notificacion.php?idnotificacion='+typeID;
+        }
+
+        var $popupComentario = $(popupName);
 
         $.ajax({
             method: 'GET',
-            url: 'acciones/get-comentarios.php?idsituacion='+situacionID,
+            url: llamada,
             data: '',
             success: function(data) {
                 data = JSON.parse(' '+data+' ');
-                console.log(data);
                 if(data) {
                     var formatted = '';
                     //FORMATEAR COMENTARIOS
                     data.forEach(function(item,index){
-                        console.log(item);
                         formatted += '<li class="clearfix '+(item.creador==usuarioID?'mio':'')+'">';
                         formatted += '<p>'+item.contenido+'</p><span>'+item.fecha+'</span>';
                         formatted += '</li>';
@@ -115,19 +123,20 @@ if ( typeof define === 'function' && define.amd ) {
         $(popupClass).show();
 
 
-        //MENSAJES
+        //MENSAJES SITUACION
         if(popupClass == '.popup-comentarios'){
 
             var situacionID = $(this).attr('aria-id');
             var usuarioID = $(this).attr('aria-id-usuario');
 
-            updateComentarios(usuarioID,situacionID);
+            updateComentarios(usuarioID,situacionID,popupClass,1);
 
             //AGREGAR COMENTARIO
             $formAgregarComentario = $('#form-agregar-comentario');
             $btnEnviarComentario = $('#enviar-comentario');
             $formAgregarComentario.on('submit', (e) => e.preventDefault());
-            $btnEnviarComentario.click(function(){
+
+            $btnEnviarComentario.off("click").click(function(){
 
                 $.ajax({
                     method: 'GET',
@@ -135,11 +144,43 @@ if ( typeof define === 'function' && define.amd ) {
                     success: function(data) {
                         if(data) {
                             $('#mensaje-comentario').val('');
-                            updateComentarios(usuarioID,situacionID);
+                            updateComentarios(usuarioID,situacionID,popupClass,1);
                         }
                     },
                     complete: function() {}
                 });
+
+            });
+
+        }
+
+        //MENSAJES NOTIFICACION
+        if(popupClass == '.popup-comentarios-notificacion'){
+
+            var notificacionID = $(this).attr('aria-id');
+            var usuarioID = $(this).attr('aria-id-usuario');
+
+            updateComentarios(usuarioID,notificacionID,popupClass,2);
+
+            //AGREGAR COMENTARIO
+            $formAgregarComentarioNot = $('#form-agregar-comentario-not');
+            $btnEnviarComentarioNot = $('#enviar-comentario-not');
+            $formAgregarComentarioNot.on('submit', (e) => e.preventDefault());
+
+            $btnEnviarComentarioNot.off("click").click(function(){
+
+                $.ajax({
+                    method: 'GET',
+                    url: 'acciones/agregar-comentario-notificacion.php?creador='+usuarioID+'&contenido='+$('#mensaje-comentario-not').val()+'&id-notificacion='+notificacionID,
+                    success: function(data) {
+                        if(data) {
+                            $('#mensaje-comentario-not').val('');
+                            updateComentarios(usuarioID,notificacionID,popupClass,2);
+                        }
+                    },
+                    complete: function() {}
+                });
+
             });
 
         }
@@ -148,16 +189,21 @@ if ( typeof define === 'function' && define.amd ) {
         if(popupClass == '.popup-ver-situacion'){
             var situacionID = $(this).attr('aria-id');
             var usuarioID = $(this).attr('aria-id-usuario');
+            var usuarioActivoID = $(this).attr('aria-id-usuario-activo');
             var $popupVerSituacion = $('.popup-ver-situacion');
 
-            $.ajax({
-                method: 'GET',
-                url: 'acciones/set-estatus.php?idsituacion='+situacionID,
-                data: '',
-                success: function(data) {
-                },
-                complete: function() {}
-            });
+            if(usuarioActivoID == 1){
+
+                $.ajax({
+                    method: 'GET',
+                    url: 'acciones/set-estatus.php?idsituacion='+situacionID,
+                    data: '',
+                    success: function(data) {
+                    },
+                    complete: function() {}
+                });
+
+            }
 
             $.ajax({
                 method: 'GET',
@@ -308,12 +354,12 @@ if ( typeof define === 'function' && define.amd ) {
     $('.full-opacity').click(function(){
         $('.full-opacity').hide();
         $('.popup').hide();
-        if($(this).parent().hasClass('popup-ver-situacion')){
+        if($('.popup').hasClass('popup-ver-situacion') || $('.popup').hasClass('popup-comentarios') ){
             location.reload();
         }
     });
     $('.popup-close').click(function(){
-        if($(this).parent().hasClass('popup-ver-situacion')){
+        if( $(this).parent().hasClass('popup-ver-situacion') || $(this).parent().hasClass('popup-comentarios') ){
             location.reload();
         }
         $('.full-opacity').hide();

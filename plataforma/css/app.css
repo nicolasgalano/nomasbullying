@@ -8988,7 +8988,7 @@ footer {
 .popup-ver-situacion .gravedad.bajo b {
   background: #92c153; }
 
-.popup-comentarios .comentarios {
+.popup-comentarios .comentarios, .popup-comentarios-notificacion .comentarios {
   margin: 0px 0 20px;
   padding: 10px 0;
   width: calc(100%);
@@ -8998,14 +8998,14 @@ footer {
   border-radius: 6px;
   -webkit-box-shadow: 0 1px 3px 0px rgba(0, 0, 0, 0.2);
   box-shadow: 0 1px 3px 0px rgba(0, 0, 0, 0.2); }
-  .popup-comentarios .comentarios ul {
+  .popup-comentarios .comentarios ul, .popup-comentarios-notificacion .comentarios ul {
     padding: 0;
     margin: 0; }
-    .popup-comentarios .comentarios ul li {
+    .popup-comentarios .comentarios ul li, .popup-comentarios-notificacion .comentarios ul li {
       padding: 0px;
       margin: 0px;
       list-style: none; }
-      .popup-comentarios .comentarios ul li p {
+      .popup-comentarios .comentarios ul li p, .popup-comentarios-notificacion .comentarios ul li p {
         padding: 10px;
         margin: 0px 10px 0;
         max-width: 70%;
@@ -9014,7 +9014,7 @@ footer {
         float: left;
         -webkit-box-shadow: 0 1px 2px 0px rgba(0, 0, 0, 0.2);
         box-shadow: 0 1px 2px 0px rgba(0, 0, 0, 0.2); }
-      .popup-comentarios .comentarios ul li span {
+      .popup-comentarios .comentarios ul li span, .popup-comentarios-notificacion .comentarios ul li span {
         display: block;
         font-size: 11px;
         float: left;
@@ -9022,15 +9022,15 @@ footer {
         margin-bottom: 10px;
         padding: 4px 14px 0;
         font-family: Arial, sans-serif; }
-      .popup-comentarios .comentarios ul li.mio p {
+      .popup-comentarios .comentarios ul li.mio p, .popup-comentarios-notificacion .comentarios ul li.mio p {
         background: #d9ee99;
         float: right;
         text-align: right; }
-      .popup-comentarios .comentarios ul li.mio span {
+      .popup-comentarios .comentarios ul li.mio span, .popup-comentarios-notificacion .comentarios ul li.mio span {
         float: right;
         text-align: right; }
 
-.popup-comentarios .form-group-lg textarea.form-control {
+.popup-comentarios .form-group-lg textarea.form-control, .popup-comentarios-notificacion .form-group-lg textarea.form-control {
   height: 80px; }
 
 .svg-container {

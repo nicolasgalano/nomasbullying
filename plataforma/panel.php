@@ -36,6 +36,7 @@ require 'partials/head.php';
 include 'partials/popups/agregar-situacion.php';
 include 'partials/popups/ver-situacion.php';
 include 'partials/popups/comentarios.php';
+include 'partials/popups/comentarios-notificacion.php';
 ?>
 
 <?php
@@ -49,6 +50,7 @@ include 'partials/header.php';
                 <h1 class="title">Mi Panel</h1>
             </div>
             <div class="col-sm-12">
+
                 <div class="basic-box">
                     <div class="box-top">
                         <h4>Mis situaciones</h4>
@@ -60,29 +62,76 @@ include 'partials/header.php';
                             <th>Título</th>
                             <th>Descripción</th>
                             <th>Gravedad</th>
-                            <!-- <th>Estado</th> -->
+                            <th>Estado</th>
                             <th style="width:220px;">Acciones</th>
                         </tr>
 
                         <?php foreach($situaciones as $situacion): ?>
                         <?php
                             $denunciante = Usuario::buscarPorUsuarioId( (int)str_replace(' ', '', $situacion->getDenunciante()) );
+                            $comentariosNuevoSit = Comentario::noLeidosSit( $situacion->getId(), $_SESSION['user']->getID() );
                         ?>
                         <tr>
                             <td><?= $denunciante['nombre'];?> <?= $denunciante['apellido'];?></td>
                             <td><?= $situacion->getTitulo();?></td>
                             <td><?= $situacion->getDescripcion();?></td>
                             <td><?= $situacion->getNivel();?></td>
-                            <!-- <td><?= $situacion->getEstatus();?></td> -->
+                            <td><?= ($situacion->getEstatus()==0)?'No leído':'Leído';?></td>
                             <td>
                                 <div class="btn ver-ficha open-popup-button" aria-popup=".popup-ver-situacion" aria-id="<?= $situacion->getId();?>">Ver ficha</div>
-                                <div class="btn btn-blue open-popup-button" aria-popup=".popup-comentarios" aria-id="<?= $situacion->getId();?>" aria-id-usuario="<?= $_SESSION['user']->getID() ?>">Mensajes</div>
+                                <div class="btn btn-blue open-popup-button" aria-popup=".popup-comentarios" aria-id="<?= $situacion->getId();?>" aria-id-usuario="<?= $_SESSION['user']->getID() ?>">Mensajes<?php if(count($comentariosNuevoSit) > 0){ ?><span class="nuevos"></span><?php } ?></div>
                             </td>
                         </tr>
                         <?php endforeach; ?>
 
                     </table>
                 </div>
+
+
+                <?php if($_SESSION['user']->getTipo() == 3){ ?>
+
+                    <?php
+                        $notificaciones = Notificacion::traerTodosIdPadre($_SESSION['user']->getID());
+                    ?>
+
+                    <div class="basic-box notificaciones">
+                        <div class="box-top">
+                            <h4>Notificaciones</h4>
+                        </div>
+
+                        <table>
+                            <tr>
+                                <th>Implicado</th>
+                                <th>Rol</th>
+                                <th>Padre</th>
+                                <!-- <th>Leido por el padre</th> -->
+                                <th style="width:100px;">Acciones</th>
+                            </tr>
+
+                            <?php foreach($notificaciones as $notificacion): ?>
+                            <?php
+                                $implicadoU = Usuario::buscarPorUsuarioId( (int)str_replace(' ', '', $notificacion->getImplicado()) );
+                                $padreU = Usuario::buscarPorUsuarioId( (int)str_replace(' ', '', $notificacion->getPadre()) );
+                                $comentariosNuevoNot = Comentario::noLeidosNot( $notificacion->getId(), $_SESSION['user']->getID() );
+                            ?>
+                            <tr>
+                                <td><?= $implicadoU['nombre'];?> <?= $implicadoU['apellido'];?></td>
+                                <td><?= ($notificacion->getRol()==1)?'Víctima':'';?><?= ($notificacion->getRol()==2)?'Agresor':'';?></td>
+                                <td><?= $padreU['nombre'];?> <?= $padreU['apellido'];?></td>
+                                <!--<td><?= ($notificacion->getLeido()==0)?'No leído':'Leído';?></td>-->
+                                <td>
+                                    <div class="btn btn-blue open-popup-button" aria-popup=".popup-comentarios-notificacion" aria-id="<?= $notificacion->getId();?>" aria-id-usuario="<?= $_SESSION['user']->getID() ?>">Mensajes<?php if(count($comentariosNuevoNot) > 0){ ?><span class="nuevos"></span><?php } ?></div>
+                                </td>
+                            </tr>
+
+                            <?php endforeach; ?>
+
+                        </table>
+
+                    </div>
+
+                <?php } ?>
+
             </div>
         </div>
     </div>

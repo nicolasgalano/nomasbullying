@@ -22,7 +22,23 @@ class Comentario {
         $query = "SELECT * FROM comentarios
                   WHERE idSituacion = ?
                   ORDER BY fecha ASC";
-        $stmt = DBConnection::getStatement($query);  //id de situacion y ordenarlo fecha
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute([$situacion]);
+        $salida = [];
+
+        while($datosCom = $stmt->fetch()) {
+            $salida[] = $datosCom;
+        }
+
+        return $salida;
+    }
+
+    public static function traerTodosIdNot($situacion)
+    {
+        $query = "SELECT * FROM comentarios
+                  WHERE idNotificacion = ?
+                  ORDER BY fecha ASC";
+        $stmt = DBConnection::getStatement($query);
         $stmt->execute([$situacion]);
         $salida = [];
 
@@ -82,6 +98,26 @@ class Comentario {
         }
     }
 
+    public static function crearN($creador,$contenido,$idNotificacion)
+    {
+        $query = "INSERT INTO comentarios (creador, contenido, fecha, idNotificacion)
+                  VALUES (:cre, :con, NOW(), :noi)";
+
+        $stmt = DBConnection::getStatement($query);
+
+        $exito = $stmt->execute([
+            'cre' => $creador,
+            'con' => $contenido,
+            'noi' => $idNotificacion
+        ]);
+
+        if(!$exito) {
+            return 'Error al insertar los datos.';
+        }else{
+            return true;
+        }
+    }
+
     public static function crearP($data)
     {
         $query = "INSERT INTO comentarios (creador, contenido, fecha, idPublicacion)
@@ -100,32 +136,14 @@ class Comentario {
         }
     }
 
-    public static function crearN($data)
-    {
-        $query = "INSERT INTO comentarios (creador, contenido, fecha, idNotificacion)
-                  VALUES (:cre, :con, NOW(), :noti)";
-
-        $stmt = DBConnection::getStatement($query);
-
-        $exito = $stmt->execute([
-            'cre' => $data['creador'],
-            'con' => $data['contenido'],
-            'noti' => $data['idNotificacion'],
-        ]);
-
-        if(!$exito) {
-            throw new Exception('Error al insertar los datos.');
-        }
-    }
-
-    public static function noLeidosSit($data)
+    public static function noLeidosSit($idSituacion, $idCreador)
     {
         $query = "SELECT * FROM comentarios
-                  WHERE idSituacion = :idS AND creador <> :idU AND estado = 0";
+                  WHERE idSituacion = :idS AND creador <> :idU AND estado = 0 ORDER BY id ASC";
         $stmt = DBConnection::getStatement($query);
         $stmt->execute([
-            'idS' => $data['idSituacion'],
-            'idU' => $data['creador'],
+            'idS' => $idSituacion,
+            'idU' => $idCreador,
         ]);
         $salida = [];
 
@@ -138,14 +156,14 @@ class Comentario {
         return $salida;
     }
 
-    public static function noLeidosNot($data)
+    public static function noLeidosNot($idNotificacion, $idCreador)
     {
         $query = "SELECT * FROM comentarios
-                  WHERE idNotificacion = :idN AND creador <> :idU AND estado = 0";
+                  WHERE idNotificacion = :idN AND creador <> :idU AND estado = 0 ORDER BY id ASC";
         $stmt = DBConnection::getStatement($query);
         $stmt->execute([
-            'idN' => $data['idNotificacion'],
-            'idU' => $data['creador'],
+            'idN' => $idNotificacion,
+            'idU' => $idCreador,
         ]);
         $salida = [];
 
@@ -176,6 +194,42 @@ class Comentario {
         }
 
         return $salida;
+    }
+
+    public static function marcarComoLeidoSit($idSituacion, $idCreador)
+    {
+        $query = "UPDATE
+	              comentarios
+                  SET
+                  estado = 1
+                  WHERE idSituacion = :idS AND creador <> :idU AND estado = 0
+                  LIMIT 1";
+
+        $stmt = DBConnection::getStatement($query);
+
+        $stmt->execute([
+            'idS' => $idSituacion,
+            'idU' => $idCreador,
+        ]);
+
+    }
+
+    public static function marcarComoLeidoNot($idNotificacion, $idCreador)
+    {
+        $query = "UPDATE
+	              comentarios
+                  SET
+                  estado = 1
+                  WHERE idNotificacion = :idN AND creador <> :idU AND estado = 0
+                  LIMIT 1";
+
+        $stmt = DBConnection::getStatement($query);
+
+        $stmt->execute([
+            'idN' => $idNotificacion,
+            'idU' => $idCreador,
+        ]);
+
     }
 
     /**

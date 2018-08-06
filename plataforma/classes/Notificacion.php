@@ -58,6 +58,23 @@ class Notificacion {
         return $salida;
     }
 
+    public static function traerTodosIdPadre($id)
+    {
+        $query = "SELECT * FROM notificaciones
+                  WHERE padre = ?";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute([$id]);
+        $salida = [];
+
+        while($datosNot = $stmt->fetch()) {
+            $sit = new Notificacion();
+            $sit->cargarDatos($datosNot);
+            $salida[] = $sit;
+        }
+
+        return $salida;
+    }
+
     public static function crear($data)
     {
         $query = "INSERT INTO notificaciones (rol, implicado, leido, padre)

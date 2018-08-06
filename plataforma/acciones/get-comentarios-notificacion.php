@@ -9,10 +9,10 @@ if(!Auth::userLogged()) {
 
     try {
 
-        $result = Comentario::traerTodosId($_GET['idsituacion']);
+        $result = Comentario::traerTodosIdNot($_GET['idnotificacion']);
 
         //MARCAR MENSAJES NO LEIDOS COMO LEIDOS
-        Comentario::marcarComoLeidoSit($_GET['idsituacion'], $_SESSION['user']->getID());
+        Comentario::marcarComoLeidoNot($_GET['idnotificacion'], $_SESSION['user']->getID());
 
         echo json_encode($result);
 
