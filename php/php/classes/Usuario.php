@@ -47,6 +47,21 @@ class Usuario {
         return null;
     }
 
+    public static function buscarPorMail($usuario)
+    {
+        $query = "SELECT * FROM usuarios
+                  WHERE mail = ?
+                  LIMIT 1";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute([$usuario]);
+        if($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $user = new Usuario;
+            $user->cargarDatos($fila);
+            return $user;
+        }
+        return null;
+    }
+
     public static function traerTodosTipo($usuario)
     {
         $query = "SELECT * FROM usuarios

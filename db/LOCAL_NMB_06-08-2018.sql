@@ -6,6 +6,8 @@
 -- Tiempo de generación: 06-08-2018 a las 06:12:53
 -- Versión del servidor: 10.1.31-MariaDB
 -- Versión de PHP: 7.2.4
+CREATE SCHEMA IF NOT EXISTS `DW4_NO_MAS_BULLYING` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
+USE `DW4_NO_MAS_BULLYING` ;
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -273,10 +275,30 @@ INSERT INTO `usuarios` (`ID`, `nombre`, `apellido`, `tipo`, `password`, `mail`, 
 (6, 'Javier', 'Maidan', 2, '$2y$10$JW//88vSpet6lBPDkYWVjejdNYQQY.aD17GMGpDc5a2DsrNh4eLKK', 'javier.mai@instituto.com', 34000006, 3, 1, 'Cuarto', 'Masculino'),
 (7, 'Tito', 'Fuentes', 3, '$2y$10$kocuCHiCuwwNHltS8cK0n.8grNO/pcuuAQv/huBijaLHrmf825nPm', 'tito@instituto.com', 34000007, 1, 8, 'Tercero', 'Masculino');
 
+
+
+--
+-- Estructura de tabla para la tabla `temporal`
+--
+
+CREATE TABLE `temporal` (
+  `id` INT UNSIGNED NOT NULL,
+  `idusuario` int(10) UNSIGNED NOT NULL,
+  `password` varchar(255)  NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
 --
 -- Índices para tablas volcadas
 --
 
+--
+-- Indices de la tabla `alerta_config`
+--
+ALTER TABLE `temporal`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `ID_UNIQUE` (`id`);
+  
 --
 -- Indices de la tabla `alerta_config`
 --
@@ -469,6 +491,10 @@ ALTER TABLE `sit_has_padre`
 ALTER TABLE `usuarios`
   ADD CONSTRAINT `fk_usuarios_nacionalidad1` FOREIGN KEY (`idnacionalidad`) REFERENCES `nacionalidad` (`idnacionalidad`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
+
+
+
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
