@@ -114,13 +114,13 @@
 
 }
 
-.section-row.section-row--login{ 
+.section-row.section-row--login{
 
     padding-top:120px;
 
     min-height:78vh;
 
-    #login-form{
+    #login-form, #password-form{
         width:95%;
         max-width:300px;
         margin:0 auto;

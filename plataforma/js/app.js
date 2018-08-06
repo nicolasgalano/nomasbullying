@@ -350,6 +350,13 @@ if ( typeof define === 'function' && define.amd ) {
 
         }
 
+        //AGREGAR USUARIOS
+        if(popupClass == '.popup-agregar-usuarios'){
+            var tipo = $(this).attr('aria-tipo');
+            var $formAgregarU = $('#agregar-usuario-form');
+            $formAgregarU.find('input[name="tipo"]').attr('value',tipo);
+        }
+
     });
     $('.full-opacity').click(function(){
         $('.full-opacity').hide();
@@ -490,6 +497,76 @@ if ( typeof define === 'function' && define.amd ) {
             this.defaultShowErrors(); // keep error messages next to each input element
         }
     });
+
+
+    //CAMBIAR CONTRASEÑA
+    var formPass= $('#password-form');
+    var submitLoaderPass = formPass.find('button i');
+    var responsePass = formPass.find('.form-response');
+    formPass.on('submit', (e) => e.preventDefault());
+    formPass.validate({
+        onfocusout: false,
+        rules: {
+            password_old: 'required',
+            password_new: 'required',
+            password_new2: 'required'
+        },
+        messages: {
+            password_old: {
+                required: 'Falta completar la contraseña'
+            },
+            password_new: {
+                required: 'Falta completar este campo'
+            },
+            password_new2: {
+                required: 'Falta completar este campo'
+            }
+        }
+        , highlight: function(element, errorClass, validClass) {
+            let el = $(element);
+            el.addClass('error');
+            el.parent().addClass('has-error');
+        }
+        , unhighlight: function(element, errorClass, validClass) {
+            let el = $(element);
+            el.removeClass('error');
+            el.parent().removeClass('has-error');
+        }
+        , errorPlacement: function(error, element) {
+            error.addClass('control-label animated fadeIn');
+            element.after(error);
+        }
+        , submitHandler: function (form) {
+            submitLoaderPass.removeClass('hide');
+            var params = $(form).serializeArray();
+            $.ajax({
+                method: 'POST',
+                url: 'acciones/cambiar-password.php',
+                data: params,
+                success: function(data) {
+
+                    console.log(data);
+
+                    if(data == 'true') {
+                        window.location.href = "panel.php";
+                        //submitLoaderLogin.parent().hide();
+                    }else{
+                        responseLogin.find('p').text(data);
+                        responseLogin.addClass('success').fadeIn();
+                        submitLoaderLogin.addClass('hide');
+                    }
+                },
+                complete: function() {
+                    //submitLoaderLogin.addClass('hide');
+                }
+            });
+        }
+        , showErrors: function (errorMap, errorList) {
+            if (typeof errorList[0] != "undefined") {}
+            this.defaultShowErrors(); // keep error messages next to each input element
+        }
+    });
+
 
     //AGREGAR SITUACIÓN
     var formAS = $('#agregar-situacion-form');

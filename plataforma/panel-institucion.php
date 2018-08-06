@@ -24,7 +24,6 @@ if(isset($_GET['tab'])) {
 $situacionOrder = "ORDER BY id DESC";
 
 //GET CLASES
-$usuarios = Usuario::traerTodos();
 $situaciones = Situacion::traerTodos( $situacionOrder );
 $situacionesNotReadCount = Situacion::getCountNotRead();
 $alertas = Alerta::traerTodos();
@@ -137,12 +136,18 @@ require 'partials/header.php';
             <?php } ?>
 
             <?php if($openTab == 'usuarios'){?>
+            <?php
+                $alumnos = Usuario::buscarPorTipo(2);
+                $padres = Usuario::buscarPorTipo(3);
+            ?>
             <!-- USUARIOS -->
             <div class="col-sm-9 content-box" id="tab-usuarios">
+
+                <!--ALUMNOS-->
                 <div class="basic-box usuarios">
                     <div class="box-top">
-                        <h4>Lista de usuarios</h4>
-                        <div class="btn add-more agregar-usuario open-popup-button" aria-popup=".popup-agregar-usuarios"><i class="glyphicon glyphicon-plus"></i>Agregar usuario</div>
+                        <h4>Lista de alumnos</h4>
+                        <div class="btn add-more agregar-usuario open-popup-button" aria-tipo="2" aria-popup=".popup-agregar-usuarios"><i class="glyphicon glyphicon-plus"></i>Agregar alumno</div>
                     </div>
                     <table>
                         <tr>
@@ -154,7 +159,7 @@ require 'partials/header.php';
                             <th style="width:200px;">Acciones</th>
                         </tr>
 
-                        <?php foreach($usuarios as $usuario): ?>
+                        <?php foreach($alumnos as $usuario): ?>
                         <?php if( $usuario->getId() != 1 ){ ?>
 
                         <tr>
@@ -173,6 +178,43 @@ require 'partials/header.php';
 
                     </table>
                 </div>
+
+                <!--PADRES-->
+                <div class="basic-box usuarios">
+                    <div class="box-top">
+                        <h4>Lista de padres</h4>
+                        <div class="btn add-more agregar-usuario open-popup-button" aria-tipo="3" aria-popup=".popup-agregar-usuarios"><i class="glyphicon glyphicon-plus"></i>Agregar padre</div>
+                    </div>
+                    <table>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Documento</th>
+                            <th>Grado</th>
+                            <th>Edad</th>
+                            <th>Genero</th>
+                            <th style="width:200px;">Acciones</th>
+                        </tr>
+
+                        <?php foreach($padres as $usuario): ?>
+                        <?php if( $usuario->getId() != 1 ){ ?>
+
+                        <tr>
+                            <td><?= $usuario->getNombre();?> <?= $usuario->getApellido();?></td>
+                            <td><?= $usuario->getIdentificacion();?></td>
+                            <td><?= $usuario->getGrado();?></td>
+                            <td><?= $usuario->getEdad();?></td>
+                            <td><?= $usuario->getSexo();?></td>
+                            <td>
+                                <div class="btn btn-blue open-popup-button" aria-popup=".popup-editar-usuarios" aria-id="<?= $usuario->getId();?>">Editar</div>
+                                <div class="btn btn-red open-popup-button" aria-popup=".popup-borrar-usuario" aria-id="<?= $usuario->getId();?>">Eliminar</div>
+                            </td>
+                        </tr>
+
+                        <?php } endforeach; ?>
+
+                    </table>
+                </div>
+
             </div>
             <!-- END of USUARIOS -->
             <?php } ?>

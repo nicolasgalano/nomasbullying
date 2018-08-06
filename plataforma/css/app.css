@@ -8739,56 +8739,67 @@ body.index .navbar-default#top-nav .navbar-nav li a {
 body.informacion,
 body.contacto,
 body.panel,
+body.pass,
 body.login {
   padding-top: 74px; }
   body.informacion .navbar-brand,
   body.contacto .navbar-brand,
   body.panel .navbar-brand,
+  body.pass .navbar-brand,
   body.login .navbar-brand {
     background-image: url(../images/instituto/logo.png); }
   body.informacion .navbar-default#top-nav,
   body.contacto .navbar-default#top-nav,
   body.panel .navbar-default#top-nav,
+  body.pass .navbar-default#top-nav,
   body.login .navbar-default#top-nav {
     background-color: #455a62; }
     body.informacion .navbar-default#top-nav .navbar-toggle,
     body.contacto .navbar-default#top-nav .navbar-toggle,
     body.panel .navbar-default#top-nav .navbar-toggle,
+    body.pass .navbar-default#top-nav .navbar-toggle,
     body.login .navbar-default#top-nav .navbar-toggle {
       border: 2px solid #3c3d41; }
       body.informacion .navbar-default#top-nav .navbar-toggle .icon-bar,
       body.contacto .navbar-default#top-nav .navbar-toggle .icon-bar,
       body.panel .navbar-default#top-nav .navbar-toggle .icon-bar,
+      body.pass .navbar-default#top-nav .navbar-toggle .icon-bar,
       body.login .navbar-default#top-nav .navbar-toggle .icon-bar {
         background-color: #3c3d41; }
       body.informacion .navbar-default#top-nav .navbar-toggle.collapsed .icon-bar,
       body.contacto .navbar-default#top-nav .navbar-toggle.collapsed .icon-bar,
       body.panel .navbar-default#top-nav .navbar-toggle.collapsed .icon-bar,
+      body.pass .navbar-default#top-nav .navbar-toggle.collapsed .icon-bar,
       body.login .navbar-default#top-nav .navbar-toggle.collapsed .icon-bar {
         background-color: #3c3d41; }
       body.informacion .navbar-default#top-nav .navbar-toggle:hover .icon-bar,
       body.contacto .navbar-default#top-nav .navbar-toggle:hover .icon-bar,
       body.panel .navbar-default#top-nav .navbar-toggle:hover .icon-bar,
+      body.pass .navbar-default#top-nav .navbar-toggle:hover .icon-bar,
       body.login .navbar-default#top-nav .navbar-toggle:hover .icon-bar {
         background-color: #3c3d41; }
     body.informacion .navbar-default#top-nav .social li a i,
     body.contacto .navbar-default#top-nav .social li a i,
     body.panel .navbar-default#top-nav .social li a i,
+    body.pass .navbar-default#top-nav .social li a i,
     body.login .navbar-default#top-nav .social li a i {
       color: #3c3d41; }
     body.informacion .navbar-default#top-nav .social li a:hover i,
     body.contacto .navbar-default#top-nav .social li a:hover i,
     body.panel .navbar-default#top-nav .social li a:hover i,
+    body.pass .navbar-default#top-nav .social li a:hover i,
     body.login .navbar-default#top-nav .social li a:hover i {
       color: #2e71f2 !important; }
     body.informacion .navbar-default#top-nav .navbar-nav li a,
     body.contacto .navbar-default#top-nav .navbar-nav li a,
     body.panel .navbar-default#top-nav .navbar-nav li a,
+    body.pass .navbar-default#top-nav .navbar-nav li a,
     body.login .navbar-default#top-nav .navbar-nav li a {
       color: #FFF; }
       body.informacion .navbar-default#top-nav .navbar-nav li a:hover,
       body.contacto .navbar-default#top-nav .navbar-nav li a:hover,
       body.panel .navbar-default#top-nav .navbar-nav li a:hover,
+      body.pass .navbar-default#top-nav .navbar-nav li a:hover,
       body.login .navbar-default#top-nav .navbar-nav li a:hover {
         color: #EEE !important; }
 
@@ -9301,11 +9312,11 @@ path.stroke-thin {
 .section-row.section-row--login {
   padding-top: 120px;
   min-height: 78vh; }
-  .section-row.section-row--login #login-form {
+  .section-row.section-row--login #login-form, .section-row.section-row--login #password-form {
     width: 95%;
     max-width: 300px;
     margin: 0 auto; }
-    .section-row.section-row--login #login-form .btn {
+    .section-row.section-row--login #login-form .btn, .section-row.section-row--login #password-form .btn {
       display: block; }
   .section-row.section-row--login .btn {
     font-size: 18px; }

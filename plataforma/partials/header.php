@@ -19,7 +19,10 @@ if (isset($_SESSION['page'])) {
                 <?php if(!Auth::userLogged()) { ?>
                     <li><a class="login-link" href="login.php">Login</a></li>
                 <?php } else { ?>
-                    <li><a class="panel-link" href="panel.php">Panel</a></li><!-- panel-institucion.php si Institucion-->
+                    <li><a class="panel-link" href="panel.php">Panel</a></li>
+                    <?php if($_SESSION['user']->getID() != 1){ ?>
+                        <li><a class="panel-link" href="cambiar-password.php">Cambiar Contraseña</a></li>
+                    <?php } ?>
                     <li><a class="login-link" href="acciones/logout.php">Cerrar sesión</a></li>
                 <?php } ?>
             </ul>

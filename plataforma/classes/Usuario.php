@@ -37,7 +37,7 @@ class Usuario {
         $query = "SELECT * FROM usuarios
                   WHERE tipo = ?";
         $stmt = DBConnection::getStatement($query);
-        
+
         $stmt->execute([$tipo]);
         $salida = [];
 
@@ -181,6 +181,41 @@ class Usuario {
             return 'Error al editar los datos.';
         }else{
             return true;
+        }
+    }
+
+    public static function cambiarPassword($data)
+    {
+        $query = "UPDATE
+	              usuarios
+                  SET
+	              password = :pass
+                  WHERE ID = :id LIMIT 1";
+        $stmt = DBConnection::getStatement($query);
+        if($data['id'] == $_SESSION['user']->getID()){
+            if( password_verify($data['password_old'], $_SESSION['user']->getPassword() ) ){
+                if( $data['password_new'] == $data['password_new'] ){
+
+                    $hashSecure = password_hash($data['password_new'], PASSWORD_DEFAULT);
+                    $exito = $stmt->execute([
+                        'pass' => $hashSecure,
+                        'id' => $data['id']
+                    ]);
+
+                    if(!$exito) {
+                        return 'Error al editar los datos.';
+                    }else{
+                        return true;
+                    }
+
+                }else{
+                    return 'Las contraseñas nuevas deben ser iguales.';
+                }
+            }else{
+                return 'La contraseña actual no es la misma';
+            }
+        }else{
+            return 'No podes editar un usuario ajeno.';
         }
     }
 
