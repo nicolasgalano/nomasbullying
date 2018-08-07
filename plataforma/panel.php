@@ -4,11 +4,11 @@ require_once 'autoload.php';
 $_SESSION['page'] = 'panel';
 
 if(!Auth::userLogged()) {
-    header('Location: login.php');
+    header('Location: /login');
     exit;
 }else{
     if($_SESSION['user']->getID() == 1){
-        header('Location: panel-institucion.php');
+        header('Location: /panel-institucion');
     }
 }
 
@@ -72,13 +72,13 @@ include 'partials/header.php';
                             $comentariosNuevoSit = Comentario::noLeidosSit( $situacion->getId(), $_SESSION['user']->getID() );
                         ?>
                         <tr>
-                            <td><?= $denunciante['nombre'];?> <?= $denunciante['apellido'];?></td>
+                            <td><?= $denunciante['apellido'];?> <?= $denunciante['nombre'];?></td>
                             <td><?= $situacion->getTitulo();?></td>
                             <td><?= $situacion->getDescripcion();?></td>
                             <td><?= $situacion->getNivel();?></td>
                             <td><?= ($situacion->getEstatus()==0)?'No leído':'Leído';?></td>
                             <td>
-                                <div class="btn ver-ficha open-popup-button" aria-popup=".popup-ver-situacion" aria-id="<?= $situacion->getId();?>">Ver ficha</div>
+                                <div class="btn ver-ficha open-popup-button" aria-popup=".popup-ver-situacion" aria-id-usuario-activo="<?= $_SESSION['user']->getID() ?>" aria-id-usuario="<?= $situacion->getDenunciante();?>" aria-id="<?= $situacion->getId();?>">Ver ficha</div>
                                 <div class="btn btn-blue open-popup-button" aria-popup=".popup-comentarios" aria-id="<?= $situacion->getId();?>" aria-id-usuario="<?= $_SESSION['user']->getID() ?>">Mensajes<?php if(count($comentariosNuevoSit) > 0){ ?><span class="nuevos"></span><?php } ?></div>
                             </td>
                         </tr>
@@ -115,9 +115,9 @@ include 'partials/header.php';
                                 $comentariosNuevoNot = Comentario::noLeidosNot( $notificacion->getId(), $_SESSION['user']->getID() );
                             ?>
                             <tr>
-                                <td><?= $implicadoU['nombre'];?> <?= $implicadoU['apellido'];?></td>
+                                <td><?= $implicadoU['apellido'];?> <?= $implicadoU['nombre'];?></td>
                                 <td><?= ($notificacion->getRol()==1)?'Víctima':'';?><?= ($notificacion->getRol()==2)?'Agresor':'';?></td>
-                                <td><?= $padreU['nombre'];?> <?= $padreU['apellido'];?></td>
+                                <td><?= $padreU['apellido'];?> <?= $padreU['nombre'];?></td>
                                 <!--<td><?= ($notificacion->getLeido()==0)?'No leído':'Leído';?></td>-->
                                 <td>
                                     <div class="btn btn-blue open-popup-button" aria-popup=".popup-comentarios-notificacion" aria-id="<?= $notificacion->getId();?>" aria-id-usuario="<?= $_SESSION['user']->getID() ?>">Mensajes<?php if(count($comentariosNuevoNot) > 0){ ?><span class="nuevos"></span><?php } ?></div>

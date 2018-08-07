@@ -5,9 +5,7 @@
  * Date: 25/6/2018
  * Time: 5:48 PM
  */
-
 class Usuario {
-
     private $id;
     private $nombre;
     private $apellido;
@@ -23,7 +21,7 @@ class Usuario {
     public static function buscarPorUsuarioId($data)
     {
         $query = "SELECT * FROM usuarios
-                  WHERE ID = :id";
+                  WHERE ID = :id ORDER BY apellido ASC";
         $stmt = DBConnection::getStatement($query);
         $stmt->execute([
             'id' => $data
@@ -32,23 +30,49 @@ class Usuario {
         return $datosUsu;
     }
 
+    public static function getIdByDNI($usuario)
+    {
+        $query = "SELECT * FROM usuarios
+                  WHERE identificacion = ?
+                  LIMIT 1";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute([$usuario]);
+        if($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $user = new Usuario;
+            $user->cargarDatos($fila);
+            return $user;
+        }
+        return null;
+    }
+
+    public static function buscarPorMail($usuario)
+    {
+        $query = "SELECT * FROM usuarios
+                  WHERE mail = ?
+                  LIMIT 1";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute([$usuario]);
+        if($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $user = new Usuario;
+            $user->cargarDatos($fila);
+            return $user;
+        }
+        return null;
+    }
+
     public static function buscarPorTipo($tipo)
     {
         $query = "SELECT * FROM usuarios
-                  WHERE tipo = ?";
+                  WHERE tipo = ? ORDER BY apellido ASC";
         $stmt = DBConnection::getStatement($query);
-
         $stmt->execute([$tipo]);
         $salida = [];
-
         while($datosSit = $stmt->fetch()) {
             $sit = new Usuario();
             $sit->cargarDatos($datosSit);
             $salida[] = $sit;
         }
-
         return $salida;
-
     }
 
     public static function buscarPorUsuario($usuario)
@@ -87,13 +111,11 @@ class Usuario {
         $stmt = DBConnection::getStatement($query);
         $stmt->execute();
         $salida = [];
-
         while($datosUsu = $stmt->fetch()) {
             $usu = new Usuario();
             $usu->cargarDatos($datosUsu);
             $salida[] = $usu;
         }
-
         return $salida;
     }
 
@@ -113,11 +135,8 @@ class Usuario {
     {
         $query = "INSERT INTO usuarios (nombre, apellido, tipo, password, mail, identificacion, idnacionalidad, edad, grado, sexo)
                   VALUES (:nom, :ape, :tipo, :pass, :mail, :iden, :nac, :edad, :gra, :sex)";
-
         $stmt = DBConnection::getStatement($query);
-
         $hashSecure = password_hash($data['password'], PASSWORD_DEFAULT);
-
         $exito = $stmt->execute([
             'nom' => $data['nombre'],
             'ape' => $data['apellido'],
@@ -130,7 +149,6 @@ class Usuario {
             'gra' => $data['grado'],
             'sex' => $data['sexo'],
         ]);
-
         if(!$exito) {
             return 'Error al insertar los datos.';
         }else{
@@ -154,15 +172,12 @@ class Usuario {
 	              grado = :gra,
 	              sexo = :sex
                   WHERE ID = :id LIMIT 1";
-
         $stmt = DBConnection::getStatement($query);
-
         if($data['password-new'] != ''){
             $hashSecure = password_hash($data['password-new'], PASSWORD_DEFAULT);
         }else{
             $hashSecure = $data['password-old'];
         }
-
         $exito = $stmt->execute([
             'nom' => $data['nombre'],
             'ape' => $data['apellido'],
@@ -176,7 +191,6 @@ class Usuario {
             'gra' => $data['grado'],
             'sex' => $data['sexo']
         ]);
-
         if(!$exito) {
             return 'Error al editar los datos.';
         }else{
@@ -194,20 +208,17 @@ class Usuario {
         $stmt = DBConnection::getStatement($query);
         if($data['id'] == $_SESSION['user']->getID()){
             if( password_verify($data['password_old'], $_SESSION['user']->getPassword() ) ){
-                if( $data['password_new'] == $data['password_new'] ){
-
+                if( $data['password_new'] == $data['password_new2'] ){
                     $hashSecure = password_hash($data['password_new'], PASSWORD_DEFAULT);
                     $exito = $stmt->execute([
                         'pass' => $hashSecure,
                         'id' => $data['id']
                     ]);
-
                     if(!$exito) {
                         return 'Error al editar los datos.';
                     }else{
                         return true;
                     }
-
                 }else{
                     return 'Las contraseñas nuevas deben ser iguales.';
                 }
@@ -219,22 +230,51 @@ class Usuario {
         }
     }
 
+    public static function actualizarPassword($data)
+    {
+        $query = "UPDATE
+	              usuarios
+                  SET
+	              password = :pass
+                  WHERE ID = :id LIMIT 1";
+        $stmt = DBConnection::getStatement($query);
+
+        if($data['id'] == $_SESSION['user']->getID()){
+
+                if( $data['password_new'] == $data['password_new2'] ){
+                    $hashSecure = password_hash($data['password_new'], PASSWORD_DEFAULT);
+                    $exito = $stmt->execute([
+                        'pass' => $hashSecure,
+                        'id' => $data['id']
+                    ]);
+                    if(!$exito) {
+                        return 'Error al editar los datos.';
+                    }else{
+                        return true;
+                    }
+                }else{
+                    return 'Las contraseñas nuevas deben ser iguales.';
+                }
+
+        }else{
+            return 'No podes editar un usuario ajeno.';
+        }
+    }
+
     public static function eliminar($data)
     {
         $query = "DELETE FROM usuarios
                   WHERE ID = :id
                   LIMIT 1";
-
         $stmt = DBConnection::getStatement($query);
-
         $exito = $stmt->execute([
             'id' => $data['id']
         ]);
-
         if(!$exito) {
             throw new Exception('Error al eliminar los datos.');
         }
     }
+
     /**
      * @return mixed
      */
@@ -242,7 +282,6 @@ class Usuario {
     {
         return $this->apellido;
     }
-
     /**
      * @param mixed $apellido
      */
@@ -250,7 +289,6 @@ class Usuario {
     {
         $this->apellido = $apellido;
     }
-
     /**
      * @return mixed
      */
@@ -258,7 +296,6 @@ class Usuario {
     {
         return $this->id;
     }
-
     /**
      * @param mixed $id
      */
@@ -266,7 +303,6 @@ class Usuario {
     {
         $this->id = $id;
     }
-
     /**
      * @return mixed
      */
@@ -274,7 +310,6 @@ class Usuario {
     {
         return $this->identificacion;
     }
-
     /**
      * @param mixed $identificacion
      */
@@ -282,7 +317,6 @@ class Usuario {
     {
         $this->identificacion = $identificacion;
     }
-
     /**
      * @return mixed
      */
@@ -290,7 +324,6 @@ class Usuario {
     {
         return $this->mail;
     }
-
     /**
      * @param mixed $mail
      */
@@ -298,7 +331,6 @@ class Usuario {
     {
         $this->mail = $mail;
     }
-
     /**
      * @return mixed
      */
@@ -306,7 +338,6 @@ class Usuario {
     {
         return $this->nacionalidad;
     }
-
     /**
      * @param mixed $nacionalidad
      */
@@ -314,7 +345,6 @@ class Usuario {
     {
         $this->nacionalidad = $nacionalidad;
     }
-
     /**
      * @return mixed
      */
@@ -322,7 +352,6 @@ class Usuario {
     {
         return $this->nombre;
     }
-
     /**
      * @param mixed $nombre
      */
@@ -330,7 +359,6 @@ class Usuario {
     {
         $this->nombre = $nombre;
     }
-
     /**
      * @return mixed
      */
@@ -338,7 +366,6 @@ class Usuario {
     {
         return $this->tipo;
     }
-
     /**
      * @param mixed $tipo
      */
@@ -346,7 +373,6 @@ class Usuario {
     {
         $this->tipo = $tipo;
     }
-
     /**
      * @return mixed
      */
@@ -354,7 +380,6 @@ class Usuario {
     {
         return $this->password;
     }
-
     /**
      * @param mixed $password
      */
@@ -362,7 +387,6 @@ class Usuario {
     {
         $this->password = $password;
     }
-
     /**
      * @return mixed
      */
@@ -370,7 +394,6 @@ class Usuario {
     {
         return $this->edad;
     }
-
     /**
      * @param mixed $edad
      */
@@ -378,7 +401,6 @@ class Usuario {
     {
         $this->edad = $edad;
     }
-
     /**
      * @return mixed
      */
@@ -386,7 +408,6 @@ class Usuario {
     {
         return $this->grado;
     }
-
     /**
      * @param mixed $grado
      */
@@ -394,7 +415,6 @@ class Usuario {
     {
         $this->grado = $grado;
     }
-
     /**
      * @return mixed
      */
@@ -402,7 +422,6 @@ class Usuario {
     {
         return $this->sexo;
     }
-
     /**
      * @param mixed $sexo
      */
@@ -410,5 +429,4 @@ class Usuario {
     {
         $this->sexo = $sexo;
     }
-
 }

@@ -9316,12 +9316,19 @@ body.ficha .main-slider .opacity-white, body.lista .main-slider .opacity-white {
 .section-row.section-row--login {
   padding-top: 120px;
   min-height: 78vh; }
-  .section-row.section-row--login #login-form, .section-row.section-row--login #password-form {
+  .section-row.section-row--login #login-form, .section-row.section-row--login #password-form, .section-row.section-row--login #recuperar-form, .section-row.section-row--login #actualizar-form {
     width: 95%;
     max-width: 300px;
     margin: 0 auto; }
-    .section-row.section-row--login #login-form .btn, .section-row.section-row--login #password-form .btn {
+    .section-row.section-row--login #login-form .btn, .section-row.section-row--login #password-form .btn, .section-row.section-row--login #recuperar-form .btn, .section-row.section-row--login #actualizar-form .btn {
       display: block; }
+  .section-row.section-row--login .sub-title-pass {
+    display: block;
+    text-align: center; }
+  .section-row.section-row--login .olvide-pass {
+    display: block;
+    text-align: center;
+    padding: 20px 0; }
   .section-row.section-row--login .btn {
     font-size: 18px; }
 
@@ -9356,7 +9363,7 @@ body.ficha .main-slider .opacity-white, body.lista .main-slider .opacity-white {
     text-align: left;
     margin-bottom: 28px; }
   .section-row--home .lista-post {
-    padding-bottom: 40px; }
+    padding-bottom: 20px; }
   .section-row--home .item-post {
     text-align: left; }
     .section-row--home .item-post .opacity {
@@ -9386,7 +9393,9 @@ body.ficha .main-slider .opacity-white, body.lista .main-slider .opacity-white {
         box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
         text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.2); }
     .section-row--home .item-post a.content {
-      color: #444; }
+      display: block;
+      color: #444;
+      padding: 0 0 30px; }
       .section-row--home .item-post a.content:hover .opacity {
         opacity: 1; }
       .section-row--home .item-post a.content .img {

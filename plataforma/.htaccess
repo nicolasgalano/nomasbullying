@@ -5,13 +5,42 @@
 # Activar RewriteEngine
 RewriteEngine on
 
-ErrorDocument 404 /Server/nomasbullying/plataforma/404.php
+ErrorDocument 404 /404.php
 
-RewriteBase /Server/nomasbullying/plataforma/
+RewriteBase /
 RewriteCond %{SCRIPT_FILENAME} !-d
 RewriteCond %{SCRIPT_FILENAME} !-f
- 
-RewriteRule ^([0-9]+)\-([a-zA-Z0-9-]*)$ ficha-articulos.php?id=$1
+
+RewriteRule ^articulo/([0-9]+)\-([a-zA-Z0-9-]*)$ ficha-articulos.php?id=$1
+
+RewriteRule ^taller/([0-9]+)\-([a-zA-Z0-9-]*)$ ficha-talleres.php?id=$1
+
+RewriteRule ^panel-institucion/([a-zA-Z0-9-]*)$ panel-institucion.php?tab=$1
+
+RewriteRule ^panel-institucion$ panel-institucion.php
+
+RewriteRule ^login$ login.php
+
+RewriteRule ^panel$ panel.php
+
+RewriteRule ^cambiar-contrasena$ cambiar-password.php
+
+RewriteRule ^actualizar-contrasena$ actualizar-password.php
+
+RewriteRule ^informacion$ informacion.php
+
+RewriteRule ^articulos$ lista-articulos.php
+
+RewriteRule ^talleres$ lista-talleres.php
+
+RewriteRule ^recuperar-contrasena$ recuperar-pass.php
+
+RewriteRule ^terminos-y-condiciones$ terminos-y-condiciones.php
+
+RewriteRule ^politicas-de-privacidad$ politicas-de-privacidad.php
+
+RewriteRule ^contacto$ contacto.php
+
 </IfModule>
 
 # END HTACCESS

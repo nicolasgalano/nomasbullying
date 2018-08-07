@@ -33,24 +33,17 @@ require 'partials/header.php';
         <div class="row">
             <div class="col-sm-12">
 
-                <h1 class="title">Login</h1>
+                <h1 class="title">Recuperar contraseña</h1>
 
-                <form id="login-form">
+                <p class="sub-title-pass">Te enviaremos un mail con tu contraseña temporal</p>
 
-                    <div class="form-group form-group-lg">
-                        <input class="form-control" type="text" placeholder="DNI" id="usuario" name="usuario" value="<?php
-                        if($input) {
-                            echo $input['usuario'];
-                        } ?>">
-                    </div>
+                <form id="recuperar-form">
 
                     <div class="form-group form-group-lg">
-                        <input class="form-control" type="password" id="password" placeholder="Contraseña" name="password">
+                        <input class="form-control" type="text" placeholder="DNI" id="usuario" name="DNI" value="">
                     </div>
 
-                    <button class="btn btn--center btn--m-t"><i class="fa fa-refresh fa-spin fa-fw hide"></i>Ingresar</button>
-
-                    <a class="olvide-pass" href="/recuperar-contrasena">Olvidé mi contraseña</a>
+                    <button class="btn btn--center btn--m-t"><i class="fa fa-refresh fa-spin fa-fw hide"></i>Enviar</button>
 
                     <div class="form-response" id="form-response" style="display:block;">
                         <p></p>

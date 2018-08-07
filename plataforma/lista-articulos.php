@@ -14,10 +14,31 @@ function cleanURL($string) {
     $string = str_replace(' ', '-', $string); // Replaces all spaces with hyphens.
     return strtolower( preg_replace('/[^A-Za-z0-9\-]/', '', $string) ); // Removes special chars.
 }
-$title_string = 'Plataformá Anti-bullyíng';
-//EJ:
-$url = cleanURL($title_string);
-//
+
+function shorten_text($text, $max_length = 140, $cut_off = '...', $keep_word = false)
+{
+    if(strlen($text) <= $max_length) {
+        return $text;
+    }
+
+    if(strlen($text) > $max_length) {
+        if($keep_word) {
+            $text = substr($text, 0, $max_length + 1);
+
+            if($last_space = strrpos($text, ' ')) {
+                $text = substr($text, 0, $last_space);
+                $text = rtrim($text);
+                $text .=  $cut_off;
+            }
+        } else {
+            $text = substr($text, 0, $max_length);
+            $text = rtrim($text);
+            $text .=  $cut_off;
+        }
+    }
+
+    return $text;
+}
 
 ?>
 
@@ -47,47 +68,23 @@ require 'partials/header.php';
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-12">
-
+                <?php $articulos = Publicacion::buscarPorIdtipos(1); ?>
                 <div class="row lista-post">
 
-                    <div class="col-md-4 item-post">
-                        <a class="content" href="<?= $url ?>">
-                            <div class="img" style="background-image:url('images/instituto/post-1.png');">
-                                <div class="opacity">
-                                    <div class="btn">Leer nota</div>
+                    <?php foreach($articulos as $articulo): ?>
+                        <div class="col-md-4 item-post">
+                            <a class="content" href="articulo/<?php echo ( $articulo->getID().'-'.cleanURL($articulo->getTitulo()) )?>">
+                                <div class="img" style="background-image:url('images/instituto/post-1.png');">
+                                    <div class="opacity">
+                                        <div class="btn">Leer articulo</div>
+                                    </div>
+                                    <img src="images/instituto/post-1.png">
                                 </div>
-                                <img src="images/instituto/post-1.png">
-                            </div>
-                            <h3>Como tratar a tus compañeros</h3>
-                            <p>Esta es la descripcion de un taller dado por la institucion en pos de educar a los apdres y docentes y gente que necesite ayuda.</p>
-                        </a>
-                    </div>
-
-                    <div class="col-md-4 item-post">
-                        <a class="content" href="#">
-                            <div class="img" style="background-image:url('images/instituto/post-1.png');">
-                                <div class="opacity">
-                                    <div class="btn">Leer nota</div>
-                                </div>
-                                <img src="images/instituto/post-1.png">
-                            </div>
-                            <h3>Como tratar a tus compañeros</h3>
-                            <p>Esta es la descripcion de un taller dado por la institucion en pos de educar a los apdres y docentes y gente que necesite ayuda.</p>
-                        </a>
-                    </div>
-
-                    <div class="col-md-4 item-post">
-                        <a class="content" href="#">
-                            <div class="img" style="background-image:url('images/instituto/post-1.png');">
-                                <div class="opacity">
-                                    <div class="btn">Leer nota</div>
-                                </div>
-                                <img src="images/instituto/post-1.png">
-                            </div>
-                            <h3>Como tratar a tus compañeros</h3>
-                            <p>Esta es la descripcion de un taller dado por la institucion en pos de educar a los apdres y docentes y gente que necesite ayuda.</p>
-                        </a>
-                    </div>
+                                <h3><?= $articulo->getTitulo();?></h3>
+                                <p><?= shorten_text( $articulo->getContenido(), 100, ' ...', true );?></p>
+                            </a>
+                        </div>
+                    <?php endforeach; ?>
 
                 </div>
 

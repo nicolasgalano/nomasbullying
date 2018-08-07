@@ -61,7 +61,7 @@ class Notificacion {
     public static function traerTodosIdPadre($id)
     {
         $query = "SELECT * FROM notificaciones
-                  WHERE padre = ?";
+                  WHERE padre = ? ORDER BY id DESC";
         $stmt = DBConnection::getStatement($query);
         $stmt->execute([$id]);
         $salida = [];

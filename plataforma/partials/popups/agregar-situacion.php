@@ -1,7 +1,7 @@
 <?php
 require_once 'autoload.php';
 
-$usuarios = Usuario::traerTodos();
+$usuarios = Usuario::buscarPorTipo(2);
 
 ?>
 <div class="popup popup-agregar-situacion">
@@ -22,7 +22,7 @@ $usuarios = Usuario::traerTodos();
                         foreach($usuarios as $usuario):
                         if($usuario->getId() != 1){
                     ?>
-                        <option value="<?= $usuario->getId();?>">&nbsp;<?= $usuario->getNombre();?> <?= $usuario->getApellido();?></option>
+                        <option value="<?= $usuario->getId();?>">&nbsp;<?= $usuario->getApellido();?> <?= $usuario->getNombre();?></option>
                     <?php } endforeach; ?>
                 </select>
                 <select class="form-control small margin-left" name="victima" placeholder="Victima">
@@ -31,7 +31,7 @@ $usuarios = Usuario::traerTodos();
                         foreach($usuarios as $usuario):
                         if($usuario->getId() != 1){
                     ?>
-                        <option value="<?= $usuario->getId();?>">&nbsp;<?= $usuario->getNombre();?> <?= $usuario->getApellido();?></option>
+                        <option value="<?= $usuario->getId();?>">&nbsp;<?= $usuario->getApellido();?> <?= $usuario->getNombre();?></option>
                     <?php } endforeach; ?>
                 </select>
             </div>

@@ -14,6 +14,12 @@ require 'partials/head.php';
 require 'partials/header.php';
 ?>
 
+<?php
+    $links = Publicacion::buscarPorIdtipos(3);
+    $telsayuda = Publicacion::buscarPorIdtipos(4);
+    $telsinstitucion = Publicacion::buscarPorIdtipos(5);
+?>
+
 <div class="section-row section-row--informacion">
   <div class="container">
     <div class="row">
@@ -24,59 +30,41 @@ require 'partials/header.php';
         <div class="row">
           <div class="col-sm-6">
             <div class="information-box">
-              <h4>Teléfonos de ayuda</h4>
-              <ul>
-                <li>
-                  <div class="large">Gobierno de la ciudad de buenos aires</div>
-                  <div class="small">12312313123</div>
-                </li>
-                <li>
-                  <div class="large">Ministerio anti-bullying</div>
-                  <div class="small">*321</div>
-                </li>
-                <li>
-                  <div class="large">Basta de Bullying</div>
-                  <div class="small">12312313123</div>
-                </li>
-              </ul>
+                <h4>Teléfonos de ayuda</h4>
+                <ul>
+                    <?php foreach($telsayuda as $telayuda): ?>
+                        <li>
+                            <div class="large"><?= $telayuda->getTitulo();?></div>
+                            <div class="small"><?= $telayuda->getContenido();?></div>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="information-box">
-              <h4>Sitios de ayuda anti-bullying</h4>
-              <ul>
-                <li>
-                  <div class="large">Gobierno de la ciudad de buenos aires</div>
-                  <div class="small"> <a href="#">www.lalalala.com</a></div>
-                </li>
-                <li>
-                  <div class="large">Gobierno de la ciudad de buenos aires</div>
-                  <div class="small"> <a href="#">www.lalalala.com</a></div>
-                </li>
-                <li>
-                  <div class="large">Gobierno de la ciudad de buenos aires</div>
-                  <div class="small"> <a href="#">www.lalalala.com</a></div>
-                </li>
-              </ul>
+                <h4>Sitios de ayuda anti-bullying</h4>
+                <ul>
+                    <?php foreach($links as $link): ?>
+                        <li>
+                            <div class="large"><?= $link->getTitulo();?></div>
+                            <div class="small"><a target="_blank" href="http://<?= $link->getContenido();?>"><?= $link->getContenido();?></a></div>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="information-box">
-              <h4>Teléfonos de la institución</h4>
-              <ul>
-                <li>
-                  <div class="large">Gabinete pedagogico</div>
-                  <div class="small">12312313123</div>
-                </li>
-                <li>
-                  <div class="large">Dirección</div>
-                  <div class="small">*321</div>
-                </li>
-                <li>
-                  <div class="large">Zarlanga</div>
-                  <div class="small">12312313123</div>
-                </li>
-              </ul>
+                <h4>Teléfonos de la institución</h4>
+                <ul>
+                    <?php foreach($telsinstitucion as $telinstitucion): ?>
+                    <li>
+                        <div class="large"><?= $telinstitucion->getTitulo();?></div>
+                        <div class="small"><?= $telinstitucion->getContenido();?></div>
+                    </li>
+                    <?php endforeach; ?>
+                </ul>
             </div>
           </div>
         </div>

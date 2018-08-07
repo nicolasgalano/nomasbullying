@@ -4,17 +4,17 @@ require_once 'autoload.php';
 <!-- FOOTER -->
 <footer>
     <div class="navbar navbar-default">
-        <div class="container"><a class="navbar-brand" href="#" style="background-image: url(images/logo-footer.png);"></a>
+        <div class="container"><a class="navbar-brand" href="#" style="background-image: url(/images/logo-footer.png);"></a>
             <ul class="nav navbar-nav">
-                <li><a class="home-link" href="index.php">Home</a></li>
-                <li><a class="contacto-link" href="contacto.php">Contacto</a></li>
-                <li><a class="link" href="terminos-y-condiciones.php">Términos y Condiciones</a></li>
-                <li><a class="link" href="politicas-de-privacidad.php">Políticas de Privacidad</a></li>
+                <li><a class="home-link" href="/">Home</a></li>
+                <li><a class="contacto-link" href="/contacto">Contacto</a></li>
+                <li><a class="link" href="/terminos-y-condiciones">Términos y Condiciones</a></li>
+                <li><a class="link" href="/politicas-de-privacidad">Políticas de Privacidad</a></li>
                 <?php if(!Auth::userLogged()) { ?>
-                    <li><a class="login-link" href="login.php">Login</a></li>
+                    <li><a class="login-link" href="/login">Login</a></li>
                 <?php } else { ?>
-                    <li><a class="panel-link" href="panel.php">Panel</a></li><!-- panel-institucion.php si Institucion-->
-                    <li><a class="cerrarsesion-link" href="acciones/logout.php">Cerrar sesión</a></li>
+                    <li><a class="panel-link" href="/panel">Panel</a></li><!-- panel-institucion.php si Institucion-->
+                    <li><a class="cerrarsesion-link" href="/acciones/logout.php">Cerrar sesión</a></li>
                 <?php } ?>
             </ul>
             <ul class="navbar-right social clearfix">
@@ -25,8 +25,8 @@ require_once 'autoload.php';
     </div>
 </footer>
 
-<script src="js/vendor.js"></script>
-<script src="js/app.js"></script>
+<script src="/js/vendor.js"></script>
+<script src="/js/app.js"></script>
 
 </body>
 

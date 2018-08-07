@@ -8,9 +8,8 @@ if(!Auth::userLogged()) {
 }else{
 
     try {
-        Comentario::eliminarByN($_POST['id']);
-        $result = Notificacion::eliminar($_POST);
-        echo json_encode($result);
+        Publicacion::eliminar($_POST);
+        echo json_encode(true);
     } catch(Exception $e) {
         echo "Hubo un error en la creación del alumno. Por favor intentalo de nuevo.";
     }

@@ -2,7 +2,7 @@
 require_once 'autoload.php';
 
 if(!Auth::userLogged()) {
-    header('Location: index.php');
+    header('Location: /');
 }
 
 // OBTENER DATOS DE ULTIMA FECHA AL ENTRAR AL PANEL A LA SECCION DE SITUACIONES
@@ -49,7 +49,7 @@ require 'partials/header.php';
                 <div class="rock">
                     <h1 class="title">Panel Administrador</h1>
                     <ul class="side-menu">
-                        <li><a <?=($openTab=='clientes')?'class="active"':'';?> href="panel-admin.php?tab=clientes">Clientes</a></li>
+                        <li><a <?=($openTab=='clientes')?'class="active"':'';?> href="panel/clientes">Clientes</a></li>
                     </ul>
                 </div>
             </div>

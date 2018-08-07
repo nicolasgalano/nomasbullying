@@ -19,7 +19,7 @@ require 'partials/header.php';
         <div class="row">
             <div class="col-sm-12">
                 <h1 class="title">Perdón, pero no hemos encontrado la página que estas buscando :(</h1>
-                <p style="text-align:center;font-size:20px;"><a href="index.php">Ir a la Home</a></p>
+                <p style="text-align:center;font-size:20px;"><a href="/">Ir a la Home</a></p>
             </div>
         </div>
     </div>

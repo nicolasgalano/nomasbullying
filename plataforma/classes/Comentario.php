@@ -78,6 +78,22 @@ class Comentario {
 
     }
 
+    public static function eliminarByN($data)
+    {
+        $query = "DELETE FROM comentarios
+                  WHERE idNotificacion = :id";
+
+        $stmt = DBConnection::getStatement($query);
+
+        $exito = $stmt->execute([
+            'id' => $data
+        ]);
+
+        if(!$exito) {
+            throw new Exception('Error al eliminar los datos.');
+        }
+    }
+
     public static function crearS($creador,$contenido,$idSituacion)
     {
         $query = "INSERT INTO comentarios (creador, contenido, fecha, idSituacion)
@@ -202,8 +218,7 @@ class Comentario {
 	              comentarios
                   SET
                   estado = 1
-                  WHERE idSituacion = :idS AND creador <> :idU AND estado = 0
-                  LIMIT 1";
+                  WHERE idSituacion = :idS AND creador <> :idU AND estado = 0";
 
         $stmt = DBConnection::getStatement($query);
 
@@ -220,8 +235,7 @@ class Comentario {
 	              comentarios
                   SET
                   estado = 1
-                  WHERE idNotificacion = :idN AND creador <> :idU AND estado = 0
-                  LIMIT 1";
+                  WHERE idNotificacion = :idN AND creador <> :idU AND estado = 0";
 
         $stmt = DBConnection::getStatement($query);
 

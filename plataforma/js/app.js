@@ -87,11 +87,11 @@ if ( typeof define === 'function' && define.amd ) {
         var llamada = '';
 
         if(typeOfComment == 1){
-            llamada = 'acciones/get-comentarios.php?idsituacion='+typeID;
+            llamada = '/acciones/get-comentarios.php?idsituacion='+typeID;
         }
 
         if(typeOfComment == 2){
-            llamada = 'acciones/get-comentarios-notificacion.php?idnotificacion='+typeID;
+            llamada = '/acciones/get-comentarios-notificacion.php?idnotificacion='+typeID;
         }
 
         var $popupComentario = $(popupName);
@@ -140,7 +140,7 @@ if ( typeof define === 'function' && define.amd ) {
 
                 $.ajax({
                     method: 'GET',
-                    url: 'acciones/agregar-comentario.php?creador='+usuarioID+'&contenido='+$('#mensaje-comentario').val()+'&id-situacion='+situacionID,
+                    url: '/acciones/agregar-comentario.php?creador='+usuarioID+'&contenido='+$('#mensaje-comentario').val()+'&id-situacion='+situacionID,
                     success: function(data) {
                         if(data) {
                             $('#mensaje-comentario').val('');
@@ -171,7 +171,7 @@ if ( typeof define === 'function' && define.amd ) {
 
                 $.ajax({
                     method: 'GET',
-                    url: 'acciones/agregar-comentario-notificacion.php?creador='+usuarioID+'&contenido='+$('#mensaje-comentario-not').val()+'&id-notificacion='+notificacionID,
+                    url: '/acciones/agregar-comentario-notificacion.php?creador='+usuarioID+'&contenido='+$('#mensaje-comentario-not').val()+'&id-notificacion='+notificacionID,
                     success: function(data) {
                         if(data) {
                             $('#mensaje-comentario-not').val('');
@@ -196,7 +196,7 @@ if ( typeof define === 'function' && define.amd ) {
 
                 $.ajax({
                     method: 'GET',
-                    url: 'acciones/set-estatus.php?idsituacion='+situacionID,
+                    url: '/acciones/set-estatus.php?idsituacion='+situacionID,
                     data: '',
                     success: function(data) {
                     },
@@ -207,7 +207,7 @@ if ( typeof define === 'function' && define.amd ) {
 
             $.ajax({
                 method: 'GET',
-                url: 'acciones/get-situacion.php?idsituacion='+situacionID,
+                url: '/acciones/get-situacion.php?idsituacion='+situacionID,
                 data: '',
                 success: function(data) {
                     data = JSON.parse(' '+data+' ');
@@ -226,7 +226,7 @@ if ( typeof define === 'function' && define.amd ) {
             //CREADOR
             $.ajax({
                 method: 'GET',
-                url: 'acciones/get-usuario.php?idusuario='+usuarioID,
+                url: '/acciones/get-usuario.php?idusuario='+usuarioID,
                 data: '',
                 success: function(data) {
                     data = JSON.parse(' '+data+' ');
@@ -242,7 +242,7 @@ if ( typeof define === 'function' && define.amd ) {
             //VICTIMA
             $.ajax({
                 method: 'GET',
-                url: 'acciones/get-implicado.php?idsituacion='+situacionID+'&rol='+'1',
+                url: '/acciones/get-implicado.php?idsituacion='+situacionID+'&rol='+'1',
                 data: '',
                 success: function(data) {
                     data = JSON.parse(' '+data+' ');
@@ -250,7 +250,7 @@ if ( typeof define === 'function' && define.amd ) {
                     if(data) {
                         $.ajax({
                             method: 'GET',
-                            url: 'acciones/get-usuario.php?idusuario='+data['idUsuario'],
+                            url: '/acciones/get-usuario.php?idusuario='+data['idUsuario'],
                             data: '',
                             success: function(data) {
                                 data = JSON.parse(' '+data+' ');
@@ -268,7 +268,7 @@ if ( typeof define === 'function' && define.amd ) {
             //VICTIMARIO
             $.ajax({
                 method: 'GET',
-                url: 'acciones/get-implicado.php?idsituacion='+situacionID+'&rol='+'2',
+                url: '/acciones/get-implicado.php?idsituacion='+situacionID+'&rol='+'2',
                 data: '',
                 success: function(data) {
                     data = JSON.parse(' '+data+' ');
@@ -276,7 +276,7 @@ if ( typeof define === 'function' && define.amd ) {
                     if(data) {
                         $.ajax({
                             method: 'GET',
-                            url: 'acciones/get-usuario.php?idusuario='+data['idUsuario'],
+                            url: '/acciones/get-usuario.php?idusuario='+data['idUsuario'],
                             data: '',
                             success: function(data) {
                                 data = JSON.parse(' '+data+' ');
@@ -304,13 +304,70 @@ if ( typeof define === 'function' && define.amd ) {
             $('#borrar-notificacion').attr('aria-id-notificacion',$(this).attr('aria-id-notificacion'));//SET ID
         }
 
+        function pubType(tipo){
+            switch (tipo) {
+                case '1':
+                    return 'articulo';
+                    break;
+                case '2':
+                    return 'taller';
+                    break;
+                case '3':
+                    return 'link';
+                    break;
+                case '4':
+                    return 'teléfono de ayuda';
+                    break;
+                case '5':
+                    return 'teléfono de institución';
+                    break;
+                default:
+                    return 'publicación';
+            }
+        }
+        //IF BORRAR PUBLICACION
+        if(popupClass == '.popup-borrar-publicacion'){
+            $(popupClass).find('.popup-top h5').html( 'Borrar ' + pubType( $(this).attr('aria-tipo') ) );
+            $('#borrar-publicacion').attr('aria-id-publicacion',$(this).attr('aria-id'));//SET ID
+        }
+        //IF AGREGAR PUBLICACION
+        if(popupClass == '.popup-agregar-publicacion'){
+            $(popupClass).find('.popup-top h5').html( 'Agregar ' + pubType( $(this).attr('aria-tipo') ) );
+            $('#agregar-publicacion-form').find('input[name="tipo"]').attr('value',$(this).attr('aria-tipo'));
+        }
+        //IF EDITAR PUBLICACION
+        if(popupClass == '.popup-editar-publicacion'){
+
+            $(popupClass).find('.popup-top h5').html('Editar ' + pubType( $(this).attr('aria-tipo') ) );
+
+            var pubID = $(this).attr('aria-id');
+            var $formEditarPub = $('#editar-publicacion-form');
+            $.ajax({
+                method: 'GET',
+                url: '/acciones/get-publicacion.php?idpublicacion='+pubID,
+                data: '',
+                success: function(data) {
+                    data = JSON.parse(' '+data+' ');
+                    console.log(data);
+                    if(data) {
+                        $formEditarPub.find('input[name="id"]').attr('value',data.ID);
+                        $formEditarPub.find('input[name="tipo"]').attr('value',data.idtipos);
+                        $formEditarPub.find('input[name="creador"]').attr('value',data.creador);
+                        $formEditarPub.find('input[name="titulo"]').attr('value',data.titulo);
+                        $formEditarPub.find('textarea').html(data.contenido);
+                    }
+                },
+                complete: function() {}
+            });
+        }
+
         //EDITAR USUARIO
         if(popupClass == '.popup-editar-usuarios'){
             var usuarioID = $(this).attr('aria-id');
             var $formEditarUsuario = $('#editar-usuario-form');
             $.ajax({
                 method: 'GET',
-                url: 'acciones/get-usuario.php?idusuario='+usuarioID,
+                url: '/acciones/get-usuario.php?idusuario='+usuarioID,
                 data: '',
                 success: function(data) {
                     data = JSON.parse(' '+data+' ');
@@ -418,7 +475,7 @@ if ( typeof define === 'function' && define.amd ) {
             var params = $(form).serializeArray();
             $.ajax({
                 method: 'POST',
-                url: 'acciones/contacto.php',
+                url: '/acciones/contacto.php',
                 data: params,
                 success: function(data) {
                     if(data) {
@@ -428,6 +485,62 @@ if ( typeof define === 'function' && define.amd ) {
                 },
                 complete: function() {
                     submitLoader.addClass('hide');
+                }
+            });
+        }
+        , showErrors: function (errorMap, errorList) {
+            if (typeof errorList[0] != "undefined") {}
+            this.defaultShowErrors(); // keep error messages next to each input element
+        }
+    });
+
+    //TALLER CONTACTO
+    var formTC = $('#taller-contact-form');
+    var submitLoaderTC = formTC.find('button i');
+    var responseTC = formTC.find('.form-response');
+    formTC.on('submit', (e) => e.preventDefault());
+    formTC.validate({
+        onfocusout: false,
+        rules: {
+            email: 'required',
+            message: 'required'
+        },
+        messages: {
+            email: {
+                required: '¿Cual es tu e-mail?'
+            },
+            message: 'Contanos el porque de tu inscripción.'
+        }
+        , highlight: function(element, errorClass, validClass) {
+            let el = $(element);
+            el.addClass('error');
+            el.parent().addClass('has-error');
+        }
+        , unhighlight: function(element, errorClass, validClass) {
+            let el = $(element);
+            el.removeClass('error');
+            el.parent().removeClass('has-error');
+        }
+        , errorPlacement: function(error, element) {
+            error.addClass('control-label animated fadeIn');
+            element.after(error);
+        }
+        , submitHandler: function (form) {
+            submitLoaderTC.removeClass('hide');
+            var params = $(form).serializeArray();
+            $.ajax({
+                method: 'POST',
+                url: '/acciones/contacto-taller.php',
+                data: params,
+                success: function(data) {
+                    console.log(data);
+                    if(data) {
+                        submitLoaderTC.parent().hide();
+                        responseTC.addClass('success').fadeIn();
+                    }
+                },
+                complete: function() {
+                    submitLoaderTC.addClass('hide');
                 }
             });
         }
@@ -475,16 +588,76 @@ if ( typeof define === 'function' && define.amd ) {
             var params = $(form).serializeArray();
             $.ajax({
                 method: 'POST',
-                url: 'acciones/do-login.php',
+                url: '/acciones/do-login.php',
                 data: params,
                 success: function(data) {
                     if(data == 'true') {
-                        window.location.href = "panel.php";
+                        window.location.href = "/panel";
                         //submitLoaderLogin.parent().hide();
+                    }else if(data == 'temp') {
+                        window.location.href = "/actualizar-contrasena";
                     }else{
                         responseLogin.find('p').text(data);
                         responseLogin.addClass('success').fadeIn();
                         submitLoaderLogin.addClass('hide');
+                    }
+                },
+                complete: function() {
+                    //submitLoaderLogin.addClass('hide');
+                }
+            });
+        }
+        , showErrors: function (errorMap, errorList) {
+            if (typeof errorList[0] != "undefined") {}
+            this.defaultShowErrors(); // keep error messages next to each input element
+        }
+    });
+
+
+    //LOGIN
+    var formRecuperar = $('#recuperar-form');
+    var submitLoaderRecuperar = formRecuperar.find('button i');
+    var responseRecuperar = formRecuperar.find('.form-response');
+    formRecuperar.on('submit', (e) => e.preventDefault());
+    formRecuperar.validate({
+        onfocusout: false,
+        rules: {
+            usuario: 'required'
+        },
+        messages: {
+            usuario: {
+                required: 'Debe completar el campo de DNI'
+            }
+        }
+        , highlight: function(element, errorClass, validClass) {
+            let el = $(element);
+            el.addClass('error');
+            el.parent().addClass('has-error');
+        }
+        , unhighlight: function(element, errorClass, validClass) {
+            let el = $(element);
+            el.removeClass('error');
+            el.parent().removeClass('has-error');
+        }
+        , errorPlacement: function(error, element) {
+            error.addClass('control-label animated fadeIn');
+            element.after(error);
+        }
+        , submitHandler: function (form) {
+            submitLoaderRecuperar.removeClass('hide');
+            var params = $(form).serializeArray();
+            $.ajax({
+                method: 'POST',
+                url: '/acciones/recuperar.php',
+                data: params,
+                success: function(data) {
+                    if(data == 'true') {
+                        window.location.href = "/panel";
+                        //submitLoaderLogin.parent().hide();
+                    }else{
+                        responseRecuperar.find('p').text(data);
+                        responseRecuperar.addClass('success').fadeIn();
+                        submitLoaderRecuperar.addClass('hide');
                     }
                 },
                 complete: function() {
@@ -541,19 +714,19 @@ if ( typeof define === 'function' && define.amd ) {
             var params = $(form).serializeArray();
             $.ajax({
                 method: 'POST',
-                url: 'acciones/cambiar-password.php',
+                url: '/acciones/cambiar-password.php',
                 data: params,
                 success: function(data) {
 
                     console.log(data);
 
                     if(data == 'true') {
-                        window.location.href = "panel.php";
+                        window.location.href = "/panel";
                         //submitLoaderLogin.parent().hide();
                     }else{
-                        responseLogin.find('p').text(data);
-                        responseLogin.addClass('success').fadeIn();
-                        submitLoaderLogin.addClass('hide');
+                        responsePass.find('p').text(data);
+                        responsePass.addClass('success').fadeIn();
+                        submitLoaderPass.addClass('hide');
                     }
                 },
                 complete: function() {
@@ -567,6 +740,188 @@ if ( typeof define === 'function' && define.amd ) {
         }
     });
 
+    //ACTUALIZAR CONTRASEÑA
+    var formPassAct= $('#actualizar-form');
+    var submitLoaderPassAct = formPassAct.find('button i');
+    var responsePassAct = formPassAct.find('.form-response');
+    formPassAct.on('submit', (e) => e.preventDefault());
+    formPassAct.validate({
+        onfocusout: false,
+        rules: {
+            password_new: 'required',
+            password_new2: 'required'
+        },
+        messages: {
+            password_new: {
+                required: 'Falta completar este campo'
+            },
+            password_new2: {
+                required: 'Falta completar este campo'
+            }
+        }
+        , highlight: function(element, errorClass, validClass) {
+            let el = $(element);
+            el.addClass('error');
+            el.parent().addClass('has-error');
+        }
+        , unhighlight: function(element, errorClass, validClass) {
+            let el = $(element);
+            el.removeClass('error');
+            el.parent().removeClass('has-error');
+        }
+        , errorPlacement: function(error, element) {
+            error.addClass('control-label animated fadeIn');
+            element.after(error);
+        }
+        , submitHandler: function (form) {
+            submitLoaderPassAct.removeClass('hide');
+            var params = $(form).serializeArray();
+            $.ajax({
+                method: 'POST',
+                url: '/acciones/actualizar-password.php',
+                data: params,
+                success: function(data) {
+
+                    console.log(data);
+
+                    if(data == 'true') {
+                        window.location.href = "/panel";
+                    }else{
+                        responsePassAct.find('p').text(data);
+                        responsePassAct.addClass('success').fadeIn();
+                        submitLoaderPassAct.addClass('hide');
+                    }
+                },
+                complete: function() {
+                    //submitLoaderLogin.addClass('hide');
+                }
+            });
+        }
+        , showErrors: function (errorMap, errorList) {
+            if (typeof errorList[0] != "undefined") {}
+            this.defaultShowErrors(); // keep error messages next to each input element
+        }
+    });
+
+    //AGREGAR PUBLICACION
+    var formAP = $('#agregar-publicacion-form');
+    var submitLoaderAP = formAP.find('button i');
+    var responseAP = formAP.find('.form-response');
+    formAP.on('submit', (e) => e.preventDefault());
+    formAP.validate({
+        onfocusout: false,
+        rules: {
+            titulo: 'required',
+            contenido: 'required'
+        },
+        messages: {
+            titulo: {
+                required: 'Falta completar el título'
+            },
+            contenido: {
+                required: 'Falta completar el contenido'
+            }
+        }
+        , highlight: function(element, errorClass, validClass) {
+            let el = $(element);
+            el.addClass('error');
+            el.parent().addClass('has-error');
+        }
+        , unhighlight: function(element, errorClass, validClass) {
+            let el = $(element);
+            el.removeClass('error');
+            el.parent().removeClass('has-error');
+        }
+        , errorPlacement: function(error, element) {
+            error.addClass('control-label animated fadeIn');
+            element.after(error);
+        }
+        , submitHandler: function (form) {
+            submitLoaderAP.removeClass('hide');
+            var params = $(form).serializeArray();
+            console.log(params);
+            $.ajax({
+                method: 'POST',
+                url: '/acciones/agregar-publicacion.php',
+                data: params,
+                success: function(data) {
+                    console.log(data);
+                    if(data == 'true') {
+                        window.location.href = "/panel-institucion/contenido";
+                    }else{
+                        responseAP.find('p').text(data);
+                        responseAP.addClass('success').fadeIn();
+                        submitLoaderAP.addClass('hide');
+                    }
+                },
+                complete: function() {}
+            });
+        }
+        , showErrors: function (errorMap, errorList) {
+            if (typeof errorList[0] != "undefined") {}
+            this.defaultShowErrors(); // keep error messages next to each input element
+        }
+    });
+
+    //EDITAR PUBLICACION
+    var formEP = $('#editar-publicacion-form');
+    var submitLoaderEP = formEP.find('button i');
+    var responseEP = formEP.find('.form-response');
+    formEP.on('submit', (e) => e.preventDefault());
+    formEP.validate({
+        onfocusout: false,
+        rules: {
+            titulo: 'required',
+            contenido: 'required'
+        },
+        messages: {
+            titulo: {
+                required: 'Falta completar el título'
+            },
+            contenido: {
+                required: 'Falta completar el contenido'
+            }
+        }
+        , highlight: function(element, errorClass, validClass) {
+            let el = $(element);
+            el.addClass('error');
+            el.parent().addClass('has-error');
+        }
+        , unhighlight: function(element, errorClass, validClass) {
+            let el = $(element);
+            el.removeClass('error');
+            el.parent().removeClass('has-error');
+        }
+        , errorPlacement: function(error, element) {
+            error.addClass('control-label animated fadeIn');
+            element.after(error);
+        }
+        , submitHandler: function (form) {
+            submitLoaderAP.removeClass('hide');
+            var params = $(form).serializeArray();
+            console.log(params);
+            $.ajax({
+                method: 'POST',
+                url: '/acciones/editar-publicacion.php',
+                data: params,
+                success: function(data) {
+                    console.log(data);
+                    if(data == 'true') {
+                        window.location.href = "/panel-institucion/contenido";
+                    }else{
+                        responseEP.find('p').text(data);
+                        responseEP.addClass('success').fadeIn();
+                        submitLoaderEP.addClass('hide');
+                    }
+                },
+                complete: function() {}
+            });
+        }
+        , showErrors: function (errorMap, errorList) {
+            if (typeof errorList[0] != "undefined") {}
+            this.defaultShowErrors(); // keep error messages next to each input element
+        }
+    });
 
     //AGREGAR SITUACIÓN
     var formAS = $('#agregar-situacion-form');
@@ -611,12 +966,12 @@ if ( typeof define === 'function' && define.amd ) {
             console.log(params);
             $.ajax({
                 method: 'POST',
-                url: 'acciones/agregar-situacion.php',
+                url: '/acciones/agregar-situacion.php',
                 data: params,
                 success: function(data) {
                     console.log(data);
                     if(data == 'true') {
-                        window.location.href = "panel-institucion.php?tab=situaciones";
+                        window.location.href = "/panel-institucion/situaciones";
                     }else{
                         responseAS.find('p').text(data);
                         responseAS.addClass('success').fadeIn();
@@ -659,11 +1014,11 @@ if ( typeof define === 'function' && define.amd ) {
 
             $.ajax({
                 method: 'POST',
-                url: 'acciones/agregar-notificacion.php',
+                url: '/acciones/agregar-notificacion.php',
                 data: params,
                 success: function(data) {
                     if(data == 'true') {
-                        window.location.href = "panel-institucion.php?tab=notificaciones";
+                        window.location.href = "/panel-institucion/notificaciones";
                     }else{
                         responseAN.find('p').text(data);
                         responseAN.addClass('success').fadeIn();
@@ -723,11 +1078,11 @@ if ( typeof define === 'function' && define.amd ) {
             var params = $(form).serializeArray();
             $.ajax({
                 method: 'POST',
-                url: 'acciones/agregar-usuario.php',
+                url: '/acciones/agregar-usuario.php',
                 data: params,
                 success: function(data) {
                     if(data == 'true') {
-                        window.location.href = "panel-institucion.php?tab=usuarios";
+                        window.location.href = "/panel-institucion/usuarios";
                     }else{
                         responseAU.find('p').text(data);
                         responseAU.addClass('success').fadeIn();
@@ -788,11 +1143,11 @@ if ( typeof define === 'function' && define.amd ) {
             console.log(params);
             $.ajax({
                 method: 'POST',
-                url: 'acciones/editar-usuario.php',
+                url: '/acciones/editar-usuario.php',
                 data: params,
                 success: function(data) {
                     if(data == 'true') {
-                        window.location.href = "panel-institucion.php?tab=usuarios";
+                        window.location.href = "/panel-institucion/usuarios";
                     }else{
                         responseEU.find('p').text(data);
                         responseEU.addClass('success').fadeIn();
@@ -850,11 +1205,11 @@ if ( typeof define === 'function' && define.amd ) {
             console.log(params);
             $.ajax({
                 method: 'POST',
-                url: 'acciones/editar-alertas.php',
+                url: '/acciones/editar-alertas.php',
                 data: params,
                 success: function(data) {
                     if(data == 'true') {
-                        window.location.href = "panel-institucion.php?tab=config_alertas";
+                        window.location.href = "/panel-institucion/config-alertas";
                     }else{
                         responseEA.find('p').text(data);
                         responseEA.addClass('success').fadeIn();
@@ -882,14 +1237,41 @@ if ( typeof define === 'function' && define.amd ) {
         btnLoader.removeClass('hide');
         $.ajax({
             method: 'POST',
-            url: 'acciones/borrar-usuario.php',
+            url: '/acciones/borrar-usuario.php',
             data: idUsuario,
             success: function(data) {
                 if(data == 'true') {
-                    window.location.href = "panel-institucion.php?tab=usuarios";
+                    window.location.href = "/panel-institucion/usuarios";
                 }else{
                     responseBU.find('p').text(data);
                     responseBU.addClass('success').fadeIn();
+                    btnLoader.addClass('hide');
+                }
+            },
+            complete: function() {
+                btnLoader.addClass('hide');
+            }
+        });
+    });
+
+    //BORRAR PUBLICACION
+    var btnBorrarPub = $('#borrar-publicacion');
+    var btnLoader = btnBorrarPub.find('i');
+    var responseBP = btnBorrarPub.parent().find('.form-response');
+    btnBorrarPub.click(function(e){
+        e.preventDefault();
+        var idPub = [{"name":"id","value":parseInt($(this).attr('aria-id-publicacion'))}];
+        btnLoader.removeClass('hide');
+        $.ajax({
+            method: 'POST',
+            url: '/acciones/borrar-publicacion.php',
+            data: idPub,
+            success: function(data) {
+                if(data == 'true') {
+                    window.location.href = "/panel-institucion/contenido";
+                }else{
+                    responseBP.find('p').text(data);
+                    responseBP.addClass('success').fadeIn();
                     btnLoader.addClass('hide');
                 }
             },
@@ -909,11 +1291,11 @@ if ( typeof define === 'function' && define.amd ) {
         btnLoaderBN.removeClass('hide');
         $.ajax({
             method: 'POST',
-            url: 'acciones/borrar-notificacion.php',
+            url: '/acciones/borrar-notificacion.php',
             data: idNotificacion,
             success: function(data) {
                 if(data == 'true') {
-                    window.location.href = "panel-institucion.php?tab=notificaciones";
+                    window.location.href = "/panel-institucion/notificaciones";
                 }else{
                     responseBN.find('p').text(data);
                     responseBN.addClass('success').fadeIn();

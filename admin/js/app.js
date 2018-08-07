@@ -88,7 +88,7 @@ if ( typeof define === 'function' && define.amd ) {
 
         $.ajax({
             method: 'GET',
-            url: 'acciones/get-comentarios.php?idsituacion='+situacionID,
+            url: '/acciones/get-comentarios.php?idsituacion='+situacionID,
             data: '',
             success: function(data) {
                 data = JSON.parse(' '+data+' ');
@@ -129,7 +129,7 @@ if ( typeof define === 'function' && define.amd ) {
             var $formEditarInstituto = $('#editar-instituto-form');
             $.ajax({
                 method: 'GET',
-                url: 'acciones/get-instituto.php?idinstituto='+institutoID,
+                url: '/acciones/get-instituto.php?idinstituto='+institutoID,
                 data: '',
                 success: function(data) {
                     data = JSON.parse(' '+data+' ');
@@ -202,7 +202,7 @@ if ( typeof define === 'function' && define.amd ) {
             var params = $(form).serializeArray();
             $.ajax({
                 method: 'POST',
-                url: 'acciones/contacto.php',
+                url: '/acciones/contacto.php',
                 data: params,
                 success: function(data) {
                     if(data) {
@@ -259,11 +259,11 @@ if ( typeof define === 'function' && define.amd ) {
             var params = $(form).serializeArray();
             $.ajax({
                 method: 'POST',
-                url: 'acciones/do-login.php',
+                url: '/acciones/do-login.php',
                 data: params,
                 success: function(data) {
                     if(data == 'true') {
-                        window.location.href = "panel-admin.php";
+                        window.location.href = "/panel";
                         //submitLoaderLogin.parent().hide();
                     }else{
                         responseLogin.find('p').text(data);
@@ -325,12 +325,12 @@ if ( typeof define === 'function' && define.amd ) {
             console.log(params);
             $.ajax({
                 method: 'POST',
-                url: 'acciones/agregar-instituto.php',
+                url: '/acciones/agregar-instituto.php',
                 data: params,
                 success: function(data) {
                     console.log(data);
                     if(data == 'true') {
-                        window.location.href = "panel-admin.php?tab=clientes";
+                        window.location.href = "/panel/clientes";
                     }else{
                         responseAS.find('p').text(data);
                         responseAS.addClass('success').fadeIn();
@@ -390,11 +390,11 @@ if ( typeof define === 'function' && define.amd ) {
             console.log(params);
             $.ajax({
                 method: 'POST',
-                url: 'acciones/editar-instituto.php',
+                url: '/acciones/editar-instituto.php',
                 data: params,
                 success: function(data) {
                     if(data == 'true') {
-                        window.location.href = "panel-admin.php?tab=clientes";
+                        window.location.href = "/panel/clientes";
                     }else{
                         responseEU.find('p').text(data);
                         responseEU.addClass('success').fadeIn();
@@ -421,11 +421,11 @@ if ( typeof define === 'function' && define.amd ) {
         btnLoader.removeClass('hide');
         $.ajax({
             method: 'POST',
-            url: 'acciones/borrar-instituto.php',
+            url: '/acciones/borrar-instituto.php',
             data: idInstituto,
             success: function(data) {
                 if(data == 'true') {
-                    window.location.href = "panel-admin.php?tab=clientes";
+                    window.location.href = "/panel/clientes";
                 }else{
                     responseBU.find('p').text(data);
                     responseBU.addClass('success').fadeIn();

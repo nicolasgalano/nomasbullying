@@ -2,9 +2,12 @@
 require_once 'autoload.php';
 
 $_SESSION['page'] = 'ficha';
-?>
 
-<!-- HOME PAGE -->
+$idArticulo = 0;
+if( isset($_GET['id']) ){
+    $idArticulo = $_GET['id'];
+}
+?>
 
 <?php
 require 'partials/head.php';
@@ -14,12 +17,16 @@ require 'partials/head.php';
 require 'partials/header.php';
 ?>
 
-<div class="jumbotron main-slider" style="background-image: url('images/instituto/home-bg.jpg');">
+<?php
+$articulo = Publicacion::buscarPorId2($idArticulo);
+?>
+
+<div class="jumbotron main-slider" style="background-image: url('../images/instituto/home-bg.jpg');">
     <div class="opacity-white">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-12">
-                    <h1 class="title animated pulse">Titulo de taller</h1>
+                    <h1 class="title animated pulse"><?= $articulo[0]->getTitulo();?></h1>
                 </div>
             </div>
         </div>
@@ -32,7 +39,7 @@ require 'partials/header.php';
             <div class="col-xs-12">
 
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    <?= $articulo[0]->getContenido();?>
                 </p>
 
             </div>
@@ -44,6 +51,7 @@ require 'partials/header.php';
 if(Auth::userLogged()) {
 
     $usuario = Usuario::buscarPorUsuarioId( (int)str_replace(' ', '', $_SESSION['user']->getID() ) );
+    $usuarioAdmin = Usuario::buscarPorUsuarioId(1);
 
 ?>
 <div class="section-row section-row--contact-ficha">
@@ -54,9 +62,11 @@ if(Auth::userLogged()) {
                 <h5 class="subtitle">Hola <?= $usuario['nombre'];?>, en caso de estar interesado/a en el taller, nos gustaría que te sumes!</h5>
             </div>
             <div class="col-sm-5">
-                <form id="contact-form">
+                <form id="taller-contact-form">
+                    <input type="hidden" name="titulo" value="<?= $articulo[0]->getTitulo();?>">
                     <input type="hidden" name="nombre" value="<?= $usuario['nombre'];?>">
                     <input type="hidden" name="apellido" value="<?= $usuario['apellido'];?>">
+                    <input type="hidden" name="to-mail" value="<?= $usuarioAdmin['mail'];?>">
                     <div class="form-group form-group-lg">
                         <input class="form-control" type="email" placeholder="E-mail" name="email">
                     </div>

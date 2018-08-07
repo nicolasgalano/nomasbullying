@@ -7,10 +7,7 @@ $idArticulo = 0;
 if( isset($_GET['id']) ){
     $idArticulo = $_GET['id'];
 }
-
 ?>
-
-<!-- HOME PAGE -->
 
 <?php
 require 'partials/head.php';
@@ -20,12 +17,16 @@ require 'partials/head.php';
 require 'partials/header.php';
 ?>
 
-<div class="jumbotron main-slider" style="background-image: url('images/instituto/home-bg.jpg');">
+<?php
+$articulo = Publicacion::buscarPorId2($idArticulo);
+?>
+
+<div class="jumbotron main-slider" style="background-image: url('../images/instituto/home-bg.jpg');">
     <div class="opacity-white">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-12">
-                    <h1 class="title animated pulse"><?= $idArticulo?>Plataforma Anti-bullying</h1>
+                    <h1 class="title animated pulse"><?= $articulo[0]->getTitulo();?></h1>
                 </div>
             </div>
         </div>
@@ -38,7 +39,7 @@ require 'partials/header.php';
             <div class="col-xs-12">
 
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    <?= $articulo[0]->getContenido();?>
                 </p>
 
             </div>

@@ -120,11 +120,22 @@
 
     min-height:78vh;
 
-    #login-form, #password-form{
+    #login-form, #password-form, #recuperar-form, #actualizar-form{
         width:95%;
         max-width:300px;
         margin:0 auto;
         .btn{display:block;}
+    }
+
+    .sub-title-pass{
+        display:block;
+        text-align: center;
+    }
+
+    .olvide-pass{
+        display:block;
+        text-align: center;
+        padding:20px 0;
     }
 
     .btn{
@@ -170,7 +181,7 @@
         margin-bottom: 28px;
     }
     .lista-post{
-        padding-bottom:40px;
+        padding-bottom:20px;
     }
     .item-post{
         text-align: left;
@@ -201,7 +212,9 @@
             }
         }
         a.content{
-            color:#444;
+            display: block;
+            color: #444;
+            padding: 0 0 30px;
             &:hover{
                 .opacity{
                     opacity:1;

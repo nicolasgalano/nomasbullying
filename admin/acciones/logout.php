@@ -3,4 +3,4 @@ require '../autoload.php';
 
 Auth::logout();
 
-header('Location: ../index.php');
+header('Location: /');
