@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: jpfra
- * Date: 4/8/2018
- * Time: 6:16 PM
- */
 
 class DBConnectionSA {
 
@@ -48,4 +42,4 @@ class DBConnectionSA {
         return self::getConnection()->prepare($query);
     }
 
-} 
+}

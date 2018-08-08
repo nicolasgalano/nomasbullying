@@ -23,7 +23,8 @@ if (isset($_SESSION['page'])) {
                     <?php if($_SESSION['user']->getID() != 1){ ?>
                         <li><a class="panel-link" href="/cambiar-contrasena">Cambiar Contraseña</a></li>
                     <?php } ?>
-                    <li><a class="login-link" href="/acciones/logout.php">Cerrar sesión</a></li>
+                    <li><div class="usuario <?= ($_SESSION['user']->getID() == 1)?'admin':'' ?>"><?= $_SESSION['user']->getNombre().' '.$_SESSION['user']->getApellido() ?></div></li>
+                    <li><a class="logout-link" href="/acciones/logout.php">Cerrar sesión</a></li>
                 <?php } ?>
             </ul>
         </div>

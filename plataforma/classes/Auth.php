@@ -17,19 +17,21 @@ class Auth
     public static function login($usuario, $password)
     {
         $usuario = Usuario::buscarPorUsuario($usuario);
-        $passwordU = '';
-        $temporales = Temporal::buscarPorId($usuario->getID());
-
-        if(count($temporales)>0){
-
-            $passwordU = $temporales[0]->getPassword();
-
-        }else{
-
-            $passwordU = $usuario->getPassword();
-        }
 
         if($usuario) {
+
+            $passwordU = '';
+            $temporales = Temporal::buscarPorId($usuario->getID());
+
+            if(count($temporales)>0){
+
+                $passwordU = $temporales[0]->getPassword();
+
+            }else{
+
+                $passwordU = $usuario->getPassword();
+            }
+
             if(password_verify($password, $passwordU )) {
                 self::logUser($usuario);
                 return true;

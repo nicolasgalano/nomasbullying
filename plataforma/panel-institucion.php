@@ -86,25 +86,29 @@ require 'partials/header.php';
                         <h4>Alertas de Agresores</h4>
                     </div>
                     <table>
-                        <tr>
-                            <th>Alumno</th>
-                            <th>Rol</th>
-                            <th>Cantidad</th>
-                            <th style="width:200px;">Acciones</th>
-                        </tr>
-                        <?php foreach($agresores as $agresor): ?>
-                        <?php
-                            $agresorU = Usuario::buscarPorUsuarioId( (int)str_replace(' ', '', $agresor['idUsuario']) );
-                        ?>
-                        <tr>
-                            <td><?= $agresorU['apellido'];?> <?= $agresorU['nombre'];?></td>
-                            <td><?= ($agresor['rol']==1)?'Víctima':'';?><?= ($agresor['rol']==2)?'Agresor':'';?></td>
-                            <td><?= $agresor['cantidad'];?></td>
-                            <td>
-                                <div class="btn btn-blue open-popup-button" aria-popup=".popup-agregar-notificacion" aria-id-usuario="<?= $agresor['idUsuario'];?>" aria-rol="<?= $agresor['rol'];?>" aria-cantidad="<?= $agresor['cantidad'];?>">Crear Notificación</div>
-                            </td>
-                        </tr>
-                        <?php endforeach; ?>
+                        <thead>
+                            <tr>
+                                <th>Alumno</th>
+                                <th>Rol</th>
+                                <th>Cantidad</th>
+                                <th style="width:200px;">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach($agresores as $agresor): ?>
+                            <?php
+                                $agresorU = Usuario::buscarPorUsuarioId( (int)str_replace(' ', '', $agresor['idUsuario']) );
+                            ?>
+                            <tr>
+                                <td><?= $agresorU['apellido'];?> <?= $agresorU['nombre'];?></td>
+                                <td><?= ($agresor['rol']==1)?'Víctima':'';?><?= ($agresor['rol']==2)?'Agresor':'';?></td>
+                                <td><?= $agresor['cantidad'];?></td>
+                                <td>
+                                    <div class="btn btn-blue open-popup-button" aria-popup=".popup-agregar-notificacion" aria-id-usuario="<?= $agresor['idUsuario'];?>" aria-rol="<?= $agresor['rol'];?>" aria-cantidad="<?= $agresor['cantidad'];?>">Crear Notificación</div>
+                                </td>
+                            </tr>
+                            <?php endforeach; ?>
+                        </tbody>
                     </table>
                 </div>
                 <div class="basic-box alertas">
@@ -112,25 +116,29 @@ require 'partials/header.php';
                         <h4>Alertas de Victimas</h4>
                     </div>
                     <table>
-                        <tr>
-                            <th>Alumno</th>
-                            <th>Rol</th>
-                            <th>Cantidad</th>
-                            <th style="width:200px;">Acciones</th>
-                        </tr>
-                        <?php foreach($victimas as $victima): ?>
-                        <?php
-                            $victimaU = Usuario::buscarPorUsuarioId( (int)str_replace(' ', '', $victima['idUsuario']) );
-                        ?>
-                        <tr>
-                            <td><?= $victimaU['apellido'];?> <?= $victimaU['nombre'];?></td>
-                            <td><?= ($victima['rol']==1)?'Víctima':'';?><?= ($victima['rol']==2)?'Agresor':'';?></td>
-                            <td><?= $victima['cantidad'];?></td>
-                            <td>
-                                <div class="btn btn-blue open-popup-button" aria-popup=".popup-agregar-notificacion" aria-id-usuario="<?= $victima['idUsuario'];?>" aria-rol="<?= $victima['rol'];?>" aria-cantidad="<?= $victima['cantidad'];?>">Crear Notificación</div>
-                            </td>
-                        </tr>
-                        <?php endforeach; ?>
+                        <thead>
+                            <tr>
+                                <th>Alumno</th>
+                                <th>Rol</th>
+                                <th>Cantidad</th>
+                                <th style="width:200px;">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach($victimas as $victima): ?>
+                            <?php
+                                $victimaU = Usuario::buscarPorUsuarioId( (int)str_replace(' ', '', $victima['idUsuario']) );
+                            ?>
+                            <tr>
+                                <td><?= $victimaU['apellido'];?> <?= $victimaU['nombre'];?></td>
+                                <td><?= ($victima['rol']==1)?'Víctima':'';?><?= ($victima['rol']==2)?'Agresor':'';?></td>
+                                <td><?= $victima['cantidad'];?></td>
+                                <td>
+                                    <div class="btn btn-blue open-popup-button" aria-popup=".popup-agregar-notificacion" aria-id-usuario="<?= $victima['idUsuario'];?>" aria-rol="<?= $victima['rol'];?>" aria-cantidad="<?= $victima['cantidad'];?>">Crear Notificación</div>
+                                </td>
+                            </tr>
+                            <?php endforeach; ?>
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -152,32 +160,32 @@ require 'partials/header.php';
                         <div class="btn add-more agregar-usuario open-popup-button" aria-tipo="2" aria-popup=".popup-agregar-usuarios"><i class="glyphicon glyphicon-plus"></i>Agregar alumno</div>
                     </div>
                     <table>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Documento</th>
-                            <th>Grado</th>
-                            <th>Edad</th>
-                            <th>Genero</th>
-                            <th style="width:200px;">Acciones</th>
-                        </tr>
-
-                        <?php foreach($alumnos as $usuario): ?>
-                        <?php if( $usuario->getId() != 1 ){ ?>
-
-                        <tr>
-                            <td><?= $usuario->getApellido();?> <?= $usuario->getNombre();?></td>
-                            <td><?= $usuario->getIdentificacion();?></td>
-                            <td><?= $usuario->getGrado();?></td>
-                            <td><?= $usuario->getEdad();?></td>
-                            <td><?= $usuario->getSexo();?></td>
-                            <td>
-                                <div class="btn btn-blue open-popup-button" aria-popup=".popup-editar-usuarios" aria-id="<?= $usuario->getId();?>">Editar</div>
-                                <div class="btn btn-red open-popup-button" aria-popup=".popup-borrar-usuario" aria-id="<?= $usuario->getId();?>">Eliminar</div>
-                            </td>
-                        </tr>
-
-                        <?php } endforeach; ?>
-
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Documento</th>
+                                <th>Grado</th>
+                                <th>Edad</th>
+                                <th>Genero</th>
+                                <th style="width:200px;">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach($alumnos as $usuario): ?>
+                            <?php if( $usuario->getId() != 1 ){ ?>
+                            <tr>
+                                <td><?= $usuario->getApellido();?> <?= $usuario->getNombre();?></td>
+                                <td><?= $usuario->getIdentificacion();?></td>
+                                <td><?= $usuario->getGrado();?></td>
+                                <td><?= $usuario->getEdad();?></td>
+                                <td><?= $usuario->getSexo();?></td>
+                                <td>
+                                    <div class="btn btn-blue open-popup-button" aria-popup=".popup-editar-usuarios" aria-id="<?= $usuario->getId();?>">Editar</div>
+                                    <div class="btn btn-red open-popup-button" aria-popup=".popup-borrar-usuario" aria-id="<?= $usuario->getId();?>">Eliminar</div>
+                                </td>
+                            </tr>
+                            <?php } endforeach; ?>
+                        </tbody>
                     </table>
                 </div>
 
@@ -188,28 +196,28 @@ require 'partials/header.php';
                         <div class="btn add-more agregar-usuario open-popup-button" aria-tipo="3" aria-popup=".popup-agregar-usuarios"><i class="glyphicon glyphicon-plus"></i>Agregar padre</div>
                     </div>
                     <table>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Documento</th>
-                            <th>Genero</th>
-                            <th style="width:200px;">Acciones</th>
-                        </tr>
-
-                        <?php foreach($padres as $usuario): ?>
-                        <?php if( $usuario->getId() != 1 ){ ?>
-
-                        <tr>
-                            <td><?= $usuario->getApellido();?> <?= $usuario->getNombre();?></td>
-                            <td><?= $usuario->getIdentificacion();?></td>
-                            <td><?= $usuario->getSexo();?></td>
-                            <td>
-                                <div class="btn btn-blue open-popup-button" aria-popup=".popup-editar-usuarios" aria-id="<?= $usuario->getId();?>">Editar</div>
-                                <div class="btn btn-red open-popup-button" aria-popup=".popup-borrar-usuario" aria-id="<?= $usuario->getId();?>">Eliminar</div>
-                            </td>
-                        </tr>
-
-                        <?php } endforeach; ?>
-
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Documento</th>
+                                <th>Genero</th>
+                                <th style="width:200px;">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach($padres as $usuario): ?>
+                            <?php if( $usuario->getId() != 1 ){ ?>
+                            <tr>
+                                <td><?= $usuario->getApellido();?> <?= $usuario->getNombre();?></td>
+                                <td><?= $usuario->getIdentificacion();?></td>
+                                <td><?= $usuario->getSexo();?></td>
+                                <td>
+                                    <div class="btn btn-blue open-popup-button" aria-popup=".popup-editar-usuarios" aria-id="<?= $usuario->getId();?>">Editar</div>
+                                    <div class="btn btn-red open-popup-button" aria-popup=".popup-borrar-usuario" aria-id="<?= $usuario->getId();?>">Eliminar</div>
+                                </td>
+                            </tr>
+                            <?php } endforeach; ?>
+                        </tbody>
                     </table>
                 </div>
 
@@ -236,23 +244,27 @@ require 'partials/header.php';
                         <div class="btn add-more agregar-usuario open-popup-button" aria-tipo="1" aria-popup=".popup-agregar-publicacion"><i class="glyphicon glyphicon-plus"></i>Agregar articulo</div>
                     </div>
                     <table>
-                        <tr>
-                            <th>Titulo</th>
-                            <th>Contenido</th>
-                            <th>Fecha</th>
-                            <th style="width:200px;">Acciones</th>
-                        </tr>
-                        <?php foreach($articulos as $articulo): ?>
-                        <tr>
-                            <td><?= $articulo->getTitulo();?></td>
-                            <td><?= $articulo->getContenido();?></td>
-                            <td><?= $articulo->getFecha();?></td>
-                            <td>
-                                <div class="btn btn-blue open-popup-button" aria-popup=".popup-editar-publicacion" aria-tipo="1" aria-id="<?= $articulo->getId();?>">Editar</div>
-                                <div class="btn btn-red open-popup-button" aria-popup=".popup-borrar-publicacion" aria-tipo="1" aria-id="<?= $articulo->getId();?>">Eliminar</div>
-                            </td>
-                        </tr>
-                        <?php endforeach; ?>
+                        <thead>
+                            <tr>
+                                <th>Titulo</th>
+                                <th>Contenido</th>
+                                <th>Fecha</th>
+                                <th style="width:200px;">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach($articulos as $articulo): ?>
+                            <tr>
+                                <td><?= $articulo->getTitulo();?></td>
+                                <td><?= $articulo->getContenido();?></td>
+                                <td><?= $articulo->getFecha();?></td>
+                                <td>
+                                    <div class="btn btn-blue open-popup-button" aria-popup=".popup-editar-publicacion" aria-tipo="1" aria-id="<?= $articulo->getId();?>">Editar</div>
+                                    <div class="btn btn-red open-popup-button" aria-popup=".popup-borrar-publicacion" aria-tipo="1" aria-id="<?= $articulo->getId();?>">Eliminar</div>
+                                </td>
+                            </tr>
+                            <?php endforeach; ?>
+                        </tbody>
                     </table>
                 </div>
 
@@ -263,23 +275,27 @@ require 'partials/header.php';
                         <div class="btn add-more agregar-usuario open-popup-button" aria-tipo="2" aria-popup=".popup-agregar-publicacion"><i class="glyphicon glyphicon-plus"></i>Agregar articulo</div>
                     </div>
                     <table>
-                        <tr>
-                            <th>Titulo</th>
-                            <th>Contenido</th>
-                            <th>Fecha</th>
-                            <th style="width:200px;">Acciones</th>
-                        </tr>
-                        <?php foreach($talleres as $taller): ?>
-                        <tr>
-                            <td><?= $taller->getTitulo();?></td>
-                            <td><?= $taller->getContenido();?></td>
-                            <td><?= $taller->getFecha();?></td>
-                            <td>
-                                <div class="btn btn-blue open-popup-button" aria-popup=".popup-editar-publicacion" aria-tipo="2" aria-id="<?= $taller->getId();?>">Editar</div>
-                                <div class="btn btn-red open-popup-button" aria-popup=".popup-borrar-publicacion" aria-tipo="2" aria-id="<?= $taller->getId();?>">Eliminar</div>
-                            </td>
-                        </tr>
-                        <?php endforeach; ?>
+                        <thead>
+                            <tr>
+                                <th>Titulo</th>
+                                <th>Contenido</th>
+                                <th>Fecha</th>
+                                <th style="width:200px;">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach($talleres as $taller): ?>
+                            <tr>
+                                <td><?= $taller->getTitulo();?></td>
+                                <td><?= $taller->getContenido();?></td>
+                                <td><?= $taller->getFecha();?></td>
+                                <td>
+                                    <div class="btn btn-blue open-popup-button" aria-popup=".popup-editar-publicacion" aria-tipo="2" aria-id="<?= $taller->getId();?>">Editar</div>
+                                    <div class="btn btn-red open-popup-button" aria-popup=".popup-borrar-publicacion" aria-tipo="2" aria-id="<?= $taller->getId();?>">Eliminar</div>
+                                </td>
+                            </tr>
+                            <?php endforeach; ?>
+                        </tbody>
                     </table>
                 </div>
 
@@ -290,21 +306,25 @@ require 'partials/header.php';
                         <div class="btn add-more agregar-usuario open-popup-button" aria-tipo="3" aria-popup=".popup-agregar-publicacion"><i class="glyphicon glyphicon-plus"></i>Agregar link</div>
                     </div>
                     <table>
-                        <tr>
-                            <th>Titulo</th>
-                            <th>Link</th>
-                            <th style="width:200px;">Acciones</th>
-                        </tr>
-                        <?php foreach($links as $link): ?>
-                        <tr>
-                            <td><?= $link->getTitulo();?></td>
-                            <td><?= $link->getContenido();?></td>
-                            <td>
-                                <div class="btn btn-blue open-popup-button" aria-popup=".popup-editar-publicacion" aria-tipo="3" aria-id="<?= $link->getId();?>">Editar</div>
-                                <div class="btn btn-red open-popup-button" aria-popup=".popup-borrar-publicacion" aria-tipo="3" aria-id="<?= $link->getId();?>">Eliminar</div>
-                            </td>
-                        </tr>
-                        <?php endforeach; ?>
+                        <thead>
+                            <tr>
+                                <th>Titulo</th>
+                                <th>Link</th>
+                                <th style="width:200px;">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach($links as $link): ?>
+                            <tr>
+                                <td><?= $link->getTitulo();?></td>
+                                <td><?= $link->getContenido();?></td>
+                                <td>
+                                    <div class="btn btn-blue open-popup-button" aria-popup=".popup-editar-publicacion" aria-tipo="3" aria-id="<?= $link->getId();?>">Editar</div>
+                                    <div class="btn btn-red open-popup-button" aria-popup=".popup-borrar-publicacion" aria-tipo="3" aria-id="<?= $link->getId();?>">Eliminar</div>
+                                </td>
+                            </tr>
+                            <?php endforeach; ?>
+                        </tbody>
                     </table>
                 </div>
 
@@ -315,21 +335,25 @@ require 'partials/header.php';
                         <div class="btn add-more agregar-usuario open-popup-button" aria-tipo="4" aria-popup=".popup-agregar-publicacion"><i class="glyphicon glyphicon-plus"></i>Agregar teléfono de ayuda</div>
                     </div>
                     <table>
-                        <tr>
-                            <th>Titulo</th>
-                            <th>Teléfono</th>
-                            <th style="width:200px;">Acciones</th>
-                        </tr>
-                        <?php foreach($telsayuda as $telayuda): ?>
-                        <tr>
-                            <td><?= $telayuda->getTitulo();?></td>
-                            <td><?= $telayuda->getContenido();?></td>
-                            <td>
-                                <div class="btn btn-blue open-popup-button" aria-popup=".popup-editar-publicacion" aria-tipo="4" aria-id="<?= $telayuda->getId();?>">Editar</div>
-                                <div class="btn btn-red open-popup-button" aria-popup=".popup-borrar-publicacion" aria-tipo="4" aria-id="<?= $telayuda->getId();?>">Eliminar</div>
-                            </td>
-                        </tr>
-                        <?php endforeach; ?>
+                        <thead>
+                            <tr>
+                                <th>Titulo</th>
+                                <th>Teléfono</th>
+                                <th style="width:200px;">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach($telsayuda as $telayuda): ?>
+                            <tr>
+                                <td><?= $telayuda->getTitulo();?></td>
+                                <td><?= $telayuda->getContenido();?></td>
+                                <td>
+                                    <div class="btn btn-blue open-popup-button" aria-popup=".popup-editar-publicacion" aria-tipo="4" aria-id="<?= $telayuda->getId();?>">Editar</div>
+                                    <div class="btn btn-red open-popup-button" aria-popup=".popup-borrar-publicacion" aria-tipo="4" aria-id="<?= $telayuda->getId();?>">Eliminar</div>
+                                </td>
+                            </tr>
+                            <?php endforeach; ?>
+                        </tbody>
                     </table>
                 </div>
 
@@ -340,21 +364,25 @@ require 'partials/header.php';
                         <div class="btn add-more agregar-usuario open-popup-button" aria-tipo="5" aria-popup=".popup-agregar-publicacion"><i class="glyphicon glyphicon-plus"></i>Agregar teléfono de la institución</div>
                     </div>
                     <table>
-                        <tr>
-                            <th>Titulo</th>
-                            <th>Teléfono</th>
-                            <th style="width:200px;">Acciones</th>
-                        </tr>
-                        <?php foreach($telsinstitucion as $telinstitucion): ?>
-                        <tr>
-                            <td><?= $telinstitucion->getTitulo();?></td>
-                            <td><?= $telinstitucion->getContenido();?></td>
-                            <td>
-                                <div class="btn btn-blue open-popup-button" aria-popup=".popup-editar-publicacion" aria-tipo="5" aria-id="<?= $telinstitucion->getId();?>">Editar</div>
-                                <div class="btn btn-red open-popup-button" aria-popup=".popup-borrar-publicacion" aria-tipo="5" aria-id="<?= $telinstitucion->getId();?>">Eliminar</div>
-                            </td>
-                        </tr>
-                        <?php endforeach; ?>
+                        <thead>
+                            <tr>
+                                <th>Titulo</th>
+                                <th>Teléfono</th>
+                                <th style="width:200px;">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach($telsinstitucion as $telinstitucion): ?>
+                            <tr>
+                                <td><?= $telinstitucion->getTitulo();?></td>
+                                <td><?= $telinstitucion->getContenido();?></td>
+                                <td>
+                                    <div class="btn btn-blue open-popup-button" aria-popup=".popup-editar-publicacion" aria-tipo="5" aria-id="<?= $telinstitucion->getId();?>">Editar</div>
+                                    <div class="btn btn-red open-popup-button" aria-popup=".popup-borrar-publicacion" aria-tipo="5" aria-id="<?= $telinstitucion->getId();?>">Eliminar</div>
+                                </td>
+                            </tr>
+                            <?php endforeach; ?>
+                        </tbody>
                     </table>
                 </div>
 
@@ -376,33 +404,34 @@ require 'partials/header.php';
                     </div>
 
                     <table>
-                        <tr>
-                            <th>Implicado</th>
-                            <th>Rol</th>
-                            <th>Padre</th>
-                            <th>Leido por el padre</th>
-                            <th style="width:200px;">Acciones</th>
-                        </tr>
-
-                        <?php foreach($notificaciones as $notificacion): ?>
-                        <?php
-                            $implicadoU = Usuario::buscarPorUsuarioId( (int)str_replace(' ', '', $notificacion->getImplicado()) );
-                            $padreU = Usuario::buscarPorUsuarioId( (int)str_replace(' ', '', $notificacion->getPadre()) );
-                            $comentariosNuevoNot = Comentario::noLeidosNot( $notificacion->getId(), $_SESSION['user']->getID() );
-                        ?>
-                        <tr>
-                            <td><?= $implicadoU['apellido'];?> <?= $implicadoU['nombre'];?></td>
-                            <td><?= $notificacion->getRol();?></td>
-                            <td><?= $padreU['apellido'];?> <?= $padreU['nombre'];?></td>
-                            <td><?= ($notificacion->getLeido()==0)?'No leído':'Leído';?></td>
-                            <td>
-                                <div class="btn btn-red open-popup-button" aria-popup=".popup-borrar-notificacion" aria-id-notificacion="<?= $notificacion->getId();?>">Eliminar</div>
-                                <div class="btn btn-blue open-popup-button" aria-popup=".popup-comentarios-notificacion" aria-id="<?= $notificacion->getId();?>" aria-id-usuario="<?= $_SESSION['user']->getID() ?>">Mensajes<?php if(count($comentariosNuevoNot) > 0){ ?><span class="nuevos"></span><?php } ?></div>
-                            </td>
-                        </tr>
-
-                        <?php endforeach; ?>
-
+                        <thead>
+                            <tr>
+                                <th>Implicado</th>
+                                <th>Rol</th>
+                                <th>Padre</th>
+                                <th>Leido por el padre</th>
+                                <th style="width:200px;">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach($notificaciones as $notificacion): ?>
+                            <?php
+                                $implicadoU = Usuario::buscarPorUsuarioId( (int)str_replace(' ', '', $notificacion->getImplicado()) );
+                                $padreU = Usuario::buscarPorUsuarioId( (int)str_replace(' ', '', $notificacion->getPadre()) );
+                                $comentariosNuevoNot = Comentario::noLeidosNot( $notificacion->getId(), $_SESSION['user']->getID() );
+                            ?>
+                            <tr>
+                                <td><?= $implicadoU['apellido'];?> <?= $implicadoU['nombre'];?></td>
+                                <td><?= ($notificacion->getRol()==1)?'Víctima':'';?><?= ($notificacion->getRol()==2)?'Agresor':'';?></td>
+                                <td><?= $padreU['apellido'];?> <?= $padreU['nombre'];?></td>
+                                <td><?= ($notificacion->getLeido()==0)?'No leído':'Leído';?></td>
+                                <td>
+                                    <div class="btn btn-red open-popup-button" aria-popup=".popup-borrar-notificacion" aria-id-notificacion="<?= $notificacion->getId();?>">Eliminar</div>
+                                    <div class="btn btn-blue open-popup-button" aria-popup=".popup-comentarios-notificacion" aria-id="<?= $notificacion->getId();?>" aria-id-usuario="<?= $_SESSION['user']->getID() ?>">Mensajes<?php if(count($comentariosNuevoNot) > 0){ ?><span class="nuevos"></span><?php } ?></div>
+                                </td>
+                            </tr>
+                            <?php endforeach; ?>
+                        </tbody>
                     </table>
 
                 </div>
@@ -419,32 +448,33 @@ require 'partials/header.php';
                         <div class="btn add-more agregar-situacion open-popup-button" aria-popup=".popup-agregar-situacion"><i class="glyphicon glyphicon-plus"></i>Agregar situaciones</div>
                     </div>
                     <table>
-
-                        <tr>
-                            <th>Creador del reporte</th>
-                            <th>Título</th>
-                            <th>Gravedad</th>
-                            <th>Estado</th>
-                            <th style="width:220px;">Acciones</th>
-                        </tr>
-
-                        <?php foreach($situaciones as $situacion): ?>
-                        <?php
-                            $denunciante = Usuario::buscarPorUsuarioId( (int)str_replace(' ', '', $situacion->getDenunciante()) );
-                            $comentariosNuevoSit = Comentario::noLeidosSit( $situacion->getId(), $_SESSION['user']->getID() );
-                        ?>
-                        <tr>
-                            <td><?= $denunciante['apellido'];?> <?= $denunciante['nombre'];?></td>
-                            <td><?= $situacion->getTitulo();?></td>
-                            <td class="gravedad <?= $situacion->getNivel();?>"><b><?= $situacion->getNivel();?></b></td>
-                            <td><?= ($situacion->getEstatus()==0)?'No leído':'Leído';?></td>
-                            <td>
-                                <div class="btn ver-ficha open-popup-button" aria-popup=".popup-ver-situacion" aria-id-usuario-activo="<?= $_SESSION['user']->getID() ?>" aria-id-usuario="<?= $situacion->getDenunciante();?>" aria-id="<?= $situacion->getId();?>">Ver ficha</div>
-                                <div class="btn btn-blue open-popup-button" aria-popup=".popup-comentarios" aria-id="<?= $situacion->getId();?>" aria-id-usuario="<?= $_SESSION['user']->getID() ?>">Mensajes<?php if(count($comentariosNuevoSit) > 0){ ?><span class="nuevos"></span><?php } ?></div>
-                            </td>
-                        </tr>
-                        <?php endforeach; ?>
-
+                        <thead>
+                            <tr>
+                                <th>Creador del reporte</th>
+                                <th>Título</th>
+                                <th>Gravedad</th>
+                                <th>Estado</th>
+                                <th style="width:220px;">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach($situaciones as $situacion): ?>
+                            <?php
+                                $denunciante = Usuario::buscarPorUsuarioId( (int)str_replace(' ', '', $situacion->getDenunciante()) );
+                                $comentariosNuevoSit = Comentario::noLeidosSit( $situacion->getId(), $_SESSION['user']->getID() );
+                            ?>
+                            <tr>
+                                <td><?= $denunciante['apellido'];?> <?= $denunciante['nombre'];?></td>
+                                <td><?= $situacion->getTitulo();?></td>
+                                <td class="gravedad <?= $situacion->getNivel();?>"><b><?= $situacion->getNivel();?></b></td>
+                                <td><?= ($situacion->getEstatus()==0)?'No leído':'Leído';?></td>
+                                <td>
+                                    <div class="btn ver-ficha open-popup-button" aria-popup=".popup-ver-situacion" aria-id-usuario-activo="<?= $_SESSION['user']->getID() ?>" aria-id-usuario="<?= $situacion->getDenunciante();?>" aria-id="<?= $situacion->getId();?>">Ver ficha</div>
+                                    <div class="btn btn-blue open-popup-button" aria-popup=".popup-comentarios" aria-id="<?= $situacion->getId();?>" aria-id-usuario="<?= $_SESSION['user']->getID() ?>">Mensajes<?php if(count($comentariosNuevoSit) > 0){ ?><span class="nuevos"></span><?php } ?></div>
+                                </td>
+                            </tr>
+                            <?php endforeach; ?>
+                        </tbody>
                     </table>
                 </div>
             </div>

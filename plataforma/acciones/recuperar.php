@@ -39,7 +39,7 @@ try {
     $headers = 'From: '. $usuario->getMail() . "\r\n" .
         'Reply-To: no-reply@nomasbullying.com.ar' . "\r\n";
 
-    mail($usuario->getMail(), 'No Mas Bullying / Contacto', $body, $headers);
+    mail($usuario->getMail(), 'No Mas Bullying / Recuperación de Contraseña', $body, $headers);
 
     echo json_encode($result);
 

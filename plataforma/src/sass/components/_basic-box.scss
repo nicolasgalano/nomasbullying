@@ -29,6 +29,7 @@
                 background:#FFFFFF;
             }
         }
+
         td,th{
             border-bottom:1px solid #CCC;
             padding:5px 15px;
@@ -43,6 +44,14 @@
             padding:9px 15px 8px;
             font-size: 14px;
             text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+
+            &.header.headerSortDown{
+                background:#e0e0e0;
+            }
+            &.header.headerSortUp{
+                background:#e0e0e0;
+            }
         }
         td{
             font-family:$arial;

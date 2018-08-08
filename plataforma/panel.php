@@ -57,33 +57,35 @@ include 'partials/header.php';
                         <div class="btn add-more agregar-situacion open-popup-button" aria-popup=".popup-agregar-situacion"><i class="glyphicon glyphicon-plus"></i>Agregar situaciones</div>
                     </div>
                     <table>
-                        <tr>
-                            <th>Creador del reporte</th>
-                            <th>Título</th>
-                            <th>Descripción</th>
-                            <th>Gravedad</th>
-                            <th>Estado</th>
-                            <th style="width:220px;">Acciones</th>
-                        </tr>
-
-                        <?php foreach($situaciones as $situacion): ?>
-                        <?php
-                            $denunciante = Usuario::buscarPorUsuarioId( (int)str_replace(' ', '', $situacion->getDenunciante()) );
-                            $comentariosNuevoSit = Comentario::noLeidosSit( $situacion->getId(), $_SESSION['user']->getID() );
-                        ?>
-                        <tr>
-                            <td><?= $denunciante['apellido'];?> <?= $denunciante['nombre'];?></td>
-                            <td><?= $situacion->getTitulo();?></td>
-                            <td><?= $situacion->getDescripcion();?></td>
-                            <td><?= $situacion->getNivel();?></td>
-                            <td><?= ($situacion->getEstatus()==0)?'No leído':'Leído';?></td>
-                            <td>
-                                <div class="btn ver-ficha open-popup-button" aria-popup=".popup-ver-situacion" aria-id-usuario-activo="<?= $_SESSION['user']->getID() ?>" aria-id-usuario="<?= $situacion->getDenunciante();?>" aria-id="<?= $situacion->getId();?>">Ver ficha</div>
-                                <div class="btn btn-blue open-popup-button" aria-popup=".popup-comentarios" aria-id="<?= $situacion->getId();?>" aria-id-usuario="<?= $_SESSION['user']->getID() ?>">Mensajes<?php if(count($comentariosNuevoSit) > 0){ ?><span class="nuevos"></span><?php } ?></div>
-                            </td>
-                        </tr>
-                        <?php endforeach; ?>
-
+                        <thead>
+                            <tr>
+                                <th>Creador del reporte</th>
+                                <th>Título</th>
+                                <th>Descripción</th>
+                                <th>Gravedad</th>
+                                <th>Estado</th>
+                                <th style="width:220px;">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach($situaciones as $situacion): ?>
+                            <?php
+                                $denunciante = Usuario::buscarPorUsuarioId( (int)str_replace(' ', '', $situacion->getDenunciante()) );
+                                $comentariosNuevoSit = Comentario::noLeidosSit( $situacion->getId(), $_SESSION['user']->getID() );
+                            ?>
+                            <tr>
+                                <td><?= $denunciante['apellido'];?> <?= $denunciante['nombre'];?></td>
+                                <td><?= $situacion->getTitulo();?></td>
+                                <td><?= $situacion->getDescripcion();?></td>
+                                <td><?= $situacion->getNivel();?></td>
+                                <td><?= ($situacion->getEstatus()==0)?'No leído':'Leído';?></td>
+                                <td>
+                                    <div class="btn ver-ficha open-popup-button" aria-popup=".popup-ver-situacion" aria-id-usuario-activo="<?= $_SESSION['user']->getID() ?>" aria-id-usuario="<?= $situacion->getDenunciante();?>" aria-id="<?= $situacion->getId();?>">Ver ficha</div>
+                                    <div class="btn btn-blue open-popup-button" aria-popup=".popup-comentarios" aria-id="<?= $situacion->getId();?>" aria-id-usuario="<?= $_SESSION['user']->getID() ?>">Mensajes<?php if(count($comentariosNuevoSit) > 0){ ?><span class="nuevos"></span><?php } ?></div>
+                                </td>
+                            </tr>
+                            <?php endforeach; ?>
+                        </tbody>
                     </table>
                 </div>
 
@@ -100,32 +102,33 @@ include 'partials/header.php';
                         </div>
 
                         <table>
-                            <tr>
-                                <th>Implicado</th>
-                                <th>Rol</th>
-                                <th>Padre</th>
-                                <!-- <th>Leido por el padre</th> -->
-                                <th style="width:100px;">Acciones</th>
-                            </tr>
-
-                            <?php foreach($notificaciones as $notificacion): ?>
-                            <?php
-                                $implicadoU = Usuario::buscarPorUsuarioId( (int)str_replace(' ', '', $notificacion->getImplicado()) );
-                                $padreU = Usuario::buscarPorUsuarioId( (int)str_replace(' ', '', $notificacion->getPadre()) );
-                                $comentariosNuevoNot = Comentario::noLeidosNot( $notificacion->getId(), $_SESSION['user']->getID() );
-                            ?>
-                            <tr>
-                                <td><?= $implicadoU['apellido'];?> <?= $implicadoU['nombre'];?></td>
-                                <td><?= ($notificacion->getRol()==1)?'Víctima':'';?><?= ($notificacion->getRol()==2)?'Agresor':'';?></td>
-                                <td><?= $padreU['apellido'];?> <?= $padreU['nombre'];?></td>
-                                <!--<td><?= ($notificacion->getLeido()==0)?'No leído':'Leído';?></td>-->
-                                <td>
-                                    <div class="btn btn-blue open-popup-button" aria-popup=".popup-comentarios-notificacion" aria-id="<?= $notificacion->getId();?>" aria-id-usuario="<?= $_SESSION['user']->getID() ?>">Mensajes<?php if(count($comentariosNuevoNot) > 0){ ?><span class="nuevos"></span><?php } ?></div>
-                                </td>
-                            </tr>
-
-                            <?php endforeach; ?>
-
+                            <thead>
+                                <tr>
+                                    <th>Implicado</th>
+                                    <th>Rol</th>
+                                    <th>Padre</th>
+                                    <!-- <th>Leido por el padre</th> -->
+                                    <th style="width:100px;">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach($notificaciones as $notificacion): ?>
+                                <?php
+                                    $implicadoU = Usuario::buscarPorUsuarioId( (int)str_replace(' ', '', $notificacion->getImplicado()) );
+                                    $padreU = Usuario::buscarPorUsuarioId( (int)str_replace(' ', '', $notificacion->getPadre()) );
+                                    $comentariosNuevoNot = Comentario::noLeidosNot( $notificacion->getId(), $_SESSION['user']->getID() );
+                                ?>
+                                <tr>
+                                    <td><?= $implicadoU['apellido'];?> <?= $implicadoU['nombre'];?></td>
+                                    <td><?= ($notificacion->getRol()==1)?'Víctima':'';?><?= ($notificacion->getRol()==2)?'Agresor':'';?></td>
+                                    <td><?= $padreU['apellido'];?> <?= $padreU['nombre'];?></td>
+                                    <!--<td><?= ($notificacion->getLeido()==0)?'No leído':'Leído';?></td>-->
+                                    <td>
+                                        <div class="btn btn-blue open-popup-button" aria-popup=".popup-comentarios-notificacion" aria-id="<?= $notificacion->getId();?>" aria-id-usuario="<?= $_SESSION['user']->getID() ?>">Mensajes<?php if(count($comentariosNuevoNot) > 0){ ?><span class="nuevos"></span><?php } ?></div>
+                                    </td>
+                                </tr>
+                                <?php endforeach; ?>
+                            </tbody>
                         </table>
 
                     </div>

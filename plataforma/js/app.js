@@ -82,6 +82,10 @@ if ( typeof define === 'function' && define.amd ) {
 //////////////   POPUPS    ///////////////
 (function(){
 
+    //TABLAS
+    $("table").tablesorter();
+
+    //UPDATE COMMENTS
     function updateComentarios(usuarioID,typeID, popupName, typeOfComment){
 
         var llamada = '';
@@ -143,6 +147,7 @@ if ( typeof define === 'function' && define.amd ) {
                     url: '/acciones/agregar-comentario.php?creador='+usuarioID+'&contenido='+$('#mensaje-comentario').val()+'&id-situacion='+situacionID,
                     success: function(data) {
                         if(data) {
+                            console.log(data);
                             $('#mensaje-comentario').val('');
                             updateComentarios(usuarioID,situacionID,popupClass,1);
                         }
@@ -174,6 +179,7 @@ if ( typeof define === 'function' && define.amd ) {
                     url: '/acciones/agregar-comentario-notificacion.php?creador='+usuarioID+'&contenido='+$('#mensaje-comentario-not').val()+'&id-notificacion='+notificacionID,
                     success: function(data) {
                         if(data) {
+                            console.log(data);
                             $('#mensaje-comentario-not').val('');
                             updateComentarios(usuarioID,notificacionID,popupClass,2);
                         }
@@ -1200,7 +1206,7 @@ if ( typeof define === 'function' && define.amd ) {
             element.after(error);
         }
         , submitHandler: function (form) {
-            submitLoaderEU.removeClass('hide');
+            submitLoaderEA.removeClass('hide');
             var params = $(form).serializeArray();
             console.log(params);
             $.ajax({

@@ -108,7 +108,7 @@ class Comentario {
         ]);
 
         if(!$exito) {
-            return 'Error al insertar los datos.';
+            return $stmt->errorInfo();//return 'Error al insertar los datos. ' . $exito;
         }else{
             return true;
         }
@@ -128,7 +128,7 @@ class Comentario {
         ]);
 
         if(!$exito) {
-            return 'Error al insertar los datos.';
+            return $stmt->errorInfo();//return 'Error al insertar los datos. ' . $exito;
         }else{
             return true;
         }

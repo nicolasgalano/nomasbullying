@@ -8671,6 +8671,22 @@ tbody.collapse.in {
     float: right;
     padding-top: 0px; } }
 
+.navbar-default .navbar-nav li div.usuario {
+  line-height: 20px;
+  font-size: 16px;
+  font-weight: 400;
+  font-family: "Open Sans", sans-serif;
+  text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.2);
+  background: #30b873;
+  padding: 8px 20px;
+  border-radius: 6px;
+  color: white !important;
+  margin: 7px 0 0 13px;
+  -webkit-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2); }
+  .navbar-default .navbar-nav li div.usuario.admin {
+    background: #b8b430; }
+
 .navbar-default .navbar-nav li a {
   color: #304db8;
   font-size: 18px;
@@ -8691,6 +8707,18 @@ tbody.collapse.in {
     -webkit-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
             box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2); }
     .navbar-default .navbar-nav li a.login-link:hover {
+      color: white !important;
+      text-decoration: underline; }
+  .navbar-default .navbar-nav li a.logout-link {
+    font-size: 16px;
+    background: #b85630;
+    padding: 8px 20px;
+    border-radius: 6px;
+    color: white !important;
+    margin-top: 7px;
+    -webkit-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
+            box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2); }
+    .navbar-default .navbar-nav li a.logout-link:hover {
       color: white !important;
       text-decoration: underline; }
 
@@ -9128,7 +9156,12 @@ path.stroke-thin {
       font-family: Arial, sans-serif;
       padding: 9px 15px 8px;
       font-size: 14px;
-      text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.5); }
+      text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.5);
+      cursor: pointer; }
+      .basic-box table th.header.headerSortDown {
+        background: #e0e0e0; }
+      .basic-box table th.header.headerSortUp {
+        background: #e0e0e0; }
     .basic-box table td {
       font-family: Arial, sans-serif; }
     .basic-box table .btn {

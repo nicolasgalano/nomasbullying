@@ -49,7 +49,7 @@ class Auth
     }
 
     /**
-     * @return Usuario
+     * @return Susuario
      */
     public static function getUser()
     {

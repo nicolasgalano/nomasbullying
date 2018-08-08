@@ -1,6 +1,6 @@
 <?php
 
-class DBConnection {
+class DBConnectionSA {
 
     private static $db = null;
     private function __construct() {}
@@ -10,9 +10,9 @@ class DBConnection {
     private static function openConnection()
     {
         $host = "localhost";
-        $user = "nomasbul_demo";
-        $pass = "DaVinci2018!";
-        $base = "nomasbul_demo";
+        $user = "nomasbul_admin";
+        $pass = "(}9w]2r[LB7w";
+        $base = "nomasbul_admin";
         $dsn = "mysql:host=$host;dbname=$base;charset=utf8";
 
         self::$db = new PDO($dsn, $user, $pass);

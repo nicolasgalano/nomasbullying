@@ -99,7 +99,7 @@ class Situacion {
     public static function crear($data)
     {
         $query = "INSERT INTO situaciones (denunciante, titulo, descripcion, fecha_creacion, nivel_situacion, estatus)
-                  VALUES (:den, :tit, :des, NOW(), :nivel, 'No Leído')";
+                  VALUES (:den, :tit, :des, NOW(), :nivel, '0')";
 
         $stmt = DBConnection::getStatement($query);
 

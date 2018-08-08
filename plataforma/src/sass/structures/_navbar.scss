@@ -117,6 +117,22 @@
             padding-top:0px;
         }
         li {
+            div.usuario{
+                line-height: 20px;
+                font-size: 16px;
+                font-weight: 400;
+                font-family:$open-sans;
+                text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.2);
+                background: #30b873;
+                padding: 8px 20px;
+                border-radius: 6px;
+                color: white !important;
+                margin:7px 0 0 13px;
+                box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
+                &.admin{
+                    background:#b8b430;
+                }
+            }
             a {
                 color: #304db8;
                 font-size: 18px;
@@ -135,6 +151,19 @@
                 &.login-link{
                     background: #30b873;
                     padding: 8px 30px;
+                    border-radius: 6px;
+                    color: white !important;
+                    margin-top: 7px;
+                    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
+                    &:hover{
+                        color: white !important;
+                        text-decoration: underline;
+                    }
+                }
+                &.logout-link{
+                    font-size: 16px;
+                    background: #b85630;
+                    padding: 8px 20px;
                     border-radius: 6px;
                     color: white !important;
                     margin-top: 7px;
