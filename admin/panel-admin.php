@@ -5,8 +5,6 @@ if(!Auth::userLogged()) {
     header('Location: /');
 }
 
-// OBTENER DATOS DE ULTIMA FECHA AL ENTRAR AL PANEL A LA SECCION DE SITUACIONES
-
 $_SESSION['page'] = 'panel-admin';
 
 if(isset($_GET['tab'])) {
@@ -15,11 +13,9 @@ if(isset($_GET['tab'])) {
     $openTab = 'clientes';
 }
 
-// ORDER
-$situacionOrder = "ORDER BY id DESC";
-
 //GET CLASES
-$instituciones = []//Institucion::traerTodos( $situacionOrder );
+//$instituciones = []//Institucion::traerTodos( $situacionOrder );
+$instituciones = Institucion::traerTodos();
 ?>
 
 <!-- PANEL INSTITUCION -->

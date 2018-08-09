@@ -91,7 +91,7 @@ require 'partials/header.php';
                                 <th>Alumno</th>
                                 <th>Rol</th>
                                 <th>Cantidad</th>
-                                <th style="width:200px;">Acciones</th>
+                                <th style="width:200px;" class="sorter-false">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -121,7 +121,7 @@ require 'partials/header.php';
                                 <th>Alumno</th>
                                 <th>Rol</th>
                                 <th>Cantidad</th>
-                                <th style="width:200px;">Acciones</th>
+                                <th style="width:200px;" class="sorter-false">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -167,7 +167,7 @@ require 'partials/header.php';
                                 <th>Grado</th>
                                 <th>Edad</th>
                                 <th>Genero</th>
-                                <th style="width:200px;">Acciones</th>
+                                <th style="width:200px;" class="sorter-false">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -201,7 +201,7 @@ require 'partials/header.php';
                                 <th>Nombre</th>
                                 <th>Documento</th>
                                 <th>Genero</th>
-                                <th style="width:200px;">Acciones</th>
+                                <th style="width:200px;" class="sorter-false">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -249,7 +249,7 @@ require 'partials/header.php';
                                 <th>Titulo</th>
                                 <th>Contenido</th>
                                 <th>Fecha</th>
-                                <th style="width:200px;">Acciones</th>
+                                <th style="width:200px;" class="sorter-false">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -280,7 +280,7 @@ require 'partials/header.php';
                                 <th>Titulo</th>
                                 <th>Contenido</th>
                                 <th>Fecha</th>
-                                <th style="width:200px;">Acciones</th>
+                                <th style="width:200px;" class="sorter-false">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -310,7 +310,7 @@ require 'partials/header.php';
                             <tr>
                                 <th>Titulo</th>
                                 <th>Link</th>
-                                <th style="width:200px;">Acciones</th>
+                                <th style="width:200px;" class="sorter-false">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -339,7 +339,7 @@ require 'partials/header.php';
                             <tr>
                                 <th>Titulo</th>
                                 <th>Teléfono</th>
-                                <th style="width:200px;">Acciones</th>
+                                <th style="width:200px;" class="sorter-false">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -368,7 +368,7 @@ require 'partials/header.php';
                             <tr>
                                 <th>Titulo</th>
                                 <th>Teléfono</th>
-                                <th style="width:200px;">Acciones</th>
+                                <th style="width:200px;" class="sorter-false">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -410,7 +410,7 @@ require 'partials/header.php';
                                 <th>Rol</th>
                                 <th>Padre</th>
                                 <th>Leido por el padre</th>
-                                <th style="width:200px;">Acciones</th>
+                                <th style="width:200px;" class="sorter-false">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -454,7 +454,7 @@ require 'partials/header.php';
                                 <th>Título</th>
                                 <th>Gravedad</th>
                                 <th>Estado</th>
-                                <th style="width:220px;">Acciones</th>
+                                <th style="width:220px;" class="sorter-false">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>

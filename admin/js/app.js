@@ -292,14 +292,18 @@ if ( typeof define === 'function' && define.amd ) {
         rules: {
             nombre: 'required',
             instituto: 'required',
-            sdominio: 'required'
+            sdominio: {
+                required : true,
+                maxlength : 7
+            }
         },
         messages: {
             nombre: {
                 required: 'Falta completar el nombre'
             },
             instituto: {
-                required: 'Falta completar la nombre de instituto'
+                required: 'Falta completar la nombre de instituto',
+                maxlength : 'El subdominio no debe tener mas de 7 caracteres'
             },
             sdominio: {
                 required: 'Falta completar el nombre de subdominio deseado'

@@ -64,7 +64,7 @@ include 'partials/header.php';
                                 <th>Descripción</th>
                                 <th>Gravedad</th>
                                 <th>Estado</th>
-                                <th style="width:220px;">Acciones</th>
+                                <th style="width:220px;" class="sorter-false">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -108,7 +108,7 @@ include 'partials/header.php';
                                     <th>Rol</th>
                                     <th>Padre</th>
                                     <!-- <th>Leido por el padre</th> -->
-                                    <th style="width:100px;">Acciones</th>
+                                    <th style="width:100px;" class="sorter-false">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>

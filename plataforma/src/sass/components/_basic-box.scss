@@ -36,7 +36,7 @@
             font-size: 13px;
         }
         th{
-            background:#f6f5f5;
+            background-color:#f6f5f5;
             color:#aaaaaa;
             font-weight: 400;
             text-align:left;
@@ -44,13 +44,29 @@
             padding:9px 15px 8px;
             font-size: 14px;
             text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.5);
-            cursor: pointer;
 
+            &.header{
+                background:#f6f5f5 url(../images/icon-sort.png) center right no-repeat;
+                background-size: auto 13px;
+                cursor: pointer;
+                &.sorter-false{
+                    cursor: default;
+                    background:#f6f5f5;
+                }
+            }
             &.header.headerSortDown{
-                background:#e0e0e0;
+                background-image:url(../images/icon-sort-alt.png);
+                //background-color:#eaeaea;
+                &.sorter-false{
+                    background-image: none !important;
+                }
             }
             &.header.headerSortUp{
-                background:#e0e0e0;
+                background-image:url(../images/icon-sort-attr.png);
+                //background-color:#eaeaea;
+                &.sorter-false{
+                    background-image: none !important;
+                }
             }
         }
         td{

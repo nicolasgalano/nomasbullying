@@ -83,7 +83,16 @@ if ( typeof define === 'function' && define.amd ) {
 (function(){
 
     //TABLAS
-    $("table").tablesorter();
+    $("table").tablesorter({
+        headers: {
+            // disable sorting of the first & second column - before we would have to had made two entries
+            // note that "first-name" is a class on the span INSIDE the first column th cell
+            '.first-name, .last-name' : {
+                // disable it by setting the property sorter to false
+                sorter: false
+            }
+        }
+    });
 
     //UPDATE COMMENTS
     function updateComentarios(usuarioID,typeID, popupName, typeOfComment){
