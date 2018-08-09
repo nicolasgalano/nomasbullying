@@ -21,7 +21,7 @@ if(!Auth::userLogged()) {
             $xmlapi->password_auth($cpanelusr,$cpanelpass);
             $xmlapi->set_debug(0);
 
-            //$resultado = $xmlapi->api1_query($cpanelusr, 'SubDomain', 'addsubdomain', array($_POST['sdominio'],'nomasbullying.com.ar',0,0, '/'.$_POST['sdominio']));
+            $resultado = $xmlapi->api1_query($cpanelusr, 'SubDomain', 'addsubdomain', array($_POST['sdominio'],'nomasbullying.com.ar',0,0, '/'.$_POST['sdominio']));
 
             $databasename = $_POST['sdominio'];
             $databaseuser = $_POST['sdominio']; //¡Tener cuidado! Esto puede tener un máximo de 7 caracteres
